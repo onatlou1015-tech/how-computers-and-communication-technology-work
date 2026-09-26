@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inside the Machine · Computer Systems & Communication</title>
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: #f0f5fa;
+      color: #0a1e2f;
+      line-height: 1.5;
+      padding: 2rem 1.5rem;
+      scroll-behavior: smooth;
+    }
+
+    .wrapper {
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    /* ----- header / hero ----- */
+    .unit-header {
+      background: linear-gradient(135deg, #0b2a4a 0%, #1a4a6e 100%);
+      border-radius: 2.5rem;
+      padding: 2.8rem 2.5rem;
+      color: white;
+      margin-bottom: 2rem;
+      box-shadow: 0 20px 30px -10px rgba(11, 42, 74, 0.25);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .unit-header::after {
+      content: "⚙️";
+      position: absolute;
+      right: 2rem;
+      bottom: -1rem;
+      font-size: 8rem;
+      opacity: 0.08;
+      transform: rotate(15deg);
+      pointer-events: none;
+    }
+
+    .unit-header h1 {
+      font-size: 2.6rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      max-width: 800px;
+      margin-bottom: 0.75rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .unit-header .subhead {
+      font-size: 1.1rem;
+      opacity: 0.85;
+      max-width: 680px;
+      font-weight: 400;
+      position: relative;
+      z-index: 2;
+      border-left: 4px solid #7bb8e0;
+      padding-left: 1.2rem;
+      margin-top: 0.5rem;
+    }
+
+    .eq-badge {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(4px);
+      padding: 0.25rem 1rem;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    /* ----- unit overview paragraph block ----- */
+    .overview-block {
+      background: #ffffff;
+      border-radius: 2rem;
+      padding: 2rem 2.5rem;
+      margin-bottom: 2.5rem;
+      border: 1px solid #d9e7f5;
+      box-shadow: 0 8px 16px -8px rgba(11, 42, 74, 0.06);
+      color: #1d3b5c;
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    .overview-block p {
+      margin-bottom: 1rem;
+    }
+
+    .overview-block p:last-child {
+      margin-bottom: 0;
+    }
+
+    .overview-block strong {
+      color: #0b2a4a;
+    }
+
+    /* ----- essential questions row (floating) ----- */
+    .eq-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem 1.8rem;
+      justify-content: space-between;
+      margin-bottom: 3rem;
+      background: #ffffffdd;
+      backdrop-filter: blur(8px);
+      padding: 1.6rem 2rem;
+      border-radius: 2rem;
+      border: 1px solid #cbdbe9;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.02);
+    }
+
+    .eq-item {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: #1d3b5c;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      flex: 1 1 200px;
+    }
+
+    .eq-item i {
+      color: #1e6b9b;
+      font-size: 1rem;
+      width: 1.4rem;
+      text-align: center;
+    }
+
+    /* ----- section title (topic index) ----- */
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .section-label h2 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #0b2a4a;
+      letter-spacing: -0.01em;
+    }
+
+    .section-label span {
+      background: #d9e6f2;
+      color: #0b2a4a;
+      font-weight: 600;
+      font-size: 0.8rem;
+      padding: 0.3rem 1rem;
+      border-radius: 40px;
+      letter-spacing: 0.3px;
+    }
+
+    /* ----- grid of topics (8 cards) ----- */
+    .topic-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 1.8rem;
+      margin-bottom: 4rem;
+      counter-reset: topic-counter;
+    }
+
+    .topic-card {
+      background: #ffffff;
+      border-radius: 2rem;
+      padding: 2rem 1.7rem 1.8rem 1.7rem;
+      box-shadow: 0 12px 24px -8px rgba(11, 42, 74, 0.06), 0 2px 6px rgba(0, 0, 0, 0.02);
+      border: 1px solid #e2edf7;
+      transition: all 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+      counter-increment: topic-counter;
+    }
+
+    .topic-card::before {
+      content: counter(topic-counter);
+      position: absolute;
+      top: 0.5rem;
+      right: 1.3rem;
+      font-size: 5rem;
+      font-weight: 800;
+      color: #eaf1f9;
+      line-height: 1;
+      z-index: 0;
+      pointer-events: none;
+      transition: color 0.2s;
+      font-feature-settings: "tnum";
+    }
+
+    .topic-card:hover {
+      transform: translateY(-5px);
+      border-color: #a6c8e5;
+      box-shadow: 0 24px 36px -12px rgba(11, 42, 74, 0.15), 0 6px 14px rgba(0, 0, 0, 0.02);
+    }
+
+    .topic-card:hover::before {
+      color: #d9e7f5;
+    }
+
+    .topic-icon {
+      background: #e7f0f9;
+      width: 3rem;
+      height: 3rem;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      color: #1a4a6e;
+      margin-bottom: 1.2rem;
+      transition: background 0.2s;
+    }
+
+    .topic-card:hover .topic-icon {
+      background: #d4e5f5;
+    }
+
+    .topic-card h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #0b2a4a;
+      margin-bottom: 0.5rem;
+      position: relative;
+      z-index: 2;
+      letter-spacing: -0.01em;
+    }
+
+    .topic-focus {
+      font-size: 0.95rem;
+      color: #2f506d;
+      position: relative;
+      z-index: 2;
+      font-weight: 500;
+      border-left: 3px solid #1e6b9b;
+      padding-left: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    .topic-desc {
+      font-size: 0.9rem;
+      color: #3a5775;
+      margin-top: 0.2rem;
+      position: relative;
+      z-index: 2;
+      line-height: 1.5;
+      margin-bottom: 1.3rem;
+    }
+
+    .topic-desc i {
+      color: #1e6b9b;
+      margin-right: 0.25rem;
+      font-size: 0.85rem;
+    }
+
+    /* ----- TOPIC LINK (new) ----- */
+    .topic-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: auto;
+      background: #e7f0f9;
+      color: #0b2a4a;
+      font-weight: 600;
+      font-size: 0.85rem;
+      padding: 0.6rem 1.2rem;
+      border-radius: 40px;
+      text-decoration: none;
+      border: 1px solid #c6d9ec;
+      width: fit-content;
+      position: relative;
+      z-index: 3;
+      transition: background 0.2s, border-color 0.2s, transform 0.15s, gap 0.2s;
+    }
+
+    .topic-link i {
+      font-size: 0.7rem;
+      transition: transform 0.2s;
+      color: #1e6b9b;
+    }
+
+    .topic-link:hover {
+      background: #d4e5f5;
+      border-color: #a6c8e5;
+      gap: 0.75rem;
+    }
+
+    .topic-link:hover i {
+      transform: translateX(3px);
+    }
+
+    /* ----- LEARNING OUTCOMES SECTION (full detail) ----- */
+    .outcomes-full {
+      background: #ffffff;
+      border-radius: 2.5rem;
+      padding: 2.5rem 2.5rem 2.2rem;
+      margin: 2rem 0 3rem;
+      border: 1px solid #d9e7f5;
+      box-shadow: 0 12px 20px -12px rgba(11, 42, 74, 0.08);
+    }
+
+    .outcomes-full h2 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #0b2a4a;
+      margin-bottom: 1.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      letter-spacing: -0.01em;
+    }
+
+    .outcomes-full h2 i {
+      color: #1e6b9b;
+      font-size: 1.7rem;
+    }
+
+    .outcome-group {
+      margin-bottom: 2rem;
+    }
+
+    .outcome-group:last-child {
+      margin-bottom: 0.5rem;
+    }
+
+    .outcome-group h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #0b2a4a;
+      margin-bottom: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: #eaf1f9;
+      padding: 0.5rem 1rem;
+      border-radius: 40px;
+      width: fit-content;
+    }
+
+    .outcome-group h3 i {
+      color: #1e6b9b;
+      font-size: 0.95rem;
+    }
+
+    .outcome-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 0.7rem 2rem;
+      padding-left: 0.5rem;
+    }
+
+    .outcome-list li {
+      font-size: 0.95rem;
+      color: #1d3b5c;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      line-height: 1.45;
+    }
+
+    .outcome-list li i {
+      color: #1e6b9b;
+      font-size: 0.75rem;
+      margin-top: 0.35rem;
+      flex-shrink: 0;
+    }
+
+    .outcome-list li strong {
+      color: #0b2a4a;
+    }
+
+    /* ----- footer / js interactive bonus ----- */
+    .footer-note {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.8rem 2rem;
+      background: #ffffffec;
+      border-radius: 2rem;
+      border: 1px solid #cbdbe9;
+      color: #2f506d;
+      margin-top: 1rem;
+    }
+
+    .footer-note p {
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .footer-note button {
+      background: #0b2a4a;
+      border: none;
+      color: white;
+      font-weight: 600;
+      padding: 0.7rem 1.6rem;
+      border-radius: 40px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      transition: background 0.2s, transform 0.1s;
+      font-family: 'Inter', sans-serif;
+      border: 1px solid #1e4a6e;
+      box-shadow: 0 6px 12px -6px rgba(11, 42, 74, 0.3);
+    }
+
+    .footer-note button:hover {
+      background: #1e4a6e;
+      transform: scale(1.02);
+    }
+
+    .footer-note button:active {
+      transform: scale(0.98);
+    }
+
+    #greeting-message {
+      font-weight: 500;
+      color: #0f3a5c;
+      background: #e2edf9;
+      padding: 0.4rem 1.2rem;
+      border-radius: 40px;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+
+    /* Responsive tweaks */
+    @media (max-width: 700px) {
+      .unit-header {
+        padding: 2rem 1.5rem;
+      }
+      .unit-header h1 {
+        font-size: 1.9rem;
+      }
+      .overview-block {
+        padding: 1.5rem 1.5rem;
+      }
+      .eq-row {
+        padding: 1.2rem 1.5rem;
+      }
+      .outcomes-full {
+        padding: 1.8rem 1.5rem;
+      }
+      .footer-note {
+        flex-direction: column;
+        gap: 1.2rem;
+        align-items: flex-start;
+      }
+      .outcome-list {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 1rem 0.8rem;
+      }
+      .topic-grid {
+        gap: 1.2rem;
+      }
+      .topic-card {
+        padding: 1.6rem 1.3rem;
+      }
+      .topic-card h3 {
+        font-size: 1.15rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- ========== UNIT HEADER ========= -->
+  <header class="unit-header">
+    <div class="eq-badge">
+      <i class="fas fa-microchip" style="margin-right: 6px;"></i> Grade 8 · Unit Overview
+    </div>
+    <h1>Inside the Machine:<br>How Computers & Communication Technology Work</h1>
+    <div class="subhead">
+      From hardware to networks — discover how data flows, devices connect, and technology solves real‑world problems.
+    </div>
+  </header>
+
+  <!-- ========== UNIT OVERVIEW ========= -->
+  <div class="overview-block">
+    <p><strong>Unit Overview.</strong> This unit teaches Grade 8 students how computer systems are built and how they function, and how communication technology connects devices and people. Students move from identifying components (hardware and software) to understanding working principles (how data flows, how networks communicate), and finally to applying this knowledge to solve basic real-life problems.</p>
+    <p>The unit is designed to be hands-on and inquiry-based. Students disassemble ideas (not necessarily machines), trace how data moves, and use their understanding to troubleshoot and make decisions about technology.</p>
+  </div>
+
+  <!-- ========== ESSENTIAL QUESTIONS ========= -->
+  <div class="eq-row">
+    <div class="eq-item"><i class="fas fa-question-circle"></i> What are the parts of a computer system, and what does each part do?</div>
+    <div class="eq-item"><i class="fas fa-route"></i> How does data move through a computer and across a network?</div>
+    <div class="eq-item"><i class="fas fa-handshake"></i> How do computers and communication technologies work together?</div>
+    <div class="eq-item"><i class="fas fa-lightbulb"></i> How can understanding these systems help me solve everyday problems?</div>
+  </div>
+
+  <!-- ========== TOPIC INDEX (8 CARDS WITH LINKS) ========= -->
+  <div class="section-label">
+    <h2>Topic index</h2>
+    <span>8 core topics</span>
+  </div>
+
+  <div class="topic-grid">
+    <!-- 1 -->
+    <div class="topic-card">
+      <div class="topic-icon"><i class="fas fa-desktop"></i></div>
+      <h3>What Is a Computer System?</h3>
+      <div class="topic-focus">Definition and four main functions</div>
+      <div class="topic-desc"><i class="fas fa-arrow-right"></i> Input, process, storage, output — the foundation.</div>
+      <a href="topic-1-computer-system.html" class="topic-link">
+        Explore topic <i class="fas fa-arrow-right"></i>
+      </a>
+    </div>
+    <!-- 2 -->
+    <div class="topic-card">
+      <div class="topic-icon"><i class="fas fa-microchip"></i></div>
+      <h3>Hardware Components</h3>
+      <div class="topic-focus">Internal and peripheral parts</div>
+      <div class="topic-desc"><i class="fas fa-arrow-right"></i> CPU, RAM, motherboard, storage, input/output devices.</div>
+      <a href="topic-2-hardware.html" class="topic-link">
+        Explore topic <i class="fas fa-arrow-right"></i>
+      </a>
+    </div>
+    <!-- 3 -->
+    <div class="topic-card">
+      <div class="topic-icon"><i class="fas fa-code"></i></div>
+      <h3>Software Components</h3>
+      <div class="topic-focus">System vs. application software</div>
+      <div class="topic-desc"><i class="fas fa-arrow-right"></i> Operating systems, utilities, and the apps we use.</div>
+      <a href="topic-3-software.html" class="topic-link">
+        Explore topic <i class="fas fa-arrow-right"></i>
+      </a>
+    </div>
+    <!-- 4 -->
+    <div class="topic-card">
+      <div class="topic-icon"><i class="fas fa-rotate-right"></i></div>
+      <h3>How a Computer Works</h3>
+      <div class="topic-focus">IPO+S model, fetch‑decode‑execute</div>
+      <div class="topic-desc"><i class="fas fa-arrow-right"></i> The cycle that turns data into information.</div>
+      <a href="topic-4-how-computer-works.html" class="topic-link">
+        Explore topic <i class="fas fa-arrow-right"></i>
+      </a>
+    </div>
+    <!-- 5 -->
+    <div class="topic-card">
+      <div class="topic-icon"><i class="fas fa-comment-dots"></i></div>
+      <h3>Introduction to Communication Technology</h3>
+      <div class="topic-focus">Sender, message, channel, receiver</div>
+      <div class="topic-desc"><i class="fas fa-arrow-right"></i> The basic model of every digital conversation.</div>
+      <a href="topic-5-communication-tech.html" class="topic-link">
+        Explore topic <i class="fas fa-arrow-right"></i>
+      </a>
+    </div>
+    <!-- 6 -->
+    <div class="topic-card">
+      <div class="topic-icon"><i class="fas fa-globe"></i></div>
+      <h3>Networks and the Internet</h3>
+      <div class="topic-focus">LAN, WAN, Wi‑Fi, packets, protocols</div>
+      <div class="topic-desc"><i class="fas fa-arrow-right"></i> How devices talk, share, and access the world.</div>
+      <a href="topic-6-networks-internet.html" class="topic-link">
+        Explore topic <i class="fas fa-arrow-right"></i>
+      </a>
+    </div>
+    <!-- 7 -->
+    <div class="topic-card">
+      <div class="topic-icon"><i class="fas fa-tools"></i></div>
+      <h3>Applying Knowledge to Solve Problems</h3>
+      <div class="topic-focus">Troubleshooting, choosing devices</div>
+      <div class="topic-desc"><i class="fas fa-arrow-right"></i> Use system thinking to fix issues & make smart picks.</div>
+      <a href="topic-7-applying-knowledge.html" class="topic-link">
+        Explore topic <i class="fas fa-arrow-right"></i>
+      </a>
+    </div>
+    <!-- 8 -->
+    <div class="topic-card">
+      <div class="topic-icon"><i class="fas fa-puzzle-piece"></i></div>
+      <h3>Putting It All Together</h3>
+      <div class="topic-focus">Designing a complete system</div>
+      <div class="topic-desc"><i class="fas fa-arrow-right"></i> Combine hardware, software, and networks for a purpose.</div>
+      <a href="topic-8-putting-together.html" class="topic-link">
+        Explore topic <i class="fas fa-arrow-right"></i>
+      </a>
+    </div>
+  </div>
+
+  <!-- ========== LEARNING OUTCOMES (full detailed section) ========= -->
+  <div class="outcomes-full">
+    <h2><i class="fas fa-check-circle"></i> Learning outcomes</h2>
+
+    <!-- Knowledge -->
+    <div class="outcome-group">
+      <h3><i class="fas fa-brain"></i> Knowledge (Understand)</h3>
+      <ul class="outcome-list">
+        <li><i class="fas fa-circle"></i> Identify the main components of a computer system (hardware and software).</li>
+        <li><i class="fas fa-circle"></i> Describe the function of key hardware parts (CPU, RAM, storage, motherboard, input/output devices).</li>
+        <li><i class="fas fa-circle"></i> Explain the difference between hardware and software, and between system software and application software.</li>
+        <li><i class="fas fa-circle"></i> Describe the basic working principle of a computer: input → process → storage → output.</li>
+        <li><i class="fas fa-circle"></i> Explain how communication technology works (networks, internet, protocols, wireless).</li>
+        <li><i class="fas fa-circle"></i> Distinguish between different types of networks (LAN, WAN, Wi-Fi, mobile networks).</li>
+      </ul>
+    </div>
+
+    <!-- Skills -->
+    <div class="outcome-group">
+      <h3><i class="fas fa-cogs"></i> Skills (Do)</h3>
+      <ul class="outcome-list">
+        <li><i class="fas fa-circle"></i> Trace how data flows through a computer system when performing a task.</li>
+        <li><i class="fas fa-circle"></i> Compare different types of computers and communication tools for different purposes.</li>
+        <li><i class="fas fa-circle"></i> Troubleshoot basic computer or connectivity problems using system knowledge.</li>
+        <li><i class="fas fa-circle"></i> Apply understanding of components to recommend a device for a specific need.</li>
+        <li><i class="fas fa-circle"></i> Demonstrate how devices communicate over a network (e.g., sending a message, sharing a file).</li>
+      </ul>
+    </div>
+
+    <!-- Attitudes -->
+    <div class="outcome-group">
+      <h3><i class="fas fa-heart"></i> Attitudes (Value)</h3>
+      <ul class="outcome-list">
+        <li><i class="fas fa-circle"></i> Appreciate how computer systems and communication technology solve real-world problems.</li>
+        <li><i class="fas fa-circle"></i> Show curiosity about how technology works.</li>
+        <li><i class="fas fa-circle"></i> Collaborate with peers to investigate and solve problems.</li>
+        <li><i class="fas fa-circle"></i> Use technology responsibly and safely (connecting to Indicator 4).</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ========== INTERACTIVE FOOTER (JavaScript) ========= -->
+  <div class="footer-note">
+    <p>
+      <i class="fas fa-laptop-code" style="color: #1e6b9b;"></i> 
+      <span id="greeting-message">Ready to explore how computers work?</span>
+    </p>
+    <button id="inspireBtn">
+      <i class="fas fa-bolt"></i> Get inspired
+    </button>
+  </div>
+
+</div>
+
+<script>
+  (function() {
+    // List of encouraging / inquiry messages for the footer button
+    const messages = [
+      "💡 Every big system starts with a single component.",
+      "🔍 Trace the data — input, process, storage, output.",
+      "🌐 Networks connect people, not just devices.",
+      "⚙️ The fetch–decode–execute cycle runs billions of times a second.",
+      "📶 LAN, WAN, Wi‑Fi: different scales, same goal.",
+      "🛠️ Troubleshooting is just detective work with a system mindset.",
+      "🧩 Design a system that solves a real problem.",
+      "📨 Sender → Message → Channel → Receiver: communication simplified.",
+      "💾 Hardware is nothing without software — they work as a team.",
+      "🔎 Curiosity is the best debugging tool.",
+      "📚 Understand the parts, then see the whole system."
+    ];
+
+    const msgElement = document.getElementById('greeting-message');
+    const btn = document.getElementById('inspireBtn');
+
+    // Set a random message
+    function setRandomMessage() {
+      const randomIndex = Math.floor(Math.random() * messages.length);
+      msgElement.textContent = messages[randomIndex];
+    }
+
+    // Change message on button click with a subtle animation
+    btn.addEventListener('click', function() {
+      msgElement.style.opacity = '0.4';
+      setTimeout(() => {
+        setRandomMessage();
+        msgElement.style.opacity = '1';
+      }, 120);
+    });
+
+    // Set initial message on load
+    window.addEventListener('load', function() {
+      setTimeout(() => {
+        setRandomMessage();
+      }, 200);
+    });
+  })();
+</script>
+
+</body>
+</html>
