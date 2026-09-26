@@ -1,0 +1,2064 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Topic 7 · Applying Knowledge to Solve Basic Problems</title>
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: #f0f5fa;
+      color: #0a1e2f;
+      line-height: 1.7;
+      padding: 2rem 1.5rem 6rem;
+      scroll-behavior: smooth;
+    }
+
+    .wrapper {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    /* ===== BACK LINK ===== */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      color: #1e6b9b;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+      padding: 0.5rem 1rem;
+      border-radius: 40px;
+      background: #ffffff;
+      border: 1px solid #d9e7f5;
+      transition: background 0.2s, gap 0.2s;
+    }
+
+    .back-link:hover {
+      background: #e7f0f9;
+      gap: 0.9rem;
+    }
+
+    /* ===== HEADER ===== */
+    .topic-header {
+      background: linear-gradient(135deg, #0b2a4a 0%, #1a4a6e 100%);
+      border-radius: 2.5rem;
+      padding: 3rem 2.5rem;
+      color: white;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 20px 30px -10px rgba(11, 42, 74, 0.25);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .topic-header::after {
+      content: "7";
+      position: absolute;
+      right: 2rem;
+      bottom: -2.5rem;
+      font-size: 13rem;
+      font-weight: 800;
+      color: rgba(255, 255, 255, 0.06);
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .topic-badge {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(4px);
+      padding: 0.25rem 1rem;
+      border-radius: 40px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .topic-header h1 {
+      font-size: 2.6rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      max-width: 750px;
+      margin-bottom: 0.9rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .topic-header .subhead {
+      font-size: 1.1rem;
+      opacity: 0.9;
+      max-width: 680px;
+      font-weight: 400;
+      position: relative;
+      z-index: 2;
+      border-left: 4px solid #7bb8e0;
+      padding-left: 1.2rem;
+      margin-top: 0.5rem;
+      line-height: 1.6;
+    }
+
+    /* ===== TEACHING SECTIONS ===== */
+    .teach-section {
+      background: #ffffff;
+      border-radius: 2rem;
+      padding: 2.5rem 2.5rem;
+      margin-bottom: 2rem;
+      border: 1px solid #e2edf7;
+      box-shadow: 0 12px 24px -12px rgba(11, 42, 74, 0.08);
+    }
+
+    .teach-section h2 {
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: #0b2a4a;
+      margin-bottom: 1.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      letter-spacing: -0.01em;
+      line-height: 1.3;
+    }
+
+    .teach-section h2 i {
+      color: #1e6b9b;
+      font-size: 1.4rem;
+      background: #e7f0f9;
+      width: 3rem;
+      height: 3rem;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .teach-section h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #0b2a4a;
+      margin-bottom: 0.8rem;
+      margin-top: 2rem;
+      line-height: 1.35;
+    }
+
+    .teach-section h3:first-of-type {
+      margin-top: 0;
+    }
+
+    .teach-section h4 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #1a4a6e;
+      margin-bottom: 0.5rem;
+      margin-top: 1.4rem;
+    }
+
+    .teach-section p {
+      color: #1d3b5c;
+      font-size: 1.02rem;
+      margin-bottom: 1.2rem;
+      line-height: 1.8;
+    }
+
+    .teach-section ul,
+    .teach-section ol {
+      margin: 0 0 1.4rem 1.4rem;
+      color: #1d3b5c;
+      font-size: 1.02rem;
+      line-height: 1.8;
+    }
+
+    .teach-section li {
+      margin-bottom: 0.5rem;
+    }
+
+    .teach-section strong {
+      color: #0b2a4a;
+    }
+
+    .teach-section em {
+      color: #1e6b9b;
+      font-style: normal;
+      font-weight: 600;
+    }
+
+    .definition-box {
+      background: #eaf1f9;
+      border-left: 5px solid #1e6b9b;
+      border-radius: 0 1rem 1rem 0;
+      padding: 1.4rem 1.6rem;
+      margin: 1.2rem 0 1.6rem;
+    }
+
+    .definition-box p {
+      margin-bottom: 0;
+      font-size: 1.08rem;
+      line-height: 1.8;
+    }
+
+    .analogy-box {
+      background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+      border-left: 5px solid #d97706;
+      border-radius: 0 1rem 1rem 0;
+      padding: 1.4rem 1.6rem;
+      margin: 1.2rem 0 1.6rem;
+    }
+
+    .analogy-box p {
+      margin-bottom: 0;
+      color: #78350f;
+      font-size: 1.02rem;
+    }
+
+    .analogy-box strong {
+      color: #92400e;
+    }
+
+    /* ===== TROUBLESHOOTING CARDS ===== */
+    .trouble-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.3rem;
+      margin-top: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .trouble-card {
+      background: #f7fafd;
+      border: 1px solid #d9e7f5;
+      border-radius: 1.5rem;
+      padding: 1.6rem 1.4rem;
+      transition: all 0.25s ease;
+      border-top: 4px solid;
+    }
+
+    .trouble-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 24px -12px rgba(11, 42, 74, 0.12);
+    }
+
+    .trouble-card.slow { border-top-color: #2563eb; }
+    .trouble-card.no-internet { border-top-color: #db2777; }
+    .trouble-card.printer { border-top-color: #059669; }
+
+    .trouble-icon {
+      width: 3rem;
+      height: 3rem;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      margin-bottom: 0.9rem;
+      color: white;
+    }
+
+    .trouble-card.slow .trouble-icon { background: #2563eb; }
+    .trouble-card.no-internet .trouble-icon { background: #db2777; }
+    .trouble-card.printer .trouble-icon { background: #059669; }
+
+    .trouble-card h4 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #0b2a4a;
+      margin-bottom: 0.6rem;
+      margin-top: 0;
+    }
+
+    .trouble-card .symptom {
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
+      color: #7a94ad;
+      margin-bottom: 0.7rem;
+    }
+
+    .trouble-card ul {
+      margin: 0;
+      padding-left: 1.1rem;
+      list-style: disc;
+      font-size: 0.9rem;
+      color: #3a5775;
+      line-height: 1.65;
+    }
+
+    .trouble-card ul li {
+      margin-bottom: 0.35rem;
+    }
+
+    /* ===== DEVICE RECOMMENDATION TABLE ===== */
+    .device-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1.4rem;
+      font-size: 0.9rem;
+    }
+
+    .device-table th {
+      background: #0b2a4a;
+      color: white;
+      padding: 0.8rem 0.9rem;
+      text-align: left;
+      font-weight: 600;
+      font-size: 0.82rem;
+    }
+
+    .device-table th:first-child { border-radius: 0.8rem 0 0 0; }
+    .device-table th:last-child { border-radius: 0 0.8rem 0 0; }
+
+    .device-table td {
+      padding: 0.75rem 0.9rem;
+      border-bottom: 1px solid #e2edf7;
+      color: #1d3b5c;
+      vertical-align: top;
+      line-height: 1.6;
+    }
+
+    .device-table tr:last-child td { border-bottom: none; }
+    .device-table tr:nth-child(even) { background: #f7fafd; }
+
+    .device-table td strong { color: #0b2a4a; }
+
+    /* ===== UPGRADE CARDS ===== */
+    .upgrade-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1.2rem;
+      margin-top: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .upgrade-card {
+      background: #f7fafd;
+      border: 1px solid #d9e7f5;
+      border-radius: 1.5rem;
+      padding: 1.6rem 1.4rem;
+      transition: all 0.25s ease;
+    }
+
+    .upgrade-card:hover {
+      transform: translateY(-4px);
+      border-color: #a6c8e5;
+      box-shadow: 0 12px 24px -12px rgba(11, 42, 74, 0.12);
+    }
+
+    .upgrade-icon {
+      width: 3rem;
+      height: 3rem;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      margin-bottom: 0.9rem;
+      color: white;
+    }
+
+    .upgrade-card:nth-child(1) .upgrade-icon { background: #2563eb; }
+    .upgrade-card:nth-child(2) .upgrade-icon { background: #7c3aed; }
+    .upgrade-card:nth-child(3) .upgrade-icon { background: #db2777; }
+
+    .upgrade-card h4 {
+      font-size: 1.02rem;
+      font-weight: 700;
+      color: #0b2a4a;
+      margin-bottom: 0.5rem;
+      margin-top: 0;
+    }
+
+    .upgrade-card .upgrade-need {
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
+      color: #7a94ad;
+      margin-bottom: 0.5rem;
+    }
+
+    .upgrade-card p {
+      font-size: 0.9rem;
+      color: #3a5775;
+      margin-bottom: 0;
+      line-height: 1.65;
+    }
+
+    /* ===== SCENARIO CARDS ===== */
+    .scenario-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.3rem;
+      margin-top: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .scenario-card {
+      background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+      border: 1.5px solid #bae6fd;
+      border-radius: 1.5rem;
+      padding: 1.7rem 1.5rem;
+      transition: all 0.25s ease;
+    }
+
+    .scenario-card:hover {
+      transform: translateY(-4px);
+      border-color: #7dd3fc;
+      box-shadow: 0 12px 24px -12px rgba(2, 132, 199, 0.2);
+    }
+
+    .scenario-card .scenario-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      color: #0284c7;
+      margin-bottom: 0.5rem;
+    }
+
+    .scenario-card h4 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #0c4a6e;
+      margin-bottom: 0.7rem;
+      margin-top: 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      line-height: 1.35;
+    }
+
+    .scenario-card h4 i {
+      color: #0284c7;
+      font-size: 0.95rem;
+      flex-shrink: 0;
+    }
+
+    .scenario-card .scenario-question {
+      font-size: 0.9rem;
+      color: #0c4a6e;
+      margin-bottom: 0.9rem;
+      font-style: italic;
+    }
+
+    .scenario-card ul {
+      margin: 0;
+      padding-left: 1.1rem;
+      list-style: disc;
+      font-size: 0.88rem;
+      color: #1e3a5f;
+      line-height: 1.65;
+    }
+
+    .scenario-card ul li {
+      margin-bottom: 0.35rem;
+    }
+
+    /* ===== KEY TERMS ===== */
+    .key-terms {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
+      margin-top: 1.2rem;
+    }
+
+    .term-card {
+      background: #f7fafd;
+      border: 1px solid #d9e7f5;
+      border-left: 4px solid #1e6b9b;
+      border-radius: 0 1rem 1rem 0;
+      padding: 1.1rem 1.2rem;
+    }
+
+    .term-card dt {
+      font-weight: 700;
+      color: #0b2a4a;
+      font-size: 1rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .term-card dd {
+      font-size: 0.92rem;
+      color: #3a5775;
+      line-height: 1.6;
+    }
+
+    /* ===== IMAGE PLACEHOLDER ===== */
+    .img-placeholder {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: linear-gradient(135deg, #eaf1f9 0%, #d9e7f5 100%);
+      border: 3px dashed #a6c8e5;
+      border-radius: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+      padding: 2rem;
+      text-align: center;
+      margin: 1.8rem 0 0.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .img-placeholder .img-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #0b2a4a;
+    }
+
+    .img-placeholder .img-filename {
+      background: #ffffff;
+      border: 1px solid #c6d9ec;
+      border-radius: 40px;
+      padding: 0.5rem 1.1rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #1e6b9b;
+      font-family: 'Courier New', monospace;
+      margin-top: 0.5rem;
+      max-width: 100%;
+    }
+
+    .img-placeholder img {
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      border-radius: 1rem;
+    }
+
+    .img-caption {
+      font-size: 0.88rem;
+      color: #4a6a8a;
+      text-align: center;
+      font-style: italic;
+      margin-bottom: 1rem;
+    }
+
+    /* ===== ACTIVITY ===== */
+    .activity-box {
+      background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+      border: 2px solid #fcd34d;
+      border-radius: 1.5rem;
+      padding: 1.8rem 1.8rem;
+      margin-top: 1.2rem;
+    }
+
+    .activity-box h3 {
+      color: #92400e;
+      margin-top: 0;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .activity-box h3 i { color: #d97706; }
+
+    .activity-box p {
+      color: #78350f;
+      margin-bottom: 1rem;
+    }
+
+    .activity-steps {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      counter-reset: step-counter;
+    }
+
+    .activity-steps li {
+      counter-increment: step-counter;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.8rem;
+      padding: 0.6rem 0;
+      font-size: 0.98rem;
+      color: #78350f;
+      line-height: 1.7;
+    }
+
+    .activity-steps li::before {
+      content: counter(step-counter);
+      background: #d97706;
+      color: white;
+      font-weight: 700;
+      font-size: 0.8rem;
+      width: 1.7rem;
+      height: 1.7rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 0.2rem;
+    }
+
+    /* ===== DIAGNOSE ACTIVITY ===== */
+    .diagnose-builder {
+      background: #f7fafd;
+      border: 2px solid #d9e7f5;
+      border-radius: 1.5rem;
+      padding: 1.6rem 1.6rem;
+      margin-top: 1.4rem;
+    }
+
+    .diagnose-builder h4 {
+      margin-top: 0;
+      color: #0b2a4a;
+      font-size: 1.05rem;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .diagnose-builder h4 i {
+      color: #1e6b9b;
+    }
+
+    .diagnose-scenario {
+      background: white;
+      border-left: 4px solid #db2777;
+      border-radius: 0 0.8rem 0.8rem 0;
+      padding: 1rem 1.2rem;
+      margin-bottom: 1.2rem;
+      font-size: 0.95rem;
+      color: #1d3b5c;
+      line-height: 1.7;
+    }
+
+    .diagnose-scenario strong {
+      color: #0b2a4a;
+    }
+
+    .diagnose-question {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #0b2a4a;
+      margin-bottom: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+
+    .diagnose-options {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .diagnose-option {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      padding: 0.75rem 1rem;
+      background: white;
+      border: 1.5px solid #d9e7f5;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 0.92rem;
+      color: #1d3b5c;
+      transition: all 0.2s;
+      font-family: 'Inter', sans-serif;
+      text-align: left;
+      width: 100%;
+      line-height: 1.5;
+    }
+
+    .diagnose-option:hover {
+      border-color: #a6c8e5;
+      background: #eaf1f9;
+    }
+
+    .diagnose-option.correct {
+      background: #dcfce7;
+      border-color: #86efac;
+      color: #166534;
+      font-weight: 600;
+    }
+
+    .diagnose-option.incorrect {
+      background: #fee2e2;
+      border-color: #fca5a5;
+      color: #991b1b;
+    }
+
+    .diagnose-option i {
+      font-size: 0.85rem;
+      color: #94a3b8;
+      flex-shrink: 0;
+    }
+
+    .diagnose-option.correct i { color: #16a34a; }
+    .diagnose-option.incorrect i { color: #dc2626; }
+
+    .diagnose-feedback {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-top: 0.6rem;
+      padding: 0.7rem 1rem;
+      border-radius: 10px;
+      display: none;
+    }
+
+    .diagnose-feedback.show { display: block; }
+    .diagnose-feedback.correct { background: #dcfce7; color: #166534; }
+    .diagnose-feedback.incorrect { background: #fee2e2; color: #991b1b; }
+
+    /* ===== SCENARIO QUIZ ===== */
+    .quiz-question {
+      margin-bottom: 1.8rem;
+    }
+
+    .quiz-question p {
+      font-weight: 600;
+      color: #0b2a4a;
+      margin-bottom: 0.8rem;
+      font-size: 1.02rem;
+    }
+
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .quiz-option {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      padding: 0.8rem 1rem;
+      background: #f7fafd;
+      border: 1.5px solid #d9e7f5;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      color: #1d3b5c;
+      transition: all 0.2s;
+      font-family: 'Inter', sans-serif;
+      text-align: left;
+      width: 100%;
+      line-height: 1.5;
+    }
+
+    .quiz-option:hover {
+      border-color: #a6c8e5;
+      background: #eaf1f9;
+    }
+
+    .quiz-option.correct {
+      background: #dcfce7;
+      border-color: #86efac;
+      color: #166534;
+      font-weight: 600;
+    }
+
+    .quiz-option.incorrect {
+      background: #fee2e2;
+      border-color: #fca5a5;
+      color: #991b1b;
+    }
+
+    .quiz-option i {
+      font-size: 0.85rem;
+      color: #94a3b8;
+      flex-shrink: 0;
+    }
+
+    .quiz-option.correct i { color: #16a34a; }
+    .quiz-option.incorrect i { color: #dc2626; }
+
+    .quiz-feedback {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-top: 0.7rem;
+      padding: 0.7rem 1rem;
+      border-radius: 10px;
+      display: none;
+    }
+
+    .quiz-feedback.show { display: block; }
+    .quiz-feedback.correct { background: #dcfce7; color: #166534; }
+    .quiz-feedback.incorrect { background: #fee2e2; color: #991b1b; }
+
+    /* ===== DISCUSSION BOX ===== */
+    .discussion-box {
+      background: #f0f9ff;
+      border: 2px solid #7dd3fc;
+      border-radius: 1.5rem;
+      padding: 1.8rem 1.8rem;
+      margin-top: 1.5rem;
+    }
+
+    .discussion-box h3 {
+      color: #0c4a6e;
+      margin-top: 0;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .discussion-box h3 i { color: #0284c7; }
+
+    .discussion-box p {
+      color: #0c4a6e;
+      margin-bottom: 1rem;
+    }
+
+    .discussion-question {
+      background: white;
+      border-left: 4px solid #0284c7;
+      border-radius: 0 0.8rem 0.8rem 0;
+      padding: 1rem 1.2rem;
+      margin-bottom: 1rem;
+      font-size: 0.98rem;
+      color: #0c4a6e;
+      font-weight: 600;
+    }
+
+    .discussion-question:last-child {
+      margin-bottom: 0;
+    }
+
+    /* ===== STUDENT OUTCOME ===== */
+    .outcome-banner {
+      background: linear-gradient(135deg, #0b2a4a 0%, #1a4a6e 100%);
+      border-radius: 2rem;
+      padding: 2rem 2.2rem;
+      color: white;
+      margin-top: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .outcome-banner .outcome-icon {
+      background: rgba(255, 255, 255, 0.15);
+      width: 4rem;
+      height: 4rem;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      flex-shrink: 0;
+    }
+
+    .outcome-banner .outcome-text {
+      flex: 1;
+      min-width: 220px;
+    }
+
+    .outcome-banner h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+
+    .outcome-banner p {
+      font-size: 0.98rem;
+      opacity: 0.92;
+      margin-bottom: 0;
+    }
+
+    /* ===== TEACHER INSTRUCTIONS ===== */
+    .custom-instructions {
+      background: #ffffff;
+      border-radius: 2rem;
+      padding: 2.2rem 2.2rem;
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+      border: 2px solid #1e6b9b;
+      box-shadow: 0 12px 24px -12px rgba(30, 107, 155, 0.15);
+      position: relative;
+    }
+
+    .custom-instructions::before {
+      content: "📌";
+      position: absolute;
+      top: -1.2rem;
+      left: 2rem;
+      background: #1e6b9b;
+      color: white;
+      width: 2.4rem;
+      height: 2.4rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      box-shadow: 0 6px 12px -4px rgba(30, 107, 155, 0.4);
+    }
+
+    .custom-instructions h2 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #0b2a4a;
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      letter-spacing: -0.01em;
+      margin-top: 0.5rem;
+    }
+
+    .custom-instructions h2 i {
+      color: #1e6b9b;
+      font-size: 1.4rem;
+      background: #e7f0f9;
+      width: 2.8rem;
+      height: 2.8rem;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .custom-instructions p {
+      color: #1d3b5c;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      line-height: 1.7;
+    }
+
+    .custom-instructions a.inline-link {
+      color: #1e6b9b;
+      font-weight: 600;
+      text-decoration: none;
+      border-bottom: 2px solid #a6c8e5;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .custom-instructions a.inline-link:hover {
+      color: #0b2a4a;
+      border-bottom-color: #1e6b9b;
+    }
+
+    .instruction-note {
+      background: #eaf1f9;
+      border-left: 4px solid #1e6b9b;
+      border-radius: 0 0.8rem 0.8rem 0;
+      padding: 1rem 1.2rem;
+      margin-top: 1rem;
+      font-size: 0.95rem;
+      color: #2f506d;
+    }
+
+    .instruction-note i {
+      color: #1e6b9b;
+      margin-right: 0.4rem;
+    }
+
+    /* ===== LINK BUTTONS ===== */
+    .link-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      margin-top: 1.2rem;
+    }
+
+    .custom-link-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: #dbeafe;
+      color: #0b2a4a;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      padding: 0.8rem 1.6rem;
+      border-radius: 40px;
+      transition: background 0.2s, color 0.2s, gap 0.2s, transform 0.15s, box-shadow 0.2s;
+      border: 1.5px solid #93c5fd;
+      box-shadow: 0 6px 12px -8px rgba(30, 107, 155, 0.35);
+    }
+
+    .custom-link-btn i {
+      font-size: 0.8rem;
+      color: #1e6b9b;
+      transition: color 0.2s;
+    }
+
+    .custom-link-btn:hover {
+      background: #1e6b9b;
+      color: #ffffff;
+      gap: 0.9rem;
+      transform: translateY(-2px);
+      border-color: #1e6b9b;
+      box-shadow: 0 10px 18px -8px rgba(30, 107, 155, 0.5);
+    }
+
+    .custom-link-btn:hover i {
+      color: #ffffff;
+    }
+
+    /* ===== FOOTER NAV ===== */
+    .footer-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      padding: 1.5rem 2rem;
+      background: #ffffffec;
+      border-radius: 2rem;
+      border: 1px solid #cbdbe9;
+      margin-top: 1rem;
+    }
+
+    .footer-nav a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      color: #1e6b9b;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      padding: 0.6rem 1.2rem;
+      border-radius: 40px;
+      transition: background 0.2s, gap 0.2s;
+    }
+
+    .footer-nav a:hover {
+      background: #e7f0f9;
+      gap: 0.9rem;
+    }
+
+    .footer-nav .next-link {
+      background: #0b2a4a;
+      color: white;
+      border: 1px solid #1e4a6e;
+    }
+
+    .footer-nav .next-link:hover {
+      background: #1e4a6e;
+    }
+
+    /* ============================================================
+       PRESENTATION CONTROLS
+       ============================================================ */
+    .present-toolbar {
+      position: fixed;
+      bottom: 1.2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #0b2a4a;
+      color: white;
+      border-radius: 50px;
+      padding: 0.6rem 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      box-shadow: 0 12px 30px -8px rgba(11, 42, 74, 0.5);
+      z-index: 1000;
+      border: 1px solid #1e4a6e;
+    }
+
+    .present-toolbar button {
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: white;
+      width: 2.4rem;
+      height: 2.4rem;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      transition: background 0.2s, transform 0.1s;
+    }
+
+    .present-toolbar button:hover {
+      background: rgba(255, 255, 255, 0.25);
+    }
+
+    .present-toolbar button:active {
+      transform: scale(0.94);
+    }
+
+    .present-toolbar .slide-counter {
+      font-size: 0.85rem;
+      font-weight: 600;
+      min-width: 62px;
+      text-align: center;
+      letter-spacing: 0.5px;
+    }
+
+    .present-toolbar .toolbar-label {
+      font-size: 0.75rem;
+      opacity: 0.7;
+      padding-right: 0.3rem;
+      border-right: 1px solid rgba(255, 255, 255, 0.2);
+      margin-right: 0.3rem;
+      display: none;
+    }
+
+    @media (min-width: 600px) {
+      .present-toolbar .toolbar-label { display: inline; }
+    }
+
+    body.presenting .teach-section {
+      display: none;
+    }
+
+    body.presenting .teach-section.active-slide {
+      display: block;
+      animation: fadeIn 0.35s ease;
+      min-height: 60vh;
+    }
+
+    body.presenting .topic-header,
+    body.presenting .back-link,
+    body.presenting .footer-nav,
+    body.presenting .custom-instructions,
+    body.presenting .outcome-banner {
+      display: none;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    body.presenting .teach-section h2 {
+      font-size: 2.1rem;
+    }
+
+    body.presenting .teach-section p,
+    body.presenting .teach-section li {
+      font-size: 1.15rem;
+      line-height: 1.9;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 700px) {
+      .topic-header { padding: 2rem 1.5rem; }
+      .topic-header h1 { font-size: 1.8rem; }
+      .teach-section { padding: 1.7rem 1.4rem; }
+      .outcome-banner { padding: 1.5rem 1.5rem; }
+      .footer-nav { flex-direction: column; align-items: stretch; text-align: center; }
+      .footer-nav a { justify-content: center; }
+      .custom-instructions { padding: 1.6rem 1.4rem; }
+    }
+
+    @media (max-width: 480px) {
+      body { padding: 1rem 0.8rem 6rem; }
+      .topic-header h1 { font-size: 1.5rem; }
+      .teach-section h2 { font-size: 1.3rem; }
+      .trouble-grid { grid-template-columns: 1fr; }
+      .upgrade-grid { grid-template-columns: 1fr; }
+      .scenario-grid { grid-template-columns: 1fr; }
+      .device-table { font-size: 0.78rem; }
+      .device-table th, .device-table td { padding: 0.45rem 0.4rem; }
+      .custom-link-btn { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- ===== BACK LINK ===== -->
+  <a href="index.html" class="back-link">
+    <i class="fas fa-arrow-left"></i> Back to Topic Index
+  </a>
+
+  <!-- ===== TOPIC HEADER ===== -->
+  <header class="topic-header">
+    <div class="topic-badge">
+      <i class="fas fa-tools" style="margin-right: 6px;"></i> Topic 7
+    </div>
+    <h1>Applying Knowledge to Solve Basic Problems</h1>
+    <div class="subhead">
+      Troubleshooting common issues, choosing the right device, recommending upgrades, and solving real-life technology problems.
+    </div>
+  </header>
+
+  <!-- ============================================================
+       SLIDE 1 — USING SYSTEM KNOWLEDGE
+       ============================================================ -->
+  <section class="teach-section">
+    <h2><i class="fas fa-lightbulb"></i> Using System Knowledge to Solve Problems</h2>
+
+    <p>
+      In the earlier topics, you learned how hardware, software, and networks work. Now you
+      will learn how to <strong>use that knowledge</strong> to solve real problems. This is
+      called <strong>troubleshooting</strong> — finding out why something is not working and
+      fixing it.
+    </p>
+
+    <div class="definition-box">
+      <p>
+        <strong>Troubleshooting</strong> is the process of identifying a problem, finding its
+        cause, and applying a solution. When you understand how a computer system works, you
+        can figure out which part is causing the problem and fix it step by step.
+      </p>
+    </div>
+
+    <h3>Why Understanding the System Matters</h3>
+    <p>
+      Most computer problems have a clear cause. By understanding how the parts work together,
+      you can narrow down where the problem is. For example:
+    </p>
+    <ul>
+      <li>If a computer is slow, the problem might be <strong>RAM</strong> (not enough working memory), <strong>storage</strong> (full hard drive), or too many background <strong>programs</strong> running.</li>
+      <li>If there is no internet, the problem might be the <strong>router</strong>, the <strong>cables</strong>, the <strong>Wi-Fi password</strong>, or the service provider.</li>
+      <li>If a printer is not printing, the problem might be the <strong>connection</strong>, the <strong>drivers</strong>, or the <strong>paper</strong>.</li>
+    </ul>
+
+    <h3>A Simple Troubleshooting Method</h3>
+    <p>
+      When you face any technology problem, follow these steps:
+    </p>
+    <ol>
+      <li><strong>Identify the symptom:</strong> What exactly is not working? Describe it clearly.</li>
+      <li><strong>List possible causes:</strong> Which parts could be causing this? (Hardware, software, network, or user error?)</li>
+      <li><strong>Check the simplest causes first:</strong> Is it plugged in? Is it turned on? Is the Wi-Fi password correct?</li>
+      <li><strong>Test one thing at a time:</strong> Change only one thing, then check whether the problem is solved.</li>
+      <li><strong>Record the solution:</strong> Once fixed, write down what you did so you can solve the same problem faster next time.</li>
+    </ol>
+
+    <div class="analogy-box">
+      <p>
+        <strong>Analogy:</strong> Troubleshooting is like being a detective. The symptom is the
+        "crime", and the cause is the "suspect". You look at the evidence, eliminate possibilities,
+        and follow the clues until you find the culprit — and then you fix it.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 2 — TROUBLESHOOTING COMMON PROBLEMS
+       ============================================================ -->
+  <section class="teach-section">
+    <h2><i class="fas fa-screwdriver-wrench"></i> Troubleshooting Common Problems</h2>
+
+    <p>
+      Let us look at three common problems that people face with computers and networks. For
+      each one, we will see what the symptom is, what could cause it, and what steps you can
+      take to fix it.
+    </p>
+
+    <div class="trouble-grid">
+      <!-- Problem 1: Slow computer -->
+      <div class="trouble-card slow">
+        <div class="trouble-icon"><i class="fas fa-gauge-high"></i></div>
+        <div class="symptom">Problem 1</div>
+        <h4>Computer is running slowly</h4>
+        <p style="font-size:0.88rem;color:#3a5775;margin-bottom:0.7rem;"><strong>Possible causes and checks:</strong></p>
+        <ul>
+          <li><strong>RAM is full:</strong> Too many programs open at once. Close unused apps and browser tabs.</li>
+          <li><strong>Background apps:</strong> Programs running in the background use up resources. Check Task Manager (Windows) or Activity Monitor (Mac).</li>
+          <li><strong>Storage is almost full:</strong> When a drive is nearly full, the computer slows down. Delete or move unused files.</li>
+          <li><strong>Malware:</strong> Viruses can slow down a system. Run an antivirus scan.</li>
+          <li><strong>Old hardware:</strong> An older CPU or a slow hard drive (HDD) can limit performance. Consider upgrading to an SSD.</li>
+        </ul>
+      </div>
+
+      <!-- Problem 2: No internet -->
+      <div class="trouble-card no-internet">
+        <div class="trouble-icon"><i class="fas fa-wifi"></i></div>
+        <div class="symptom">Problem 2</div>
+        <h4>No internet connection</h4>
+        <p style="font-size:0.88rem;color:#3a5775;margin-bottom:0.7rem;"><strong>Possible causes and checks:</strong></p>
+        <ul>
+          <li><strong>Router is off or frozen:</strong> Check that the router is on, then restart it by unplugging for 30 seconds.</li>
+          <li><strong>Cables are loose:</strong> Check all the cables between the modem, router, and wall.</li>
+          <li><strong>Wi-Fi password:</strong> Make sure you are connecting to the correct network with the correct password.</li>
+          <li><strong>Wi-Fi is too far:</strong> Move closer to the router or access point.</li>
+          <li><strong>Service outage:</strong> The ISP might have a problem in your area. Check with your provider.</li>
+        </ul>
+      </div>
+
+      <!-- Problem 3: Printer not working -->
+      <div class="trouble-card printer">
+        <div class="trouble-icon"><i class="fas fa-print"></i></div>
+        <div class="symptom">Problem 3</div>
+        <h4>Printer is not printing</h4>
+        <p style="font-size:0.88rem;color:#3a5775;margin-bottom:0.7rem;"><strong>Possible causes and checks:</strong></p>
+        <ul>
+          <li><strong>Not connected:</strong> Check that the printer is connected by cable or Wi-Fi and turned on.</li>
+          <li><strong>Drivers missing:</strong> The computer needs printer software (drivers). Reinstall or update them.</li>
+          <li><strong>Paper or ink:</strong> Check that there is paper in the tray and ink in the cartridges.</li>
+          <li><strong>Print queue stuck:</strong> A previous print job might be blocking the queue. Cancel it and try again.</li>
+          <li><strong>Wrong printer selected:</strong> Make sure the correct printer is selected before printing.</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>Applying the Troubleshooting Method</h3>
+    <p>
+      Notice that in each case, the troubleshooting steps follow the same pattern:
+      identify the symptom, list the possible causes, check the simplest things first, and fix
+      the actual cause. This approach works for almost every technology problem you will meet.
+    </p>
+
+    <!-- IMAGE 1: Troubleshooting flowchart -->
+    <div class="img-placeholder" id="img-placeholder-1">
+      <span class="img-title">Troubleshooting Flowchart: From Symptom to Solution</span>
+      <span class="img-filename"><img src="images/troubleshooting-flowchart.png" alt="Flowchart showing the troubleshooting process for common computer problems"></span>
+    </div>
+    <p class="img-caption">Figure 7.1 — A simple troubleshooting flowchart.</p>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 3 — CHOOSING THE RIGHT DEVICE
+       ============================================================ -->
+  <section class="teach-section">
+    <h2><i class="fas fa-cart-shopping"></i> Choosing the Right Device for a Task</h2>
+
+    <p>
+      Not every device is suited for every task. A device that is perfect for writing documents
+      might be a bad choice for professional video editing. When you know what matters for each
+      task, you can recommend the right device.
+    </p>
+
+    <table class="device-table">
+      <thead>
+        <tr>
+          <th style="width: 22%;">Task</th>
+          <th style="width: 30%;">Best Device</th>
+          <th style="width: 48%;">Why It Works Best</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Video editing</strong></td>
+          <td>Powerful desktop or high-end laptop</td>
+          <td>Needs a fast <strong>CPU</strong>, plenty of <strong>RAM</strong> (16 GB or more), a dedicated <strong>GPU</strong> for rendering, and fast <strong>SSD</strong> storage. Desktops are easier to upgrade.</td>
+        </tr>
+        <tr>
+          <td><strong>Gaming</strong></td>
+          <td>Gaming PC or gaming laptop</td>
+          <td>Needs a strong <strong>GPU</strong>, fast <strong>CPU</strong>, at least 8–16 GB of <strong>RAM</strong>, and fast storage. Cooling is important to keep performance high.</td>
+        </tr>
+        <tr>
+          <td><strong>Schoolwork</strong></td>
+          <td>Laptop, tablet, or Chromebook</td>
+          <td>Needs good <strong>battery life</strong>, a reliable <strong>keyboard</strong>, and enough <strong>RAM</strong> for documents, browsing, and video calls. Portability matters.</td>
+        </tr>
+        <tr>
+          <td><strong>Communication (chat, calls, email)</strong></td>
+          <td>Smartphone, tablet, or laptop</td>
+          <td>Needs good <strong>network connectivity</strong>, a working <strong>camera</strong> and <strong>microphone</strong>, and enough speed for video calls.</td>
+        </tr>
+        <tr>
+          <td><strong>Music and video streaming</strong></td>
+          <td>Smart TV, tablet, or smartphone</td>
+          <td>Needs a good <strong>screen</strong> and <strong>speakers</strong>, plus a fast enough <strong>internet connection</strong> to stream without buffering.</td>
+        </tr>
+        <tr>
+          <td><strong>Simple web browsing and email</strong></td>
+          <td>Any basic laptop, tablet, or Chromebook</td>
+          <td>A light device with modest <strong>RAM</strong> and <strong>storage</strong> is enough. Simpler devices are also cheaper and easier to maintain.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>How to Decide</h3>
+    <p>
+      When choosing a device, ask yourself these three questions:
+    </p>
+    <ol>
+      <li><strong>What is the main task?</strong> The device must handle the most demanding thing you need it for.</li>
+      <li><strong>How portable does it need to be?</strong> A desktop is more powerful, but a laptop or tablet is easier to carry.</li>
+      <li><strong>What is the budget?</strong> You can often get a good device for less if you choose the right specifications for the task.</li>
+    </ol>
+
+    <!-- IMAGE 2: Device comparison -->
+    <div class="img-placeholder" id="img-placeholder-2">
+      <span class="img-title">Choosing the Right Device for the Right Task</span>
+      <span class="img-filename"><img src="images/device-comparison.png" alt="Diagram showing devices best suited for different tasks"></span>
+    </div>
+    <p class="img-caption">Figure 7.2 — Matching devices to tasks.</p>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 4 — RECOMMENDING UPGRADES
+       ============================================================ -->
+  <section class="teach-section">
+    <h2><i class="fas fa-arrow-trend-up"></i> Recommending Upgrades or Solutions</h2>
+
+    <p>
+      Sometimes the problem is not something you can fix by changing settings — the device may
+      simply need better hardware or a better connection. In those cases, you can recommend
+      an <strong>upgrade</strong>.
+    </p>
+
+    <div class="upgrade-grid">
+      <div class="upgrade-card">
+        <div class="upgrade-icon"><i class="fas fa-bolt"></i></div>
+        <div class="upgrade-need">Need more speed?</div>
+        <h4>Add RAM or an SSD</h4>
+        <p>
+          Adding more <strong>RAM</strong> lets the computer handle more programs at once.
+          Replacing an old spinning hard drive with a solid-state drive (<strong>SSD</strong>)
+          makes the computer start faster and open apps much more quickly.
+        </p>
+      </div>
+      <div class="upgrade-card">
+        <div class="upgrade-icon"><i class="fas fa-tower-broadcast"></i></div>
+        <div class="upgrade-need">Need better connectivity?</div>
+        <h4>Upgrade router or internet plan</h4>
+        <p>
+          An old router may not support the newest Wi-Fi standards or the highest speeds. A
+          newer router and a faster internet plan can dramatically improve your experience —
+          especially for video calls, streaming, and gaming.
+        </p>
+      </div>
+      <div class="upgrade-card">
+        <div class="upgrade-icon"><i class="fas fa-hard-drive"></i></div>
+        <div class="upgrade-need">Need more space?</div>
+        <h4>Add storage</h4>
+        <p>
+          If the drive is full, the computer slows down and cannot store new files. You can
+          add an external drive, install a larger internal drive, or use cloud storage for
+          extra space.
+        </p>
+      </div>
+    </div>
+
+    <h3>Before You Recommend an Upgrade</h3>
+    <p>
+      Always start by checking whether a simpler fix will solve the problem:
+    </p>
+    <ul>
+      <li>Could the issue be solved by closing unnecessary programs instead of buying more RAM?</li>
+      <li>Could cleaning up old files free enough storage space?</li>
+      <li>Could moving the router to a better location improve the Wi-Fi signal?</li>
+    </ul>
+    <p>
+      Only recommend an upgrade if the simpler fixes do not solve the problem. That way, the
+      person saves money and gets the right solution for their real need.
+    </p>
+
+    <div class="analogy-box">
+      <p>
+        <strong>Analogy:</strong> Recommending an upgrade is like advising someone on a car.
+        If their car is slow, the fix might be to clean the engine (a simpler fix), or it might
+        be to add a turbocharger (a real upgrade). You always check the simple fix first — and
+        only recommend a bigger change if the simple fix is not enough.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 5 — REAL-LIFE SCENARIOS
+       ============================================================ -->
+  <section class="teach-section">
+    <h2><i class="fas fa-people-group"></i> Real-Life Scenarios</h2>
+
+    <p>
+      The best way to test your knowledge is to apply it to real situations. Below are three
+      common real-life technology scenarios. For each one, think about what the people need and
+      what system would work best for them.
+    </p>
+
+    <div class="scenario-grid">
+      <!-- Scenario A -->
+      <div class="scenario-card">
+        <div class="scenario-label">Scenario A</div>
+        <h4><i class="fas fa-video"></i> Video calling relatives abroad</h4>
+        <div class="scenario-question">
+          "A family wants to video call relatives who live overseas. What do they need?"
+        </div>
+        <p style="font-size:0.88rem;color:#0c4a6e;font-weight:600;margin-bottom:0.4rem;">What they need:</p>
+        <ul>
+          <li>A device with a <strong>camera, microphone, and screen</strong> — smartphone, tablet, laptop, or computer.</li>
+          <li>A reliable <strong>internet connection</strong> — Wi-Fi at home, or mobile data if travelling.</li>
+          <li>A <strong>video calling app</strong> — such as WhatsApp, Zoom, Google Meet, or FaceTime.</li>
+          <li>An <strong>account on the same app</strong> so both sides can connect.</li>
+          <li>A well-lit, quiet location for the call.</li>
+        </ul>
+      </div>
+
+      <!-- Scenario B -->
+      <div class="scenario-card">
+        <div class="scenario-label">Scenario B</div>
+        <h4><i class="fas fa-graduation-cap"></i> Student needs device for online classes</h4>
+        <div class="scenario-question">
+          "A student needs a device for online classes. What should they choose?"
+        </div>
+        <p style="font-size:0.88rem;color:#0c4a6e;font-weight:600;margin-bottom:0.4rem;">What to look for:</p>
+        <ul>
+          <li>A <strong>laptop or tablet</strong> — easier to type and use than a phone for long classes.</li>
+          <li>At least <strong>4–8 GB RAM</strong> and a modern processor for smooth video calls.</li>
+          <li>A <strong>good webcam and microphone</strong> for interacting with the teacher.</li>
+          <li>Adequate <strong>storage</strong> for notes, homework, and files.</li>
+          <li>Reliable <strong>Wi-Fi connection</strong> at home.</li>
+          <li><strong>Battery life</strong> of at least 6–8 hours for a full school day.</li>
+        </ul>
+      </div>
+
+      <!-- Scenario C -->
+      <div class="scenario-card">
+        <div class="scenario-label">Scenario C</div>
+        <h4><i class="fas fa-store"></i> Small shop accepting digital payments</h4>
+        <div class="scenario-question">
+          "A small shop wants to accept digital payments. What system is needed?"
+        </div>
+        <p style="font-size:0.88rem;color:#0c4a6e;font-weight:600;margin-bottom:0.4rem;">What the system needs:</p>
+        <ul>
+          <li>A <strong>payment terminal</strong> (card reader) or a smartphone with a payment app.</li>
+          <li>A <strong>reliable internet connection</strong> — Wi-Fi or mobile data — so payments can be processed.</li>
+          <li>A <strong>point-of-sale (POS) app</strong> or software that tracks sales and totals.</li>
+          <li>A <strong>bank account</strong> or payment provider account (like PayPal or a local service).</li>
+          <li>A way to print or send <strong>receipts</strong> to customers — small printer or email receipt.</li>
+          <li><strong>Security measures</strong> — a secure connection and safe handling of customer data.</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>Analysing the Scenarios</h3>
+    <p>
+      Notice that all three scenarios involve the same four ingredients:
+      <strong>hardware</strong>, <strong>software</strong>, <strong>connectivity</strong>, and
+      <strong>purpose</strong>. When you think about a real-world problem, ask:
+    </p>
+    <ul>
+      <li>What <strong>hardware</strong> is needed?</li>
+      <li>What <strong>software</strong> is required?</li>
+      <li>What kind of <strong>network</strong> or connection is needed?</li>
+      <li>What is the <strong>purpose</strong> or task the system must perform?</li>
+    </ul>
+    <p>
+      When you can answer all four questions, you can design a solution that fits the real need.
+    </p>
+
+    <!-- IMAGE 3: Real-life scenarios -->
+    <div class="img-placeholder" id="img-placeholder-3">
+      <span class="img-title">Applying Knowledge: Real-Life Technology Solutions</span>
+      <span class="img-filename"><img src="images/real-life-scenarios.png" alt="Three real-life scenarios: video calling, online class, digital payments"></span>
+    </div>
+    <p class="img-caption">Figure 7.3 — Real-life scenarios solved with computer and communication technology.</p>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 6 — ACTIVITY
+       ============================================================ -->
+  <section class="teach-section">
+    <h2><i class="fas fa-pen-to-square"></i> Activity: Problem-Solving Stations</h2>
+
+    <div class="activity-box">
+      <h3><i class="fas fa-bullseye"></i> Activity 1 — Diagnose and Fix</h3>
+      <p>
+        Read each problem below and choose the best solution. Each question has one correct
+        answer. Click the answer you think is right to see if you are correct.
+      </p>
+    </div>
+
+    <div class="diagnose-builder">
+      <h4><i class="fas fa-stethoscope"></i> Diagnosis Practice</h4>
+
+      <!-- Problem 1 -->
+      <div class="diagnose-scenario">
+        <strong>Problem 1:</strong> A student's laptop has become very slow. Several apps are
+        open in the background, and the storage is almost full.
+      </div>
+      <div class="diagnose-question">What should be checked first?</div>
+      <div class="diagnose-options" data-quiz="1">
+        <button class="diagnose-option" data-correct="false">
+          <i class="fas fa-circle"></i> Replace the motherboard
+        </button>
+        <button class="diagnose-option" data-correct="true">
+          <i class="fas fa-circle"></i> Close unnecessary background apps and free up storage
+        </button>
+        <button class="diagnose-option" data-correct="false">
+          <i class="fas fa-circle"></i> Buy a new smartphone
+        </button>
+      </div>
+      <div class="diagnose-feedback"></div>
+
+      <!-- Problem 2 -->
+      <div class="diagnose-scenario" style="margin-top:1.6rem;">
+        <strong>Problem 2:</strong> A family's Wi-Fi suddenly stops working, but their devices
+        still show the network name.
+      </div>
+      <div class="diagnose-question">What is the most likely first step?</div>
+      <div class="diagnose-options" data-quiz="2">
+        <button class="diagnose-option" data-correct="false">
+          <i class="fas fa-circle"></i> Throw away the router and buy a new one
+        </button>
+        <button class="diagnose-option" data-correct="true">
+          <i class="fas fa-circle"></i> Restart the router by unplugging it for 30 seconds
+        </button>
+        <button class="diagnose-option" data-correct="false">
+          <i class="fas fa-circle"></i> Reinstall the operating system
+        </button>
+      </div>
+      <div class="diagnose-feedback"></div>
+
+      <!-- Problem 3 -->
+      <div class="diagnose-scenario" style="margin-top:1.6rem;">
+        <strong>Problem 3:</strong> A user wants to edit 4K videos. Their computer has a fast
+        CPU but only 8 GB RAM and no dedicated graphics card.
+      </div>
+      <div class="diagnose-question">What upgrade should be recommended?</div>
+      <div class="diagnose-options" data-quiz="3">
+        <button class="diagnose-option" data-correct="false">
+          <i class="fas fa-circle"></i> Buy a bigger monitor
+        </button>
+        <button class="diagnose-option" data-correct="true">
+          <i class="fas fa-circle"></i> Add more RAM and a dedicated graphics card (GPU)
+        </button>
+        <button class="diagnose-option" data-correct="false">
+          <i class="fas fa-circle"></i> Install an antivirus program
+        </button>
+      </div>
+      <div class="diagnose-feedback"></div>
+
+      <!-- Problem 4 -->
+      <div class="diagnose-scenario" style="margin-top:1.6rem;">
+        <strong>Problem 4:</strong> A student needs a device for online classes. They have a
+        limited budget and need something portable with a good camera and battery life.
+      </div>
+      <div class="diagnose-question">What is the best recommendation?</div>
+      <div class="diagnose-options" data-quiz="4">
+        <button class="diagnose-option" data-correct="false">
+          <i class="fas fa-circle"></i> A powerful gaming desktop
+        </button>
+        <button class="diagnose-option" data-correct="true">
+          <i class="fas fa-circle"></i> A mid-range laptop or tablet with a good webcam and battery
+        </button>
+        <button class="diagnose-option" data-correct="false">
+          <i class="fas fa-circle"></i> A smart TV
+        </button>
+      </div>
+      <div class="diagnose-feedback"></div>
+
+      <!-- Problem 5 -->
+      <div class="diagnose-scenario" style="margin-top:1.6rem;">
+        <strong>Problem 5:</strong> A small café wants to accept card payments from customers.
+      </div>
+      <div class="diagnose-question">What system should they set up?</div>
+      <div class="diagnose-options" data-quiz="5">
+        <button class="diagnose-option" data-correct="false">
+          <i class="fas fa-circle"></i> A gaming PC and a joystick
+        </button>
+        <button class="diagnose-option" data-correct="true">
+          <i class="fas fa-circle"></i> A payment terminal (or payment app) with a secure internet connection
+        </button>
+        <button class="diagnose-option" data-correct="false">
+          <i class="fas fa-circle"></i> A printer and a scanner only
+        </button>
+      </div>
+      <div class="diagnose-feedback"></div>
+    </div>
+
+    <h3 style="margin-top: 2rem;">Activity 2 — Problem-Solving Stations</h3>
+    <p>
+      Your teacher will set up several stations around the classroom. Each station presents a
+      real-life problem. Work in small groups and rotate through the stations. For each one,
+      discuss and write down your diagnosis and proposed solution.
+    </p>
+
+    <div class="activity-box">
+      <h3><i class="fas fa-list-check"></i> How to approach each station</h3>
+      <ol class="activity-steps">
+        <li>Read the problem carefully and identify the <strong>symptom</strong>.</li>
+        <li>List the parts of the system that could be involved — <strong>hardware</strong>, <strong>software</strong>, or <strong>network</strong>.</li>
+        <li>Suggest the <strong>simplest checks first</strong> before recommending bigger changes.</li>
+        <li>Propose a final <strong>solution</strong> — a fix, an upgrade, or a device recommendation.</li>
+        <li>Explain your reasoning using what you learned in earlier topics.</li>
+      </ol>
+    </div>
+
+    <!-- Discussion -->
+    <div class="discussion-box">
+      <h3><i class="fas fa-comments"></i> Discussion</h3>
+      <p>
+        Talk about these questions with your class or in small groups:
+      </p>
+      <div class="discussion-question">
+        <i class="fas fa-question-circle" style="color:#0284c7;margin-right:8px;"></i>
+        Why is it important to check the simplest causes first before recommending expensive upgrades?
+      </div>
+      <div class="discussion-question">
+        <i class="fas fa-question-circle" style="color:#0284c7;margin-right:8px;"></i>
+        How would you explain to a friend that their slow computer might just need more RAM, not a whole new machine?
+      </div>
+      <div class="discussion-question">
+        <i class="fas fa-question-circle" style="color:#0284c7;margin-right:8px;"></i>
+        What kind of technology problem would be hardest to solve — a hardware problem, a software problem, or a network problem? Why?
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 7 — QUICK CHECK QUIZ
+       ============================================================ -->
+  <section class="teach-section">
+    <h2><i class="fas fa-circle-question"></i> Quick Check</h2>
+    <p>Test your understanding with these questions. Click the best answer.</p>
+
+    <div class="quiz-question" data-quiz="1">
+      <p>1. A computer is running slowly because too many apps are open. What is the best first step?</p>
+      <div class="quiz-options">
+        <button class="quiz-option" data-correct="false">
+          <i class="fas fa-circle"></i> Replace the CPU
+        </button>
+        <button class="quiz-option" data-correct="true">
+          <i class="fas fa-circle"></i> Close unnecessary apps and free up storage
+        </button>
+        <button class="quiz-option" data-correct="false">
+          <i class="fas fa-circle"></i> Buy a new monitor
+        </button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-question" data-quiz="2">
+      <p>2. A family has no internet, but their devices still see the Wi-Fi network. What is the most likely first step?</p>
+      <div class="quiz-options">
+        <button class="quiz-option" data-correct="false">
+          <i class="fas fa-circle"></i> Reinstall Windows
+        </button>
+        <button class="quiz-option" data-correct="true">
+          <i class="fas fa-circle"></i> Restart the router
+        </button>
+        <button class="quiz-option" data-correct="false">
+          <i class="fas fa-circle"></i> Buy a new laptop
+        </button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-question" data-quiz="3">
+      <p>3. A user does professional video editing. Which upgrade would help the most?</p>
+      <div class="quiz-options">
+        <button class="quiz-option" data-correct="false">
+          <i class="fas fa-circle"></i> A bigger keyboard
+        </button>
+        <button class="quiz-option" data-correct="true">
+          <i class="fas fa-circle"></i> More RAM and a dedicated graphics card (GPU)
+        </button>
+        <button class="quiz-option" data-correct="false">
+          <i class="fas fa-circle"></i> A louder speaker system
+        </button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-question" data-quiz="4">
+      <p>4. Which device is best for a student who needs something portable for online classes?</p>
+      <div class="quiz-options">
+        <button class="quiz-option" data-correct="false">
+          <i class="fas fa-circle"></i> A powerful gaming desktop
+        </button>
+        <button class="quiz-option" data-correct="true">
+          <i class="fas fa-circle"></i> A mid-range laptop or tablet with a good webcam and battery
+        </button>
+        <button class="quiz-option" data-correct="false">
+          <i class="fas fa-circle"></i> A printer
+        </button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-question" data-quiz="5">
+      <p>5. A small shop wants to accept digital payments. What is essential?</p>
+      <div class="quiz-options">
+        <button class="quiz-option" data-correct="false">
+          <i class="fas fa-circle"></i> A high-end gaming PC
+        </button>
+        <button class="quiz-option" data-correct="true">
+          <i class="fas fa-circle"></i> A payment terminal or app with a secure internet connection
+        </button>
+        <button class="quiz-option" data-correct="false">
+          <i class="fas fa-circle"></i> A large projector
+        </button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+  </section>
+
+  <!-- ===== STUDENT OUTCOME ===== -->
+  <div class="outcome-banner">
+    <div class="outcome-icon"><i class="fas fa-graduation-cap"></i></div>
+    <div class="outcome-text">
+      <h3>Student Outcome</h3>
+      <p>Students can apply their understanding to solve basic computer and communication problems.</p>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       TEACHER INSTRUCTIONS & LINKS
+       ============================================================ -->
+  <section class="custom-instructions">
+    <h2><i class="fas fa-clipboard-list"></i> Teacher Instructions</h2>
+
+    <p>
+      <strong><a href="https://www.zipgrade.com/s/" class="inline-link" target="_blank" rel="noopener">ZipGrade Quiz</a></strong>
+      — Don't forget to take the ZipGrade quiz! Use the link provided to access and complete it. Make sure to submit before the deadline.
+    </p>
+
+    <div class="instruction-note">
+      <i class="fas fa-circle-info"></i>
+      <strong>Teaching tip:</strong> For the Problem-Solving Stations activity, set up 4–5 stations around the room with a printed scenario at each one. Have small groups rotate through the stations and write their diagnosis and solution on a worksheet. After the rotation, have a whole-class discussion comparing answers. This reinforces that there are often several valid solutions, depending on budget and need.
+    </div>
+
+    <div class="link-buttons">
+      <a href="https://www.bbc.co.uk/bitesize/guides/zpjjxsg/revision/1" class="custom-link-btn" target="_blank" rel="noopener">
+        <i class="fas fa-arrow-up-right-from-square"></i> BBC Bitesize — Computer Systems
+      </a>
+      <a href="https://drive.google.com/file/d/1fLFAfFLuwjPeiKBkz7cyfyD-InPPLRcV/view?usp=sharing" class="custom-link-btn" target="_blank" rel="noopener">
+        <i class="fas fa-arrow-up-right-from-square"></i> Open PDF Resource
+      </a>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER NAVIGATION ===== -->
+  <div class="footer-nav">
+    <a href="topic-6-networks-internet.html">
+      <i class="fas fa-arrow-left"></i> Previous: Networks and the Internet
+    </a>
+    <a href="topic-8-putting-together.html" class="next-link">
+      Next: Putting It All Together <i class="fas fa-arrow-right"></i>
+    </a>
+  </div>
+
+</div>
+
+<!-- ============================================================
+     PRESENTATION TOOLBAR
+     ============================================================ -->
+<div class="present-toolbar">
+  <span class="toolbar-label">PRESENT</span>
+  <button id="prevSlide" title="Previous slide (←)"><i class="fas fa-chevron-left"></i></button>
+  <span class="slide-counter" id="slideCounter">1 / 7</span>
+  <button id="nextSlide" title="Next slide (→)"><i class="fas fa-chevron-right"></i></button>
+  <button id="togglePresent" title="Start / stop presentation (P)"><i class="fas fa-play"></i></button>
+  <button id="toggleFullscreen" title="Fullscreen (F)"><i class="fas fa-expand"></i></button>
+</div>
+
+<script>
+  /* ============================================================
+     QUIZ INTERACTIVITY (Quick Check)
+     ============================================================ */
+  (function() {
+    const quizQuestions = document.querySelectorAll('.quiz-question');
+
+    quizQuestions.forEach(function(question) {
+      const options = question.querySelectorAll('.quiz-option');
+      const feedback = question.querySelector('.quiz-feedback');
+
+      options.forEach(function(option) {
+        option.addEventListener('click', function() {
+          if (question.dataset.answered === 'true') return;
+
+          const isCorrect = option.dataset.correct === 'true';
+
+          options.forEach(function(opt) {
+            opt.disabled = true;
+            if (opt.dataset.correct === 'true') {
+              opt.classList.add('correct');
+              opt.querySelector('i').className = 'fas fa-check-circle';
+            } else if (opt === option && !isCorrect) {
+              opt.classList.add('incorrect');
+              opt.querySelector('i').className = 'fas fa-times-circle';
+            } else {
+              opt.querySelector('i').className = 'fas fa-circle';
+            }
+          });
+
+          if (isCorrect) {
+            feedback.textContent = '✓ Correct! Well done.';
+            feedback.className = 'quiz-feedback show correct';
+          } else {
+            feedback.textContent = '✗ Not quite. The correct answer is highlighted in green.';
+            feedback.className = 'quiz-feedback show incorrect';
+          }
+
+          question.dataset.answered = 'true';
+        });
+      });
+    });
+  })();
+
+  /* ============================================================
+     DIAGNOSE ACTIVITY
+     ============================================================ */
+  (function() {
+    const diagnoseBlocks = document.querySelectorAll('.diagnose-options');
+
+    diagnoseBlocks.forEach(function(block) {
+      const options = block.querySelectorAll('.diagnose-option');
+      const feedback = block.nextElementSibling;
+
+      options.forEach(function(option) {
+        option.addEventListener('click', function() {
+          if (block.dataset.answered === 'true') return;
+
+          const isCorrect = option.dataset.correct === 'true';
+
+          options.forEach(function(opt) {
+            opt.disabled = true;
+            if (opt.dataset.correct === 'true') {
+              opt.classList.add('correct');
+              opt.querySelector('i').className = 'fas fa-check-circle';
+            } else if (opt === option && !isCorrect) {
+              opt.classList.add('incorrect');
+              opt.querySelector('i').className = 'fas fa-times-circle';
+            } else {
+              opt.querySelector('i').className = 'fas fa-circle';
+            }
+          });
+
+          if (isCorrect) {
+            feedback.textContent = '✓ Correct! That is the best first step.';
+            feedback.className = 'diagnose-feedback show correct';
+          } else {
+            feedback.textContent = '✗ Not quite. The correct answer is highlighted in green.';
+            feedback.className = 'diagnose-feedback show incorrect';
+          }
+
+          block.dataset.answered = 'true';
+        });
+      });
+    });
+  })();
+
+  /* ============================================================
+     PRESENTATION MODE
+     ============================================================ */
+  (function() {
+    const slides = document.querySelectorAll('.teach-section');
+    const totalSlides = slides.length;
+    const counter = document.getElementById('slideCounter');
+    const prevBtn = document.getElementById('prevSlide');
+    const nextBtn = document.getElementById('nextSlide');
+    const presentBtn = document.getElementById('togglePresent');
+    const fullscreenBtn = document.getElementById('toggleFullscreen');
+
+    let current = 0;
+    let presenting = false;
+
+    if (totalSlides > 0) {
+      slides[0].classList.add('active-slide');
+      updateCounter();
+    }
+
+    function updateCounter() {
+      counter.textContent = (current + 1) + ' / ' + totalSlides;
+    }
+
+    function showSlide(index) {
+      if (index < 0) index = 0;
+      if (index >= totalSlides) index = totalSlides - 1;
+
+      slides.forEach(function(slide) {
+        slide.classList.remove('active-slide');
+      });
+      slides[index].classList.add('active-slide');
+      current = index;
+      updateCounter();
+
+      if (presenting) {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    function nextSlide() {
+      if (current < totalSlides - 1) showSlide(current + 1);
+    }
+
+    function prevSlide() {
+      if (current > 0) showSlide(current - 1);
+    }
+
+    function enterPresentation() {
+      presenting = true;
+      document.body.classList.add('presenting');
+      presentBtn.innerHTML = '<i class="fas fa-stop"></i>';
+      presentBtn.title = 'Stop presentation (P)';
+      showSlide(0);
+    }
+
+    function exitPresentation() {
+      presenting = false;
+      document.body.classList.remove('presenting');
+      presentBtn.innerHTML = '<i class="fas fa-play"></i>';
+      presentBtn.title = 'Start presentation (P)';
+      slides.forEach(function(slide) {
+        slide.classList.remove('active-slide');
+      });
+      if (document.fullscreenElement) {
+        document.exitFullscreen().catch(function() {});
+      }
+    }
+
+    function togglePresentation() {
+      if (presenting) {
+        exitPresentation();
+      } else {
+        enterPresentation();
+      }
+    }
+
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(function() {});
+      } else {
+        document.exitFullscreen().catch(function() {});
+      }
+    }
+
+    prevBtn.addEventListener('click', prevSlide);
+    nextBtn.addEventListener('click', nextSlide);
+    presentBtn.addEventListener('click', togglePresentation);
+    fullscreenBtn.addEventListener('click', toggleFullscreen);
+
+    document.addEventListener('keydown', function(e) {
+      const tag = (e.target.tagName || '').toLowerCase();
+      const typing = tag === 'input' || tag === 'textarea' || tag === 'select' || e.target.isContentEditable;
+
+      if (e.key === 'ArrowRight' && presenting) {
+        e.preventDefault();
+        nextSlide();
+      } else if (e.key === 'ArrowLeft' && presenting) {
+        e.preventDefault();
+        prevSlide();
+      } else if ((e.key === 'p' || e.key === 'P') && !typing) {
+        e.preventDefault();
+        togglePresentation();
+      } else if ((e.key === 'f' || e.key === 'F') && !typing) {
+        e.preventDefault();
+        toggleFullscreen();
+      } else if (e.key === 'Escape' && presenting) {
+        exitPresentation();
+      }
+    });
+
+    document.addEventListener('fullscreenchange', function() {
+      if (document.fullscreenElement) {
+        fullscreenBtn.innerHTML = '<i class="fas fa-compress"></i>';
+      } else {
+        fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i>';
+      }
+    });
+  })();
+</script>
+
+</body>
+</html>

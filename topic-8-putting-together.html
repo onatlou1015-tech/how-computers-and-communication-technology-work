@@ -1,0 +1,2145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Topic 8 · Putting It All Together — Design a System</title>
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: #f0f5fa;
+      color: #0a1e2f;
+      line-height: 1.7;
+      padding: 2rem 1.5rem 6rem;
+      scroll-behavior: smooth;
+    }
+
+    .wrapper {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    /* ===== BACK LINK ===== */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      color: #1e6b9b;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+      padding: 0.5rem 1rem;
+      border-radius: 40px;
+      background: #ffffff;
+      border: 1px solid #d9e7f5;
+      transition: background 0.2s, gap 0.2s;
+    }
+
+    .back-link:hover {
+      background: #e7f0f9;
+      gap: 0.9rem;
+    }
+
+    /* ===== HEADER ===== */
+    .topic-header {
+      background: linear-gradient(135deg, #0b2a4a 0%, #1a4a6e 100%);
+      border-radius: 2.5rem;
+      padding: 3rem 2.5rem;
+      color: white;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 20px 30px -10px rgba(11, 42, 74, 0.25);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .topic-header::after {
+      content: "8";
+      position: absolute;
+      right: 2rem;
+      bottom: -2.5rem;
+      font-size: 13rem;
+      font-weight: 800;
+      color: rgba(255, 255, 255, 0.06);
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .topic-badge {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(4px);
+      padding: 0.25rem 1rem;
+      border-radius: 40px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .topic-header h1 {
+      font-size: 2.6rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      max-width: 750px;
+      margin-bottom: 0.9rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .topic-header .subhead {
+      font-size: 1.1rem;
+      opacity: 0.9;
+      max-width: 680px;
+      font-weight: 400;
+      position: relative;
+      z-index: 2;
+      border-left: 4px solid #7bb8e0;
+      padding-left: 1.2rem;
+      margin-top: 0.5rem;
+      line-height: 1.6;
+    }
+
+    /* ===== TEACHING SECTIONS ===== */
+    .teach-section {
+      background: #ffffff;
+      border-radius: 2rem;
+      padding: 2.5rem 2.5rem;
+      margin-bottom: 2rem;
+      border: 1px solid #e2edf7;
+      box-shadow: 0 12px 24px -12px rgba(11, 42, 74, 0.08);
+    }
+
+    .teach-section h2 {
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: #0b2a4a;
+      margin-bottom: 1.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      letter-spacing: -0.01em;
+      line-height: 1.3;
+    }
+
+    .teach-section h2 i {
+      color: #1e6b9b;
+      font-size: 1.4rem;
+      background: #e7f0f9;
+      width: 3rem;
+      height: 3rem;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .teach-section h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #0b2a4a;
+      margin-bottom: 0.8rem;
+      margin-top: 2rem;
+      line-height: 1.35;
+    }
+
+    .teach-section h3:first-of-type {
+      margin-top: 0;
+    }
+
+    .teach-section h4 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #1a4a6e;
+      margin-bottom: 0.5rem;
+      margin-top: 1.4rem;
+    }
+
+    .teach-section p {
+      color: #1d3b5c;
+      font-size: 1.02rem;
+      margin-bottom: 1.2rem;
+      line-height: 1.8;
+    }
+
+    .teach-section ul,
+    .teach-section ol {
+      margin: 0 0 1.4rem 1.4rem;
+      color: #1d3b5c;
+      font-size: 1.02rem;
+      line-height: 1.8;
+    }
+
+    .teach-section li {
+      margin-bottom: 0.5rem;
+    }
+
+    .teach-section strong {
+      color: #0b2a4a;
+    }
+
+    .teach-section em {
+      color: #1e6b9b;
+      font-style: normal;
+      font-weight: 600;
+    }
+
+    .definition-box {
+      background: #eaf1f9;
+      border-left: 5px solid #1e6b9b;
+      border-radius: 0 1rem 1rem 0;
+      padding: 1.4rem 1.6rem;
+      margin: 1.2rem 0 1.6rem;
+    }
+
+    .definition-box p {
+      margin-bottom: 0;
+      font-size: 1.08rem;
+      line-height: 1.8;
+    }
+
+    .analogy-box {
+      background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+      border-left: 5px solid #d97706;
+      border-radius: 0 1rem 1rem 0;
+      padding: 1.4rem 1.6rem;
+      margin: 1.2rem 0 1.6rem;
+    }
+
+    .analogy-box p {
+      margin-bottom: 0;
+      color: #78350f;
+      font-size: 1.02rem;
+    }
+
+    .analogy-box strong {
+      color: #92400e;
+    }
+
+    /* ===== RECAP GRID ===== */
+    .recap-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .recap-card {
+      background: #f7fafd;
+      border: 1px solid #d9e7f5;
+      border-radius: 1.2rem;
+      padding: 1.2rem 1rem;
+      text-align: center;
+      transition: all 0.2s;
+    }
+
+    .recap-card:hover {
+      transform: translateY(-3px);
+      border-color: #a6c8e5;
+      box-shadow: 0 8px 16px -8px rgba(11, 42, 74, 0.12);
+    }
+
+    .recap-icon {
+      width: 2.6rem;
+      height: 2.6rem;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      margin: 0 auto 0.7rem;
+      color: white;
+    }
+
+    .recap-card:nth-child(1) .recap-icon { background: #2563eb; }
+    .recap-card:nth-child(2) .recap-icon { background: #7c3aed; }
+    .recap-card:nth-child(3) .recap-icon { background: #db2777; }
+    .recap-card:nth-child(4) .recap-icon { background: #059669; }
+    .recap-card:nth-child(5) .recap-icon { background: #d97706; }
+    .recap-card:nth-child(6) .recap-icon { background: #0891b2; }
+    .recap-card:nth-child(7) .recap-icon { background: #dc2626; }
+    .recap-card:nth-child(8) .recap-icon { background: #7c3aed; }
+
+    .recap-card h4 {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #0b2a4a;
+      margin-bottom: 0.3rem;
+      margin-top: 0;
+    }
+
+    .recap-card p {
+      font-size: 0.78rem;
+      color: #3a5775;
+      margin-bottom: 0;
+      line-height: 1.4;
+    }
+
+    /* ===== PROJECT TYPE CARDS ===== */
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.2rem;
+      margin-top: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .project-card {
+      border-radius: 1.5rem;
+      padding: 1.6rem 1.4rem;
+      border: 2px solid;
+      transition: all 0.25s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 24px -12px rgba(11, 42, 74, 0.15);
+    }
+
+    .project-card.home-office {
+      background: #eff6ff;
+      border-color: #bfdbfe;
+    }
+
+    .project-card.small-business {
+      background: #fdf2f8;
+      border-color: #fbcfe8;
+    }
+
+    .project-card.classroom {
+      background: #ecfdf5;
+      border-color: #a7f3d0;
+    }
+
+    .project-card.gaming {
+      background: #fef3c7;
+      border-color: #fcd34d;
+    }
+
+    .project-card h4 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.7rem;
+      margin-top: 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .project-card.home-office h4 { color: #1e40af; }
+    .project-card.small-business h4 { color: #9d174d; }
+    .project-card.classroom h4 { color: #047857; }
+    .project-card.gaming h4 { color: #92400e; }
+
+    .project-card .project-purpose {
+      font-size: 0.85rem;
+      color: #3a5775;
+      margin-bottom: 0.7rem;
+      line-height: 1.6;
+    }
+
+    .project-card ul {
+      margin: 0;
+      padding-left: 1.1rem;
+      list-style: disc;
+      font-size: 0.85rem;
+      color: #1d3b5c;
+      line-height: 1.65;
+    }
+
+    .project-card ul li {
+      margin-bottom: 0.3rem;
+    }
+
+    /* ===== DESIGN CHECKLIST ===== */
+    .design-checklist {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.2rem;
+      margin-top: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .checklist-item {
+      background: #f7fafd;
+      border: 1px solid #d9e7f5;
+      border-radius: 1.5rem;
+      padding: 1.5rem 1.4rem;
+      transition: all 0.25s;
+    }
+
+    .checklist-item:hover {
+      transform: translateY(-3px);
+      border-color: #a6c8e5;
+    }
+
+    .checklist-icon {
+      width: 2.8rem;
+      height: 2.8rem;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      margin-bottom: 0.9rem;
+      color: white;
+    }
+
+    .checklist-item:nth-child(1) .checklist-icon { background: #2563eb; }
+    .checklist-item:nth-child(2) .checklist-icon { background: #7c3aed; }
+    .checklist-item:nth-child(3) .checklist-icon { background: #db2777; }
+    .checklist-item:nth-child(4) .checklist-icon { background: #059669; }
+    .checklist-item:nth-child(5) .checklist-icon { background: #d97706; }
+
+    .checklist-item h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #0b2a4a;
+      margin-bottom: 0.5rem;
+      margin-top: 0;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .checklist-item h4 i.check {
+      color: #1e6b9b;
+      font-size: 0.85rem;
+    }
+
+    .checklist-item p {
+      font-size: 0.88rem;
+      color: #3a5775;
+      margin-bottom: 0;
+      line-height: 1.6;
+    }
+
+    /* ===== BUDGET TIERS ===== */
+    .budget-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.2rem;
+      margin-top: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .budget-card {
+      background: #f7fafd;
+      border: 2px solid #d9e7f5;
+      border-radius: 1.5rem;
+      padding: 1.6rem 1.4rem;
+      text-align: center;
+    }
+
+    .budget-card.basic { border-top: 5px solid #0891b2; }
+    .budget-card.mid { border-top: 5px solid #7c3aed; }
+    .budget-card.premium { border-top: 5px solid #db2777; }
+
+    .budget-card .budget-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      color: #7a94ad;
+      margin-bottom: 0.4rem;
+    }
+
+    .budget-card h4 {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #0b2a4a;
+      margin-bottom: 0.6rem;
+      margin-top: 0;
+    }
+
+    .budget-card p {
+      font-size: 0.88rem;
+      color: #3a5775;
+      margin-bottom: 0.8rem;
+      line-height: 1.6;
+    }
+
+    .budget-card ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      text-align: left;
+      font-size: 0.85rem;
+      color: #1d3b5c;
+      line-height: 1.7;
+    }
+
+    .budget-card ul li {
+      padding: 0.25rem 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.4rem;
+    }
+
+    .budget-card ul li i {
+      color: #1e6b9b;
+      font-size: 0.7rem;
+      margin-top: 0.4rem;
+      flex-shrink: 0;
+    }
+
+    /* ===== EXAMPLE SYSTEM ===== */
+    .example-system {
+      background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+      border: 2px solid #7dd3fc;
+      border-radius: 1.5rem;
+      padding: 1.8rem 1.8rem;
+      margin: 1.5rem 0;
+    }
+
+    .example-system h4 {
+      color: #0c4a6e;
+      margin-top: 0;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1.05rem;
+    }
+
+    .example-system h4 i {
+      color: #0284c7;
+    }
+
+    .example-row {
+      display: flex;
+      gap: 0.8rem;
+      padding: 0.7rem 0;
+      border-bottom: 1px solid #bae6fd;
+      font-size: 0.92rem;
+      line-height: 1.6;
+    }
+
+    .example-row:last-child {
+      border-bottom: none;
+    }
+
+    .example-row .example-cat {
+      font-weight: 700;
+      color: #0c4a6e;
+      min-width: 130px;
+      flex-shrink: 0;
+    }
+
+    .example-row .example-detail {
+      color: #1e3a5f;
+    }
+
+    /* ===== IMAGE PLACEHOLDER ===== */
+    .img-placeholder {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: linear-gradient(135deg, #eaf1f9 0%, #d9e7f5 100%);
+      border: 3px dashed #a6c8e5;
+      border-radius: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+      padding: 2rem;
+      text-align: center;
+      margin: 1.8rem 0 0.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .img-placeholder .img-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #0b2a4a;
+    }
+
+    .img-placeholder .img-filename {
+      background: #ffffff;
+      border: 1px solid #c6d9ec;
+      border-radius: 40px;
+      padding: 0.5rem 1.1rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #1e6b9b;
+      font-family: 'Courier New', monospace;
+      margin-top: 0.5rem;
+      max-width: 100%;
+    }
+
+    .img-placeholder img {
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      border-radius: 1rem;
+    }
+
+    .img-caption {
+      font-size: 0.88rem;
+      color: #4a6a8a;
+      text-align: center;
+      font-style: italic;
+      margin-bottom: 1rem;
+    }
+
+    /* ===== ACTIVITY ===== */
+    .activity-box {
+      background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+      border: 2px solid #fcd34d;
+      border-radius: 1.5rem;
+      padding: 1.8rem 1.8rem;
+      margin-top: 1.2rem;
+    }
+
+    .activity-box h3 {
+      color: #92400e;
+      margin-top: 0;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .activity-box h3 i { color: #d97706; }
+
+    .activity-box p {
+      color: #78350f;
+      margin-bottom: 1rem;
+    }
+
+    .activity-steps {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      counter-reset: step-counter;
+    }
+
+    .activity-steps li {
+      counter-increment: step-counter;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.8rem;
+      padding: 0.6rem 0;
+      font-size: 0.98rem;
+      color: #78350f;
+      line-height: 1.7;
+    }
+
+    .activity-steps li::before {
+      content: counter(step-counter);
+      background: #d97706;
+      color: white;
+      font-weight: 700;
+      font-size: 0.8rem;
+      width: 1.7rem;
+      height: 1.7rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 0.2rem;
+    }
+
+    /* ===== DESIGN TEMPLATE ===== */
+    .design-template {
+      background: #f7fafd;
+      border: 2px solid #d9e7f5;
+      border-radius: 1.5rem;
+      padding: 1.8rem 1.8rem;
+      margin-top: 1.6rem;
+    }
+
+    .design-template h4 {
+      margin-top: 0;
+      color: #0b2a4a;
+      font-size: 1.1rem;
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .design-template h4 i {
+      color: #1e6b9b;
+    }
+
+    .template-field {
+      margin-bottom: 1.2rem;
+    }
+
+    .template-field label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #0b2a4a;
+      margin-bottom: 0.4rem;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+
+    .template-field input[type="text"],
+    .template-field textarea {
+      width: 100%;
+      padding: 0.7rem 0.9rem;
+      border: 1.5px solid #c6d9ec;
+      border-radius: 10px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.92rem;
+      color: #0b2a4a;
+      background: white;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .template-field input[type="text"]:focus,
+    .template-field textarea:focus {
+      outline: none;
+      border-color: #1e6b9b;
+      box-shadow: 0 0 0 3px rgba(30, 107, 155, 0.12);
+    }
+
+    .template-field textarea {
+      resize: vertical;
+      min-height: 70px;
+      line-height: 1.6;
+    }
+
+    .template-field input[type="text"]::placeholder,
+    .template-field textarea::placeholder {
+      color: #9db8d0;
+      font-style: italic;
+    }
+
+    .template-save {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-top: 1rem;
+    }
+
+    .template-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: #1e6b9b;
+      color: white;
+      font-weight: 600;
+      font-size: 0.88rem;
+      padding: 0.7rem 1.5rem;
+      border-radius: 40px;
+      border: none;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      transition: background 0.2s, transform 0.15s;
+      box-shadow: 0 6px 12px -8px rgba(30, 107, 155, 0.5);
+    }
+
+    .template-btn:hover {
+      background: #0b2a4a;
+      transform: translateY(-2px);
+    }
+
+    .template-btn.clear {
+      background: #e2edf9;
+      color: #0b2a4a;
+      border: 1.5px solid #a6c8e5;
+      box-shadow: none;
+    }
+
+    .template-btn.clear:hover {
+      background: #d4e5f5;
+    }
+
+    /* ===== PEER REVIEW ===== */
+    .review-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.2rem;
+      margin-top: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .review-card {
+      background: #f7fafd;
+      border: 1px solid #d9e7f5;
+      border-radius: 1.5rem;
+      padding: 1.5rem 1.4rem;
+      transition: all 0.25s;
+    }
+
+    .review-card:hover {
+      transform: translateY(-3px);
+      border-color: #a6c8e5;
+    }
+
+    .review-icon {
+      width: 2.8rem;
+      height: 2.8rem;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      margin-bottom: 0.9rem;
+      color: white;
+    }
+
+    .review-card:nth-child(1) .review-icon { background: #2563eb; }
+    .review-card:nth-child(2) .review-icon { background: #7c3aed; }
+    .review-card:nth-child(3) .review-icon { background: #db2777; }
+    .review-card:nth-child(4) .review-icon { background: #059669; }
+
+    .review-card h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #0b2a4a;
+      margin-bottom: 0.5rem;
+      margin-top: 0;
+    }
+
+    .review-card p {
+      font-size: 0.88rem;
+      color: #3a5775;
+      margin-bottom: 0;
+      line-height: 1.6;
+    }
+
+    /* ===== QUIZ ===== */
+    .quiz-question {
+      margin-bottom: 1.8rem;
+    }
+
+    .quiz-question p {
+      font-weight: 600;
+      color: #0b2a4a;
+      margin-bottom: 0.8rem;
+      font-size: 1.02rem;
+    }
+
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .quiz-option {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      padding: 0.8rem 1rem;
+      background: #f7fafd;
+      border: 1.5px solid #d9e7f5;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      color: #1d3b5c;
+      transition: all 0.2s;
+      font-family: 'Inter', sans-serif;
+      text-align: left;
+      width: 100%;
+      line-height: 1.5;
+    }
+
+    .quiz-option:hover {
+      border-color: #a6c8e5;
+      background: #eaf1f9;
+    }
+
+    .quiz-option.correct {
+      background: #dcfce7;
+      border-color: #86efac;
+      color: #166534;
+      font-weight: 600;
+    }
+
+    .quiz-option.incorrect {
+      background: #fee2e2;
+      border-color: #fca5a5;
+      color: #991b1b;
+    }
+
+    .quiz-option i {
+      font-size: 0.85rem;
+      color: #94a3b8;
+      flex-shrink: 0;
+    }
+
+    .quiz-option.correct i { color: #16a34a; }
+    .quiz-option.incorrect i { color: #dc2626; }
+
+    .quiz-feedback {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-top: 0.7rem;
+      padding: 0.7rem 1rem;
+      border-radius: 10px;
+      display: none;
+    }
+
+    .quiz-feedback.show { display: block; }
+    .quiz-feedback.correct { background: #dcfce7; color: #166534; }
+    .quiz-feedback.incorrect { background: #fee2e2; color: #991b1b; }
+
+    /* ===== DISCUSSION BOX ===== */
+    .discussion-box {
+      background: #f0f9ff;
+      border: 2px solid #7dd3fc;
+      border-radius: 1.5rem;
+      padding: 1.8rem 1.8rem;
+      margin-top: 1.5rem;
+    }
+
+    .discussion-box h3 {
+      color: #0c4a6e;
+      margin-top: 0;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .discussion-box h3 i { color: #0284c7; }
+
+    .discussion-box p {
+      color: #0c4a6e;
+      margin-bottom: 1rem;
+    }
+
+    .discussion-question {
+      background: white;
+      border-left: 4px solid #0284c7;
+      border-radius: 0 0.8rem 0.8rem 0;
+      padding: 1rem 1.2rem;
+      margin-bottom: 1rem;
+      font-size: 0.98rem;
+      color: #0c4a6e;
+      font-weight: 600;
+    }
+
+    .discussion-question:last-child {
+      margin-bottom: 0;
+    }
+
+    /* ===== STUDENT OUTCOME ===== */
+    .outcome-banner {
+      background: linear-gradient(135deg, #0b2a4a 0%, #1a4a6e 100%);
+      border-radius: 2rem;
+      padding: 2rem 2.2rem;
+      color: white;
+      margin-top: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .outcome-banner .outcome-icon {
+      background: rgba(255, 255, 255, 0.15);
+      width: 4rem;
+      height: 4rem;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      flex-shrink: 0;
+    }
+
+    .outcome-banner .outcome-text {
+      flex: 1;
+      min-width: 220px;
+    }
+
+    .outcome-banner h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+
+    .outcome-banner p {
+      font-size: 0.98rem;
+      opacity: 0.92;
+      margin-bottom: 0;
+    }
+
+    /* ===== TEACHER INSTRUCTIONS ===== */
+    .custom-instructions {
+      background: #ffffff;
+      border-radius: 2rem;
+      padding: 2.2rem 2.2rem;
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+      border: 2px solid #1e6b9b;
+      box-shadow: 0 12px 24px -12px rgba(30, 107, 155, 0.15);
+      position: relative;
+    }
+
+    .custom-instructions::before {
+      content: "📌";
+      position: absolute;
+      top: -1.2rem;
+      left: 2rem;
+      background: #1e6b9b;
+      color: white;
+      width: 2.4rem;
+      height: 2.4rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      box-shadow: 0 6px 12px -4px rgba(30, 107, 155, 0.4);
+    }
+
+    .custom-instructions h2 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #0b2a4a;
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      letter-spacing: -0.01em;
+      margin-top: 0.5rem;
+    }
+
+    .custom-instructions h2 i {
+      color: #1e6b9b;
+      font-size: 1.4rem;
+      background: #e7f0f9;
+      width: 2.8rem;
+      height: 2.8rem;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .custom-instructions p {
+      color: #1d3b5c;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      line-height: 1.7;
+    }
+
+    .custom-instructions a.inline-link {
+      color: #1e6b9b;
+      font-weight: 600;
+      text-decoration: none;
+      border-bottom: 2px solid #a6c8e5;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .custom-instructions a.inline-link:hover {
+      color: #0b2a4a;
+      border-bottom-color: #1e6b9b;
+    }
+
+    .instruction-note {
+      background: #eaf1f9;
+      border-left: 4px solid #1e6b9b;
+      border-radius: 0 0.8rem 0.8rem 0;
+      padding: 1rem 1.2rem;
+      margin-top: 1rem;
+      font-size: 0.95rem;
+      color: #2f506d;
+    }
+
+    .instruction-note i {
+      color: #1e6b9b;
+      margin-right: 0.4rem;
+    }
+
+    /* ===== LINK BUTTONS ===== */
+    .link-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      margin-top: 1.2rem;
+    }
+
+    .custom-link-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: #dbeafe;
+      color: #0b2a4a;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      padding: 0.8rem 1.6rem;
+      border-radius: 40px;
+      transition: background 0.2s, color 0.2s, gap 0.2s, transform 0.15s, box-shadow 0.2s;
+      border: 1.5px solid #93c5fd;
+      box-shadow: 0 6px 12px -8px rgba(30, 107, 155, 0.35);
+    }
+
+    .custom-link-btn i {
+      font-size: 0.8rem;
+      color: #1e6b9b;
+      transition: color 0.2s;
+    }
+
+    .custom-link-btn:hover {
+      background: #1e6b9b;
+      color: #ffffff;
+      gap: 0.9rem;
+      transform: translateY(-2px);
+      border-color: #1e6b9b;
+      box-shadow: 0 10px 18px -8px rgba(30, 107, 155, 0.5);
+    }
+
+    .custom-link-btn:hover i {
+      color: #ffffff;
+    }
+
+    /* ===== FOOTER NAV ===== */
+    .footer-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      padding: 1.5rem 2rem;
+      background: #ffffffec;
+      border-radius: 2rem;
+      border: 1px solid #cbdbe9;
+      margin-top: 1rem;
+    }
+
+    .footer-nav a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      color: #1e6b9b;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      padding: 0.6rem 1.2rem;
+      border-radius: 40px;
+      transition: background 0.2s, gap 0.2s;
+    }
+
+    .footer-nav a:hover {
+      background: #e7f0f9;
+      gap: 0.9rem;
+    }
+
+    .footer-nav .next-link {
+      background: #0b2a4a;
+      color: white;
+      border: 1px solid #1e4a6e;
+    }
+
+    .footer-nav .next-link:hover {
+      background: #1e4a6e;
+    }
+
+    /* ============================================================
+       PRESENTATION CONTROLS
+       ============================================================ */
+    .present-toolbar {
+      position: fixed;
+      bottom: 1.2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #0b2a4a;
+      color: white;
+      border-radius: 50px;
+      padding: 0.6rem 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      box-shadow: 0 12px 30px -8px rgba(11, 42, 74, 0.5);
+      z-index: 1000;
+      border: 1px solid #1e4a6e;
+    }
+
+    .present-toolbar button {
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: white;
+      width: 2.4rem;
+      height: 2.4rem;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      transition: background 0.2s, transform 0.1s;
+    }
+
+    .present-toolbar button:hover {
+      background: rgba(255, 255, 255, 0.25);
+    }
+
+    .present-toolbar button:active {
+      transform: scale(0.94);
+    }
+
+    .present-toolbar .slide-counter {
+      font-size: 0.85rem;
+      font-weight: 600;
+      min-width: 62px;
+      text-align: center;
+      letter-spacing: 0.5px;
+    }
+
+    .present-toolbar .toolbar-label {
+      font-size: 0.75rem;
+      opacity: 0.7;
+      padding-right: 0.3rem;
+      border-right: 1px solid rgba(255, 255, 255, 0.2);
+      margin-right: 0.3rem;
+      display: none;
+    }
+
+    @media (min-width: 600px) {
+      .present-toolbar .toolbar-label { display: inline; }
+    }
+
+    body.presenting .teach-section {
+      display: none;
+    }
+
+    body.presenting .teach-section.active-slide {
+      display: block;
+      animation: fadeIn 0.35s ease;
+      min-height: 60vh;
+    }
+
+    body.presenting .topic-header,
+    body.presenting .back-link,
+    body.presenting .footer-nav,
+    body.presenting .custom-instructions,
+    body.presenting .outcome-banner {
+      display: none;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    body.presenting .teach-section h2 {
+      font-size: 2.1rem;
+    }
+
+    body.presenting .teach-section p,
+    body.presenting .teach-section li {
+      font-size: 1.15rem;
+      line-height: 1.9;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 700px) {
+      .topic-header { padding: 2rem 1.5rem; }
+      .topic-header h1 { font-size: 1.8rem; }
+      .teach-section { padding: 1.7rem 1.4rem; }
+      .outcome-banner { padding: 1.5rem 1.5rem; }
+      .footer-nav { flex-direction: column; align-items: stretch; text-align: center; }
+      .footer-nav a { justify-content: center; }
+      .custom-instructions { padding: 1.6rem 1.4rem; }
+      .example-row { flex-direction: column; gap: 0.3rem; }
+      .example-row .example-cat { min-width: auto; }
+    }
+
+    @media (max-width: 480px) {
+      body { padding: 1rem 0.8rem 6rem; }
+      .topic-header h1 { font-size: 1.5rem; }
+      .teach-section h2 { font-size: 1.3rem; }
+      .recap-grid { grid-template-columns: 1fr 1fr; }
+      .project-grid { grid-template-columns: 1fr; }
+      .design-checklist { grid-template-columns: 1fr; }
+      .budget-grid { grid-template-columns: 1fr; }
+      .review-grid { grid-template-columns: 1fr; }
+      .custom-link-btn { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- ===== BACK LINK ===== -->
+  <a href="index.html" class="back-link">
+    <i class="fas fa-arrow-left"></i> Back to Topic Index
+  </a>
+
+  <!-- ===== TOPIC HEADER ===== -->
+  <header class="topic-header">
+    <div class="topic-badge">
+      <i class="fas fa-puzzle-piece" style="margin-right: 6px;"></i> Topic 8 · Final Project
+    </div>
+    <h1>Putting It All Together</h1>
+    <div class="subhead">
+      Design a complete computer and communication system for a real purpose — and justify every choice you make.
+    </div>
+  </header>
+
+  <!-- ============================================================
+       SLIDE 1 — SYNTHESIS: EVERYTHING YOU HAVE LEARNED
+       ============================================================ -->
+  <section class="teach-section">
+    <h2><i class="fas fa-puzzle-piece"></i> Synthesizing Everything You Have Learned</h2>
+
+    <p>
+      Throughout this unit, you have learned about every part of a computer and communication
+      system. Now it is time to put all the pieces together. In this final topic, you will
+      design a <strong>complete system</strong> for a real purpose — choosing the hardware,
+      software, network, and budget that fit the need.
+    </p>
+
+    <div class="definition-box">
+      <p>
+        <strong>System design</strong> means choosing the right combination of hardware,
+        software, networking, and communication tools to solve a specific problem or serve a
+        specific purpose — and being able to <strong>justify</strong> why each choice was made.
+      </p>
+    </div>
+
+    <h3>A Quick Recap of the Whole Unit</h3>
+    <p>
+      Before you design your own system, let us review the eight topics of this unit and how
+      they all connect:
+    </p>
+
+    <div class="recap-grid">
+      <div class="recap-card">
+        <div class="recap-icon"><i class="fas fa-desktop"></i></div>
+        <h4>1. Computer Systems</h4>
+        <p>Hardware + software working together to input, process, store, and output.</p>
+      </div>
+      <div class="recap-card">
+        <div class="recap-icon"><i class="fas fa-microchip"></i></div>
+        <h4>2. Hardware</h4>
+        <p>Internal components (CPU, RAM, storage) and peripherals (input, output).</p>
+      </div>
+      <div class="recap-card">
+        <div class="recap-icon"><i class="fas fa-code"></i></div>
+        <h4>3. Software</h4>
+        <p>System software (OS, utilities) and application software (apps, tools).</p>
+      </div>
+      <div class="recap-card">
+        <div class="recap-icon"><i class="fas fa-rotate-right"></i></div>
+        <h4>4. How Computers Work</h4>
+        <p>IPO+S model, fetch–decode–execute cycle, binary data.</p>
+      </div>
+      <div class="recap-card">
+        <div class="recap-icon"><i class="fas fa-tower-broadcast"></i></div>
+        <h4>5. Communication Tech</h4>
+        <p>Sender, message, channel, receiver — and how it all evolved.</p>
+      </div>
+      <div class="recap-card">
+        <div class="recap-icon"><i class="fas fa-network-wired"></i></div>
+        <h4>6. Networks</h4>
+        <p>LAN, WAN, Wi-Fi, IP addresses, DNS, packets, protocols.</p>
+      </div>
+      <div class="recap-card">
+        <div class="recap-icon"><i class="fas fa-tools"></i></div>
+        <h4>7. Problem Solving</h4>
+        <p>Troubleshooting, choosing devices, recommending upgrades.</p>
+      </div>
+      <div class="recap-card">
+        <div class="recap-icon"><i class="fas fa-puzzle-piece"></i></div>
+        <h4>8. Design a System</h4>
+        <p>Put it all together for a real purpose — that's what you do now.</p>
+      </div>
+    </div>
+
+    <div class="analogy-box">
+      <p>
+        <strong>Analogy:</strong> Designing a computer system is like planning a trip. You need
+        to know <em>where you are going</em> (purpose), <em>what you will carry</em> (hardware
+        and software), <em>how you will get there</em> (network and communication), and
+        <em>how much you can spend</em> (budget). When all four fit together, the trip works.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 2 — CHOOSING YOUR PROJECT
+       ============================================================ -->
+  <section class="teach-section">
+    <h2><i class="fas fa-diagram-project"></i> Choosing Your Design Project</h2>
+
+    <p>
+      Your design project must serve a <strong>specific purpose</strong>. Below are four
+      options. Choose one — or, with your teacher's approval, propose your own similar
+      project.
+    </p>
+
+    <div class="project-grid">
+      <!-- Home office -->
+      <div class="project-card home-office">
+        <h4><i class="fas fa-house-laptop"></i> A Home Office</h4>
+        <div class="project-purpose">
+          A person working from home who needs to attend video meetings, write documents, and
+          manage their schedule.
+        </div>
+        <p style="font-size:0.82rem;font-weight:700;color:#1e40af;margin-bottom:0.4rem;">Considerations:</p>
+        <ul>
+          <li>Reliable internet for video calls</li>
+          <li>Quiet space with good lighting</li>
+          <li>Comfortable desk and screen setup</li>
+          <li>Backup storage for work files</li>
+        </ul>
+      </div>
+
+      <!-- Small business -->
+      <div class="project-card small-business">
+        <h4><i class="fas fa-store"></i> A Small Business</h4>
+        <div class="project-purpose">
+          A small shop or café that needs to accept digital payments, track sales, and
+          communicate with customers.
+        </div>
+        <p style="font-size:0.82rem;font-weight:700;color:#9d174d;margin-bottom:0.4rem;">Considerations:</p>
+        <ul>
+          <li>Payment terminal and secure connection</li>
+          <li>Point-of-sale software</li>
+          <li>Receipt printing or digital receipts</li>
+          <li>Reliable internet and backup connection</li>
+        </ul>
+      </div>
+
+      <!-- Classroom -->
+      <div class="project-card classroom">
+        <h4><i class="fas fa-chalkboard-user"></i> A Classroom</h4>
+        <div class="project-purpose">
+          A teacher who needs a system for interactive lessons, presenting material, and
+          allowing students to use devices.
+        </div>
+        <p style="font-size:0.82rem;font-weight:700;color:#047857;margin-bottom:0.4rem;">Considerations:</p>
+        <ul>
+          <li>Projector or large display</li>
+          <li>Reliable Wi-Fi for student devices</li>
+          <li>Educational software and apps</li>
+          <li>Network security for student access</li>
+        </ul>
+      </div>
+
+      <!-- Gaming -->
+      <div class="project-card gaming">
+        <h4><i class="fas fa-gamepad"></i> A Gaming Setup</h4>
+        <div class="project-purpose">
+          A person who wants to play modern games online, stream to an audience, and enjoy
+          high-quality graphics and sound.
+        </div>
+        <p style="font-size:0.82rem;font-weight:700;color:#92400e;margin-bottom:0.4rem;">Considerations:</p>
+        <ul>
+          <li>Powerful GPU and CPU</li>
+          <li>Fast, low-latency internet</li>
+          <li>High refresh-rate monitor and headset</li>
+          <li>Cooling and quiet operation</li>
+        </ul>
+      </div>
+    </div>
+
+    <p>
+      Whatever project you choose, your design must clearly answer the same four questions:
+    </p>
+    <ol>
+      <li>What <strong>hardware</strong> will you use, and why?</li>
+      <li>What <strong>software</strong> is needed, and why?</li>
+      <li>What <strong>network and communication setup</strong> is required?</li>
+      <li>What is the <strong>budget</strong>, and how does your design fit it?</li>
+    </ol>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 3 — THE FIVE DESIGN REQUIREMENTS
+       ============================================================ -->
+  <section class="teach-section">
+    <h2><i class="fas fa-list-check"></i> The Five Design Requirements</h2>
+
+    <p>
+      Every system design must include five things. Think of them as your design checklist.
+      If your design answers all five, it is complete.
+    </p>
+
+    <div class="design-checklist">
+      <div class="checklist-item">
+        <div class="checklist-icon"><i class="fas fa-microchip"></i></div>
+        <h4><i class="fas fa-check check"></i> Hardware Components</h4>
+        <p>List the CPU, RAM, storage, motherboard, GPU, and any peripherals. Explain why each one was chosen for this specific purpose.</p>
+      </div>
+      <div class="checklist-item">
+        <div class="checklist-icon"><i class="fas fa-code"></i></div>
+        <h4><i class="fas fa-check check"></i> Software Needed</h4>
+        <p>Choose an operating system, plus any application software. Explain how each program supports the purpose.</p>
+      </div>
+      <div class="checklist-item">
+        <div class="checklist-icon"><i class="fas fa-network-wired"></i></div>
+        <h4><i class="fas fa-check check"></i> Network &amp; Communication</h4>
+        <p>Describe the connection (Wi-Fi, LAN, internet), the devices involved (router, modem, access point), and how data will flow.</p>
+      </div>
+      <div class="checklist-item">
+        <div class="checklist-icon"><i class="fas fa-coins"></i></div>
+        <h4><i class="fas fa-check check"></i> Budget Considerations</h4>
+        <p>Estimate the cost of each major part. Make sure the total fits the realistic budget for your chosen project.</p>
+      </div>
+      <div class="checklist-item">
+        <div class="checklist-icon"><i class="fas fa-link"></i></div>
+        <h4><i class="fas fa-check check"></i> How Parts Work Together</h4>
+        <p>Explain how all the parts and programs interact to carry out the purpose — from input to output.</p>
+      </div>
+    </div>
+
+    <h3>Example: A Simple Home Office System</h3>
+    <p>
+      Below is a short example of how a home office system might be designed. You can use this
+      as a model for your own design.
+    </p>
+
+    <div class="example-system">
+      <h4><i class="fas fa-house-laptop"></i> Example Design: A Home Office System</h4>
+
+      <div class="example-row">
+        <div class="example-cat">Purpose</div>
+        <div class="example-detail">
+          A person working from home who needs to attend video meetings, write documents,
+          manage their schedule, and store work files securely.
+        </div>
+      </div>
+      <div class="example-row">
+        <div class="example-cat">Hardware</div>
+        <div class="example-detail">
+          A mid-range laptop with an Intel Core i5 or AMD Ryzen 5, 16 GB RAM, a 512 GB SSD,
+          a decent webcam, and a full HD monitor. Plus a wireless keyboard and mouse, a
+          headset with microphone, and an external backup drive.
+        </div>
+      </div>
+      <div class="example-row">
+        <div class="example-cat">Software</div>
+        <div class="example-detail">
+          Windows 11 or macOS (operating system). Google Chrome or Microsoft Edge (web).
+          Microsoft Office or Google Workspace (documents, spreadsheets, presentations).
+          Zoom or Google Meet (video calls). A password manager and antivirus utility.
+        </div>
+      </div>
+      <div class="example-row">
+        <div class="example-cat">Network</div>
+        <div class="example-detail">
+          A Wi-Fi router connected to a fibre broadband plan (at least 50 Mbps). Wi-Fi
+          access point in the home office for a strong signal. Wired Ethernet cable for
+          the laptop if possible, for a more stable connection during video calls.
+        </div>
+      </div>
+      <div class="example-row">
+        <div class="example-cat">Budget</div>
+        <div class="example-detail">
+          Laptop $600–$800, monitor $150, peripherals $120, external drive $60, software
+          often included or available free (Google Workspace), internet plan $40–$60 per
+          month.
+        </div>
+      </div>
+      <div class="example-row">
+        <div class="example-cat">How It Works</div>
+        <div class="example-detail">
+          The laptop loads the operating system from the SSD. The user types in the word
+          processor (input), the CPU processes the text, it is stored in RAM while typing
+          and saved to the SSD. Video calls use the webcam (input), the CPU and GPU process
+          the video, and the internet connection carries the audio and video to the other
+          person. The headset handles audio input and output.
+        </div>
+      </div>
+    </div>
+
+    <!-- IMAGE 1: Design checklist -->
+    <div class="img-placeholder" id="img-placeholder-1">
+      <span class="img-title">The Five Design Requirements</span>
+      <span class="img-filename"><img src="images/design-requirements.png" alt="Diagram showing hardware, software, network, budget, and integration"></span>
+    </div>
+    <p class="img-caption">Figure 8.1 — The five things every system design must include.</p>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 4 — BUDGET CONSIDERATIONS
+       ============================================================ -->
+  <section class="teach-section">
+    <h2><i class="fas fa-coins"></i> Budget Considerations</h2>
+
+    <p>
+      A good design must be realistic. Even the best system is not useful if it costs more
+      than the person or organisation can afford. This is why the <strong>budget</strong> is
+      one of the five design requirements.
+    </p>
+
+    <h3>Three Budget Tiers</h3>
+    <p>
+      Most projects can be designed at three levels: <strong>basic</strong>,
+      <strong>mid-range</strong>, and <strong>premium</strong>. Each tier has its own balance
+      of price and performance.
+    </p>
+
+    <div class="budget-grid">
+      <div class="budget-card basic">
+        <div class="budget-label">Basic Tier</div>
+        <h4>Entry Level</h4>
+        <p>The most affordable option — good for simple tasks and light use.</p>
+        <ul>
+          <li><i class="fas fa-circle"></i> Lower-end CPU or modest RAM</li>
+          <li><i class="fas fa-circle"></i> Smaller SSD or HDD</li>
+          <li><i class="fas fa-circle"></i> Free or included software</li>
+          <li><i class="fas fa-circle"></i> Basic Wi-Fi and internet plan</li>
+        </ul>
+      </div>
+      <div class="budget-card mid">
+        <div class="budget-label">Mid-Range Tier</div>
+        <h4>Best Value</h4>
+        <p>A balance between cost and performance — good for most everyday needs.</p>
+        <ul>
+          <li><i class="fas fa-circle"></i> Mid-range CPU, 8–16 GB RAM</li>
+          <li><i class="fas fa-circle"></i> 512 GB–1 TB SSD</li>
+          <li><i class="fas fa-circle"></i> Paid software with free alternatives</li>
+          <li><i class="fas fa-circle"></i> Reliable router and internet</li>
+        </ul>
+      </div>
+      <div class="budget-card premium">
+        <div class="budget-label">Premium Tier</div>
+        <h4>High Performance</h4>
+        <p>For demanding tasks that need speed, capacity, and power.</p>
+        <ul>
+          <li><i class="fas fa-circle"></i> High-end CPU and dedicated GPU</li>
+          <li><i class="fas fa-circle"></i> 16–32 GB RAM or more</li>
+          <li><i class="fas fa-circle"></i> 1–2 TB NVMe SSD</li>
+          <li><i class="fas fa-circle"></i> Top-tier network and peripherals</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>How to Budget Well</h3>
+    <p>
+      A good budget is not just about spending the least — it is about spending smartly. Here
+      are some guiding questions:
+    </p>
+    <ul>
+      <li>
+        <strong>What is the most demanding task?</strong> The system must be powerful enough
+        for this task, but not necessarily more.
+      </li>
+      <li>
+        <strong>Which parts matter most for this purpose?</strong> A gaming setup needs a strong
+        GPU; a home office needs a good camera and stable connection.
+      </li>
+      <li>
+        <strong>Where can you save money?</strong> Free software (like Google Workspace or
+        LibreOffice) can replace paid options.
+      </li>
+      <li>
+        <strong>Where is it worth spending more?</strong> Reliability and warranty are
+        important for a business or school system.
+      </li>
+    </ul>
+
+    <div class="analogy-box">
+      <p>
+        <strong>Analogy:</strong> Designing a system to a budget is like packing for a trip with
+        a limited suitcase. You cannot take everything — you must choose the items that matter
+        most for the trip. The same is true for a computer system: choose the parts that matter
+        most for the purpose, and save on the rest.
+      </p>
+    </div>
+
+    <!-- IMAGE 2: Budget tiers -->
+    <div class="img-placeholder" id="img-placeholder-2">
+      <span class="img-title">Budget Tiers: Basic, Mid-Range, and Premium</span>
+      <span class="img-filename"><img src="images/budget-tiers.png" alt="Diagram comparing basic, mid-range, and premium computer system tiers"></span>
+    </div>
+    <p class="img-caption">Figure 8.2 — Three typical budget tiers for a system design.</p>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 5 — ACTIVITY: THE DESIGN PROJECT
+       ============================================================ -->
+  <section class="teach-section">
+    <h2><i class="fas fa-people-group"></i> Activity: Group Design Project</h2>
+
+    <div class="activity-box">
+      <h3><i class="fas fa-bullseye"></i> Your Task</h3>
+      <p>
+        Work in small groups (3–4 students). Choose one of the four project types from
+        earlier in this topic — or propose your own with your teacher's approval — and design
+        a complete computer and communication system for that purpose.
+      </p>
+    </div>
+
+    <h3 style="margin-top: 1.8rem;">Step 1 — Plan Your Project</h3>
+    <ol class="activity-steps">
+      <li>Choose your <strong>project type</strong> (home office, small business, classroom, gaming, or your own).</li>
+      <li>Define the <strong>purpose</strong> clearly — what must the system do?</li>
+      <li>Identify the <strong>main users</strong> — one person, several people, customers?</li>
+      <li>Agree on a <strong>realistic budget</strong> for the project (from your teacher or your own estimate).</li>
+    </ol>
+
+    <h3>Step 2 — Design Your System</h3>
+    <p>
+      Use the design template below to record your decisions. Fill in each section with your
+      choices and your reasons.
+    </p>
+
+    <div class="design-template">
+      <h4><i class="fas fa-pen-to-square"></i> My System Design</h4>
+
+      <div class="template-field">
+        <label for="project-type">Project Type &amp; Purpose</label>
+        <input type="text" id="project-type" placeholder="e.g., Home Office — for a person working from home who attends many video calls">
+      </div>
+
+      <div class="template-field">
+        <label for="hardware-list">Hardware Components (with reasons)</label>
+        <textarea id="hardware-list" placeholder="e.g., Laptop with Ryzen 5, 16 GB RAM, 512 GB SSD — chosen for balance of price and performance for video calls and documents."></textarea>
+      </div>
+
+      <div class="template-field">
+        <label for="software-list">Software Needed (with reasons)</label>
+        <textarea id="software-list" placeholder="e.g., Windows 11 (operating system), Google Chrome (web), Google Workspace (docs, sheets), Zoom (video calls)."></textarea>
+      </div>
+
+      <div class="template-field">
+        <label for="network-setup">Network &amp; Communication Setup</label>
+        <textarea id="network-setup" placeholder="e.g., Fibre broadband (50 Mbps), Wi-Fi router, Ethernet cable for the laptop, headset with microphone."></textarea>
+      </div>
+
+      <div class="template-field">
+        <label for="budget-estimate">Budget Estimate</label>
+        <textarea id="budget-estimate" placeholder="e.g., Laptop $700, monitor $150, peripherals $120, internet $50/month. Total setup: about $970."></textarea>
+      </div>
+
+      <div class="template-field">
+        <label for="how-it-works">How the Parts Work Together</label>
+        <textarea id="how-it-works" placeholder="Describe how the components and software interact to do the task — from input through process, storage, and output."></textarea>
+      </div>
+
+      <div class="template-save">
+        <button class="template-btn" id="saveTemplate">
+          <i class="fas fa-print"></i> Print / Save as PDF
+        </button>
+        <button class="template-btn clear" id="clearTemplate">
+          <i class="fas fa-rotate-left"></i> Clear Form
+        </button>
+      </div>
+    </div>
+
+    <h3 style="margin-top: 2rem;">Step 3 — Prepare Your Presentation</h3>
+    <p>
+      Your group will present your design to the class in about 5 minutes. Your presentation
+      must cover:
+    </p>
+    <ol class="activity-steps">
+      <li>The <strong>purpose</strong> of your system and who will use it.</li>
+      <li>The <strong>hardware</strong> you chose and why each part fits the purpose.</li>
+      <li>The <strong>software</strong> you chose and why.</li>
+      <li>The <strong>network and communication</strong> setup.</li>
+      <li>The <strong>budget</strong> and how your choices fit it.</li>
+      <li>How <strong>all the parts work together</strong> to achieve the purpose.</li>
+    </ol>
+
+    <h3>Step 4 — Peer Review</h3>
+    <p>
+      After each group presents, the rest of the class gives feedback. Use the four prompts
+      below to guide your feedback:
+    </p>
+
+    <div class="review-grid">
+      <div class="review-card">
+        <div class="review-icon"><i class="fas fa-thumbs-up"></i></div>
+        <h4>Strengths</h4>
+        <p>What did the group do well? Which choices were especially well justified?</p>
+      </div>
+      <div class="review-card">
+        <div class="review-icon"><i class="fas fa-circle-question"></i></div>
+        <h4>Questions</h4>
+        <p>What questions do you have about the design? Is anything unclear?</p>
+      </div>
+      <div class="review-card">
+        <div class="review-icon"><i class="fas fa-lightbulb"></i></div>
+        <h4>Suggestions</h4>
+        <p>What could be improved? Are there other parts, software, or approaches worth considering?</p>
+      </div>
+      <div class="review-card">
+        <div class="review-icon"><i class="fas fa-scale-balanced"></i></div>
+        <h4>Budget Check</h4>
+        <p>Does the design fit the stated budget? Are the choices realistic for the purpose?</p>
+      </div>
+    </div>
+
+    <div class="discussion-box">
+      <h3><i class="fas fa-comments"></i> Discussion</h3>
+      <p>
+        After all presentations, discuss these questions together:
+      </p>
+      <div class="discussion-question">
+        <i class="fas fa-question-circle" style="color:#0284c7;margin-right:8px;"></i>
+        Which design was the most realistic? Why?
+      </div>
+      <div class="discussion-question">
+        <i class="fas fa-question-circle" style="color:#0284c7;margin-right:8px;"></i>
+        Which design had the best balance between performance and budget?
+      </div>
+      <div class="discussion-question">
+        <i class="fas fa-question-circle" style="color:#0284c7;margin-right:8px;"></i>
+        What was the hardest choice in your own design, and why?
+      </div>
+      <div class="discussion-question">
+        <i class="fas fa-question-circle" style="color:#0284c7;margin-right:8px;"></i>
+        If you were given twice the budget, how would you change your design?
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 6 — QUICK CHECK QUIZ
+       ============================================================ -->
+  <section class="teach-section">
+    <h2><i class="fas fa-circle-question"></i> Quick Check</h2>
+    <p>Test your understanding of system design with these questions.</p>
+
+    <div class="quiz-question" data-quiz="1">
+      <p>1. What are the five things every system design must include?</p>
+      <div class="quiz-options">
+        <button class="quiz-option" data-correct="false">
+          <i class="fas fa-circle"></i> A monitor, a keyboard, a mouse, a printer, and a scanner
+        </button>
+        <button class="quiz-option" data-correct="true">
+          <i class="fas fa-circle"></i> Hardware, software, network/communication, budget, and how parts work together
+        </button>
+        <button class="quiz-option" data-correct="false">
+          <i class="fas fa-circle"></i> A CPU, RAM, storage, GPU, and power supply only
+        </button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-question" data-quiz="2">
+      <p>2. Why is budget important in system design?</p>
+      <div class="quiz-options">
+        <button class="quiz-option" data-correct="false">
+          <i class="fas fa-circle"></i> Because cheaper systems always work better
+        </button>
+        <button class="quiz-option" data-correct="true">
+          <i class="fas fa-circle"></i> Because a good design must be realistic and affordable for the purpose
+        </button>
+        <button class="quiz-option" data-correct="false">
+          <i class="fas fa-circle"></i> Because budgets are only important for businesses
+        </button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-question" data-quiz="3">
+      <p>3. A group is designing a system for professional video editing. Which part matters most?</p>
+      <div class="quiz-options">
+        <button class="quiz-option" data-correct="false">
+          <i class="fas fa-circle"></i> A colourful keyboard
+        </button>
+        <button class="quiz-option" data-correct="true">
+          <i class="fas fa-circle"></i> A powerful CPU, plenty of RAM, and a dedicated GPU
+        </button>
+        <button class="quiz-option" data-correct="false">
+          <i class="fas fa-circle"></i> A larger mousepad
+        </button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-question" data-quiz="4">
+      <p>4. What should a system design explain about the network?</p>
+      <div class="quiz-options">
+        <button class="quiz-option" data-correct="false">
+          <i class="fas fa-circle"></i> Only the Wi-Fi password
+        </button>
+        <button class="quiz-option" data-correct="true">
+          <i class="fas fa-circle"></i> The type of connection, the devices used, and how data flows
+        </button>
+        <button class="quiz-option" data-correct="false">
+          <i class="fas fa-circle"></i> The colour of the router
+        </button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-question" data-quiz="5">
+      <p>5. What is the main purpose of a peer review?</p>
+      <div class="quiz-options">
+        <button class="quiz-option" data-correct="false">
+          <i class="fas fa-circle"></i> To give the group a grade
+        </button>
+        <button class="quiz-option" data-correct="true">
+          <i class="fas fa-circle"></i> To give helpful feedback, ask questions, and suggest improvements
+        </button>
+        <button class="quiz-option" data-correct="false">
+          <i class="fas fa-circle"></i> To compare designs and pick a winner
+        </button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+  </section>
+
+  <!-- ===== STUDENT OUTCOME ===== -->
+  <div class="outcome-banner">
+    <div class="outcome-icon"><i class="fas fa-graduation-cap"></i></div>
+    <div class="outcome-text">
+      <h3>Student Outcome</h3>
+      <p>Students can design a computer and communication system for a real purpose and justify their choices.</p>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       TEACHER INSTRUCTIONS & LINKS
+       ============================================================ -->
+  <section class="custom-instructions">
+    <h2><i class="fas fa-clipboard-list"></i> Teacher Instructions</h2>
+
+    <p>
+      <strong><a href="https://www.zipgrade.com/s/" class="inline-link" target="_blank" rel="noopener">ZipGrade Quiz</a></strong>
+      — Don't forget to take the ZipGrade quiz! Use the link provided to access and complete it. Make sure to submit before the deadline.
+    </p>
+
+    <div class="instruction-note">
+      <i class="fas fa-circle-info"></i>
+      <strong>Project tip:</strong> Allow students to work on this final project over two or three class periods. Give them time to research real prices online so their budget estimates are realistic. Use the in-page design template as a worksheet students can print or fill in digitally. Encourage them to justify each choice with a reason, not just a product name.
+    </div>
+
+    <div class="link-buttons">
+      <a href="https://www.bbc.co.uk/bitesize/guides/zphqgdm/revision/1" class="custom-link-btn" target="_blank" rel="noopener">
+        <i class="fas fa-arrow-up-right-from-square"></i> BBC Bitesize — Computer Systems
+      </a>
+      <a href="https://drive.google.com/file/d/1fLFAfFLuwjPeiKBkz7cyfyD-InPPLRcV/view?usp=sharing" class="custom-link-btn" target="_blank" rel="noopener">
+        <i class="fas fa-arrow-up-right-from-square"></i> Open PDF Resource
+      </a>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER NAVIGATION ===== -->
+  <div class="footer-nav">
+    <a href="topic-7-applying-knowledge.html">
+      <i class="fas fa-arrow-left"></i> Previous: Applying Knowledge
+    </a>
+    <a href="index.html" class="next-link">
+      Back to Topic Index <i class="fas fa-arrow-right"></i>
+    </a>
+  </div>
+
+</div>
+
+<!-- ============================================================
+     PRESENTATION TOOLBAR
+     ============================================================ -->
+<div class="present-toolbar">
+  <span class="toolbar-label">PRESENT</span>
+  <button id="prevSlide" title="Previous slide (←)"><i class="fas fa-chevron-left"></i></button>
+  <span class="slide-counter" id="slideCounter">1 / 6</span>
+  <button id="nextSlide" title="Next slide (→)"><i class="fas fa-chevron-right"></i></button>
+  <button id="togglePresent" title="Start / stop presentation (P)"><i class="fas fa-play"></i></button>
+  <button id="toggleFullscreen" title="Fullscreen (F)"><i class="fas fa-expand"></i></button>
+</div>
+
+<script>
+  /* ============================================================
+     QUIZ INTERACTIVITY
+     ============================================================ */
+  (function() {
+    const quizQuestions = document.querySelectorAll('.quiz-question');
+
+    quizQuestions.forEach(function(question) {
+      const options = question.querySelectorAll('.quiz-option');
+      const feedback = question.querySelector('.quiz-feedback');
+
+      options.forEach(function(option) {
+        option.addEventListener('click', function() {
+          if (question.dataset.answered === 'true') return;
+
+          const isCorrect = option.dataset.correct === 'true';
+
+          options.forEach(function(opt) {
+            opt.disabled = true;
+            if (opt.dataset.correct === 'true') {
+              opt.classList.add('correct');
+              opt.querySelector('i').className = 'fas fa-check-circle';
+            } else if (opt === option && !isCorrect) {
+              opt.classList.add('incorrect');
+              opt.querySelector('i').className = 'fas fa-times-circle';
+            } else {
+              opt.querySelector('i').className = 'fas fa-circle';
+            }
+          });
+
+          if (isCorrect) {
+            feedback.textContent = '✓ Correct! Well done.';
+            feedback.className = 'quiz-feedback show correct';
+          } else {
+            feedback.textContent = '✗ Not quite. The correct answer is highlighted in green.';
+            feedback.className = 'quiz-feedback show incorrect';
+          }
+
+          question.dataset.answered = 'true';
+        });
+      });
+    });
+  })();
+
+  /* ============================================================
+     DESIGN TEMPLATE — PRINT & CLEAR
+     ============================================================ */
+  (function() {
+    const saveBtn = document.getElementById('saveTemplate');
+    const clearBtn = document.getElementById('clearTemplate');
+
+    if (saveBtn) {
+      saveBtn.addEventListener('click', function() {
+        window.print();
+      });
+    }
+
+    if (clearBtn) {
+      clearBtn.addEventListener('click', function() {
+        const fields = document.querySelectorAll('.design-template input, .design-template textarea');
+        fields.forEach(function(field) {
+          field.value = '';
+        });
+      });
+    }
+  })();
+
+  /* ============================================================
+     PRESENTATION MODE
+     ============================================================ */
+  (function() {
+    const slides = document.querySelectorAll('.teach-section');
+    const totalSlides = slides.length;
+    const counter = document.getElementById('slideCounter');
+    const prevBtn = document.getElementById('prevSlide');
+    const nextBtn = document.getElementById('nextSlide');
+    const presentBtn = document.getElementById('togglePresent');
+    const fullscreenBtn = document.getElementById('toggleFullscreen');
+
+    let current = 0;
+    let presenting = false;
+
+    if (totalSlides > 0) {
+      slides[0].classList.add('active-slide');
+      updateCounter();
+    }
+
+    function updateCounter() {
+      counter.textContent = (current + 1) + ' / ' + totalSlides;
+    }
+
+    function showSlide(index) {
+      if (index < 0) index = 0;
+      if (index >= totalSlides) index = totalSlides - 1;
+
+      slides.forEach(function(slide) {
+        slide.classList.remove('active-slide');
+      });
+      slides[index].classList.add('active-slide');
+      current = index;
+      updateCounter();
+
+      if (presenting) {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    function nextSlide() {
+      if (current < totalSlides - 1) showSlide(current + 1);
+    }
+
+    function prevSlide() {
+      if (current > 0) showSlide(current - 1);
+    }
+
+    function enterPresentation() {
+      presenting = true;
+      document.body.classList.add('presenting');
+      presentBtn.innerHTML = '<i class="fas fa-stop"></i>';
+      presentBtn.title = 'Stop presentation (P)';
+      showSlide(0);
+    }
+
+    function exitPresentation() {
+      presenting = false;
+      document.body.classList.remove('presenting');
+      presentBtn.innerHTML = '<i class="fas fa-play"></i>';
+      presentBtn.title = 'Start presentation (P)';
+      slides.forEach(function(slide) {
+        slide.classList.remove('active-slide');
+      });
+      if (document.fullscreenElement) {
+        document.exitFullscreen().catch(function() {});
+      }
+    }
+
+    function togglePresentation() {
+      if (presenting) {
+        exitPresentation();
+      } else {
+        enterPresentation();
+      }
+    }
+
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(function() {});
+      } else {
+        document.exitFullscreen().catch(function() {});
+      }
+    }
+
+    prevBtn.addEventListener('click', prevSlide);
+    nextBtn.addEventListener('click', nextSlide);
+    presentBtn.addEventListener('click', togglePresentation);
+    fullscreenBtn.addEventListener('click', toggleFullscreen);
+
+    document.addEventListener('keydown', function(e) {
+      const tag = (e.target.tagName || '').toLowerCase();
+      const typing = tag === 'input' || tag === 'textarea' || tag === 'select' || e.target.isContentEditable;
+
+      if (e.key === 'ArrowRight' && presenting) {
+        e.preventDefault();
+        nextSlide();
+      } else if (e.key === 'ArrowLeft' && presenting) {
+        e.preventDefault();
+        prevSlide();
+      } else if ((e.key === 'p' || e.key === 'P') && !typing) {
+        e.preventDefault();
+        togglePresentation();
+      } else if ((e.key === 'f' || e.key === 'F') && !typing) {
+        e.preventDefault();
+        toggleFullscreen();
+      } else if (e.key === 'Escape' && presenting) {
+        exitPresentation();
+      }
+    });
+
+    document.addEventListener('fullscreenchange', function() {
+      if (document.fullscreenElement) {
+        fullscreenBtn.innerHTML = '<i class="fas fa-compress"></i>';
+      } else {
+        fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i>';
+      }
+    });
+  })();
+</script>
+
+</body>
+</html>

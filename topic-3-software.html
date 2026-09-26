@@ -1,0 +1,2111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Topic 3 · Software Components</title>
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: #f0f5fa;
+      color: #0a1e2f;
+      line-height: 1.7;
+      padding: 2rem 1.5rem 6rem;
+      scroll-behavior: smooth;
+    }
+
+    .wrapper {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    /* ===== BACK LINK ===== */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      color: #1e6b9b;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+      padding: 0.5rem 1rem;
+      border-radius: 40px;
+      background: #ffffff;
+      border: 1px solid #d9e7f5;
+      transition: background 0.2s, gap 0.2s;
+    }
+
+    .back-link:hover {
+      background: #e7f0f9;
+      gap: 0.9rem;
+    }
+
+    /* ===== HEADER ===== */
+    .topic-header {
+      background: linear-gradient(135deg, #0b2a4a 0%, #1a4a6e 100%);
+      border-radius: 2.5rem;
+      padding: 3rem 2.5rem;
+      color: white;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 20px 30px -10px rgba(11, 42, 74, 0.25);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .topic-header::after {
+      content: "3";
+      position: absolute;
+      right: 2rem;
+      bottom: -2.5rem;
+      font-size: 13rem;
+      font-weight: 800;
+      color: rgba(255, 255, 255, 0.06);
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .topic-badge {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(4px);
+      padding: 0.25rem 1rem;
+      border-radius: 40px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .topic-header h1 {
+      font-size: 2.6rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      max-width: 750px;
+      margin-bottom: 0.9rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .topic-header .subhead {
+      font-size: 1.1rem;
+      opacity: 0.9;
+      max-width: 680px;
+      font-weight: 400;
+      position: relative;
+      z-index: 2;
+      border-left: 4px solid #7bb8e0;
+      padding-left: 1.2rem;
+      margin-top: 0.5rem;
+      line-height: 1.6;
+    }
+
+    /* ===== TEACHING SECTIONS ===== */
+    .teach-section {
+      background: #ffffff;
+      border-radius: 2rem;
+      padding: 2.5rem 2.5rem;
+      margin-bottom: 2rem;
+      border: 1px solid #e2edf7;
+      box-shadow: 0 12px 24px -12px rgba(11, 42, 74, 0.08);
+    }
+
+    .teach-section h2 {
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: #0b2a4a;
+      margin-bottom: 1.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      letter-spacing: -0.01em;
+      line-height: 1.3;
+    }
+
+    .teach-section h2 i {
+      color: #1e6b9b;
+      font-size: 1.4rem;
+      background: #e7f0f9;
+      width: 3rem;
+      height: 3rem;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .teach-section h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #0b2a4a;
+      margin-bottom: 0.8rem;
+      margin-top: 2rem;
+      line-height: 1.35;
+    }
+
+    .teach-section h3:first-of-type {
+      margin-top: 0;
+    }
+
+    .teach-section h4 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #1a4a6e;
+      margin-bottom: 0.5rem;
+      margin-top: 1.4rem;
+    }
+
+    .teach-section p {
+      color: #1d3b5c;
+      font-size: 1.02rem;
+      margin-bottom: 1.2rem;
+      line-height: 1.8;
+    }
+
+    .teach-section ul,
+    .teach-section ol {
+      margin: 0 0 1.4rem 1.4rem;
+      color: #1d3b5c;
+      font-size: 1.02rem;
+      line-height: 1.8;
+    }
+
+    .teach-section li {
+      margin-bottom: 0.5rem;
+    }
+
+    .teach-section strong {
+      color: #0b2a4a;
+    }
+
+    .teach-section em {
+      color: #1e6b9b;
+      font-style: normal;
+      font-weight: 600;
+    }
+
+    .definition-box {
+      background: #eaf1f9;
+      border-left: 5px solid #1e6b9b;
+      border-radius: 0 1rem 1rem 0;
+      padding: 1.4rem 1.6rem;
+      margin: 1.2rem 0 1.6rem;
+    }
+
+    .definition-box p {
+      margin-bottom: 0;
+      font-size: 1.08rem;
+      line-height: 1.8;
+    }
+
+    .analogy-box {
+      background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+      border-left: 5px solid #d97706;
+      border-radius: 0 1rem 1rem 0;
+      padding: 1.4rem 1.6rem;
+      margin: 1.2rem 0 1.6rem;
+    }
+
+    .analogy-box p {
+      margin-bottom: 0;
+      color: #78350f;
+      font-size: 1.02rem;
+    }
+
+    .analogy-box strong {
+      color: #92400e;
+    }
+
+    /* ===== SOFTWARE TYPE GRID ===== */
+    .software-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1.2rem;
+      margin-top: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .software-card {
+      background: #f7fafd;
+      border: 1px solid #d9e7f5;
+      border-radius: 1.5rem;
+      padding: 1.6rem 1.4rem;
+      transition: all 0.25s ease;
+    }
+
+    .software-card:hover {
+      transform: translateY(-4px);
+      border-color: #a6c8e5;
+      box-shadow: 0 12px 24px -12px rgba(11, 42, 74, 0.12);
+    }
+
+    .software-icon {
+      width: 3.2rem;
+      height: 3.2rem;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+      color: white;
+    }
+
+    .software-card:nth-child(1) .software-icon { background: #2563eb; }
+    .software-card:nth-child(2) .software-icon { background: #7c3aed; }
+    .software-card:nth-child(3) .software-icon { background: #db2777; }
+    .software-card:nth-child(4) .software-icon { background: #059669; }
+    .software-card:nth-child(5) .software-icon { background: #d97706; }
+
+    .software-card h4 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #0b2a4a;
+      margin-bottom: 0.4rem;
+      margin-top: 0;
+    }
+
+    .software-card p {
+      font-size: 0.9rem;
+      color: #3a5775;
+      margin-bottom: 0;
+      line-height: 1.6;
+    }
+
+    /* ===== SYSTEM VS APPLICATION COMPARISON ===== */
+    .compare-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .compare-col {
+      border-radius: 1.5rem;
+      padding: 1.7rem 1.6rem;
+      border: 2px solid;
+    }
+
+    .compare-col.system {
+      background: #eff6ff;
+      border-color: #bfdbfe;
+    }
+
+    .compare-col.application {
+      background: #fdf2f8;
+      border-color: #fbcfe8;
+    }
+
+    .compare-col h4 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 0.9rem;
+      margin-top: 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .compare-col.system h4 { color: #1e40af; }
+    .compare-col.application h4 { color: #9d174d; }
+
+    .compare-col ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .compare-col ul li {
+      font-size: 0.95rem;
+      color: #1d3b5c;
+      padding: 0.4rem 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      line-height: 1.6;
+    }
+
+    .compare-col ul li i {
+      margin-top: 0.4rem;
+      font-size: 0.65rem;
+      flex-shrink: 0;
+    }
+
+    .compare-col.system ul li i { color: #2563eb; }
+    .compare-col.application ul li i { color: #db2777; }
+
+    /* ===== IMAGE PLACEHOLDER ===== */
+    .img-placeholder {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: linear-gradient(135deg, #eaf1f9 0%, #d9e7f5 100%);
+      border: 3px dashed #a6c8e5;
+      border-radius: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+      padding: 2rem;
+      text-align: center;
+      margin: 1.8rem 0 0.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .img-placeholder .img-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #0b2a4a;
+    }
+
+    .img-placeholder .img-filename {
+      background: #ffffff;
+      border: 1px solid #c6d9ec;
+      border-radius: 40px;
+      padding: 0.5rem 1.1rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #1e6b9b;
+      font-family: 'Courier New', monospace;
+      margin-top: 0.5rem;
+      max-width: 100%;
+    }
+
+    .img-placeholder img {
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      border-radius: 1rem;
+    }
+
+    .img-caption {
+      font-size: 0.88rem;
+      color: #4a6a8a;
+      text-align: center;
+      font-style: italic;
+      margin-bottom: 1rem;
+    }
+
+    /* ===== FLOW DIAGRAM ===== */
+    .flow-diagram {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin: 1.6rem 0;
+      padding: 1.4rem;
+      background: #f7fafd;
+      border-radius: 1.5rem;
+      border: 1px solid #d9e7f5;
+    }
+
+    .flow-step {
+      background: white;
+      border: 2px solid #1e6b9b;
+      border-radius: 1rem;
+      padding: 0.7rem 1.2rem;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: #0b2a4a;
+      text-align: center;
+    }
+
+    .flow-arrow {
+      color: #1e6b9b;
+      font-size: 1.1rem;
+    }
+
+    /* ===== LAYERS DIAGRAM ===== */
+    .layers {
+      margin: 1.8rem 0;
+      border-radius: 1.5rem;
+      overflow: hidden;
+      border: 2px solid #cbdbe9;
+    }
+
+    .layer {
+      padding: 1.3rem 1.5rem;
+      color: white;
+      position: relative;
+    }
+
+    .layer h4 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+      margin-top: 0;
+      color: white;
+    }
+
+    .layer p {
+      font-size: 0.9rem;
+      margin-bottom: 0;
+      opacity: 0.92;
+      color: white;
+      line-height: 1.5;
+    }
+
+    .layer.app-layer {
+      background: linear-gradient(135deg, #db2777 0%, #be185d 100%);
+    }
+
+    .layer.system-layer {
+      background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+    }
+
+    .layer.firmware-layer {
+      background: linear-gradient(135deg, #059669 0%, #047857 100%);
+    }
+
+    .layer.hardware-layer {
+      background: linear-gradient(135deg, #475569 0%, #334155 100%);
+    }
+
+    /* ===== ACTIVITY ===== */
+    .activity-box {
+      background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+      border: 2px solid #fcd34d;
+      border-radius: 1.5rem;
+      padding: 1.8rem 1.8rem;
+      margin-top: 1.2rem;
+    }
+
+    .activity-box h3 {
+      color: #92400e;
+      margin-top: 0;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .activity-box h3 i { color: #d97706; }
+
+    .activity-box p {
+      color: #78350f;
+      margin-bottom: 1rem;
+    }
+
+    .activity-steps {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      counter-reset: step-counter;
+    }
+
+    .activity-steps li {
+      counter-increment: step-counter;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.8rem;
+      padding: 0.6rem 0;
+      font-size: 0.98rem;
+      color: #78350f;
+      line-height: 1.7;
+    }
+
+    .activity-steps li::before {
+      content: counter(step-counter);
+      background: #d97706;
+      color: white;
+      font-weight: 700;
+      font-size: 0.8rem;
+      width: 1.7rem;
+      height: 1.7rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 0.2rem;
+    }
+
+    /* ===== CATEGORIZE ACTIVITY ===== */
+    .categorize-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1.2rem;
+      font-size: 0.92rem;
+    }
+
+    .categorize-table th {
+      background: #0b2a4a;
+      color: white;
+      padding: 0.8rem 0.9rem;
+      text-align: left;
+      font-weight: 600;
+      font-size: 0.82rem;
+    }
+
+    .categorize-table th:first-child { border-radius: 0.8rem 0 0 0; }
+    .categorize-table th:last-child { border-radius: 0 0.8rem 0 0; }
+
+    .categorize-table td {
+      padding: 0.6rem 0.9rem;
+      border-bottom: 1px solid #e2edf7;
+      color: #1d3b5c;
+      vertical-align: middle;
+      line-height: 1.6;
+    }
+
+    .categorize-table tr:last-child td { border-bottom: none; }
+    .categorize-table tr:nth-child(even) { background: #f7fafd; }
+
+    .categorize-table select {
+      width: 100%;
+      padding: 0.5rem 0.6rem;
+      border: 1.5px solid #c6d9ec;
+      border-radius: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      color: #0b2a4a;
+      background: white;
+      cursor: pointer;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .categorize-table select:focus {
+      outline: none;
+      border-color: #1e6b9b;
+      box-shadow: 0 0 0 3px rgba(30, 107, 155, 0.12);
+    }
+
+    .categorize-table select.correct {
+      border-color: #22c55e;
+      background: #dcfce7;
+      color: #166534;
+      font-weight: 600;
+    }
+
+    .categorize-table select.incorrect {
+      border-color: #ef4444;
+      background: #fee2e2;
+      color: #991b1b;
+      font-weight: 600;
+    }
+
+    .cat-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-top: 1.2rem;
+    }
+
+    .cat-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: #1e6b9b;
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      padding: 0.7rem 1.5rem;
+      border-radius: 40px;
+      border: none;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      transition: background 0.2s, transform 0.15s;
+      box-shadow: 0 6px 12px -8px rgba(30, 107, 155, 0.5);
+    }
+
+    .cat-btn:hover {
+      background: #0b2a4a;
+      transform: translateY(-2px);
+    }
+
+    .cat-btn.reset {
+      background: #e2edf9;
+      color: #0b2a4a;
+      border: 1.5px solid #a6c8e5;
+      box-shadow: none;
+    }
+
+    .cat-btn.reset:hover {
+      background: #d4e5f5;
+    }
+
+    .cat-feedback {
+      font-size: 0.92rem;
+      font-weight: 600;
+      margin-top: 1rem;
+      padding: 0.8rem 1.2rem;
+      border-radius: 10px;
+      display: none;
+    }
+
+    .cat-feedback.show { display: block; }
+    .cat-feedback.success { background: #dcfce7; color: #166534; }
+    .cat-feedback.partial { background: #fef3c7; color: #92400e; }
+
+    /* ===== DISCUSSION BOX ===== */
+    .discussion-box {
+      background: #f0f9ff;
+      border: 2px solid #7dd3fc;
+      border-radius: 1.5rem;
+      padding: 1.8rem 1.8rem;
+      margin-top: 1.5rem;
+    }
+
+    .discussion-box h3 {
+      color: #0c4a6e;
+      margin-top: 0;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .discussion-box h3 i { color: #0284c7; }
+
+    .discussion-box p {
+      color: #0c4a6e;
+      margin-bottom: 1rem;
+    }
+
+    .discussion-question {
+      background: white;
+      border-left: 4px solid #0284c7;
+      border-radius: 0 0.8rem 0.8rem 0;
+      padding: 1rem 1.2rem;
+      margin-bottom: 1rem;
+      font-size: 0.98rem;
+      color: #0c4a6e;
+      font-weight: 600;
+    }
+
+    .discussion-question:last-child {
+      margin-bottom: 0;
+    }
+
+    /* ===== QUIZ ===== */
+    .quiz-question {
+      margin-bottom: 1.8rem;
+    }
+
+    .quiz-question p {
+      font-weight: 600;
+      color: #0b2a4a;
+      margin-bottom: 0.8rem;
+      font-size: 1.02rem;
+    }
+
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .quiz-option {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      padding: 0.8rem 1rem;
+      background: #f7fafd;
+      border: 1.5px solid #d9e7f5;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      color: #1d3b5c;
+      transition: all 0.2s;
+      font-family: 'Inter', sans-serif;
+      text-align: left;
+      width: 100%;
+      line-height: 1.5;
+    }
+
+    .quiz-option:hover {
+      border-color: #a6c8e5;
+      background: #eaf1f9;
+    }
+
+    .quiz-option.correct {
+      background: #dcfce7;
+      border-color: #86efac;
+      color: #166534;
+      font-weight: 600;
+    }
+
+    .quiz-option.incorrect {
+      background: #fee2e2;
+      border-color: #fca5a5;
+      color: #991b1b;
+    }
+
+    .quiz-option i {
+      font-size: 0.85rem;
+      color: #94a3b8;
+      flex-shrink: 0;
+    }
+
+    .quiz-option.correct i { color: #16a34a; }
+    .quiz-option.incorrect i { color: #dc2626; }
+
+    .quiz-feedback {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-top: 0.7rem;
+      padding: 0.7rem 1rem;
+      border-radius: 10px;
+      display: none;
+    }
+
+    .quiz-feedback.show { display: block; }
+    .quiz-feedback.correct { background: #dcfce7; color: #166534; }
+    .quiz-feedback.incorrect { background: #fee2e2; color: #991b1b; }
+
+    /* ===== KEY TERMS ===== */
+    .key-terms {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
+      margin-top: 1.2rem;
+    }
+
+    .term-card {
+      background: #f7fafd;
+      border: 1px solid #d9e7f5;
+      border-left: 4px solid #1e6b9b;
+      border-radius: 0 1rem 1rem 0;
+      padding: 1.1rem 1.2rem;
+    }
+
+    .term-card dt {
+      font-weight: 700;
+      color: #0b2a4a;
+      font-size: 1rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .term-card dd {
+      font-size: 0.92rem;
+      color: #3a5775;
+      line-height: 1.6;
+    }
+
+    /* ===== STUDENT OUTCOME ===== */
+    .outcome-banner {
+      background: linear-gradient(135deg, #0b2a4a 0%, #1a4a6e 100%);
+      border-radius: 2rem;
+      padding: 2rem 2.2rem;
+      color: white;
+      margin-top: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .outcome-banner .outcome-icon {
+      background: rgba(255, 255, 255, 0.15);
+      width: 4rem;
+      height: 4rem;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      flex-shrink: 0;
+    }
+
+    .outcome-banner .outcome-text {
+      flex: 1;
+      min-width: 220px;
+    }
+
+    .outcome-banner h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+
+    .outcome-banner p {
+      font-size: 0.98rem;
+      opacity: 0.92;
+      margin-bottom: 0;
+    }
+
+    /* ===== TEACHER INSTRUCTIONS ===== */
+    .custom-instructions {
+      background: #ffffff;
+      border-radius: 2rem;
+      padding: 2.2rem 2.2rem;
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+      border: 2px solid #1e6b9b;
+      box-shadow: 0 12px 24px -12px rgba(30, 107, 155, 0.15);
+      position: relative;
+    }
+
+    .custom-instructions::before {
+      content: "📌";
+      position: absolute;
+      top: -1.2rem;
+      left: 2rem;
+      background: #1e6b9b;
+      color: white;
+      width: 2.4rem;
+      height: 2.4rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      box-shadow: 0 6px 12px -4px rgba(30, 107, 155, 0.4);
+    }
+
+    .custom-instructions h2 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #0b2a4a;
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      letter-spacing: -0.01em;
+      margin-top: 0.5rem;
+    }
+
+    .custom-instructions h2 i {
+      color: #1e6b9b;
+      font-size: 1.4rem;
+      background: #e7f0f9;
+      width: 2.8rem;
+      height: 2.8rem;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .custom-instructions p {
+      color: #1d3b5c;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      line-height: 1.7;
+    }
+
+    .custom-instructions a.inline-link {
+      color: #1e6b9b;
+      font-weight: 600;
+      text-decoration: none;
+      border-bottom: 2px solid #a6c8e5;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .custom-instructions a.inline-link:hover {
+      color: #0b2a4a;
+      border-bottom-color: #1e6b9b;
+    }
+
+    .instruction-note {
+      background: #eaf1f9;
+      border-left: 4px solid #1e6b9b;
+      border-radius: 0 0.8rem 0.8rem 0;
+      padding: 1rem 1.2rem;
+      margin-top: 1rem;
+      font-size: 0.95rem;
+      color: #2f506d;
+    }
+
+    .instruction-note i {
+      color: #1e6b9b;
+      margin-right: 0.4rem;
+    }
+
+    /* ===== LINK BUTTONS ===== */
+    .link-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      margin-top: 1.2rem;
+    }
+
+    .custom-link-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: #dbeafe;
+      color: #0b2a4a;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      padding: 0.8rem 1.6rem;
+      border-radius: 40px;
+      transition: background 0.2s, color 0.2s, gap 0.2s, transform 0.15s, box-shadow 0.2s;
+      border: 1.5px solid #93c5fd;
+      box-shadow: 0 6px 12px -8px rgba(30, 107, 155, 0.35);
+    }
+
+    .custom-link-btn i {
+      font-size: 0.8rem;
+      color: #1e6b9b;
+      transition: color 0.2s;
+    }
+
+    .custom-link-btn:hover {
+      background: #1e6b9b;
+      color: #ffffff;
+      gap: 0.9rem;
+      transform: translateY(-2px);
+      border-color: #1e6b9b;
+      box-shadow: 0 10px 18px -8px rgba(30, 107, 155, 0.5);
+    }
+
+    .custom-link-btn:hover i {
+      color: #ffffff;
+    }
+
+    /* ===== FOOTER NAV ===== */
+    .footer-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      padding: 1.5rem 2rem;
+      background: #ffffffec;
+      border-radius: 2rem;
+      border: 1px solid #cbdbe9;
+      margin-top: 1rem;
+    }
+
+    .footer-nav a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      color: #1e6b9b;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      padding: 0.6rem 1.2rem;
+      border-radius: 40px;
+      transition: background 0.2s, gap 0.2s;
+    }
+
+    .footer-nav a:hover {
+      background: #e7f0f9;
+      gap: 0.9rem;
+    }
+
+    .footer-nav .next-link {
+      background: #0b2a4a;
+      color: white;
+      border: 1px solid #1e4a6e;
+    }
+
+    .footer-nav .next-link:hover {
+      background: #1e4a6e;
+    }
+
+    /* ============================================================
+       PRESENTATION CONTROLS
+       ============================================================ */
+    .present-toolbar {
+      position: fixed;
+      bottom: 1.2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #0b2a4a;
+      color: white;
+      border-radius: 50px;
+      padding: 0.6rem 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      box-shadow: 0 12px 30px -8px rgba(11, 42, 74, 0.5);
+      z-index: 1000;
+      border: 1px solid #1e4a6e;
+    }
+
+    .present-toolbar button {
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: white;
+      width: 2.4rem;
+      height: 2.4rem;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      transition: background 0.2s, transform 0.1s;
+    }
+
+    .present-toolbar button:hover {
+      background: rgba(255, 255, 255, 0.25);
+    }
+
+    .present-toolbar button:active {
+      transform: scale(0.94);
+    }
+
+    .present-toolbar .slide-counter {
+      font-size: 0.85rem;
+      font-weight: 600;
+      min-width: 62px;
+      text-align: center;
+      letter-spacing: 0.5px;
+    }
+
+    .present-toolbar .toolbar-label {
+      font-size: 0.75rem;
+      opacity: 0.7;
+      padding-right: 0.3rem;
+      border-right: 1px solid rgba(255, 255, 255, 0.2);
+      margin-right: 0.3rem;
+      display: none;
+    }
+
+    @media (min-width: 600px) {
+      .present-toolbar .toolbar-label { display: inline; }
+    }
+
+    body.presenting .teach-section {
+      display: none;
+    }
+
+    body.presenting .teach-section.active-slide {
+      display: block;
+      animation: fadeIn 0.35s ease;
+      min-height: 60vh;
+    }
+
+    body.presenting .topic-header,
+    body.presenting .back-link,
+    body.presenting .footer-nav,
+    body.presenting .custom-instructions,
+    body.presenting .outcome-banner {
+      display: none;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    body.presenting .teach-section h2 {
+      font-size: 2.1rem;
+    }
+
+    body.presenting .teach-section p,
+    body.presenting .teach-section li {
+      font-size: 1.15rem;
+      line-height: 1.9;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 700px) {
+      .topic-header { padding: 2rem 1.5rem; }
+      .topic-header h1 { font-size: 1.8rem; }
+      .teach-section { padding: 1.7rem 1.4rem; }
+      .compare-grid { grid-template-columns: 1fr; }
+      .outcome-banner { padding: 1.5rem 1.5rem; }
+      .footer-nav { flex-direction: column; align-items: stretch; text-align: center; }
+      .footer-nav a { justify-content: center; }
+      .custom-instructions { padding: 1.6rem 1.4rem; }
+      .flow-diagram { flex-direction: column; }
+      .flow-arrow { transform: rotate(90deg); }
+    }
+
+    @media (max-width: 480px) {
+      body { padding: 1rem 0.8rem 6rem; }
+      .topic-header h1 { font-size: 1.5rem; }
+      .teach-section h2 { font-size: 1.3rem; }
+      .software-grid { grid-template-columns: 1fr; }
+      .categorize-table { font-size: 0.8rem; }
+      .categorize-table th, .categorize-table td { padding: 0.4rem 0.4rem; }
+      .custom-link-btn { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- ===== BACK LINK ===== -->
+  <a href="index.html" class="back-link">
+    <i class="fas fa-arrow-left"></i> Back to Topic Index
+  </a>
+
+  <!-- ===== TOPIC HEADER ===== -->
+  <header class="topic-header">
+    <div class="topic-badge">
+      <i class="fas fa-code" style="margin-right: 6px;"></i> Topic 3
+    </div>
+    <h1>Software Components</h1>
+    <div class="subhead">
+      System software, application software, firmware, and how software makes hardware useful.
+    </div>
+  </header>
+
+  <!-- ============================================================
+       SLIDE 1 — INTRODUCTION TO SOFTWARE
+       ============================================================ -->
+  <section class="teach-section">
+    <h2><i class="fas fa-code"></i> What Is Software?</h2>
+
+    <p>
+      In Topic 2, you learned about hardware — the physical parts of a computer system. But
+      hardware alone cannot do anything. A computer without software is like a car without a
+      driver, or a piano without a pianist. The hardware is ready to work, but it needs
+      instructions to actually do something.
+    </p>
+
+    <div class="definition-box">
+      <p>
+        <strong>Software</strong> is a collection of programs, instructions, and data that tells
+        the computer's hardware what to do. Software cannot be touched — it can only be seen in
+        action. Without software, a computer system cannot function.
+      </p>
+    </div>
+
+    <p>
+      Every time you use a computer, you are using software. When you open a web browser,
+      type in a word processor, play a game, or send a message, software is running behind the
+      scenes, giving instructions to the hardware. Software is what makes the machine useful.
+    </p>
+
+    <h3>The Two Main Types of Software</h3>
+    <p>
+      Software is divided into two main categories based on what it does:
+    </p>
+    <ul>
+      <li>
+        <strong>System software:</strong> Runs the computer itself and manages the hardware.
+        You rarely interact with it directly, but it is always working in the background.
+      </li>
+      <li>
+        <strong>Application software:</strong> Programs designed to help you do specific tasks,
+        like writing a document, editing a photo, or watching a video.
+      </li>
+    </ul>
+
+    <p>
+      In this topic, you will learn the difference between these two types, see many examples
+      of each, and understand how they work together with hardware to make a complete computer
+      system.
+    </p>
+
+    <div class="key-terms">
+      <dl class="term-card">
+        <dt>Software</dt>
+        <dd>Programs and instructions that tell the computer's hardware what to do.</dd>
+      </dl>
+      <dl class="term-card">
+        <dt>System Software</dt>
+        <dd>Software that runs the computer itself and manages hardware and other programs.</dd>
+      </dl>
+      <dl class="term-card">
+        <dt>Application Software</dt>
+        <dd>Programs designed to help users perform specific tasks.</dd>
+      </dl>
+      <dl class="term-card">
+        <dt>Firmware</dt>
+        <dd>Software permanently stored on a hardware chip that starts the computer.</dd>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 2 — SYSTEM SOFTWARE
+       ============================================================ -->
+  <section class="teach-section">
+    <h2><i class="fas fa-gears"></i> System Software</h2>
+
+    <p>
+      <strong>System software</strong> is the software that runs the computer itself. It manages
+      the hardware, keeps everything organized, and creates the environment where application
+      software can run. You usually do not open system software to do a task — it is always
+      working quietly in the background, making sure everything else functions properly.
+    </p>
+
+    <p>
+      There are two main types of system software: <strong>operating systems</strong> and
+      <strong>utilities</strong>.
+    </p>
+
+    <h3>1. Operating Systems (OS)</h3>
+    <p>
+      The <strong>operating system</strong> is the most important piece of system software. It
+      is the master program that controls everything in the computer. When you turn on your
+      computer, the operating system loads first, and it stays running the whole time you are
+      using the machine.
+    </p>
+
+    <p>
+      The operating system has several important jobs:
+    </p>
+    <ul>
+      <li><strong>Manages hardware:</strong> It talks to the CPU, memory, storage, keyboard, mouse, and all other components.</li>
+      <li><strong>Runs applications:</strong> It provides a place where application software can run and share resources.</li>
+      <li><strong>Manages files:</strong> It organizes files and folders so you can find and save your work.</li>
+      <li><strong>Provides a user interface:</strong> It gives you a way to interact with the computer, usually with windows, icons, and a pointer.</li>
+      <li><strong>Handles security:</strong> It manages user accounts, passwords, and permissions.</li>
+    </ul>
+
+    <p>
+      Some common operating systems are:
+    </p>
+    <ul>
+      <li><strong>Microsoft Windows:</strong> The most widely used OS on desktop and laptop computers.</li>
+      <li><strong>macOS:</strong> The operating system made by Apple for Mac computers.</li>
+      <li><strong>Linux:</strong> A free, open-source operating system often used on servers and by advanced users.</li>
+      <li><strong>Android:</strong> The operating system made by Google for smartphones and tablets.</li>
+      <li><strong>iOS:</strong> The operating system made by Apple for iPhones and iPads.</li>
+    </ul>
+
+    <h3>2. Utilities</h3>
+    <p>
+      <strong>Utilities</strong> are small programs that help keep the computer running smoothly
+      and safely. They are also system software, but they usually focus on one specific task.
+      You often run a utility when something needs to be cleaned, checked, or protected.
+    </p>
+
+    <p>
+      Examples of utilities include:
+    </p>
+    <ul>
+      <li><strong>Antivirus software:</strong> Scans the computer for harmful programs and removes them.</li>
+      <li><strong>Disk cleanup:</strong> Removes temporary files and frees up storage space.</li>
+      <li><strong>Disk defragmenter:</strong> Reorganizes files on a hard drive to make it faster.</li>
+      <li><strong>Backup tools:</strong> Create copies of your files so you do not lose them.</li>
+      <li><strong>Firewall:</strong> Blocks unwanted network connections to protect your computer.</li>
+      <li><strong>File compression tools:</strong> Shrink large files into smaller ZIP archives.</li>
+    </ul>
+
+    <div class="definition-box">
+      <p>
+        <strong>In short:</strong> System software runs the computer. Without it, no application
+        software could run at all. The operating system is the most important piece of system
+        software, and utilities help keep the system healthy and safe.
+      </p>
+    </div>
+
+    <!-- IMAGE 1: System software examples -->
+    <div class="img-placeholder" id="img-placeholder-1">
+      <span class="img-title">System Software: Operating Systems and Utilities</span>
+      <span class="img-filename"><img src="images/system-software.png" alt="Examples of system software: Windows, macOS, Linux, Android, iOS, antivirus, disk cleanup"></span>
+    </div>
+    <p class="img-caption">Figure 3.1 — Examples of system software.</p>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 3 — APPLICATION SOFTWARE
+       ============================================================ -->
+  <section class="teach-section">
+    <h2><i class="fas fa-mobile-screen-button"></i> Application Software</h2>
+
+    <p>
+      <strong>Application software</strong> (often just called "apps" or "applications") is
+      software designed to help users perform specific tasks. These are the programs you
+      actually open and use — the ones that help you write, draw, communicate, learn, or have
+      fun. Application software runs on top of the operating system, using the resources the
+      OS provides.
+    </p>
+
+    <p>
+      Application software is usually grouped into five main categories based on what it does.
+    </p>
+
+    <div class="software-grid">
+      <div class="software-card">
+        <div class="software-icon"><i class="fas fa-file-word"></i></div>
+        <h4>Productivity</h4>
+        <p>Word processors, spreadsheets, presentation tools for getting work done.</p>
+      </div>
+      <div class="software-card">
+        <div class="software-icon"><i class="fas fa-palette"></i></div>
+        <h4>Creative</h4>
+        <p>Photo editors, video editors, drawing apps for making art and media.</p>
+      </div>
+      <div class="software-card">
+        <div class="software-icon"><i class="fas fa-comments"></i></div>
+        <h4>Communication</h4>
+        <p>Email, messaging apps, and video call software for staying connected.</p>
+      </div>
+      <div class="software-card">
+        <div class="software-icon"><i class="fas fa-gamepad"></i></div>
+        <h4>Entertainment</h4>
+        <p>Games, music players, and video streaming apps for enjoyment.</p>
+      </div>
+      <div class="software-card">
+        <div class="software-icon"><i class="fas fa-graduation-cap"></i></div>
+        <h4>Educational</h4>
+        <p>Learning apps, language tools, and study programs for gaining knowledge.</p>
+      </div>
+    </div>
+
+    <h3>1. Productivity Software</h3>
+    <p>
+      <strong>Productivity software</strong> helps you complete tasks, organize information,
+      and create documents. These are the tools you use at school and work.
+    </p>
+    <ul>
+      <li><strong>Word processors:</strong> Microsoft Word, Google Docs — for writing essays, reports, and letters.</li>
+      <li><strong>Spreadsheets:</strong> Microsoft Excel, Google Sheets — for organizing data, doing calculations, and creating charts.</li>
+      <li><strong>Presentation tools:</strong> Microsoft PowerPoint, Google Slides, Canva — for creating slideshows.</li>
+      <li><strong>Note-taking apps:</strong> OneNote, Notion, Evernote — for organizing ideas and study notes.</li>
+    </ul>
+
+    <h3>2. Creative Software</h3>
+    <p>
+      <strong>Creative software</strong> helps you design, edit, and produce artistic content.
+    </p>
+    <ul>
+      <li><strong>Photo editors:</strong> Adobe Photoshop, GIMP, Canva — for editing and enhancing images.</li>
+      <li><strong>Video editors:</strong> Adobe Premiere, iMovie, CapCut — for cutting and arranging video clips.</li>
+      <li><strong>Drawing apps:</strong> Procreate, Krita, Microsoft Paint — for digital painting and illustration.</li>
+      <li><strong>Audio editors:</strong> Audacity, GarageBand — for recording and mixing sound.</li>
+    </ul>
+
+    <h3>3. Communication Software</h3>
+    <p>
+      <strong>Communication software</strong> lets you send messages, make calls, and share files
+      with other people.
+    </p>
+    <ul>
+      <li><strong>Email:</strong> Gmail, Outlook, Yahoo Mail — for sending written messages and attachments.</li>
+      <li><strong>Messaging apps:</strong> WhatsApp, Messenger, Telegram, Discord — for instant text chats.</li>
+      <li><strong>Video conferencing:</strong> Zoom, Google Meet, Microsoft Teams — for online meetings and classes.</li>
+      <li><strong>Social media:</strong> Facebook, Instagram, X (Twitter), TikTok — for sharing updates and connecting.</li>
+    </ul>
+
+    <h3>4. Entertainment Software</h3>
+    <p>
+      <strong>Entertainment software</strong> is designed for enjoyment and relaxation.
+    </p>
+    <ul>
+      <li><strong>Games:</strong> Minecraft, Roblox, Fortnite, mobile puzzle games — for interactive play.</li>
+      <li><strong>Music players:</strong> Spotify, Apple Music, YouTube Music — for listening to songs and podcasts.</li>
+      <li><strong>Video streaming:</strong> YouTube, Netflix, Disney+, Twitch — for watching shows and videos.</li>
+    </ul>
+
+    <h3>5. Educational Software</h3>
+    <p>
+      <strong>Educational software</strong> helps you learn new things, practice skills, and
+      study for exams.
+    </p>
+    <ul>
+      <li><strong>Language learning:</strong> Duolingo, Babbel, Memrise — for learning new languages.</li>
+      <li><strong>Study tools:</strong> Quizlet, Khan Academy, Kahoot — for practice and revision.</li>
+      <li><strong>Coding platforms:</strong> Scratch, Code.org, Khan Academy — for learning programming.</li>
+      <li><strong>Virtual classrooms:</strong> Google Classroom, Microsoft Teams for Education — for school work.</li>
+    </ul>
+
+    <!-- IMAGE 2: Application software categories -->
+    <div class="img-placeholder" id="img-placeholder-2">
+      <span class="img-title">Application Software Categories</span>
+      <span class="img-filename"><img src="images/application-software.png" alt="Categories of application software: productivity, creative, communication, entertainment, educational"></span>
+    </div>
+    <p class="img-caption">Figure 3.2 — Five categories of application software.</p>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 4 — SYSTEM VS APPLICATION
+       ============================================================ -->
+  <section class="teach-section">
+    <h2><i class="fas fa-scale-balanced"></i> System vs. Application Software</h2>
+
+    <p>
+      Both system software and application software are essential parts of a computer system,
+      but they do very different jobs. Understanding the difference helps you understand how
+      a computer works as a whole.
+    </p>
+
+    <div class="compare-grid">
+      <div class="compare-col system">
+        <h4><i class="fas fa-gears"></i> System Software</h4>
+        <ul>
+          <li><i class="fas fa-circle"></i> Runs the computer itself</li>
+          <li><i class="fas fa-circle"></i> Manages hardware and resources</li>
+          <li><i class="fas fa-circle"></i> Starts automatically when the computer turns on</li>
+          <li><i class="fas fa-circle"></i> You rarely open it directly</li>
+          <li><i class="fas fa-circle"></i> Examples: Windows, macOS, Android, antivirus</li>
+          <li><i class="fas fa-circle"></i> Needed for the computer to work at all</li>
+        </ul>
+      </div>
+      <div class="compare-col application">
+        <h4><i class="fas fa-mobile-screen-button"></i> Application Software</h4>
+        <ul>
+          <li><i class="fas fa-circle"></i> Helps users complete specific tasks</li>
+          <li><i class="fas fa-circle"></i> You open it when you need it</li>
+          <li><i class="fas fa-circle"></i> Runs on top of the system software</li>
+          <li><i class="fas fa-circle"></i> You choose when to use it</li>
+          <li><i class="fas fa-circle"></i> Examples: Word, Chrome, WhatsApp, Minecraft</li>
+          <li><i class="fas fa-circle"></i> Optional — the computer still works without it</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>A Simple Way to Remember</h3>
+    <p>
+      Think of a computer as a restaurant. The <strong>system software</strong> is like the
+      building, kitchen, electricity, and staff — all the infrastructure that makes the
+      restaurant functional. The <strong>application software</strong> is like the specific
+      dishes on the menu — what the customers actually came for. Without the infrastructure,
+      no dish could be served. Without the dishes, the restaurant has nothing to offer.
+    </p>
+
+    <div class="analogy-box">
+      <p>
+        <strong>Remember:</strong> System software runs the computer. Application software runs
+        for the user. System software is the foundation; application software is what you build
+        on top of it.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 5 — HOW SOFTWARE AND HARDWARE WORK TOGETHER
+       ============================================================ -->
+  <section class="teach-section">
+    <h2><i class="fas fa-layer-group"></i> How Software and Hardware Work Together</h2>
+
+    <p>
+      Hardware and software are not separate things — they work together as a team. When you
+      click a button on your screen, thousands of hardware components and software programs
+      cooperate to make it happen in a fraction of a second.
+    </p>
+
+    <h3>The Software Layers</h3>
+    <p>
+      A computer system is organized in layers. Each layer builds on the one below it. Here is
+      a simple way to see how software sits on top of hardware:
+    </p>
+
+    <div class="layers">
+      <div class="layer app-layer">
+        <h4>Application Software</h4>
+        <p>Programs the user directly interacts with — browsers, games, word processors.</p>
+      </div>
+      <div class="layer system-layer">
+        <h4>System Software (Operating System)</h4>
+        <p>Manages hardware, files, and other programs. Provides the environment for apps to run.</p>
+      </div>
+      <div class="layer firmware-layer">
+        <h4>Firmware (BIOS/UEFI)</h4>
+        <p>Built-in software stored on a chip that starts the computer when you press the power button.</p>
+      </div>
+      <div class="layer hardware-layer">
+        <h4>Hardware</h4>
+        <p>The physical components — CPU, RAM, storage, motherboard, and all peripherals.</p>
+      </div>
+    </div>
+
+    <h3>Tracing an Example: Opening a Web Browser</h3>
+    <p>
+      To see how all the layers work together, let us trace what happens when you click the
+      icon to open a web browser:
+    </p>
+    <ol>
+      <li>
+        <strong>You click the icon (Input):</strong> The mouse sends a signal to the computer.
+      </li>
+      <li>
+        <strong>The operating system responds:</strong> The OS detects the click and identifies
+        which program the icon belongs to.
+      </li>
+      <li>
+        <strong>System software loads the app:</strong> The OS reads the browser's program files
+        from storage and loads them into RAM.
+      </li>
+      <li>
+        <strong>The CPU processes instructions:</strong> The CPU fetches, decodes, and executes
+        the browser's instructions.
+      </li>
+      <li>
+        <strong>The browser requests data:</strong> The browser uses the network to request a
+        web page from the internet.
+      </li>
+      <li>
+        <strong>The GPU displays the result (Output):</strong> The GPU renders the web page and
+        sends it to the monitor, and you see the page appear.
+      </li>
+    </ol>
+
+    <div class="flow-diagram">
+      <div class="flow-step">Your Click<br><small style="font-weight:400;font-size:0.75rem;">Input</small></div>
+      <span class="flow-arrow"><i class="fas fa-arrow-right"></i></span>
+      <div class="flow-step">Operating System<br><small style="font-weight:400;font-size:0.75rem;">System SW</small></div>
+      <span class="flow-arrow"><i class="fas fa-arrow-right"></i></span>
+      <div class="flow-step">Web Browser<br><small style="font-weight:400;font-size:0.75rem;">App SW</small></div>
+      <span class="flow-arrow"><i class="fas fa-arrow-right"></i></span>
+      <div class="flow-step">CPU + GPU<br><small style="font-weight:400;font-size:0.75rem;">Hardware</small></div>
+      <span class="flow-arrow"><i class="fas fa-arrow-right"></i></span>
+      <div class="flow-step">Screen<br><small style="font-weight:400;font-size:0.75rem;">Output</small></div>
+    </div>
+
+    <p>
+      Without any one of these layers, the whole process would fail. If the hardware were
+      missing, there would be nothing to run on. If the system software were missing, the app
+      could not load. If the app were missing, you would have nothing to open.
+    </p>
+
+    <h3>Firmware — Software Built Into Hardware</h3>
+    <p>
+      There is a special kind of software called <strong>firmware</strong> that sits between
+      hardware and system software. Firmware is software that is stored permanently on a
+      hardware chip inside the computer.
+    </p>
+    <p>
+      The most important example of firmware is the <strong>BIOS</strong>
+      (Basic Input/Output System) or its modern replacement, <strong>UEFI</strong>. When you
+      press the power button, the BIOS is the very first thing that runs. It performs a quick
+      check on all the hardware, then finds and loads the operating system.
+    </p>
+    <p>
+      Firmware is unusual because it is stored on the hardware itself — it does not disappear
+      when the computer is turned off, and you do not install it like normal software. It is
+      built into the machine at the factory.
+    </p>
+
+    <div class="analogy-box">
+      <p>
+        <strong>Firmware analogy:</strong> Think of firmware as the electrical wiring in a
+        house. It is part of the physical building (hardware), but it carries the "instructions"
+        (electricity) that make everything work. Without it, nothing else could function.
+      </p>
+    </div>
+
+    <!-- IMAGE 3: Software layers diagram -->
+    <div class="img-placeholder" id="img-placeholder-3">
+      <span class="img-title">Software Layers: Application, System, Firmware, Hardware</span>
+      <span class="img-filename"><img src="images/software-layers.png" alt="Diagram showing application software, system software, firmware, and hardware layers"></span>
+    </div>
+    <p class="img-caption">Figure 3.3 — How software layers sit on top of hardware.</p>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 6 — ACTIVITY
+       ============================================================ -->
+  <section class="teach-section">
+    <h2><i class="fas fa-pen-to-square"></i> Activity: Categorize and Discuss</h2>
+
+    <div class="activity-box">
+      <h3><i class="fas fa-bullseye"></i> Activity 1 — Categorize Software</h3>
+      <p>
+        Below is a list of popular software programs. For each one, choose whether it is
+        <strong>System Software</strong> or <strong>Application Software</strong>. When you are
+        done, click <strong>Check Answers</strong> to see how you did.
+      </p>
+    </div>
+
+    <table class="categorize-table" id="categorizeTable">
+      <thead>
+        <tr>
+          <th style="width: 45%;">Software Program</th>
+          <th style="width: 55%;">Category</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><i class="fas fa-window-maximize" style="color:#2563eb;margin-right:8px;"></i><strong>Microsoft Windows 11</strong></td>
+          <td>
+            <select class="cat-select" data-answer="system">
+              <option value="">-- Choose category --</option>
+              <option value="system">System Software</option>
+              <option value="application">Application Software</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td><i class="fas fa-file-word" style="color:#2563eb;margin-right:8px;"></i><strong>Microsoft Word</strong></td>
+          <td>
+            <select class="cat-select" data-answer="application">
+              <option value="">-- Choose category --</option>
+              <option value="system">System Software</option>
+              <option value="application">Application Software</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td><i class="fas fa-shield-halved" style="color:#2563eb;margin-right:8px;"></i><strong>Norton Antivirus</strong></td>
+          <td>
+            <select class="cat-select" data-answer="system">
+              <option value="">-- Choose category --</option>
+              <option value="system">System Software</option>
+              <option value="application">Application Software</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td><i class="fas fa-mobile-screen" style="color:#2563eb;margin-right:8px;"></i><strong>Android OS</strong></td>
+          <td>
+            <select class="cat-select" data-answer="system">
+              <option value="">-- Choose category --</option>
+              <option value="system">System Software</option>
+              <option value="application">Application Software</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td><i class="fas fa-comments" style="color:#2563eb;margin-right:8px;"></i><strong>WhatsApp</strong></td>
+          <td>
+            <select class="cat-select" data-answer="application">
+              <option value="">-- Choose category --</option>
+              <option value="system">System Software</option>
+              <option value="application">Application Software</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td><i class="fas fa-broom" style="color:#2563eb;margin-right:8px;"></i><strong>Disk Cleanup</strong></td>
+          <td>
+            <select class="cat-select" data-answer="system">
+              <option value="">-- Choose category --</option>
+              <option value="system">System Software</option>
+              <option value="application">Application Software</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td><i class="fas fa-gamepad" style="color:#2563eb;margin-right:8px;"></i><strong>Minecraft</strong></td>
+          <td>
+            <select class="cat-select" data-answer="application">
+              <option value="">-- Choose category --</option>
+              <option value="system">System Software</option>
+              <option value="application">Application Software</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td><i class="fas fa-language" style="color:#2563eb;margin-right:8px;"></i><strong>Duolingo</strong></td>
+          <td>
+            <select class="cat-select" data-answer="application">
+              <option value="">-- Choose category --</option>
+              <option value="system">System Software</option>
+              <option value="application">Application Software</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td><i class="fas fa-penguin" style="color:#2563eb;margin-right:8px;"></i><strong>Linux (Ubuntu)</strong></td>
+          <td>
+            <select class="cat-select" data-answer="system">
+              <option value="">-- Choose category --</option>
+              <option value="system">System Software</option>
+              <option value="application">Application Software</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td><i class="fas fa-palette" style="color:#2563eb;margin-right:8px;"></i><strong>Adobe Photoshop</strong></td>
+          <td>
+            <select class="cat-select" data-answer="application">
+              <option value="">-- Choose category --</option>
+              <option value="system">System Software</option>
+              <option value="application">Application Software</option>
+            </select>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="cat-buttons">
+      <button class="cat-btn" id="checkCat">
+        <i class="fas fa-check"></i> Check Answers
+      </button>
+      <button class="cat-btn reset" id="resetCat">
+        <i class="fas fa-rotate-left"></i> Reset
+      </button>
+    </div>
+
+    <div class="cat-feedback" id="catFeedback"></div>
+
+    <!-- DISCUSSION -->
+    <div class="discussion-box">
+      <h3><i class="fas fa-comments"></i> Activity 2 — Class Discussion</h3>
+      <p>
+        Discuss the following questions with your class or in small groups. Be ready to share
+        your ideas and give reasons for your answers.
+      </p>
+
+      <div class="discussion-question">
+        <i class="fas fa-question-circle" style="color:#0284c7;margin-right:8px;"></i>
+        What would happen if a computer had <strong>hardware but no software</strong>?
+      </div>
+      <div class="discussion-question">
+        <i class="fas fa-question-circle" style="color:#0284c7;margin-right:8px;"></i>
+        What would happen if a computer had <strong>software but no hardware</strong>?
+      </div>
+      <div class="discussion-question">
+        <i class="fas fa-question-circle" style="color:#0284c7;margin-right:8px;"></i>
+        Which is more important: system software or application software? Can you explain your reasoning?
+      </div>
+      <div class="discussion-question">
+        <i class="fas fa-question-circle" style="color:#0284c7;margin-right:8px;"></i>
+        Why do you think firmware is stored on a chip instead of on the hard drive?
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 7 — QUICK CHECK QUIZ
+       ============================================================ -->
+  <section class="teach-section">
+    <h2><i class="fas fa-circle-question"></i> Quick Check</h2>
+    <p>Test your understanding with these questions. Click the best answer.</p>
+
+    <div class="quiz-question" data-quiz="1">
+      <p>1. Which of the following is an example of <strong>system software</strong>?</p>
+      <div class="quiz-options">
+        <button class="quiz-option" data-correct="false">
+          <i class="fas fa-circle"></i> Adobe Photoshop
+        </button>
+        <button class="quiz-option" data-correct="true">
+          <i class="fas fa-circle"></i> Microsoft Windows 11
+        </button>
+        <button class="quiz-option" data-correct="false">
+          <i class="fas fa-circle"></i> Google Chrome
+        </button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-question" data-quiz="2">
+      <p>2. What is the main job of the <strong>operating system</strong>?</p>
+      <div class="quiz-options">
+        <button class="quiz-option" data-correct="false">
+          <i class="fas fa-circle"></i> To help you edit photos and videos
+        </button>
+        <button class="quiz-option" data-correct="true">
+          <i class="fas fa-circle"></i> To manage hardware, files, and other programs
+        </button>
+        <button class="quiz-option" data-correct="false">
+          <i class="fas fa-circle"></i> To connect to the internet
+        </button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-question" data-quiz="3">
+      <p>3. Firmware is best described as:</p>
+      <div class="quiz-options">
+        <button class="quiz-option" data-correct="false">
+          <i class="fas fa-circle"></i> A type of application software for editing files        </button>
+        <button class="quiz-option" data-correct="false">
+          <i class="fas fa-circle"></i> A program you install from the internet
+        </button>
+        <button class="quiz-option" data-correct="true">
+          <i class="fas fa-circle"></i> Software stored permanently on a hardware chip
+        </button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-question" data-quiz="4">
+      <p>4. Which of the following is an example of <strong>application software</strong>?</p>
+      <div class="quiz-options">
+        <button class="quiz-option" data-correct="true">
+          <i class="fas fa-circle"></i> WhatsApp
+        </button>
+        <button class="quiz-option" data-correct="false">
+          <i class="fas fa-circle"></i> Android OS
+        </button>
+        <button class="quiz-option" data-correct="false">
+          <i class="fas fa-circle"></i> BIOS
+        </button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+  </section>
+
+  <!-- ===== STUDENT OUTCOME ===== -->
+  <div class="outcome-banner">
+    <div class="outcome-icon"><i class="fas fa-graduation-cap"></i></div>
+    <div class="outcome-text">
+      <h3>Student Outcome</h3>
+      <p>Students can distinguish between system and application software and explain their roles.</p>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       TEACHER INSTRUCTIONS & LINKS
+       ============================================================ -->
+  <section class="custom-instructions">
+    <h2><i class="fas fa-clipboard-list"></i> Teacher Instructions</h2>
+
+    <p>
+      <strong><a href="https://www.zipgrade.com/s/" class="inline-link" target="_blank" rel="noopener">ZipGrade Quiz</a></strong>
+      — Don't forget to take the ZipGrade quiz! Use the link provided to access and complete it. Make sure to submit before the deadline.
+    </p>
+
+    <div class="instruction-note">
+      <i class="fas fa-circle-info"></i>
+      <strong>Teaching tip:</strong> When discussing "hardware but no software," guide students to realize the computer would simply not turn on or do anything. When discussing "software but no hardware," help them see that software has no physical form — it needs a machine to run on. Both are useless without the other.
+    </div>
+
+    <div class="link-buttons">
+      <a href="https://www.bbc.co.uk/bitesize/guides/zphqgdm/revision/4" class="custom-link-btn" target="_blank" rel="noopener">
+        <i class="fas fa-arrow-up-right-from-square"></i> BBC Bitesize — Software
+      </a>
+      <a href="https://drive.google.com/file/d/1fLFAfFLuwjPeiKBkz7cyfyD-InPPLRcV/view?usp=sharing" class="custom-link-btn" target="_blank" rel="noopener">
+        <i class="fas fa-arrow-up-right-from-square"></i> Open PDF Resource
+      </a>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER NAVIGATION ===== -->
+  <div class="footer-nav">
+    <a href="topic-2-hardware.html">
+      <i class="fas fa-arrow-left"></i> Previous: Hardware Components
+    </a>
+    <a href="topic-4-how-computer-works.html" class="next-link">
+      Next: How a Computer Works <i class="fas fa-arrow-right"></i>
+    </a>
+  </div>
+
+</div>
+
+<!-- ============================================================
+     PRESENTATION TOOLBAR
+     ============================================================ -->
+<div class="present-toolbar">
+  <span class="toolbar-label">PRESENT</span>
+  <button id="prevSlide" title="Previous slide (←)"><i class="fas fa-chevron-left"></i></button>
+  <span class="slide-counter" id="slideCounter">1 / 7</span>
+  <button id="nextSlide" title="Next slide (→)"><i class="fas fa-chevron-right"></i></button>
+  <button id="togglePresent" title="Start / stop presentation (P)"><i class="fas fa-play"></i></button>
+  <button id="toggleFullscreen" title="Fullscreen (F)"><i class="fas fa-expand"></i></button>
+</div>
+
+<script>
+  /* ============================================================
+     QUIZ INTERACTIVITY
+     ============================================================ */
+  (function() {
+    const quizQuestions = document.querySelectorAll('.quiz-question');
+
+    quizQuestions.forEach(function(question) {
+      const options = question.querySelectorAll('.quiz-option');
+      const feedback = question.querySelector('.quiz-feedback');
+
+      options.forEach(function(option) {
+        option.addEventListener('click', function() {
+          if (question.dataset.answered === 'true') return;
+
+          const isCorrect = option.dataset.correct === 'true';
+
+          options.forEach(function(opt) {
+            opt.disabled = true;
+            if (opt.dataset.correct === 'true') {
+              opt.classList.add('correct');
+              opt.querySelector('i').className = 'fas fa-check-circle';
+            } else if (opt === option && !isCorrect) {
+              opt.classList.add('incorrect');
+              opt.querySelector('i').className = 'fas fa-times-circle';
+            } else {
+              opt.querySelector('i').className = 'fas fa-circle';
+            }
+          });
+
+          if (isCorrect) {
+            feedback.textContent = '✓ Correct! Well done.';
+            feedback.className = 'quiz-feedback show correct';
+          } else {
+            feedback.textContent = '✗ Not quite. The correct answer is highlighted in green.';
+            feedback.className = 'quiz-feedback show incorrect';
+          }
+
+          question.dataset.answered = 'true';
+        });
+      });
+    });
+  })();
+
+  /* ============================================================
+     CATEGORIZE ACTIVITY
+     ============================================================ */
+  (function() {
+    const selects = document.querySelectorAll('.cat-select');
+    const checkBtn = document.getElementById('checkCat');
+    const resetBtn = document.getElementById('resetCat');
+    const feedback = document.getElementById('catFeedback');
+
+    checkBtn.addEventListener('click', function() {
+      let correct = 0;
+      let answered = 0;
+      let total = selects.length;
+
+      selects.forEach(function(select) {
+        select.classList.remove('correct', 'incorrect');
+        const chosen = select.value;
+        if (chosen === '') return;
+
+        answered++;
+        if (chosen === select.dataset.answer) {
+          select.classList.add('correct');
+          correct++;
+        } else {
+          select.classList.add('incorrect');
+        }
+      });
+
+      if (answered === 0) {
+        feedback.textContent = '⚠️ Please choose a category for at least one item first.';
+        feedback.className = 'cat-feedback show partial';
+        return;
+      }
+
+      if (correct === total) {
+        feedback.textContent = '🎉 Perfect! All ' + total + ' programs are correctly categorized.';
+        feedback.className = 'cat-feedback show success';
+      } else {
+        feedback.textContent = 'You got ' + correct + ' out of ' + total + ' correct. Green boxes are correct; red boxes need another look.';
+        feedback.className = 'cat-feedback show partial';
+      }
+    });
+
+    resetBtn.addEventListener('click', function() {
+      selects.forEach(function(select) {
+        select.value = '';
+        select.classList.remove('correct', 'incorrect');
+      });
+      feedback.className = 'cat-feedback';
+      feedback.textContent = '';
+    });
+  })();
+
+  /* ============================================================
+     PRESENTATION MODE
+     ============================================================ */
+  (function() {
+    const slides = document.querySelectorAll('.teach-section');
+    const totalSlides = slides.length;
+    const counter = document.getElementById('slideCounter');
+    const prevBtn = document.getElementById('prevSlide');
+    const nextBtn = document.getElementById('nextSlide');
+    const presentBtn = document.getElementById('togglePresent');
+    const fullscreenBtn = document.getElementById('toggleFullscreen');
+
+    let current = 0;
+    let presenting = false;
+
+    if (totalSlides > 0) {
+      slides[0].classList.add('active-slide');
+      updateCounter();
+    }
+
+    function updateCounter() {
+      counter.textContent = (current + 1) + ' / ' + totalSlides;
+    }
+
+    function showSlide(index) {
+      if (index < 0) index = 0;
+      if (index >= totalSlides) index = totalSlides - 1;
+
+      slides.forEach(function(slide) {
+        slide.classList.remove('active-slide');
+      });
+      slides[index].classList.add('active-slide');
+      current = index;
+      updateCounter();
+
+      if (presenting) {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    function nextSlide() {
+      if (current < totalSlides - 1) showSlide(current + 1);
+    }
+
+    function prevSlide() {
+      if (current > 0) showSlide(current - 1);
+    }
+
+    function enterPresentation() {
+      presenting = true;
+      document.body.classList.add('presenting');
+      presentBtn.innerHTML = '<i class="fas fa-stop"></i>';
+      presentBtn.title = 'Stop presentation (P)';
+      showSlide(0);
+    }
+
+    function exitPresentation() {
+      presenting = false;
+      document.body.classList.remove('presenting');
+      presentBtn.innerHTML = '<i class="fas fa-play"></i>';
+      presentBtn.title = 'Start presentation (P)';
+      slides.forEach(function(slide) {
+        slide.classList.remove('active-slide');
+      });
+      if (document.fullscreenElement) {
+        document.exitFullscreen().catch(function() {});
+      }
+    }
+
+    function togglePresentation() {
+      if (presenting) {
+        exitPresentation();
+      } else {
+        enterPresentation();
+      }
+    }
+
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(function() {});
+      } else {
+        document.exitFullscreen().catch(function() {});
+      }
+    }
+
+    prevBtn.addEventListener('click', prevSlide);
+    nextBtn.addEventListener('click', nextSlide);
+    presentBtn.addEventListener('click', togglePresentation);
+    fullscreenBtn.addEventListener('click', toggleFullscreen);
+
+    document.addEventListener('keydown', function(e) {
+      const tag = (e.target.tagName || '').toLowerCase();
+      const typing = tag === 'input' || tag === 'textarea' || tag === 'select' || e.target.isContentEditable;
+
+      if (e.key === 'ArrowRight' && presenting) {
+        e.preventDefault();
+        nextSlide();
+      } else if (e.key === 'ArrowLeft' && presenting) {
+        e.preventDefault();
+        prevSlide();
+      } else if ((e.key === 'p' || e.key === 'P') && !typing) {
+        e.preventDefault();
+        togglePresentation();
+      } else if ((e.key === 'f' || e.key === 'F') && !typing) {
+        e.preventDefault();
+        toggleFullscreen();
+      } else if (e.key === 'Escape' && presenting) {
+        exitPresentation();
+      }
+    });
+
+    document.addEventListener('fullscreenchange', function() {
+      if (document.fullscreenElement) {
+        fullscreenBtn.innerHTML = '<i class="fas fa-compress"></i>';
+      } else {
+        fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i>';
+      }
+    });
+  })();
+</script>
+
+</body>
+</html>

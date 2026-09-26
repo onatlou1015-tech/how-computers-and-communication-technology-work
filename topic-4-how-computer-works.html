@@ -1,0 +1,2171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Topic 4 · How a Computer Works</title>
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: #f0f5fa;
+      color: #0a1e2f;
+      line-height: 1.7;
+      padding: 2rem 1.5rem 6rem;
+      scroll-behavior: smooth;
+    }
+
+    .wrapper {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    /* ===== BACK LINK ===== */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      color: #1e6b9b;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+      padding: 0.5rem 1rem;
+      border-radius: 40px;
+      background: #ffffff;
+      border: 1px solid #d9e7f5;
+      transition: background 0.2s, gap 0.2s;
+    }
+
+    .back-link:hover {
+      background: #e7f0f9;
+      gap: 0.9rem;
+    }
+
+    /* ===== HEADER ===== */
+    .topic-header {
+      background: linear-gradient(135deg, #0b2a4a 0%, #1a4a6e 100%);
+      border-radius: 2.5rem;
+      padding: 3rem 2.5rem;
+      color: white;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 20px 30px -10px rgba(11, 42, 74, 0.25);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .topic-header::after {
+      content: "4";
+      position: absolute;
+      right: 2rem;
+      bottom: -2.5rem;
+      font-size: 13rem;
+      font-weight: 800;
+      color: rgba(255, 255, 255, 0.06);
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .topic-badge {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(4px);
+      padding: 0.25rem 1rem;
+      border-radius: 40px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .topic-header h1 {
+      font-size: 2.6rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      max-width: 750px;
+      margin-bottom: 0.9rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .topic-header .subhead {
+      font-size: 1.1rem;
+      opacity: 0.9;
+      max-width: 680px;
+      font-weight: 400;
+      position: relative;
+      z-index: 2;
+      border-left: 4px solid #7bb8e0;
+      padding-left: 1.2rem;
+      margin-top: 0.5rem;
+      line-height: 1.6;
+    }
+
+    /* ===== TEACHING SECTIONS ===== */
+    .teach-section {
+      background: #ffffff;
+      border-radius: 2rem;
+      padding: 2.5rem 2.5rem;
+      margin-bottom: 2rem;
+      border: 1px solid #e2edf7;
+      box-shadow: 0 12px 24px -12px rgba(11, 42, 74, 0.08);
+    }
+
+    .teach-section h2 {
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: #0b2a4a;
+      margin-bottom: 1.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      letter-spacing: -0.01em;
+      line-height: 1.3;
+    }
+
+    .teach-section h2 i {
+      color: #1e6b9b;
+      font-size: 1.4rem;
+      background: #e7f0f9;
+      width: 3rem;
+      height: 3rem;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .teach-section h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #0b2a4a;
+      margin-bottom: 0.8rem;
+      margin-top: 2rem;
+      line-height: 1.35;
+    }
+
+    .teach-section h3:first-of-type {
+      margin-top: 0;
+    }
+
+    .teach-section h4 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #1a4a6e;
+      margin-bottom: 0.5rem;
+      margin-top: 1.4rem;
+    }
+
+    .teach-section p {
+      color: #1d3b5c;
+      font-size: 1.02rem;
+      margin-bottom: 1.2rem;
+      line-height: 1.8;
+    }
+
+    .teach-section ul,
+    .teach-section ol {
+      margin: 0 0 1.4rem 1.4rem;
+      color: #1d3b5c;
+      font-size: 1.02rem;
+      line-height: 1.8;
+    }
+
+    .teach-section li {
+      margin-bottom: 0.5rem;
+    }
+
+    .teach-section strong {
+      color: #0b2a4a;
+    }
+
+    .teach-section em {
+      color: #1e6b9b;
+      font-style: normal;
+      font-weight: 600;
+    }
+
+    .definition-box {
+      background: #eaf1f9;
+      border-left: 5px solid #1e6b9b;
+      border-radius: 0 1rem 1rem 0;
+      padding: 1.4rem 1.6rem;
+      margin: 1.2rem 0 1.6rem;
+    }
+
+    .definition-box p {
+      margin-bottom: 0;
+      font-size: 1.08rem;
+      line-height: 1.8;
+    }
+
+    .analogy-box {
+      background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+      border-left: 5px solid #d97706;
+      border-radius: 0 1rem 1rem 0;
+      padding: 1.4rem 1.6rem;
+      margin: 1.2rem 0 1.6rem;
+    }
+
+    .analogy-box p {
+      margin-bottom: 0;
+      color: #78350f;
+      font-size: 1.02rem;
+    }
+
+    .analogy-box strong {
+      color: #92400e;
+    }
+
+    /* ===== FOUR FUNCTIONS GRID ===== */
+    .functions-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 1.2rem;
+      margin-top: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .function-card {
+      background: #f7fafd;
+      border: 1px solid #d9e7f5;
+      border-radius: 1.5rem;
+      padding: 1.6rem 1.3rem;
+      text-align: center;
+      transition: all 0.25s ease;
+    }
+
+    .function-card:hover {
+      transform: translateY(-4px);
+      border-color: #a6c8e5;
+      box-shadow: 0 12px 24px -12px rgba(11, 42, 74, 0.12);
+    }
+
+    .function-icon {
+      width: 3.4rem;
+      height: 3.4rem;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin: 0 auto 1rem;
+      color: white;
+    }
+
+    .function-card:nth-child(1) .function-icon { background: #2563eb; }
+    .function-card:nth-child(2) .function-icon { background: #7c3aed; }
+    .function-card:nth-child(3) .function-icon { background: #db2777; }
+    .function-card:nth-child(4) .function-icon { background: #059669; }
+
+    .function-card h4 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #0b2a4a;
+      margin-bottom: 0.5rem;
+      margin-top: 0;
+    }
+
+    .function-card p {
+      font-size: 0.92rem;
+      color: #3a5775;
+      margin-bottom: 0;
+      line-height: 1.6;
+    }
+
+    /* ===== FETCH-DECODE-EXECUTE CYCLE ===== */
+    .fde-cycle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin: 1.8rem 0;
+      padding: 1.6rem 1.2rem;
+      background: #f7fafd;
+      border-radius: 1.5rem;
+      border: 1px solid #d9e7f5;
+    }
+
+    .fde-step {
+      background: white;
+      border: 3px solid;
+      border-radius: 1.2rem;
+      padding: 1rem 1.3rem;
+      text-align: center;
+      min-width: 130px;
+      transition: transform 0.2s;
+    }
+
+    .fde-step:hover {
+      transform: scale(1.04);
+    }
+
+    .fde-step .fde-number {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      opacity: 0.7;
+      margin-bottom: 0.3rem;
+    }
+
+    .fde-step .fde-name {
+      font-size: 1rem;
+      font-weight: 800;
+      color: #0b2a4a;
+      margin-bottom: 0.3rem;
+    }
+
+    .fde-step .fde-desc {
+      font-size: 0.78rem;
+      color: #3a5775;
+      line-height: 1.4;
+    }
+
+    .fde-step.fetch { border-color: #2563eb; }
+    .fde-step.fetch .fde-number { color: #2563eb; }
+    .fde-step.decode { border-color: #7c3aed; }
+    .fde-step.decode .fde-number { color: #7c3aed; }
+    .fde-step.execute { border-color: #db2777; }
+    .fde-step.execute .fde-number { color: #db2777; }
+    .fde-step.store { border-color: #059669; }
+    .fde-step.store .fde-number { color: #059669; }
+
+    .fde-arrow {
+      color: #1e6b9b;
+      font-size: 1.2rem;
+    }
+
+    .cycle-arrow {
+      width: 100%;
+      text-align: center;
+      margin-top: 0.5rem;
+      color: #1e6b9b;
+      font-size: 0.85rem;
+      font-weight: 600;
+      font-style: italic;
+    }
+
+    /* ===== BINARY DEMO ===== */
+    .binary-demo {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+      gap: 0.6rem;
+      margin: 1.5rem 0;
+      padding: 1.4rem;
+      background: #0b2a4a;
+      border-radius: 1.5rem;
+    }
+
+    .binary-cell {
+      text-align: center;
+      padding: 0.8rem 0.4rem;
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: 0.8rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .binary-cell .bit {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #7dd3fc;
+      font-family: 'Courier New', monospace;
+      line-height: 1.2;
+    }
+
+    .binary-cell .bit.on {
+      color: #4ade80;
+      text-shadow: 0 0 12px rgba(74, 222, 128, 0.6);
+    }
+
+    .binary-cell .label {
+      font-size: 0.68rem;
+      color: rgba(255, 255, 255, 0.6);
+      margin-top: 0.3rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    .binary-caption {
+      text-align: center;
+      color: #4a6a8a;
+      font-size: 0.88rem;
+      font-style: italic;
+      margin-top: -0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    /* ===== BYTE VISUAL ===== */
+    .byte-visual {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      justify-content: center;
+      margin: 1.5rem 0;
+    }
+
+    .byte-item {
+      background: #f7fafd;
+      border: 2px solid #d9e7f5;
+      border-radius: 1rem;
+      padding: 1rem 1.2rem;
+      text-align: center;
+      min-width: 130px;
+      flex: 1 1 130px;
+    }
+
+    .byte-item .byte-value {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: #1e6b9b;
+      font-family: 'Courier New', monospace;
+      margin-bottom: 0.3rem;
+    }
+
+    .byte-item .byte-name {
+      font-size: 0.8rem;
+      color: #3a5775;
+      font-weight: 600;
+    }
+
+    .byte-item .byte-example {
+      font-size: 0.72rem;
+      color: #7a94ad;
+      margin-top: 0.2rem;
+    }
+
+    /* ===== FLOW DIAGRAM ===== */
+    .flow-diagram {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin: 1.6rem 0;
+      padding: 1.4rem;
+      background: #f7fafd;
+      border-radius: 1.5rem;
+      border: 1px solid #d9e7f5;
+    }
+
+    .flow-step {
+      background: white;
+      border: 2px solid #1e6b9b;
+      border-radius: 1rem;
+      padding: 0.7rem 1.2rem;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: #0b2a4a;
+      text-align: center;
+    }
+
+    .flow-arrow {
+      color: #1e6b9b;
+      font-size: 1.1rem;
+    }
+
+    /* ===== IMAGE PLACEHOLDER ===== */
+    .img-placeholder {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: linear-gradient(135deg, #eaf1f9 0%, #d9e7f5 100%);
+      border: 3px dashed #a6c8e5;
+      border-radius: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+      padding: 2rem;
+      text-align: center;
+      margin: 1.8rem 0 0.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .img-placeholder .img-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #0b2a4a;
+    }
+
+    .img-placeholder .img-filename {
+      background: #ffffff;
+      border: 1px solid #c6d9ec;
+      border-radius: 40px;
+      padding: 0.5rem 1.1rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #1e6b9b;
+      font-family: 'Courier New', monospace;
+      margin-top: 0.5rem;
+      max-width: 100%;
+    }
+
+    .img-placeholder img {
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      border-radius: 1rem;
+    }
+
+    .img-caption {
+      font-size: 0.88rem;
+      color: #4a6a8a;
+      text-align: center;
+      font-style: italic;
+      margin-bottom: 1rem;
+    }
+
+    /* ===== ACTIVITY ===== */
+    .activity-box {
+      background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+      border: 2px solid #fcd34d;
+      border-radius: 1.5rem;
+      padding: 1.8rem 1.8rem;
+      margin-top: 1.2rem;
+    }
+
+    .activity-box h3 {
+      color: #92400e;
+      margin-top: 0;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .activity-box h3 i { color: #d97706; }
+
+    .activity-box p {
+      color: #78350f;
+      margin-bottom: 1rem;
+    }
+
+    .activity-steps {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      counter-reset: step-counter;
+    }
+
+    .activity-steps li {
+      counter-increment: step-counter;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.8rem;
+      padding: 0.6rem 0;
+      font-size: 0.98rem;
+      color: #78350f;
+      line-height: 1.7;
+    }
+
+    .activity-steps li::before {
+      content: counter(step-counter);
+      background: #d97706;
+      color: white;
+      font-weight: 700;
+      font-size: 0.8rem;
+      width: 1.7rem;
+      height: 1.7rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 0.2rem;
+    }
+
+    /* ===== KEYSTROKE JOURNEY TIMELINE ===== */
+    .journey-timeline {
+      position: relative;
+      padding-left: 2.4rem;
+      margin: 1.6rem 0;
+    }
+
+    .journey-timeline::before {
+      content: '';
+      position: absolute;
+      left: 1rem;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: linear-gradient(to bottom, #2563eb, #7c3aed, #db2777, #059669);
+      border-radius: 3px;
+    }
+
+    .journey-item {
+      position: relative;
+      padding: 0.9rem 0 0.9rem 1.4rem;
+    }
+
+    .journey-item::before {
+      content: '';
+      position: absolute;
+      left: -1.7rem;
+      top: 1.3rem;
+      width: 1rem;
+      height: 1rem;
+      border-radius: 50%;
+      background: white;
+      border: 3px solid #1e6b9b;
+      box-shadow: 0 0 0 3px white;
+    }
+
+    .journey-item .journey-step {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      color: #1e6b9b;
+      margin-bottom: 0.2rem;
+    }
+
+    .journey-item .journey-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #0b2a4a;
+      margin-bottom: 0.3rem;
+    }
+
+    .journey-item .journey-desc {
+      font-size: 0.95rem;
+      color: #3a5775;
+      line-height: 1.7;
+    }
+
+    /* ===== INTERACTIVE FLOWCHART BUILDER ===== */
+    .flowchart-builder {
+      background: #f7fafd;
+      border: 2px solid #d9e7f5;
+      border-radius: 1.5rem;
+      padding: 1.6rem 1.6rem;
+      margin-top: 1.4rem;
+    }
+
+    .flowchart-builder h4 {
+      margin-top: 0;
+      color: #0b2a4a;
+      font-size: 1.05rem;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .flowchart-builder h4 i {
+      color: #1e6b9b;
+    }
+
+    .flowchart-options {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 0.7rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .flowchart-option {
+      background: white;
+      border: 1.5px solid #c6d9ec;
+      border-radius: 12px;
+      padding: 0.7rem 0.9rem;
+      font-size: 0.88rem;
+      color: #0b2a4a;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      transition: all 0.15s;
+      text-align: center;
+      font-weight: 600;
+    }
+
+    .flowchart-option:hover {
+      border-color: #1e6b9b;
+      background: #eaf1f9;
+      transform: translateY(-2px);
+    }
+
+    .flowchart-option.used {
+      opacity: 0.4;
+      pointer-events: none;
+      background: #e2edf9;
+    }
+
+    .flowchart-slots {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      min-height: 80px;
+      padding: 1rem;
+      background: white;
+      border: 2px dashed #c6d9ec;
+      border-radius: 1rem;
+    }
+
+    .flowchart-slot {
+      border: 2px solid #1e6b9b;
+      border-radius: 0.9rem;
+      padding: 0.6rem 1rem;
+      font-weight: 700;
+      font-size: 0.88rem;
+      color: #0b2a4a;
+      background: #f0f9ff;
+      min-width: 90px;
+      text-align: center;
+      transition: all 0.2s;
+    }
+
+    .flowchart-slot.empty {
+      border-style: dashed;
+      border-color: #c6d9ec;
+      background: #f7fafd;
+      color: #9db8d0;
+      font-weight: 500;
+    }
+
+    .flowchart-slot.correct {
+      border-color: #22c55e;
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .flowchart-slot.incorrect {
+      border-color: #ef4444;
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .flowchart-arrow {
+      color: #1e6b9b;
+      font-size: 1rem;
+    }
+
+    .flowchart-feedback {
+      font-size: 0.92rem;
+      font-weight: 600;
+      margin-top: 1rem;
+      padding: 0.8rem 1.2rem;
+      border-radius: 10px;
+      display: none;
+    }
+
+    .flowchart-feedback.show { display: block; }
+    .flowchart-feedback.success { background: #dcfce7; color: #166534; }
+    .flowchart-feedback.partial { background: #fef3c7; color: #92400e; }
+
+    /* ===== QUIZ ===== */
+    .quiz-question {
+      margin-bottom: 1.8rem;
+    }
+
+    .quiz-question p {
+      font-weight: 600;
+      color: #0b2a4a;
+      margin-bottom: 0.8rem;
+      font-size: 1.02rem;
+    }
+
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .quiz-option {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      padding: 0.8rem 1rem;
+      background: #f7fafd;
+      border: 1.5px solid #d9e7f5;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      color: #1d3b5c;
+      transition: all 0.2s;
+      font-family: 'Inter', sans-serif;
+      text-align: left;
+      width: 100%;
+      line-height: 1.5;
+    }
+
+    .quiz-option:hover {
+      border-color: #a6c8e5;
+      background: #eaf1f9;
+    }
+
+    .quiz-option.correct {
+      background: #dcfce7;
+      border-color: #86efac;
+      color: #166534;
+      font-weight: 600;
+    }
+
+    .quiz-option.incorrect {
+      background: #fee2e2;
+      border-color: #fca5a5;
+      color: #991b1b;
+    }
+
+    .quiz-option i {
+      font-size: 0.85rem;
+      color: #94a3b8;
+      flex-shrink: 0;
+    }
+
+    .quiz-option.correct i { color: #16a34a; }
+    .quiz-option.incorrect i { color: #dc2626; }
+
+    .quiz-feedback {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-top: 0.7rem;
+      padding: 0.7rem 1rem;
+      border-radius: 10px;
+      display: none;
+    }
+
+    .quiz-feedback.show { display: block; }
+    .quiz-feedback.correct { background: #dcfce7; color: #166534; }
+    .quiz-feedback.incorrect { background: #fee2e2; color: #991b1b; }
+
+    /* ===== KEY TERMS ===== */
+    .key-terms {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
+      margin-top: 1.2rem;
+    }
+
+    .term-card {
+      background: #f7fafd;
+      border: 1px solid #d9e7f5;
+      border-left: 4px solid #1e6b9b;
+      border-radius: 0 1rem 1rem 0;
+      padding: 1.1rem 1.2rem;
+    }
+
+    .term-card dt {
+      font-weight: 700;
+      color: #0b2a4a;
+      font-size: 1rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .term-card dd {
+      font-size: 0.92rem;
+      color: #3a5775;
+      line-height: 1.6;
+    }
+
+    /* ===== STUDENT OUTCOME ===== */
+    .outcome-banner {
+      background: linear-gradient(135deg, #0b2a4a 0%, #1a4a6e 100%);
+      border-radius: 2rem;
+      padding: 2rem 2.2rem;
+      color: white;
+      margin-top: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .outcome-banner .outcome-icon {
+      background: rgba(255, 255, 255, 0.15);
+      width: 4rem;
+      height: 4rem;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      flex-shrink: 0;
+    }
+
+    .outcome-banner .outcome-text {
+      flex: 1;
+      min-width: 220px;
+    }
+
+    .outcome-banner h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+
+    .outcome-banner p {
+      font-size: 0.98rem;
+      opacity: 0.92;
+      margin-bottom: 0;
+    }
+
+    /* ===== TEACHER INSTRUCTIONS ===== */
+    .custom-instructions {
+      background: #ffffff;
+      border-radius: 2rem;
+      padding: 2.2rem 2.2rem;
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+      border: 2px solid #1e6b9b;
+      box-shadow: 0 12px 24px -12px rgba(30, 107, 155, 0.15);
+      position: relative;
+    }
+
+    .custom-instructions::before {
+      content: "📌";
+      position: absolute;
+      top: -1.2rem;
+      left: 2rem;
+      background: #1e6b9b;
+      color: white;
+      width: 2.4rem;
+      height: 2.4rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      box-shadow: 0 6px 12px -4px rgba(30, 107, 155, 0.4);
+    }
+
+    .custom-instructions h2 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #0b2a4a;
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      letter-spacing: -0.01em;
+      margin-top: 0.5rem;
+    }
+
+    .custom-instructions h2 i {
+      color: #1e6b9b;
+      font-size: 1.4rem;
+      background: #e7f0f9;
+      width: 2.8rem;
+      height: 2.8rem;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .custom-instructions p {
+      color: #1d3b5c;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      line-height: 1.7;
+    }
+
+    .custom-instructions a.inline-link {
+      color: #1e6b9b;
+      font-weight: 600;
+      text-decoration: none;
+      border-bottom: 2px solid #a6c8e5;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .custom-instructions a.inline-link:hover {
+      color: #0b2a4a;
+      border-bottom-color: #1e6b9b;
+    }
+
+    .instruction-note {
+      background: #eaf1f9;
+      border-left: 4px solid #1e6b9b;
+      border-radius: 0 0.8rem 0.8rem 0;
+      padding: 1rem 1.2rem;
+      margin-top: 1rem;
+      font-size: 0.95rem;
+      color: #2f506d;
+    }
+
+    .instruction-note i {
+      color: #1e6b9b;
+      margin-right: 0.4rem;
+    }
+
+    /* ===== LINK BUTTONS ===== */
+    .link-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      margin-top: 1.2rem;
+    }
+
+    .custom-link-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: #dbeafe;
+      color: #0b2a4a;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      padding: 0.8rem 1.6rem;
+      border-radius: 40px;
+      transition: background 0.2s, color 0.2s, gap 0.2s, transform 0.15s, box-shadow 0.2s;
+      border: 1.5px solid #93c5fd;
+      box-shadow: 0 6px 12px -8px rgba(30, 107, 155, 0.35);
+    }
+
+    .custom-link-btn i {
+      font-size: 0.8rem;
+      color: #1e6b9b;
+      transition: color 0.2s;
+    }
+
+    .custom-link-btn:hover {
+      background: #1e6b9b;
+      color: #ffffff;
+      gap: 0.9rem;
+      transform: translateY(-2px);
+      border-color: #1e6b9b;
+      box-shadow: 0 10px 18px -8px rgba(30, 107, 155, 0.5);
+    }
+
+    .custom-link-btn:hover i {
+      color: #ffffff;
+    }
+
+    /* ===== FOOTER NAV ===== */
+    .footer-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      padding: 1.5rem 2rem;
+      background: #ffffffec;
+      border-radius: 2rem;
+      border: 1px solid #cbdbe9;
+      margin-top: 1rem;
+    }
+
+    .footer-nav a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      color: #1e6b9b;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      padding: 0.6rem 1.2rem;
+      border-radius: 40px;
+      transition: background 0.2s, gap 0.2s;
+    }
+
+    .footer-nav a:hover {
+      background: #e7f0f9;
+      gap: 0.9rem;
+    }
+
+    .footer-nav .next-link {
+      background: #0b2a4a;
+      color: white;
+      border: 1px solid #1e4a6e;
+    }
+
+    .footer-nav .next-link:hover {
+      background: #1e4a6e;
+    }
+
+    /* ============================================================
+       PRESENTATION CONTROLS
+       ============================================================ */
+    .present-toolbar {
+      position: fixed;
+      bottom: 1.2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #0b2a4a;
+      color: white;
+      border-radius: 50px;
+      padding: 0.6rem 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      box-shadow: 0 12px 30px -8px rgba(11, 42, 74, 0.5);
+      z-index: 1000;
+      border: 1px solid #1e4a6e;
+    }
+
+    .present-toolbar button {
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: white;
+      width: 2.4rem;
+      height: 2.4rem;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      transition: background 0.2s, transform 0.1s;
+    }
+
+    .present-toolbar button:hover {
+      background: rgba(255, 255, 255, 0.25);
+    }
+
+    .present-toolbar button:active {
+      transform: scale(0.94);
+    }
+
+    .present-toolbar .slide-counter {
+      font-size: 0.85rem;
+      font-weight: 600;
+      min-width: 62px;
+      text-align: center;
+      letter-spacing: 0.5px;
+    }
+
+    .present-toolbar .toolbar-label {
+      font-size: 0.75rem;
+      opacity: 0.7;
+      padding-right: 0.3rem;
+      border-right: 1px solid rgba(255, 255, 255, 0.2);
+      margin-right: 0.3rem;
+      display: none;
+    }
+
+    @media (min-width: 600px) {
+      .present-toolbar .toolbar-label { display: inline; }
+    }
+
+    body.presenting .teach-section {
+      display: none;
+    }
+
+    body.presenting .teach-section.active-slide {
+      display: block;
+      animation: fadeIn 0.35s ease;
+      min-height: 60vh;
+    }
+
+    body.presenting .topic-header,
+    body.presenting .back-link,
+    body.presenting .footer-nav,
+    body.presenting .custom-instructions,
+    body.presenting .outcome-banner {
+      display: none;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    body.presenting .teach-section h2 {
+      font-size: 2.1rem;
+    }
+
+    body.presenting .teach-section p,
+    body.presenting .teach-section li {
+      font-size: 1.15rem;
+      line-height: 1.9;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 700px) {
+      .topic-header { padding: 2rem 1.5rem; }
+      .topic-header h1 { font-size: 1.8rem; }
+      .teach-section { padding: 1.7rem 1.4rem; }
+      .outcome-banner { padding: 1.5rem 1.5rem; }
+      .footer-nav { flex-direction: column; align-items: stretch; text-align: center; }
+      .footer-nav a { justify-content: center; }
+      .custom-instructions { padding: 1.6rem 1.4rem; }
+      .flow-diagram { flex-direction: column; }
+      .flow-arrow { transform: rotate(90deg); }
+      .fde-cycle { flex-direction: column; }
+      .fde-arrow { transform: rotate(90deg); }
+    }
+
+    @media (max-width: 480px) {
+      body { padding: 1rem 0.8rem 6rem; }
+      .topic-header h1 { font-size: 1.5rem; }
+      .teach-section h2 { font-size: 1.3rem; }
+      .functions-grid { grid-template-columns: 1fr 1fr; }
+      .custom-link-btn { width: 100%; justify-content: center; }
+      .binary-cell .bit { font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- ===== BACK LINK ===== -->
+  <a href="index.html" class="back-link">
+    <i class="fas fa-arrow-left"></i> Back to Topic Index
+  </a>
+
+  <!-- ===== TOPIC HEADER ===== -->
+  <header class="topic-header">
+    <div class="topic-badge">
+      <i class="fas fa-rotate-right" style="margin-right: 6px;"></i> Topic 4
+    </div>
+    <h1>How a Computer Works</h1>
+    <div class="subhead">
+      The IPO+S model, the fetch–decode–execute cycle, binary data, and how a simple task flows through the system.
+    </div>
+  </header>
+
+  <!-- ============================================================
+       SLIDE 1 — THE IPO+S MODEL
+       ============================================================ -->
+  <section class="teach-section">
+    <h2><i class="fas fa-layer-group"></i> The IPO+S Model</h2>
+
+    <p>
+      In Topic 1, you learned that every computer system performs four main functions:
+      <strong>Input</strong>, <strong>Process</strong>, <strong>Storage</strong>, and
+      <strong>Output</strong>. This pattern is called the <strong>IPO+S model</strong>, and it
+      is the foundation of how every computer works — from the smallest smartwatch to the most
+      powerful supercomputer.
+    </p>
+
+    <div class="definition-box">
+      <p>
+        <strong>IPO+S</strong> stands for <strong>Input → Process → Output → Storage</strong>.
+        It describes the flow of data through a computer system. Data enters as input, is worked
+        on during processing, is shown or sent out as output, and is saved in storage for later use.
+      </p>
+    </div>
+
+    <div class="functions-grid">
+      <div class="function-card">
+        <div class="function-icon"><i class="fas fa-keyboard"></i></div>
+        <h4>Input</h4>
+        <p>Data comes <strong>into</strong> the computer from the user or another device.</p>
+      </div>
+      <div class="function-card">
+        <div class="function-icon"><i class="fas fa-microchip"></i></div>
+        <h4>Process</h4>
+        <p>The CPU <strong>works on</strong> the data — calculating, comparing, and transforming it.</p>
+      </div>
+      <div class="function-card">
+        <div class="function-icon"><i class="fas fa-display"></i></div>
+        <h4>Output</h4>
+        <p>The results are <strong>shown</strong> to the user through a screen, speaker, or printer.</p>
+      </div>
+      <div class="function-card">
+        <div class="function-icon"><i class="fas fa-hard-drive"></i></div>
+        <h4>Storage</h4>
+        <p>Data is <strong>saved</strong> for later — in RAM temporarily, or on disk permanently.</p>
+      </div>
+    </div>
+
+    <div class="flow-diagram">
+      <div class="flow-step">Input</div>
+      <span class="flow-arrow"><i class="fas fa-arrow-right"></i></span>
+      <div class="flow-step">Process</div>
+      <span class="flow-arrow"><i class="fas fa-arrow-right"></i></span>
+      <div class="flow-step">Output</div>
+      <span class="flow-arrow"><i class="fas fa-arrow-right"></i></span>
+      <div class="flow-step">Storage</div>
+    </div>
+
+    <h3>Why the Order Matters</h3>
+    <p>
+      Notice that in the IPO+S model, <strong>storage comes last</strong> — after output. This
+      is because storage is about <em>saving</em> data after it has been processed and shown.
+      However, storage also interacts with the other steps in two important ways:
+    </p>
+    <ul>
+      <li>
+        <strong>Before processing:</strong> Data and programs must be loaded <em>from</em>
+        storage into RAM before the CPU can work on them.
+      </li>
+      <li>
+        <strong>After processing:</strong> The results are saved <em>to</em> storage so they are
+        not lost when the computer turns off.
+      </li>
+    </ul>
+    <p>
+      So the full picture is a cycle, not a straight line. Data is loaded from storage, becomes
+      input, is processed, is output, and is saved back to storage — ready to be used again next
+      time.
+    </p>
+
+    <div class="analogy-box">
+      <p>
+        <strong>Analogy:</strong> Think of doing homework. You <strong>take out</strong> your
+        notebook from your bag (load from storage). You <strong>read</strong> the question
+        (input). You <strong>think</strong> about the answer (process). You <strong>write</strong>
+        the answer (output). Finally, you <strong>put the notebook away</strong> in your bag
+        (store). That is exactly how a computer handles data.
+      </p>
+    </div>
+
+    <!-- IMAGE 1: IPO+S diagram -->
+    <div class="img-placeholder" id="img-placeholder-1">
+      <span class="img-title">The IPO+S Model: Input → Process → Output → Storage</span>
+      <span class="img-filename"><img src="images/ipos-model.png" alt="Diagram of the IPO+S model showing Input, Process, Output, and Storage"></span>
+    </div>
+    <p class="img-caption">Figure 4.1 — The IPO+S model of data flow.</p>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 2 — THE FETCH-DECODE-EXECUTE CYCLE
+       ============================================================ -->
+  <section class="teach-section">
+    <h2><i class="fas fa-rotate-right"></i> The Fetch–Decode–Execute Cycle</h2>
+
+    <p>
+      The IPO+S model describes the <em>big picture</em> of how data flows through a computer.
+      But how does the CPU actually <em>do</em> the processing? The answer lies in a repeating
+      pattern called the <strong>fetch–decode–execute cycle</strong>.
+    </p>
+
+    <p>
+      This cycle happens inside the CPU billions of times every second. Every instruction your
+      computer carries out — opening an app, playing a video, saving a file — is made up of
+      thousands or millions of these tiny cycles.
+    </p>
+
+    <div class="fde-cycle">
+      <div class="fde-step fetch">
+        <div class="fde-number">Step 1</div>
+        <div class="fde-name">Fetch</div>
+        <div class="fde-desc">The CPU gets the next instruction from memory.</div>
+      </div>
+      <span class="fde-arrow"><i class="fas fa-arrow-right"></i></span>
+      <div class="fde-step decode">
+        <div class="fde-number">Step 2</div>
+        <div class="fde-name">Decode</div>
+        <div class="fde-desc">The CPU figures out what the instruction means.</div>
+      </div>
+      <span class="fde-arrow"><i class="fas fa-arrow-right"></i></span>
+      <div class="fde-step execute">
+        <div class="fde-number">Step 3</div>
+        <div class="fde-name">Execute</div>
+        <div class="fde-desc">The CPU carries out the instruction.</div>
+      </div>
+      <span class="fde-arrow"><i class="fas fa-arrow-right"></i></span>
+      <div class="fde-step store">
+        <div class="fde-number">Step 4</div>
+        <div class="fde-name">Store</div>
+        <div class="fde-desc">The result is written back to memory or a register.</div>
+      </div>
+      <div class="cycle-arrow">
+        <i class="fas fa-rotate-left"></i> The cycle repeats — fetching the next instruction
+      </div>
+    </div>
+
+    <h3>Step 1 — Fetch</h3>
+    <p>
+      The CPU <strong>fetches</strong> (retrieves) the next instruction from memory. Every
+      program is stored as a list of instructions, and the CPU keeps track of which one comes
+      next using a special counter. The instruction is brought into the CPU so it can be worked on.
+    </p>
+
+    <h3>Step 2 — Decode</h3>
+    <p>
+      The CPU <strong>decodes</strong> the instruction — that is, it figures out what the
+      instruction means. Instructions are written in machine code, which is a pattern of 0s and
+      1s. The CPU translates that pattern into an action, such as "add these two numbers" or
+      "move this data to a different location".
+    </p>
+
+    <h3>Step 3 — Execute</h3>
+    <p>
+      The CPU <strong>executes</strong> the instruction — it actually carries out the action.
+      This might mean performing a calculation, comparing two values, moving data, or jumping to
+      a different part of the program.
+    </p>
+
+    <h3>Step 4 — Store</h3>
+    <p>
+      The CPU <strong>stores</strong> the result. The result might be written back into a
+      register inside the CPU, saved into RAM, or sent to another component like the GPU or a
+      storage drive. Once the result is stored, the CPU is ready to fetch the next instruction,
+      and the cycle begins again.
+    </p>
+
+    <div class="analogy-box">
+      <p>
+        <strong>Analogy:</strong> Imagine you are following a recipe.
+        <strong>Fetch</strong> = reading the next step on the recipe card.
+        <strong>Decode</strong> = understanding what the step means ("chop the onions").
+        <strong>Execute</strong> = actually chopping the onions.
+        <strong>Store</strong> = putting the chopped onions in a bowl and moving on to the
+        next step. Just like a chef repeats these steps for every ingredient, the CPU repeats
+        this cycle for every instruction.
+      </p>
+    </div>
+
+    <h3>Why This Cycle Matters</h3>
+    <p>
+      The speed of this cycle is one of the main things that determines how fast a computer
+      feels. Modern CPUs can complete billions of fetch–decode–execute cycles every second.
+      This is why a modern computer can play high-definition video, run complex games, or handle
+      thousands of calculations at once — it is simply repeating this simple cycle at an
+      incredible speed.
+    </p>
+
+    <!-- IMAGE 2: Fetch-Decode-Execute diagram -->
+    <div class="img-placeholder" id="img-placeholder-2">
+      <span class="img-title">The Fetch–Decode–Execute Cycle</span>
+      <span class="img-filename"><img src="images/fetch-decode-execute.png" alt="The fetch-decode-execute cycle with four steps"></span>
+    </div>
+    <p class="img-caption">Figure 4.2 — The fetch–decode–execute cycle inside the CPU.</p>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 3 — HOW DATA IS REPRESENTED
+       ============================================================ -->
+  <section class="teach-section">
+    <h2><i class="fas fa-binary"></i> How Data Is Represented in a Computer</h2>
+
+    <p>
+      Here is something surprising: computers do not understand letters, pictures, or sounds.
+      Deep inside the CPU, everything is stored and processed as only two values —
+      <strong>0 and 1</strong>. This system is called <strong>binary</strong>.
+    </p>
+
+    <h3>Binary — The Language of 0s and 1s</h3>
+    <p>
+      Inside a computer, there are millions of tiny electronic switches called
+      <strong>transistors</strong>. Each transistor can be in one of two states:
+      <em>off</em> or <em>on</em>. We represent "off" as <strong>0</strong> and "on" as
+      <strong>1</strong>. This is why computers use binary — it matches the physical reality of
+      the electronic switches inside them.
+    </p>
+
+    <p>
+      A single 0 or 1 is called a <strong>bit</strong> (short for "binary digit"). A bit is the
+      smallest unit of data in a computer.
+    </p>
+
+    <div class="binary-demo">
+      <div class="binary-cell">
+        <div class="bit">0</div>
+        <div class="label">OFF</div>
+      </div>
+      <div class="binary-cell">
+        <div class="bit on">1</div>
+        <div class="label">ON</div>
+      </div>
+      <div class="binary-cell">
+        <div class="bit on">1</div>
+        <div class="label">ON</div>
+      </div>
+      <div class="binary-cell">
+        <div class="bit">0</div>
+        <div class="label">OFF</div>
+      </div>
+      <div class="binary-cell">
+        <div class="bit on">1</div>
+        <div class="label">ON</div>
+      </div>
+      <div class="binary-cell">
+        <div class="bit">0</div>
+        <div class="label">OFF</div>
+      </div>
+      <div class="binary-cell">
+        <div class="bit">0</div>
+        <div class="label">OFF</div>
+      </div>
+      <div class="binary-cell">
+        <div class="bit on">1</div>
+        <div class="label">ON</div>
+      </div>
+    </div>
+    <p class="binary-caption">Example: 8 bits — 0 1 1 0 1 0 0 1 — this equals the letter "i" in ASCII code.</p>
+
+    <h3>Bits and Bytes</h3>
+    <p>
+      A single bit does not carry much information — just one 0 or one 1. To represent
+      something useful, computers group bits together. The most common group is
+      <strong>8 bits</strong>, which is called a <strong>byte</strong>.
+    </p>
+
+    <p>
+      Here are the standard units of data, from smallest to largest:
+    </p>
+
+    <div class="byte-visual">
+      <div class="byte-item">
+        <div class="byte-value">1 bit</div>
+        <div class="byte-name">Binary digit</div>
+        <div class="byte-example">0 or 1</div>
+      </div>
+      <div class="byte-item">
+        <div class="byte-value">1 byte</div>
+        <div class="byte-name">8 bits</div>
+        <div class="byte-example">One character (e.g., "A")</div>
+      </div>
+      <div class="byte-item">
+        <div class="byte-value">1 KB</div>
+        <div class="byte-name">1,024 bytes</div>
+        <div class="byte-example">A short paragraph</div>
+      </div>
+      <div class="byte-item">
+        <div class="byte-value">1 MB</div>
+        <div class="byte-name">1,024 KB</div>
+        <div class="byte-example">A photo or a song</div>
+      </div>
+      <div class="byte-item">
+        <div class="byte-value">1 GB</div>
+        <div class="byte-name">1,024 MB</div>
+        <div class="byte-example">A movie or a large app</div>
+      </div>
+      <div class="byte-item">
+        <div class="byte-value">1 TB</div>
+        <div class="byte-name">1,024 GB</div>
+        <div class="byte-example">A large hard drive</div>
+      </div>
+    </div>
+
+    <h3>How Binary Represents Everything</h3>
+    <p>
+      Using only 0s and 1s, computers can represent every kind of data:
+    </p>
+    <ul>
+      <li><strong>Numbers:</strong> The decimal number 5 becomes <em>0101</em> in binary.</li>
+      <li><strong>Letters:</strong> The letter "A" is represented as <em>01000001</em> using the ASCII code.</li>
+      <li><strong>Images:</strong> Each pixel's colour is stored as three numbers (red, green, blue), each in binary.</li>
+      <li><strong>Sound:</strong> A sound wave is sampled thousands of times per second, and each sample is stored as a number in binary.</li>
+      <li><strong>Video:</strong> A video is just many images shown in rapid sequence, each one made of binary numbers.</li>
+    </ul>
+
+    <div class="analogy-box">
+      <p>
+        <strong>Analogy:</strong> Think of binary like a very simple language with only two
+        words — "yes" and "no". With just those two words, you can answer any yes/no question.
+        By asking many questions in a row, you can communicate anything. That is exactly how a
+        computer uses bits to represent everything.
+      </p>
+    </div>
+
+    <div class="key-terms">
+      <dl class="term-card">
+        <dt>Binary</dt>
+        <dd>A number system that uses only two digits: 0 and 1.</dd>
+      </dl>
+      <dl class="term-card">
+        <dt>Bit</dt>
+        <dd>The smallest unit of data — a single 0 or 1.</dd>
+      </dl>
+      <dl class="term-card">
+        <dt>Byte</dt>
+        <dd>A group of 8 bits, usually representing one character.</dd>
+      </dl>
+      <dl class="term-card">
+        <dt>Transistor</dt>
+        <dd>A tiny electronic switch inside a CPU that stores a 0 or a 1.</dd>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 4 — HOW A SIMPLE TASK FLOWS THROUGH THE SYSTEM
+       ============================================================ -->
+  <section class="teach-section">
+    <h2><i class="fas fa-keyboard"></i> How a Simple Task Flows Through the System</h2>
+
+    <p>
+      Now let us put everything together. We are going to trace exactly what happens when you
+      press the letter "A" on your keyboard and it appears on your screen and gets saved to a
+      file. This one simple action involves every part of the computer working together.
+    </p>
+
+    <div class="journey-timeline">
+      <div class="journey-item">
+        <div class="journey-step">Step 1 · Input</div>
+        <div class="journey-title">You press the "A" key</div>
+        <div class="journey-desc">
+          The keyboard detects the press and converts it into an electrical signal.
+          That signal is encoded into a binary code — the ASCII value for the letter "A",
+          which is <strong>01000001</strong>.
+        </div>
+      </div>
+
+      <div class="journey-item">
+        <div class="journey-step">Step 2 · Travel</div>
+        <div class="journey-title">The signal travels to the CPU</div>
+        <div class="journey-desc">
+          The signal travels through the motherboard to the CPU. The motherboard acts as
+          the highway that carries data between all the components.
+        </div>
+      </div>
+
+      <div class="journey-item">
+        <div class="journey-step">Step 3 · Process (Fetch)</div>
+        <div class="journey-title">The CPU fetches the next instruction</div>
+        <div class="journey-desc">
+          The CPU looks in memory for the next instruction. It finds one that says
+          "read the keyboard input and display it".
+        </div>
+      </div>
+
+      <div class="journey-item">
+        <div class="journey-step">Step 4 · Process (Decode)</div>
+        <div class="journey-title">The CPU decodes the instruction</div>
+        <div class="journey-desc">
+          The CPU figures out what the instruction means. It understands that it needs to
+          take the incoming keyboard data and send it to the screen and to the file.
+        </div>
+      </div>
+
+      <div class="journey-item">
+        <div class="journey-step">Step 5 · Process (Execute)</div>
+        <div class="journey-title">The CPU executes the instruction</div>
+        <div class="journey-desc">
+          The CPU carries out the action. It sends the character "A" (as binary) to the
+          GPU so it can be displayed, and to RAM so it can be held while you keep typing.
+        </div>
+      </div>
+
+      <div class="journey-item">
+        <div class="journey-step">Step 6 · Storage</div>
+        <div class="journey-title">Data is stored temporarily in RAM</div>
+        <div class="journey-desc">
+          While you continue typing, all the characters — including the "A" — are held
+          in RAM. This is temporary storage. If the power went out now, the text would be lost.
+        </div>
+      </div>
+
+      <div class="journey-item">
+        <div class="journey-step">Step 7 · Output</div>
+        <div class="journey-title">The "A" appears on your screen</div>
+        <div class="journey-desc">
+          The GPU converts the binary data into an image of the letter "A" and sends it
+          to the monitor. You see the letter appear on the screen in real time.
+        </div>
+      </div>
+
+      <div class="journey-item">
+        <div class="journey-step">Step 8 · Storage (Permanent)</div>
+        <div class="journey-title">You save the file — data goes to permanent storage</div>
+        <div class="journey-desc">
+          When you press Ctrl+S (or Save), the data moves from RAM to the hard drive or
+          SSD. This is permanent storage. The next time you open the file, the "A" will
+          still be there, waiting to be loaded back into RAM.
+        </div>
+      </div>
+    </div>
+
+    <div class="flow-diagram">
+      <div class="flow-step">Key Press<br><small style="font-weight:400;font-size:0.75rem;">Input</small></div>
+      <span class="flow-arrow"><i class="fas fa-arrow-right"></i></span>
+      <div class="flow-step">Motherboard<br><small style="font-weight:400;font-size:0.75rem;">Travel</small></div>
+      <span class="flow-arrow"><i class="fas fa-arrow-right"></i></span>
+      <div class="flow-step">CPU<br><small style="font-weight:400;font-size:0.75rem;">Fetch–Decode–Execute</small></div>
+      <span class="flow-arrow"><i class="fas fa-arrow-right"></i></span>
+      <div class="flow-step">RAM<br><small style="font-weight:400;font-size:0.75rem;">Temporary</small></div>
+      <span class="flow-arrow"><i class="fas fa-arrow-right"></i></span>
+      <div class="flow-step">GPU + Screen<br><small style="font-weight:400;font-size:0.75rem;">Output</small></div>
+      <span class="flow-arrow"><i class="fas fa-arrow-right"></i></span>
+      <div class="flow-step">Disk<br><small style="font-weight:400;font-size:0.75rem;">Permanent</small></div>
+    </div>
+
+    <h3>What This Shows Us</h3>
+    <p>
+      A single keystroke looks simple, but behind the scenes it involves hardware (keyboard,
+      motherboard, CPU, RAM, GPU, monitor, storage), software (the operating system, the text
+      editor), and the IPO+S model working together. Every action you take on a computer follows
+      a similar path. Understanding this flow is the heart of understanding how a computer works.
+    </p>
+
+    <!-- IMAGE 3: Keystroke journey -->
+    <div class="img-placeholder" id="img-placeholder-3">
+      <span class="img-title">Journey of a Keystroke Through the Computer</span>
+      <span class="img-filename"><img src="images/keystroke-journey.png" alt="Flowchart showing a keystroke from keyboard through CPU to screen and storage"></span>
+    </div>
+    <p class="img-caption">Figure 4.3 — Tracing a single keystroke through the computer system.</p>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 5 — ACTIVITY
+       ============================================================ -->
+  <section class="teach-section">
+    <h2><i class="fas fa-pen-to-square"></i> Activity: Trace and Build</h2>
+
+    <div class="activity-box">
+      <h3><i class="fas fa-bullseye"></i> Activity 1 — Trace the Journey of a Keystroke</h3>
+      <p>
+        Using what you have learned, write the journey of a single keystroke in your own words.
+        Imagine you press the letter "B" on the keyboard. Describe what happens at each step.
+      </p>
+      <ol class="activity-steps">
+        <li>Describe the <strong>input</strong> — what the keyboard does with your key press.</li>
+        <li>Explain how the signal travels through the <strong>motherboard</strong> to the CPU.</li>
+        <li>Describe what happens during <strong>fetch, decode, and execute</strong>.</li>
+        <li>Explain where the data is <strong>stored</strong> temporarily and permanently.</li>
+        <li>Describe the <strong>output</strong> — what you see on the screen.</li>
+        <li>Draw a simple diagram or flowchart to show the journey.</li>
+      </ol>
+    </div>
+
+    <h3 style="margin-top: 2rem;">Activity 2 — Build the Flowchart</h3>
+    <p>
+      Click the steps below in the correct order to build the IPO+S flowchart. Each step
+      can be used only once. After you place all four steps, you will see whether your
+      order is correct.
+    </p>
+
+    <div class="flowchart-builder">
+      <h4><i class="fas fa-diagram-project"></i> Click a step to add it to the flowchart</h4>
+
+      <div class="flowchart-options" id="flowchartOptions">
+        <button class="flowchart-option" data-step="process" data-order="2">Process</button>
+        <button class="flowchart-option" data-step="storage" data-order="4">Storage</button>
+        <button class="flowchart-option" data-step="input" data-order="1">Input</button>
+        <button class="flowchart-option" data-step="output" data-order="3">Output</button>
+      </div>
+
+      <div class="flowchart-slots" id="flowchartSlots">
+        <div class="flowchart-slot empty" data-slot="1">Step 1</div>
+        <span class="flowchart-arrow"><i class="fas fa-arrow-right"></i></span>
+        <div class="flowchart-slot empty" data-slot="2">Step 2</div>
+        <span class="flowchart-arrow"><i class="fas fa-arrow-right"></i></span>
+        <div class="flowchart-slot empty" data-slot="3">Step 3</div>
+        <span class="flowchart-arrow"><i class="fas fa-arrow-right"></i></span>
+        <div class="flowchart-slot empty" data-slot="4">Step 4</div>
+      </div>
+
+      <div class="flowchart-feedback" id="flowchartFeedback"></div>
+    </div>
+
+    <div class="discussion-box" style="margin-top: 2rem; background: #f0f9ff; border: 2px solid #7dd3fc; border-radius: 1.5rem; padding: 1.8rem;">
+      <h3 style="color: #0c4a6e; margin-top: 0; display: flex; align-items: center; gap: 0.6rem;">
+        <i class="fas fa-comments" style="color: #0284c7;"></i> Discussion
+      </h3>
+      <p style="color: #0c4a6e; margin-bottom: 1rem;">
+        Talk about these questions with a partner or with the class:
+      </p>
+      <div class="discussion-question" style="background: white; border-left: 4px solid #0284c7; border-radius: 0 0.8rem 0.8rem 0; padding: 1rem 1.2rem; margin-bottom: 1rem; font-size: 0.98rem; color: #0c4a6e; font-weight: 600;">
+        <i class="fas fa-question-circle" style="color:#0284c7;margin-right:8px;"></i>
+        Why does a computer use only 0s and 1s instead of the numbers 0 through 9?
+      </div>
+      <div class="discussion-question" style="background: white; border-left: 4px solid #0284c7; border-radius: 0 0.8rem 0.8rem 0; padding: 1rem 1.2rem; margin-bottom: 1rem; font-size: 0.98rem; color: #0c4a6e; font-weight: 600;">
+        <i class="fas fa-question-circle" style="color:#0284c7;margin-right:8px;"></i>
+        What would happen if the CPU skipped the "decode" step and tried to execute directly?
+      </div>
+      <div class="discussion-question" style="background: white; border-left: 4px solid #0284c7; border-radius: 0 0.8rem 0.8rem 0; padding: 1rem 1.2rem; margin-bottom: 0; font-size: 0.98rem; color: #0c4a6e; font-weight: 600;">
+        <i class="fas fa-question-circle" style="color:#0284c7;margin-right:8px;"></i>
+        Why is it important to save your work instead of relying only on RAM?
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 6 — QUICK CHECK QUIZ
+       ============================================================ -->
+  <section class="teach-section">
+    <h2><i class="fas fa-circle-question"></i> Quick Check</h2>
+    <p>Test your understanding with these questions. Click the best answer.</p>
+
+    <div class="quiz-question" data-quiz="1">
+      <p>1. In the IPO+S model, which function comes <strong>immediately after</strong> process?</p>
+      <div class="quiz-options">
+        <button class="quiz-option" data-correct="false">
+          <i class="fas fa-circle"></i> Input
+        </button>
+        <button class="quiz-option" data-correct="false">
+          <i class="fas fa-circle"></i> Storage
+        </button>
+        <button class="quiz-option" data-correct="true">
+          <i class="fas fa-circle"></i> Output
+        </button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-question" data-quiz="2">
+      <p>2. What are the three main steps of the CPU cycle?</p>
+      <div class="quiz-options">
+        <button class="quiz-option" data-correct="false">
+          <i class="fas fa-circle"></i> Read, write, save
+        </button>
+        <button class="quiz-option" data-correct="true">
+          <i class="fas fa-circle"></i> Fetch, decode, execute
+        </button>
+        <button class="quiz-option" data-correct="false">
+          <i class="fas fa-circle"></i> Input, output, store
+        </button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-question" data-quiz="3">
+      <p>3. What is a <strong>bit</strong>?</p>
+      <div class="quiz-options">
+        <button class="quiz-option" data-correct="false">
+          <i class="fas fa-circle"></i> A group of 8 characters
+        </button>
+        <button class="quiz-option" data-correct="true">
+          <i class="fas fa-circle"></i> The smallest unit of data — a single 0 or 1
+        </button>
+        <button class="quiz-option" data-correct="false">
+          <i class="fas fa-circle"></i> A type of software
+        </button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-question" data-quiz="4">
+      <p>4. How many bits are in one byte?</p>
+      <div class="quiz-options">
+        <button class="quiz-option" data-correct="false">
+          <i class="fas fa-circle"></i> 4
+        </button>
+        <button class="quiz-option" data-correct="true">
+          <i class="fas fa-circle"></i> 8
+        </button>
+        <button class="quiz-option" data-correct="false">
+          <i class="fas fa-circle"></i> 16
+        </button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-question" data-quiz="5">
+      <p>5. When you type text but have not saved it yet, where is that text stored?</p>
+      <div class="quiz-options">
+        <button class="quiz-option" data-correct="false">
+          <i class="fas fa-circle"></i> On the hard drive or SSD
+        </button>
+        <button class="quiz-option" data-correct="true">
+          <i class="fas fa-circle"></i> In RAM (temporary storage)
+        </button>
+        <button class="quiz-option" data-correct="false">
+          <i class="fas fa-circle"></i> In the monitor
+        </button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+  </section>
+
+  <!-- ===== STUDENT OUTCOME ===== -->
+  <div class="outcome-banner">
+    <div class="outcome-icon"><i class="fas fa-graduation-cap"></i></div>
+    <div class="outcome-text">
+      <h3>Student Outcome</h3>
+      <p>Students can explain how data flows through a computer system.</p>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       TEACHER INSTRUCTIONS & LINKS
+       ============================================================ -->
+  <section class="custom-instructions">
+    <h2><i class="fas fa-clipboard-list"></i> Teacher Instructions</h2>
+
+    <p>
+      <strong><a href="https://www.zipgrade.com/s/" class="inline-link" target="_blank" rel="noopener">ZipGrade Quiz</a></strong>
+      — Don't forget to take the ZipGrade quiz! Use the link provided to access and complete it. Make sure to submit before the deadline.
+    </p>
+
+    <div class="instruction-note">
+      <i class="fas fa-circle-info"></i>
+      <strong>Teaching tip:</strong> When teaching binary, you can use simple analogies like light switches (on/off) or yes/no questions. Have students physically stand up and sit down to represent 0s and 1s, then spell out letters together.
+    </div>
+
+    <div class="link-buttons">
+      <a href="https://www.bbc.co.uk/bitesize/guides/zphqgdm/revision/1" class="custom-link-btn" target="_blank" rel="noopener">
+        <i class="fas fa-arrow-up-right-from-square"></i> BBC Bitesize — How Computers Work
+      </a>
+      <a href="https://drive.google.com/file/d/1fLFAfFLuwjPeiKBkz7cyfyD-InPPLRcV/view?usp=sharing" class="custom-link-btn" target="_blank" rel="noopener">
+        <i class="fas fa-arrow-up-right-from-square"></i> Open PDF Resource
+      </a>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER NAVIGATION ===== -->
+  <div class="footer-nav">
+    <a href="topic-3-software.html">
+      <i class="fas fa-arrow-left"></i> Previous: Software Components
+    </a>
+    <a href="topic-5-communication-tech.html" class="next-link">
+      Next: Communication Technology <i class="fas fa-arrow-right"></i>
+    </a>
+  </div>
+
+</div>
+
+<!-- ============================================================
+     PRESENTATION TOOLBAR
+     ============================================================ -->
+<div class="present-toolbar">
+  <span class="toolbar-label">PRESENT</span>
+  <button id="prevSlide" title="Previous slide (←)"><i class="fas fa-chevron-left"></i></button>
+  <span class="slide-counter" id="slideCounter">1 / 6</span>
+  <button id="nextSlide" title="Next slide (→)"><i class="fas fa-chevron-right"></i></button>
+  <button id="togglePresent" title="Start / stop presentation (P)"><i class="fas fa-play"></i></button>
+  <button id="toggleFullscreen" title="Fullscreen (F)"><i class="fas fa-expand"></i></button>
+</div>
+
+<script>
+  /* ============================================================
+     QUIZ INTERACTIVITY
+     ============================================================ */
+  (function() {
+    const quizQuestions = document.querySelectorAll('.quiz-question');
+
+    quizQuestions.forEach(function(question) {
+      const options = question.querySelectorAll('.quiz-option');
+      const feedback = question.querySelector('.quiz-feedback');
+
+      options.forEach(function(option) {
+        option.addEventListener('click', function() {
+          if (question.dataset.answered === 'true') return;
+
+          const isCorrect = option.dataset.correct === 'true';
+
+          options.forEach(function(opt) {
+            opt.disabled = true;
+            if (opt.dataset.correct === 'true') {
+              opt.classList.add('correct');
+              opt.querySelector('i').className = 'fas fa-check-circle';
+            } else if (opt === option && !isCorrect) {
+              opt.classList.add('incorrect');
+              opt.querySelector('i').className = 'fas fa-times-circle';
+            } else {
+              opt.querySelector('i').className = 'fas fa-circle';
+            }
+          });
+
+          if (isCorrect) {
+            feedback.textContent = '✓ Correct! Well done.';
+            feedback.className = 'quiz-feedback show correct';
+          } else {
+            feedback.textContent = '✗ Not quite. The correct answer is highlighted in green.';
+            feedback.className = 'quiz-feedback show incorrect';
+          }
+
+          question.dataset.answered = 'true';
+        });
+      });
+    });
+  })();
+
+  /* ============================================================
+     FLOWCHART BUILDER ACTIVITY
+     ============================================================ */
+  (function() {
+    const options = document.querySelectorAll('.flowchart-option');
+    const slots = document.querySelectorAll('.flowchart-slot');
+    const feedback = document.getElementById('flowchartFeedback');
+
+    let placed = 0;
+
+    options.forEach(function(option) {
+      option.addEventListener('click', function() {
+        if (placed >= slots.length) return;
+
+        const step = option.dataset.step;
+        const order = option.dataset.order;
+
+        const nextSlot = slots[placed];
+        nextSlot.textContent = option.textContent;
+        nextSlot.classList.remove('empty');
+        nextSlot.dataset.placedStep = step;
+        nextSlot.dataset.placedOrder = order;
+
+        option.classList.add('used');
+        option.disabled = true;
+
+        placed++;
+
+        if (placed === slots.length) {
+          // Check answers
+          let correct = 0;
+          slots.forEach(function(slot, index) {
+            const expectedOrder = String(index + 1);
+            if (slot.dataset.placedOrder === expectedOrder) {
+              slot.classList.add('correct');
+              correct++;
+            } else {
+              slot.classList.add('incorrect');
+            }
+          });
+
+          if (correct === slots.length) {
+            feedback.textContent = '🎉 Perfect! The IPO+S flowchart is correct: Input → Process → Output → Storage.';
+            feedback.className = 'flowchart-feedback show success';
+          } else {
+            feedback.textContent = 'You placed ' + correct + ' of ' + slots.length + ' steps correctly. The correct order is: Input → Process → Output → Storage. Click Reset to try again.';
+            feedback.className = 'flowchart-feedback show partial';
+          }
+
+          // Add a reset button dynamically
+          if (!document.getElementById('flowchartResetBtn')) {
+            const resetBtn = document.createElement('button');
+            resetBtn.id = 'flowchartResetBtn';
+            resetBtn.className = 'match-btn reset';
+            resetBtn.style.marginTop = '1rem';
+            resetBtn.innerHTML = '<i class="fas fa-rotate-left"></i> Reset Flowchart';
+            resetBtn.addEventListener('click', resetFlowchart);
+            feedback.parentNode.appendChild(resetBtn);
+          }
+        }
+      });
+    });
+
+    function resetFlowchart() {
+      placed = 0;
+      options.forEach(function(option) {
+        option.classList.remove('used');
+        option.disabled = false;
+      });
+      slots.forEach(function(slot, index) {
+        slot.textContent = 'Step ' + (index + 1);
+        slot.classList.add('empty');
+        slot.classList.remove('correct', 'incorrect');
+        delete slot.dataset.placedStep;
+        delete slot.dataset.placedOrder;
+      });
+      feedback.className = 'flowchart-feedback';
+      feedback.textContent = '';
+      const resetBtn = document.getElementById('flowchartResetBtn');
+      if (resetBtn) resetBtn.remove();
+    }
+  })();
+
+  /* ============================================================
+     PRESENTATION MODE
+     ============================================================ */
+  (function() {
+    const slides = document.querySelectorAll('.teach-section');
+    const totalSlides = slides.length;
+    const counter = document.getElementById('slideCounter');
+    const prevBtn = document.getElementById('prevSlide');
+    const nextBtn = document.getElementById('nextSlide');
+    const presentBtn = document.getElementById('togglePresent');
+    const fullscreenBtn = document.getElementById('toggleFullscreen');
+
+    let current = 0;
+    let presenting = false;
+
+    if (totalSlides > 0) {
+      slides[0].classList.add('active-slide');
+      updateCounter();
+    }
+
+    function updateCounter() {
+      counter.textContent = (current + 1) + ' / ' + totalSlides;
+    }
+
+    function showSlide(index) {
+      if (index < 0) index = 0;
+      if (index >= totalSlides) index = totalSlides - 1;
+
+      slides.forEach(function(slide) {
+        slide.classList.remove('active-slide');
+      });
+      slides[index].classList.add('active-slide');
+      current = index;
+      updateCounter();
+
+      if (presenting) {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    function nextSlide() {
+      if (current < totalSlides - 1) showSlide(current + 1);
+    }
+
+    function prevSlide() {
+      if (current > 0) showSlide(current - 1);
+    }
+
+    function enterPresentation() {
+      presenting = true;
+      document.body.classList.add('presenting');
+      presentBtn.innerHTML = '<i class="fas fa-stop"></i>';
+      presentBtn.title = 'Stop presentation (P)';
+      showSlide(0);
+    }
+
+    function exitPresentation() {
+      presenting = false;
+      document.body.classList.remove('presenting');
+      presentBtn.innerHTML = '<i class="fas fa-play"></i>';
+      presentBtn.title = 'Start presentation (P)';
+      slides.forEach(function(slide) {
+        slide.classList.remove('active-slide');
+      });
+      if (document.fullscreenElement) {
+        document.exitFullscreen().catch(function() {});
+      }
+    }
+
+    function togglePresentation() {
+      if (presenting) {
+        exitPresentation();
+      } else {
+        enterPresentation();
+      }
+    }
+
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(function() {});
+      } else {
+        document.exitFullscreen().catch(function() {});
+      }
+    }
+
+    prevBtn.addEventListener('click', prevSlide);
+    nextBtn.addEventListener('click', nextSlide);
+    presentBtn.addEventListener('click', togglePresentation);
+    fullscreenBtn.addEventListener('click', toggleFullscreen);
+
+    document.addEventListener('keydown', function(e) {
+      const tag = (e.target.tagName || '').toLowerCase();
+      const typing = tag === 'input' || tag === 'textarea' || tag === 'select' || e.target.isContentEditable;
+
+      if (e.key === 'ArrowRight' && presenting) {
+        e.preventDefault();
+        nextSlide();
+      } else if (e.key === 'ArrowLeft' && presenting) {
+        e.preventDefault();
+        prevSlide();
+      } else if ((e.key === 'p' || e.key === 'P') && !typing) {
+        e.preventDefault();
+        togglePresentation();
+      } else if ((e.key === 'f' || e.key === 'F') && !typing) {
+        e.preventDefault();
+        toggleFullscreen();
+      } else if (e.key === 'Escape' && presenting) {
+        exitPresentation();
+      }
+    });
+
+    document.addEventListener('fullscreenchange', function() {
+      if (document.fullscreenElement) {
+        fullscreenBtn.innerHTML = '<i class="fas fa-compress"></i>';
+      } else {
+        fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i>';
+      }
+    });
+  })();
+</script>
+
+</body>
+</html>

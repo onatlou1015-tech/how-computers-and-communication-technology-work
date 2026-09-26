@@ -1,0 +1,2545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Topic 6 · Networks and the Internet</title>
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: #f0f5fa;
+      color: #0a1e2f;
+      line-height: 1.7;
+      padding: 2rem 1.5rem 6rem;
+      scroll-behavior: smooth;
+    }
+
+    .wrapper {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    /* ===== BACK LINK ===== */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      color: #1e6b9b;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+      padding: 0.5rem 1rem;
+      border-radius: 40px;
+      background: #ffffff;
+      border: 1px solid #d9e7f5;
+      transition: background 0.2s, gap 0.2s;
+    }
+
+    .back-link:hover {
+      background: #e7f0f9;
+      gap: 0.9rem;
+    }
+
+    /* ===== HEADER ===== */
+    .topic-header {
+      background: linear-gradient(135deg, #0b2a4a 0%, #1a4a6e 100%);
+      border-radius: 2.5rem;
+      padding: 3rem 2.5rem;
+      color: white;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 20px 30px -10px rgba(11, 42, 74, 0.25);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .topic-header::after {
+      content: "6";
+      position: absolute;
+      right: 2rem;
+      bottom: -2.5rem;
+      font-size: 13rem;
+      font-weight: 800;
+      color: rgba(255, 255, 255, 0.06);
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .topic-badge {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(4px);
+      padding: 0.25rem 1rem;
+      border-radius: 40px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .topic-header h1 {
+      font-size: 2.6rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      max-width: 750px;
+      margin-bottom: 0.9rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .topic-header .subhead {
+      font-size: 1.1rem;
+      opacity: 0.9;
+      max-width: 680px;
+      font-weight: 400;
+      position: relative;
+      z-index: 2;
+      border-left: 4px solid #7bb8e0;
+      padding-left: 1.2rem;
+      margin-top: 0.5rem;
+      line-height: 1.6;
+    }
+
+    /* ===== TEACHING SECTIONS ===== */
+    .teach-section {
+      background: #ffffff;
+      border-radius: 2rem;
+      padding: 2.5rem 2.5rem;
+      margin-bottom: 2rem;
+      border: 1px solid #e2edf7;
+      box-shadow: 0 12px 24px -12px rgba(11, 42, 74, 0.08);
+    }
+
+    .teach-section h2 {
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: #0b2a4a;
+      margin-bottom: 1.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      letter-spacing: -0.01em;
+      line-height: 1.3;
+    }
+
+    .teach-section h2 i {
+      color: #1e6b9b;
+      font-size: 1.4rem;
+      background: #e7f0f9;
+      width: 3rem;
+      height: 3rem;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .teach-section h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #0b2a4a;
+      margin-bottom: 0.8rem;
+      margin-top: 2rem;
+      line-height: 1.35;
+    }
+
+    .teach-section h3:first-of-type {
+      margin-top: 0;
+    }
+
+    .teach-section h4 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #1a4a6e;
+      margin-bottom: 0.5rem;
+      margin-top: 1.4rem;
+    }
+
+    .teach-section p {
+      color: #1d3b5c;
+      font-size: 1.02rem;
+      margin-bottom: 1.2rem;
+      line-height: 1.8;
+    }
+
+    .teach-section ul,
+    .teach-section ol {
+      margin: 0 0 1.4rem 1.4rem;
+      color: #1d3b5c;
+      font-size: 1.02rem;
+      line-height: 1.8;
+    }
+
+    .teach-section li {
+      margin-bottom: 0.5rem;
+    }
+
+    .teach-section strong {
+      color: #0b2a4a;
+    }
+
+    .teach-section em {
+      color: #1e6b9b;
+      font-style: normal;
+      font-weight: 600;
+    }
+
+    .definition-box {
+      background: #eaf1f9;
+      border-left: 5px solid #1e6b9b;
+      border-radius: 0 1rem 1rem 0;
+      padding: 1.4rem 1.6rem;
+      margin: 1.2rem 0 1.6rem;
+    }
+
+    .definition-box p {
+      margin-bottom: 0;
+      font-size: 1.08rem;
+      line-height: 1.8;
+    }
+
+    .analogy-box {
+      background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+      border-left: 5px solid #d97706;
+      border-radius: 0 1rem 1rem 0;
+      padding: 1.4rem 1.6rem;
+      margin: 1.2rem 0 1.6rem;
+    }
+
+    .analogy-box p {
+      margin-bottom: 0;
+      color: #78350f;
+      font-size: 1.02rem;
+    }
+
+    .analogy-box strong {
+      color: #92400e;
+    }
+
+    /* ===== NETWORK TYPE GRID ===== */
+    .network-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.2rem;
+      margin-top: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .network-card {
+      background: #f7fafd;
+      border: 1px solid #d9e7f5;
+      border-radius: 1.5rem;
+      padding: 1.6rem 1.4rem;
+      transition: all 0.25s ease;
+      border-top: 4px solid;
+    }
+
+    .network-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 24px -12px rgba(11, 42, 74, 0.12);
+    }
+
+    .network-card.lan { border-top-color: #2563eb; }
+    .network-card.wan { border-top-color: #7c3aed; }
+    .network-card.wifi { border-top-color: #db2777; }
+    .network-card.mobile { border-top-color: #059669; }
+
+    .network-icon {
+      width: 3.2rem;
+      height: 3.2rem;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+      color: white;
+    }
+
+    .network-card.lan .network-icon { background: #2563eb; }
+    .network-card.wan .network-icon { background: #7c3aed; }
+    .network-card.wifi .network-icon { background: #db2777; }
+    .network-card.mobile .network-icon { background: #059669; }
+
+    .network-card h4 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #0b2a4a;
+      margin-bottom: 0.4rem;
+      margin-top: 0;
+    }
+
+    .network-card .network-size {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      color: #7a94ad;
+      margin-bottom: 0.6rem;
+    }
+
+    .network-card p {
+      font-size: 0.9rem;
+      color: #3a5775;
+      margin-bottom: 0;
+      line-height: 1.6;
+    }
+
+    /* ===== NETWORK COMPONENTS ===== */
+    .component-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.2rem;
+      margin-top: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .component-card {
+      background: #f7fafd;
+      border: 1px solid #d9e7f5;
+      border-radius: 1.5rem;
+      padding: 1.6rem 1.4rem;
+      transition: all 0.25s ease;
+    }
+
+    .component-card:hover {
+      transform: translateY(-4px);
+      border-color: #a6c8e5;
+      box-shadow: 0 12px 24px -12px rgba(11, 42, 74, 0.12);
+    }
+
+    .component-icon {
+      width: 3rem;
+      height: 3rem;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      margin-bottom: 0.9rem;
+      color: white;
+    }
+
+    .component-card:nth-child(1) .component-icon { background: #2563eb; }
+    .component-card:nth-child(2) .component-icon { background: #7c3aed; }
+    .component-card:nth-child(3) .component-icon { background: #db2777; }
+    .component-card:nth-child(4) .component-icon { background: #059669; }
+    .component-card:nth-child(5) .component-icon { background: #d97706; }
+    .component-card:nth-child(6) .component-icon { background: #0891b2; }
+
+    .component-card h4 {
+      font-size: 1.02rem;
+      font-weight: 700;
+      color: #0b2a4a;
+      margin-bottom: 0.4rem;
+      margin-top: 0;
+    }
+
+    .component-card p {
+      font-size: 0.88rem;
+      color: #3a5775;
+      margin-bottom: 0;
+      line-height: 1.6;
+    }
+
+    /* ===== PACKET SWITCHING DIAGRAM ===== */
+    .packet-demo {
+      background: #f7fafd;
+      border-radius: 1.5rem;
+      border: 1px solid #d9e7f5;
+      padding: 1.8rem 1.6rem;
+      margin: 1.6rem 0;
+    }
+
+    .packet-demo h4 {
+      margin-top: 0;
+      margin-bottom: 1.2rem;
+      color: #0b2a4a;
+      font-size: 1.05rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .packet-demo h4 i {
+      color: #1e6b9b;
+    }
+
+    .packet-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-bottom: 1rem;
+      align-items: center;
+    }
+
+    .packet-row .packet-row-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #7a94ad;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      min-width: 90px;
+    }
+
+    .packet {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.5rem 0.9rem;
+      border-radius: 0.8rem;
+      font-size: 0.82rem;
+      font-weight: 700;
+      font-family: 'Courier New', monospace;
+      border: 2px solid;
+    }
+
+    .packet.p1 { background: #dbeafe; border-color: #93c5fd; color: #1e40af; }
+    .packet.p2 { background: #f3e8ff; border-color: #d8b4fe; color: #6b21a8; }
+    .packet.p3 { background: #fce7f3; border-color: #f9a8d4; color: #9d174d; }
+    .packet.p4 { background: #dcfce7; border-color: #86efac; color: #166534; }
+    .packet.p5 { background: #fef3c7; border-color: #fcd34d; color: #92400e; }
+
+    .packet-arrow {
+      color: #94a3b8;
+      font-size: 0.9rem;
+    }
+
+    /* ===== URL TRACE ===== */
+    .url-trace {
+      background: #f7fafd;
+      border-radius: 1.5rem;
+      border: 1px solid #d9e7f5;
+      padding: 1.8rem 1.6rem;
+      margin: 1.6rem 0;
+    }
+
+    .url-trace h4 {
+      margin-top: 0;
+      margin-bottom: 1.2rem;
+      color: #0b2a4a;
+      font-size: 1.05rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .url-trace h4 i {
+      color: #1e6b9b;
+    }
+
+    .url-bar {
+      background: white;
+      border: 2px solid #c6d9ec;
+      border-radius: 12px;
+      padding: 0.8rem 1rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+      color: #0b2a4a;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .url-bar i {
+      color: #1e6b9b;
+    }
+
+    .url-steps {
+      counter-reset: url-step;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .url-steps li {
+      counter-increment: url-step;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.9rem;
+      padding: 0.7rem 0;
+      font-size: 0.95rem;
+      color: #1d3b5c;
+      line-height: 1.7;
+      border-bottom: 1px solid #e2edf7;
+    }
+
+    .url-steps li:last-child {
+      border-bottom: none;
+    }
+
+    .url-steps li::before {
+      content: counter(url-step);
+      background: #1e6b9b;
+      color: white;
+      font-weight: 700;
+      font-size: 0.78rem;
+      width: 1.7rem;
+      height: 1.7rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 0.15rem;
+    }
+
+    .url-steps li strong {
+      color: #0b2a4a;
+    }
+
+    /* ===== IMAGE PLACEHOLDER ===== */
+    .img-placeholder {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: linear-gradient(135deg, #eaf1f9 0%, #d9e7f5 100%);
+      border: 3px dashed #a6c8e5;
+      border-radius: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+      padding: 2rem;
+      text-align: center;
+      margin: 1.8rem 0 0.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .img-placeholder .img-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #0b2a4a;
+    }
+
+    .img-placeholder .img-filename {
+      background: #ffffff;
+      border: 1px solid #c6d9ec;
+      border-radius: 40px;
+      padding: 0.5rem 1.1rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #1e6b9b;
+      font-family: 'Courier New', monospace;
+      margin-top: 0.5rem;
+      max-width: 100%;
+    }
+
+    .img-placeholder img {
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      border-radius: 1rem;
+    }
+
+    .img-caption {
+      font-size: 0.88rem;
+      color: #4a6a8a;
+      text-align: center;
+      font-style: italic;
+      margin-bottom: 1rem;
+    }
+
+    /* ===== FLOW DIAGRAM ===== */
+    .flow-diagram {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin: 1.6rem 0;
+      padding: 1.4rem;
+      background: #f7fafd;
+      border-radius: 1.5rem;
+      border: 1px solid #d9e7f5;
+    }
+
+    .flow-step {
+      background: white;
+      border: 2px solid #1e6b9b;
+      border-radius: 1rem;
+      padding: 0.7rem 1.2rem;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: #0b2a4a;
+      text-align: center;
+    }
+
+    .flow-arrow {
+      color: #1e6b9b;
+      font-size: 1.1rem;
+    }
+
+    /* ===== ACTIVITY ===== */
+    .activity-box {
+      background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+      border: 2px solid #fcd34d;
+      border-radius: 1.5rem;
+      padding: 1.8rem 1.8rem;
+      margin-top: 1.2rem;
+    }
+
+    .activity-box h3 {
+      color: #92400e;
+      margin-top: 0;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .activity-box h3 i { color: #d97706; }
+
+    .activity-box p {
+      color: #78350f;
+      margin-bottom: 1rem;
+    }
+
+    .activity-steps {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      counter-reset: step-counter;
+    }
+
+    .activity-steps li {
+      counter-increment: step-counter;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.8rem;
+      padding: 0.6rem 0;
+      font-size: 0.98rem;
+      color: #78350f;
+      line-height: 1.7;
+    }
+
+    .activity-steps li::before {
+      content: counter(step-counter);
+      background: #d97706;
+      color: white;
+      font-weight: 700;
+      font-size: 0.8rem;
+      width: 1.7rem;
+      height: 1.7rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 0.2rem;
+    }
+
+    /* ===== ORDERING ACTIVITY ===== */
+    .ordering-builder {
+      background: #f7fafd;
+      border: 2px solid #d9e7f5;
+      border-radius: 1.5rem;
+      padding: 1.6rem 1.6rem;
+      margin-top: 1.4rem;
+    }
+
+    .ordering-builder h4 {
+      margin-top: 0;
+      color: #0b2a4a;
+      font-size: 1.05rem;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .ordering-builder h4 i {
+      color: #1e6b9b;
+    }
+
+    .ordering-options {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 0.7rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .ordering-option {
+      background: white;
+      border: 1.5px solid #c6d9ec;
+      border-radius: 12px;
+      padding: 0.7rem 0.9rem;
+      font-size: 0.86rem;
+      color: #0b2a4a;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      transition: all 0.15s;
+      text-align: left;
+      font-weight: 600;
+    }
+
+    .ordering-option:hover {
+      border-color: #1e6b9b;
+      background: #eaf1f9;
+      transform: translateY(-2px);
+    }
+
+    .ordering-option.used {
+      opacity: 0.4;
+      pointer-events: none;
+      background: #e2edf9;
+    }
+
+    .ordering-slots {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      padding: 1rem;
+      background: white;
+      border: 2px dashed #c6d9ec;
+      border-radius: 1rem;
+      min-height: 80px;
+    }
+
+    .ordering-slot {
+      border: 2px solid #1e6b9b;
+      border-radius: 0.9rem;
+      padding: 0.7rem 1rem;
+      font-weight: 600;
+      font-size: 0.88rem;
+      color: #0b2a4a;
+      background: #f0f9ff;
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      transition: all 0.2s;
+    }
+
+    .ordering-slot .slot-number {
+      background: #1e6b9b;
+      color: white;
+      width: 1.6rem;
+      height: 1.6rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .ordering-slot.empty {
+      border-style: dashed;
+      border-color: #c6d9ec;
+      background: #f7fafd;
+      color: #9db8d0;
+      font-weight: 500;
+    }
+
+    .ordering-slot.correct {
+      border-color: #22c55e;
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .ordering-slot.correct .slot-number {
+      background: #22c55e;
+    }
+
+    .ordering-slot.incorrect {
+      border-color: #ef4444;
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .ordering-slot.incorrect .slot-number {
+      background: #ef4444;
+    }
+
+    .ordering-feedback {
+      font-size: 0.92rem;
+      font-weight: 600;
+      margin-top: 1rem;
+      padding: 0.8rem 1.2rem;
+      border-radius: 10px;
+      display: none;
+    }
+
+    .ordering-feedback.show { display: block; }
+    .ordering-feedback.success { background: #dcfce7; color: #166534; }
+    .ordering-feedback.partial { background: #fef3c7; color: #92400e; }
+
+    /* ===== MATCHING ACTIVITY ===== */
+    .match-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1.2rem;
+      font-size: 0.9rem;
+    }
+
+    .match-table th {
+      background: #0b2a4a;
+      color: white;
+      padding: 0.8rem 0.9rem;
+      text-align: left;
+      font-weight: 600;
+      font-size: 0.82rem;
+    }
+
+    .match-table th:first-child { border-radius: 0.8rem 0 0 0; }
+    .match-table th:last-child { border-radius: 0 0.8rem 0 0; }
+
+    .match-table td {
+      padding: 0.6rem 0.9rem;
+      border-bottom: 1px solid #e2edf7;
+      color: #1d3b5c;
+      vertical-align: middle;
+      line-height: 1.6;
+    }
+
+    .match-table tr:last-child td { border-bottom: none; }
+    .match-table tr:nth-child(even) { background: #f7fafd; }
+
+    .match-table select {
+      width: 100%;
+      padding: 0.5rem 0.6rem;
+      border: 1.5px solid #c6d9ec;
+      border-radius: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      color: #0b2a4a;
+      background: white;
+      cursor: pointer;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .match-table select:focus {
+      outline: none;
+      border-color: #1e6b9b;
+      box-shadow: 0 0 0 3px rgba(30, 107, 155, 0.12);
+    }
+
+    .match-table select.correct {
+      border-color: #22c55e;
+      background: #dcfce7;
+      color: #166534;
+      font-weight: 600;
+    }
+
+    .match-table select.incorrect {
+      border-color: #ef4444;
+      background: #fee2e2;
+      color: #991b1b;
+      font-weight: 600;
+    }
+
+    .match-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-top: 1.2rem;
+    }
+
+    .match-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: #1e6b9b;
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      padding: 0.7rem 1.5rem;
+      border-radius: 40px;
+      border: none;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      transition: background 0.2s, transform 0.15s;
+      box-shadow: 0 6px 12px -8px rgba(30, 107, 155, 0.5);
+    }
+
+    .match-btn:hover {
+      background: #0b2a4a;
+      transform: translateY(-2px);
+    }
+
+    .match-btn.reset {
+      background: #e2edf9;
+      color: #0b2a4a;
+      border: 1.5px solid #a6c8e5;
+      box-shadow: none;
+    }
+
+    .match-btn.reset:hover {
+      background: #d4e5f5;
+    }
+
+    .match-feedback {
+      font-size: 0.92rem;
+      font-weight: 600;
+      margin-top: 1rem;
+      padding: 0.8rem 1.2rem;
+      border-radius: 10px;
+      display: none;
+    }
+
+    .match-feedback.show { display: block; }
+    .match-feedback.success { background: #dcfce7; color: #166534; }
+    .match-feedback.partial { background: #fef3c7; color: #92400e; }
+
+    /* ===== QUIZ ===== */
+    .quiz-question {
+      margin-bottom: 1.8rem;
+    }
+
+    .quiz-question p {
+      font-weight: 600;
+      color: #0b2a4a;
+      margin-bottom: 0.8rem;
+      font-size: 1.02rem;
+    }
+
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .quiz-option {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      padding: 0.8rem 1rem;
+      background: #f7fafd;
+      border: 1.5px solid #d9e7f5;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      color: #1d3b5c;
+      transition: all 0.2s;
+      font-family: 'Inter', sans-serif;
+      text-align: left;
+      width: 100%;
+      line-height: 1.5;
+    }
+
+    .quiz-option:hover {
+      border-color: #a6c8e5;
+      background: #eaf1f9;
+    }
+
+    .quiz-option.correct {
+      background: #dcfce7;
+      border-color: #86efac;
+      color: #166534;
+      font-weight: 600;
+    }
+
+    .quiz-option.incorrect {
+      background: #fee2e2;
+      border-color: #fca5a5;
+      color: #991b1b;
+    }
+
+    .quiz-option i {
+      font-size: 0.85rem;
+      color: #94a3b8;
+      flex-shrink: 0;
+    }
+
+    .quiz-option.correct i { color: #16a34a; }
+    .quiz-option.incorrect i { color: #dc2626; }
+
+    .quiz-feedback {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-top: 0.7rem;
+      padding: 0.7rem 1rem;
+      border-radius: 10px;
+      display: none;
+    }
+
+    .quiz-feedback.show { display: block; }
+    .quiz-feedback.correct { background: #dcfce7; color: #166534; }
+    .quiz-feedback.incorrect { background: #fee2e2; color: #991b1b; }
+
+    /* ===== KEY TERMS ===== */
+    .key-terms {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
+      margin-top: 1.2rem;
+    }
+
+    .term-card {
+      background: #f7fafd;
+      border: 1px solid #d9e7f5;
+      border-left: 4px solid #1e6b9b;
+      border-radius: 0 1rem 1rem 0;
+      padding: 1.1rem 1.2rem;
+    }
+
+    .term-card dt {
+      font-weight: 700;
+      color: #0b2a4a;
+      font-size: 1rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .term-card dd {
+      font-size: 0.92rem;
+      color: #3a5775;
+      line-height: 1.6;
+    }
+
+    /* ===== DISCUSSION BOX ===== */
+    .discussion-box {
+      background: #f0f9ff;
+      border: 2px solid #7dd3fc;
+      border-radius: 1.5rem;
+      padding: 1.8rem 1.8rem;
+      margin-top: 1.5rem;
+    }
+
+    .discussion-box h3 {
+      color: #0c4a6e;
+      margin-top: 0;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .discussion-box h3 i { color: #0284c7; }
+
+    .discussion-box p {
+      color: #0c4a6e;
+      margin-bottom: 1rem;
+    }
+
+    .discussion-question {
+      background: white;
+      border-left: 4px solid #0284c7;
+      border-radius: 0 0.8rem 0.8rem 0;
+      padding: 1rem 1.2rem;
+      margin-bottom: 1rem;
+      font-size: 0.98rem;
+      color: #0c4a6e;
+      font-weight: 600;
+    }
+
+    .discussion-question:last-child {
+      margin-bottom: 0;
+    }
+
+    /* ===== STUDENT OUTCOME ===== */
+    .outcome-banner {
+      background: linear-gradient(135deg, #0b2a4a 0%, #1a4a6e 100%);
+      border-radius: 2rem;
+      padding: 2rem 2.2rem;
+      color: white;
+      margin-top: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .outcome-banner .outcome-icon {
+      background: rgba(255, 255, 255, 0.15);
+      width: 4rem;
+      height: 4rem;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      flex-shrink: 0;
+    }
+
+    .outcome-banner .outcome-text {
+      flex: 1;
+      min-width: 220px;
+    }
+
+    .outcome-banner h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+
+    .outcome-banner p {
+      font-size: 0.98rem;
+      opacity: 0.92;
+      margin-bottom: 0;
+    }
+
+    /* ===== TEACHER INSTRUCTIONS ===== */
+    .custom-instructions {
+      background: #ffffff;
+      border-radius: 2rem;
+      padding: 2.2rem 2.2rem;
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+      border: 2px solid #1e6b9b;
+      box-shadow: 0 12px 24px -12px rgba(30, 107, 155, 0.15);
+      position: relative;
+    }
+
+    .custom-instructions::before {
+      content: "📌";
+      position: absolute;
+      top: -1.2rem;
+      left: 2rem;
+      background: #1e6b9b;
+      color: white;
+      width: 2.4rem;
+      height: 2.4rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      box-shadow: 0 6px 12px -4px rgba(30, 107, 155, 0.4);
+    }
+
+    .custom-instructions h2 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #0b2a4a;
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      letter-spacing: -0.01em;
+      margin-top: 0.5rem;
+    }
+
+    .custom-instructions h2 i {
+      color: #1e6b9b;
+      font-size: 1.4rem;
+      background: #e7f0f9;
+      width: 2.8rem;
+      height: 2.8rem;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .custom-instructions p {
+      color: #1d3b5c;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      line-height: 1.7;
+    }
+
+    .custom-instructions a.inline-link {
+      color: #1e6b9b;
+      font-weight: 600;
+      text-decoration: none;
+      border-bottom: 2px solid #a6c8e5;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .custom-instructions a.inline-link:hover {
+      color: #0b2a4a;
+      border-bottom-color: #1e6b9b;
+    }
+
+    .instruction-note {
+      background: #eaf1f9;
+      border-left: 4px solid #1e6b9b;
+      border-radius: 0 0.8rem 0.8rem 0;
+      padding: 1rem 1.2rem;
+      margin-top: 1rem;
+      font-size: 0.95rem;
+      color: #2f506d;
+    }
+
+    .instruction-note i {
+      color: #1e6b9b;
+      margin-right: 0.4rem;
+    }
+
+    /* ===== LINK BUTTONS ===== */
+    .link-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      margin-top: 1.2rem;
+    }
+
+    .custom-link-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: #dbeafe;
+      color: #0b2a4a;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      padding: 0.8rem 1.6rem;
+      border-radius: 40px;
+      transition: background 0.2s, color 0.2s, gap 0.2s, transform 0.15s, box-shadow 0.2s;
+      border: 1.5px solid #93c5fd;
+      box-shadow: 0 6px 12px -8px rgba(30, 107, 155, 0.35);
+    }
+
+    .custom-link-btn i {
+      font-size: 0.8rem;
+      color: #1e6b9b;
+      transition: color 0.2s;
+    }
+
+    .custom-link-btn:hover {
+      background: #1e6b9b;
+      color: #ffffff;
+      gap: 0.9rem;
+      transform: translateY(-2px);
+      border-color: #1e6b9b;
+      box-shadow: 0 10px 18px -8px rgba(30, 107, 155, 0.5);
+    }
+
+    .custom-link-btn:hover i {
+      color: #ffffff;
+    }
+
+    /* ===== FOOTER NAV ===== */
+    .footer-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      padding: 1.5rem 2rem;
+      background: #ffffffec;
+      border-radius: 2rem;
+      border: 1px solid #cbdbe9;
+      margin-top: 1rem;
+    }
+
+    .footer-nav a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      color: #1e6b9b;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      padding: 0.6rem 1.2rem;
+      border-radius: 40px;
+      transition: background 0.2s, gap 0.2s;
+    }
+
+    .footer-nav a:hover {
+      background: #e7f0f9;
+      gap: 0.9rem;
+    }
+
+    .footer-nav .next-link {
+      background: #0b2a4a;
+      color: white;
+      border: 1px solid #1e4a6e;
+    }
+
+    .footer-nav .next-link:hover {
+      background: #1e4a6e;
+    }
+
+    /* ============================================================
+       PRESENTATION CONTROLS
+       ============================================================ */
+    .present-toolbar {
+      position: fixed;
+      bottom: 1.2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #0b2a4a;
+      color: white;
+      border-radius: 50px;
+      padding: 0.6rem 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      box-shadow: 0 12px 30px -8px rgba(11, 42, 74, 0.5);
+      z-index: 1000;
+      border: 1px solid #1e4a6e;
+    }
+
+    .present-toolbar button {
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: white;
+      width: 2.4rem;
+      height: 2.4rem;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      transition: background 0.2s, transform 0.1s;
+    }
+
+    .present-toolbar button:hover {
+      background: rgba(255, 255, 255, 0.25);
+    }
+
+    .present-toolbar button:active {
+      transform: scale(0.94);
+    }
+
+    .present-toolbar .slide-counter {
+      font-size: 0.85rem;
+      font-weight: 600;
+      min-width: 62px;
+      text-align: center;
+      letter-spacing: 0.5px;
+    }
+
+    .present-toolbar .toolbar-label {
+      font-size: 0.75rem;
+      opacity: 0.7;
+      padding-right: 0.3rem;
+      border-right: 1px solid rgba(255, 255, 255, 0.2);
+      margin-right: 0.3rem;
+      display: none;
+    }
+
+    @media (min-width: 600px) {
+      .present-toolbar .toolbar-label { display: inline; }
+    }
+
+    body.presenting .teach-section {
+      display: none;
+    }
+
+    body.presenting .teach-section.active-slide {
+      display: block;
+      animation: fadeIn 0.35s ease;
+      min-height: 60vh;
+    }
+
+    body.presenting .topic-header,
+    body.presenting .back-link,
+    body.presenting .footer-nav,
+    body.presenting .custom-instructions,
+    body.presenting .outcome-banner {
+      display: none;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    body.presenting .teach-section h2 {
+      font-size: 2.1rem;
+    }
+
+    body.presenting .teach-section p,
+    body.presenting .teach-section li {
+      font-size: 1.15rem;
+      line-height: 1.9;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 700px) {
+      .topic-header { padding: 2rem 1.5rem; }
+      .topic-header h1 { font-size: 1.8rem; }
+      .teach-section { padding: 1.7rem 1.4rem; }
+      .outcome-banner { padding: 1.5rem 1.5rem; }
+      .footer-nav { flex-direction: column; align-items: stretch; text-align: center; }
+      .footer-nav a { justify-content: center; }
+      .custom-instructions { padding: 1.6rem 1.4rem; }
+      .flow-diagram { flex-direction: column; }
+      .flow-arrow { transform: rotate(90deg); }
+    }
+
+    @media (max-width: 480px) {
+      body { padding: 1rem 0.8rem 6rem; }
+      .topic-header h1 { font-size: 1.5rem; }
+      .teach-section h2 { font-size: 1.3rem; }
+      .network-grid { grid-template-columns: 1fr; }
+      .component-grid { grid-template-columns: 1fr; }
+      .match-table { font-size: 0.78rem; }
+      .match-table th, .match-table td { padding: 0.4rem 0.4rem; }
+      .custom-link-btn { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- ===== BACK LINK ===== -->
+  <a href="index.html" class="back-link">
+    <i class="fas fa-arrow-left"></i> Back to Topic Index
+  </a>
+
+  <!-- ===== TOPIC HEADER ===== -->
+  <header class="topic-header">
+    <div class="topic-badge">
+      <i class="fas fa-network-wired" style="margin-right: 6px;"></i> Topic 6
+    </div>
+    <h1>Networks and the Internet</h1>
+    <div class="subhead">
+      LAN, WAN, Wi-Fi, IP addresses, DNS, packets, and protocols — how devices connect and communicate.
+    </div>
+  </header>
+
+  <!-- ============================================================
+       SLIDE 1 — WHAT IS A NETWORK?
+       ============================================================ -->
+  <section class="teach-section">
+    <h2><i class="fas fa-network-wired"></i> What Is a Network?</h2>
+
+    <p>
+      A <strong>network</strong> is a group of two or more devices that are connected together
+      so they can share data, resources, and information. Every time you send a message, watch
+      a video, or open a website, you are using a network. Networks are what make modern
+      communication and the internet possible.
+    </p>
+
+    <div class="definition-box">
+      <p>
+        <strong>Network:</strong> Two or more devices connected together so they can share
+        data and resources. The connections can be wired (using cables) or wireless (using
+        radio waves).
+      </p>
+    </div>
+
+    <h3>Why Do We Use Networks?</h3>
+    <p>
+      Networks allow devices to do things they could not do alone:
+    </p>
+    <ul>
+      <li><strong>Share files and data:</strong> Send a document from one computer to another.</li>
+      <li><strong>Share resources:</strong> Multiple computers can use the same printer or internet connection.</li>
+      <li><strong>Communicate:</strong> Send messages, make calls, and hold video meetings.</li>
+      <li><strong>Access information:</strong> Browse websites, watch videos, and use online services.</li>
+      <li><strong>Collaborate:</strong> Work on the same document or project from different locations.</li>
+    </ul>
+
+    <h3>Types of Networks</h3>
+    <p>
+      Networks are usually grouped by how big an area they cover. The four most common types
+      are <strong>LAN</strong>, <strong>WAN</strong>, <strong>Wi-Fi</strong>, and
+      <strong>mobile networks</strong>.
+    </p>
+
+    <div class="network-grid">
+      <div class="network-card lan">
+        <div class="network-icon"><i class="fas fa-building"></i></div>
+        <div class="network-size">Small area</div>
+        <h4>LAN</h4>
+        <p><strong>Local Area Network.</strong> Covers a small area like a home, school, or office. Usually owned and managed by one organisation.</p>
+      </div>
+      <div class="network-card wan">
+        <div class="network-icon"><i class="fas fa-globe"></i></div>
+        <div class="network-size">Large area</div>
+        <h4>WAN</h4>
+        <p><strong>Wide Area Network.</strong> Covers a large area like a city, country, or the whole world. The internet itself is the largest WAN.</p>
+      </div>
+      <div class="network-card wifi">
+        <div class="network-icon"><i class="fas fa-wifi"></i></div>
+        <div class="network-size">Wireless LAN</div>
+        <h4>Wi-Fi</h4>
+        <p>A wireless LAN. Devices connect to a network using radio waves instead of cables, usually within a building.</p>
+      </div>
+      <div class="network-card mobile">
+        <div class="network-icon"><i class="fas fa-tower-cell"></i></div>
+        <div class="network-size">Wide coverage</div>
+        <h4>Mobile Networks</h4>
+        <p>Wireless WANs that use cell towers. <strong>3G</strong>, <strong>4G</strong>, and <strong>5G</strong> are generations of mobile technology — each faster than the last.</p>
+      </div>
+    </div>
+
+    <h3>LAN — Local Area Network</h3>
+    <p>
+      A <strong>LAN</strong> covers a small area — usually a single building or campus. Think
+      of the network at your school: all the classroom computers, printers, and the school
+      server are connected together in one LAN. A home network, where your laptop, phone, and
+      smart TV share the same Wi-Fi, is also a LAN.
+    </p>
+    <p>
+      LANs are usually fast, cheap to set up, and owned by a single person or organisation.
+    </p>
+
+    <h3>WAN — Wide Area Network</h3>
+    <p>
+      A <strong>WAN</strong> covers a large geographic area — a city, a country, or even the
+      whole world. WANs are often made by connecting many LANs together using long-distance
+      links like fibre optic cables, satellites, or leased phone lines.
+    </p>
+    <p>
+      The <strong>internet</strong> itself is the biggest WAN in the world. It is a global
+      network that connects millions of smaller networks.
+    </p>
+
+    <h3>Wi-Fi — Wireless LAN</h3>
+    <p>
+      <strong>Wi-Fi</strong> is a way of connecting to a LAN without cables. Instead of
+      plugging in a network cable, your device talks to a <strong>wireless access point</strong>
+      using radio waves. Wi-Fi is convenient and flexible, but it usually has a shorter range
+      and can be affected by walls and interference.
+    </p>
+
+    <h3>Mobile Networks — 3G, 4G, 5G</h3>
+    <p>
+      <strong>Mobile networks</strong> let your phone connect to the internet from almost
+      anywhere. They use a system of <strong>cell towers</strong> that cover the country in
+      small zones. As you move, your phone automatically connects to the nearest tower.
+    </p>
+    <p>
+      Mobile networks have improved through generations:
+    </p>
+    <ul>
+      <li><strong>3G:</strong> The first generation fast enough for basic video calls and web browsing.</li>
+      <li><strong>4G:</strong> Much faster — good for streaming video and everyday apps.</li>
+      <li><strong>5G:</strong> The newest generation — extremely fast, with very low delay. Perfect for live video and connected devices.</li>
+    </ul>
+
+    <!-- IMAGE 1: Network types -->
+    <div class="img-placeholder" id="img-placeholder-1">
+      <span class="img-title">Types of Networks: LAN, WAN, Wi-Fi, and Mobile</span>
+      <span class="img-filename"><img src="images/network-types.png" alt="Diagram showing LAN, WAN, Wi-Fi, and mobile networks"></span>
+    </div>
+    <p class="img-caption">Figure 6.1 — Four common types of networks.</p>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 2 — NETWORK COMPONENTS
+       ============================================================ -->
+  <section class="teach-section">
+    <h2><i class="fas fa-server"></i> Network Components</h2>
+
+    <p>
+      Networks are made of several different hardware devices. Each one has a specific job in
+      helping data travel from one place to another. Understanding these components helps you
+      understand how a network works.
+    </p>
+
+    <div class="component-grid">
+      <div class="component-card">
+        <div class="component-icon"><i class="fas fa-wifi"></i></div>
+        <h4>Router</h4>
+        <p>Directs data between networks and chooses the best path for packets.</p>
+      </div>
+      <div class="component-card">
+        <div class="component-icon"><i class="fas fa-plug"></i></div>
+        <h4>Modem</h4>
+        <p>Converts signals between your home network and your internet provider.</p>
+      </div>
+      <div class="component-card">
+        <div class="component-icon"><i class="fas fa-code-branch"></i></div>
+        <h4>Switch</h4>
+        <p>Connects multiple devices within one LAN and sends data only to the right device.</p>
+      </div>
+      <div class="component-card">
+        <div class="component-icon"><i class="fas fa-tower-broadcast"></i></div>
+        <h4>Access Point</h4>
+        <p>Provides Wi-Fi coverage so wireless devices can join the network.</p>
+      </div>
+      <div class="component-card">
+        <div class="component-icon"><i class="fas fa-location-dot"></i></div>
+        <h4>IP Address</h4>
+        <p>A unique number for each device — like a mailing address on a network.</p>
+      </div>
+      <div class="component-card">
+        <div class="component-icon"><i class="fas fa-address-book"></i></div>
+        <h4>DNS</h4>
+        <p>Translates website names into IP addresses — like a phonebook for websites.</p>
+      </div>
+    </div>
+
+    <h3>Router — Directing the Traffic</h3>
+    <p>
+      A <strong>router</strong> is a device that connects different networks together and
+      directs data between them. When you send a message from your home network to a friend's
+      network, the router decides the best path for the data to take. Routers are like traffic
+      police for data on the internet.
+    </p>
+
+    <h3>Modem — The Translator</h3>
+    <p>
+      A <strong>modem</strong> (short for <em>modulator–demodulator</em>) converts signals
+      between your home network and the network of your internet service provider (ISP). It
+      changes the data from the form your home devices use into the form that can travel over
+      telephone lines, cable TV lines, or fibre optic cables.
+    </p>
+    <p>
+      Many modern home routers include a built-in modem, which is why you may see a single
+      device called a "gateway" or "modem-router".
+    </p>
+
+    <h3>Switch — The Local Connector</h3>
+    <p>
+      A <strong>switch</strong> connects multiple devices within a single LAN — like all the
+      computers in a school lab. Unlike older hubs, which broadcast data to every device, a
+      switch sends data only to the device it is meant for. This makes the network faster and
+      more secure.
+    </p>
+
+    <h3>Access Point — Providing Wi-Fi</h3>
+    <p>
+      A <strong>wireless access point</strong> lets wireless devices join a wired network.
+      When you connect your phone to your school's Wi-Fi, you are connecting to an access point.
+      The access point passes your data to the rest of the network through a cable.
+    </p>
+
+    <h3>IP Address — The Mailing Address</h3>
+    <p>
+      Every device on a network has a unique <strong>IP address</strong>
+      (Internet Protocol address). An IP address is a series of numbers, like
+      <em>192.168.1.10</em>, that identifies that device on the network. Without an IP address,
+      data would not know where to go — just like a letter without an address cannot be
+      delivered.
+    </p>
+
+    <h3>DNS — The Internet's Phonebook</h3>
+    <p>
+      It would be difficult to remember the IP address of every website you want to visit.
+      That is why we use <strong>DNS</strong> — the <em>Domain Name System</em>. DNS is like a
+      phonebook that translates human-friendly names (like <em>www.bbc.co.uk</em>) into the
+      IP addresses that computers use to find each other.
+    </p>
+    <p>
+      When you type a web address into your browser, your computer automatically asks a DNS
+      server "what is the IP address for this name?" The DNS server replies with the number,
+      and your computer connects to that address.
+    </p>
+
+    <div class="analogy-box">
+      <p>
+        <strong>Analogy:</strong> Imagine you want to send a letter to a friend.
+        The <strong>IP address</strong> is like their home address — it tells the post office
+        exactly where to deliver the letter. The <strong>DNS</strong> is like a phonebook that
+        lets you look up their address from their name. Without either of them, the letter
+        could not be delivered.
+      </p>
+    </div>
+
+    <!-- IMAGE 2: Network components -->
+    <div class="img-placeholder" id="img-placeholder-2">
+      <span class="img-title">Network Components: Router, Modem, Switch, and Access Point</span>
+      <span class="img-filename"><img src="images/network-components.png" alt="Diagram of network hardware components"></span>
+    </div>
+    <p class="img-caption">Figure 6.2 — Common network hardware components.</p>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 3 — WHAT IS THE INTERNET?
+       ============================================================ -->
+  <section class="teach-section">
+    <h2><i class="fas fa-globe"></i> What Is the Internet?</h2>
+
+    <p>
+      The <strong>internet</strong> is the largest network in the world. But it is not a single
+      network owned by one company. The internet is a <strong>network of networks</strong> —
+      millions of separate networks (home networks, school networks, business networks,
+      government networks) all connected together using the same rules.
+    </p>
+
+    <div class="definition-box">
+      <p>
+        <strong>Internet:</strong> A global network of interconnected networks. It is not owned
+        by any one person or organisation. Instead, it works because every network follows the
+        same set of rules — called <strong>protocols</strong> — so they can all understand each
+        other.
+      </p>
+    </div>
+
+    <h3>How Big Is the Internet?</h3>
+    <p>
+      The internet connects billions of devices worldwide — phones, computers, servers, smart
+      TVs, and many more. Every time you open a website, send a message, or watch a video, your
+      data travels across many different networks to reach its destination. The internet makes
+      this happen in fractions of a second.
+    </p>
+
+    <h3>What Is a Server?</h3>
+    <p>
+      A <strong>server</strong> is a powerful computer that stores information and provides
+      it to other devices when they ask for it. When you visit a website, your computer (called
+      the <em>client</em>) sends a request to the server that holds that website. The server
+      responds by sending the website back.
+    </p>
+
+    <h3>How Data Travels Across the Internet</h3>
+    <p>
+      Data does not travel across the internet as one big chunk. Instead, it is broken into
+      small pieces called <strong>packets</strong>. Each packet is sent separately and can take
+      a different path to reach its destination. When all the packets arrive, they are put back
+      together in the correct order.
+    </p>
+
+    <h3>Packets — Breaking Data Into Pieces</h3>
+    <p>
+      A <strong>packet</strong> is a small piece of data. When you send a message or load a
+      web page, the data is split into many packets. Each packet contains:
+    </p>
+    <ul>
+      <li><strong>A piece of the data itself</strong> — part of the message or file.</li>
+      <li><strong>The destination IP address</strong> — where the packet is going.</li>
+      <li><strong>The sender's IP address</strong> — where the packet came from.</li>
+      <li><strong>A sequence number</strong> — so the packets can be put back in order.</li>
+    </ul>
+
+    <p>
+      Packets travel independently across the network, and each one may take a different route.
+      This system is called <strong>packet switching</strong>, and it is one of the most
+      important ideas behind the internet.
+    </p>
+
+    <div class="packet-demo">
+      <h4><i class="fas fa-box"></i> Example: Sending the message "HELLO"</h4>
+
+      <div class="packet-row">
+        <span class="packet-row-label">Original:</span>
+        <span class="packet p1">H E L L O</span>
+      </div>
+      <div class="packet-row">
+        <span class="packet-row-label">Split into packets:</span>
+        <span class="packet p1">P1 · H</span>
+        <span class="packet p2">P2 · E</span>
+        <span class="packet p3">P3 · L</span>
+        <span class="packet p4">P4 · L</span>
+        <span class="packet p5">P5 · O</span>
+      </div>
+      <div class="packet-row">
+        <span class="packet-row-label">Travel separately:</span>
+        <span class="packet p1">P1</span>
+        <span class="packet-arrow"><i class="fas fa-arrow-right"></i></span>
+        <span class="packet p3">P3</span>
+        <span class="packet-arrow"><i class="fas fa-arrow-right"></i></span>
+        <span class="packet p2">P2</span>
+        <span class="packet-arrow"><i class="fas fa-arrow-right"></i></span>
+        <span class="packet p5">P5</span>
+        <span class="packet-arrow"><i class="fas fa-arrow-right"></i></span>
+        <span class="packet p4">P4</span>
+      </div>
+      <div class="packet-row">
+        <span class="packet-row-label">Reassembled:</span>
+        <span class="packet p1">P1 · H</span>
+        <span class="packet p2">P2 · E</span>
+        <span class="packet p3">P3 · L</span>
+        <span class="packet p4">P4 · L</span>
+        <span class="packet p5">P5 · O</span>
+      </div>
+    </div>
+
+    <h3>Routers — Directing the Traffic</h3>
+    <p>
+      <strong>Routers</strong> are the devices that move packets across the internet. When a
+      packet arrives at a router, the router looks at the destination IP address and decides
+      which direction to send the packet next. Each router passes the packet on to the next
+      router, until the packet finally reaches its destination.
+    </p>
+    <p>
+      Because different packets can take different paths, if one route is busy or broken, the
+      packets can travel another way. This makes the internet very reliable.
+    </p>
+
+    <h3>Protocols — The Rules of the Internet</h3>
+    <p>
+      A <strong>protocol</strong> is a set of rules that devices follow so they can understand
+      each other. Every device on the internet must follow the same protocols, or communication
+      would be impossible.
+    </p>
+    <p>
+      Two important protocols you should know:
+    </p>
+    <ul>
+      <li>
+        <strong>TCP/IP (Transmission Control Protocol / Internet Protocol):</strong>
+        The basic rules that allow data to be sent, addressed, and reassembled across the
+        internet. IP handles the addressing; TCP makes sure all the packets arrive safely and
+        in the correct order.
+      </li>
+      <li>
+        <strong>HTTP / HTTPS (HyperText Transfer Protocol / Secure):</strong>
+        The rules for sending and receiving web pages. When you see <em>https://</em> in a web
+        address, it means the connection is secure and your data is encrypted.
+      </li>
+    </ul>
+
+    <div class="analogy-box">
+      <p>
+        <strong>Analogy:</strong> Think of the postal system.
+        <strong>Packets</strong> are the individual letters.
+        <strong>IP addresses</strong> are the addresses written on each envelope.
+        <strong>Routers</strong> are the postal workers and sorting offices that move letters
+        along the route.
+        <strong>Protocols</strong> are the rules of the postal system — the standards everyone
+        follows so letters get delivered correctly.
+      </p>
+    </div>
+
+    <!-- IMAGE 3: Internet structure -->
+    <div class="img-placeholder" id="img-placeholder-3">
+      <span class="img-title">How Data Travels Across the Internet: Packets and Routers</span>
+      <span class="img-filename"><img src="images/internet-packets.png" alt="Diagram showing packets travelling through routers to reach a destination"></span>
+    </div>
+    <p class="img-caption">Figure 6.3 — Packets travelling through routers across the internet.</p>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 4 — TRACING A WEB REQUEST
+       ============================================================ -->
+  <section class="teach-section">
+    <h2><i class="fas fa-route"></i> Tracing the Route of a Web Request</h2>
+
+    <p>
+      When you type a website address into your browser and press Enter, a surprising amount
+      of activity happens in a fraction of a second. Let us trace exactly what happens when
+      you visit a website.
+    </p>
+
+    <div class="url-trace">
+      <h4><i class="fas fa-search"></i> You type: www.example.com</h4>
+
+      <div class="url-bar">
+        <i class="fas fa-globe"></i> www.example.com
+      </div>
+
+      <ol class="url-steps">
+        <li>
+          <strong>You type the URL.</strong> Your browser receives the web address
+          "www.example.com". Your computer does not know where this website lives yet.
+        </li>
+        <li>
+          <strong>DNS lookup.</strong> Your computer asks a DNS server: "What is the IP address
+          for www.example.com?" The DNS server is like a phonebook, and it replies with the
+          correct IP address (for example, 93.184.216.34).
+        </li>
+        <li>
+          <strong>Your request is split into packets.</strong> The request to load the web page
+          is divided into small packets, each labelled with your IP address and the destination
+          IP address.
+        </li>
+        <li>
+          <strong>Packets travel through routers.</strong> The packets pass through many
+          routers on the way. Each router reads the destination address and forwards the packet
+          to the next router along the route.
+        </li>
+        <li>
+          <strong>The server receives the request.</strong> The web server at the destination
+          IP address receives the packets, puts them back together, and understands what you
+          are asking for.
+        </li>
+        <li>
+          <strong>The server sends a response.</strong> The server sends the web page back to
+          you, again split into packets.
+        </li>
+        <li>
+          <strong>The packets travel back to you.</strong> The packets travel back through the
+          routers, possibly taking a different route than on the way there.
+        </li>
+        <li>
+          <strong>Your browser displays the page.</strong> Your computer reassembles the
+          packets in the correct order, and your browser draws the web page on your screen. All
+          of this usually takes less than a second.
+        </li>
+      </ol>
+    </div>
+
+    <div class="flow-diagram">
+      <div class="flow-step">Type URL<br><small style="font-weight:400;font-size:0.75rem;">Your action</small></div>
+      <span class="flow-arrow"><i class="fas fa-arrow-right"></i></span>
+      <div class="flow-step">DNS Lookup<br><small style="font-weight:400;font-size:0.75rem;">Name → IP</small></div>
+      <span class="flow-arrow"><i class="fas fa-arrow-right"></i></span>
+      <div class="flow-step">Send Request<br><small style="font-weight:400;font-size:0.75rem;">Into packets</small></div>
+      <span class="flow-arrow"><i class="fas fa-arrow-right"></i></span>
+      <div class="flow-step">Routers<br><small style="font-weight:400;font-size:0.75rem;">Direct packets</small></div>
+      <span class="flow-arrow"><i class="fas fa-arrow-right"></i></span>
+      <div class="flow-step">Web Server<br><small style="font-weight:400;font-size:0.75rem;">Responds</small></div>
+      <span class="flow-arrow"><i class="fas fa-arrow-right"></i></span>
+      <div class="flow-step">Page Displayed<br><small style="font-weight:400;font-size:0.75rem;">On your screen</small></div>
+    </div>
+
+    <h3>Why This Matters</h3>
+    <p>
+      Every time you open a website, this entire process happens — usually in under a second.
+      If one of the steps fails (for example, DNS cannot find the address, or a router is
+      offline), the website will not load. This is why understanding the route of a web request
+      is so useful when troubleshooting network problems.
+    </p>
+
+    <div class="key-terms">
+      <dl class="term-card">
+        <dt>Packet</dt>
+        <dd>A small piece of data sent across a network, with addressing information attached.</dd>
+      </dl>
+      <dl class="term-card">
+        <dt>Packet Switching</dt>
+        <dd>Splitting data into packets that travel separately and are reassembled at the destination.</dd>
+      </dl>
+      <dl class="term-card">
+        <dt>Protocol</dt>
+        <dd>A set of rules that devices follow so they can communicate.</dd>
+      </dl>
+      <dl class="term-card">
+        <dt>TCP/IP</dt>
+        <dd>The core rules of the internet — handling addressing, delivery, and reassembly of data.</dd>
+      </dl>
+      <dl class="term-card">
+        <dt>HTTP / HTTPS</dt>
+        <dd>The rules for sending and receiving web pages. HTTPS is the secure version.</dd>
+      </dl>
+      <dl class="term-card">
+        <dt>Server</dt>
+        <dd>A computer that stores information and provides it to other devices when requested.</dd>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 5 — ACTIVITY
+       ============================================================ -->
+  <section class="teach-section">
+    <h2><i class="fas fa-pen-to-square"></i> Activity: Simulate and Trace</h2>
+
+    <div class="activity-box">
+      <h3><i class="fas fa-bullseye"></i> Activity 1 — Simulate Packet Switching</h3>
+      <p>
+        In this activity, you will act out how data travels across a network using the
+        <strong>packet switching</strong> method.
+      </p>
+      <ol class="activity-steps">
+        <li>Divide the class into small groups. Each group represents a <strong>router</strong> in the network.</li>
+        <li>Choose one student to be the <strong>sender</strong> and another to be the <strong>receiver</strong>.</li>
+        <li>The sender writes a short message (like "HELLO") on separate slips of paper — one letter per slip.</li>
+        <li>Each slip is a <strong>packet</strong>. Write a number on each slip so it can be put back in order.</li>
+        <li>The sender passes the packets to different "routers" (groups), which pass them on in different directions.</li>
+        <li>All packets eventually reach the receiver, who puts them back in the correct order to read the message.</li>
+        <li>Discuss: what happened if one router was slow or missing? How did packets find another way?</li>
+      </ol>
+    </div>
+
+    <h3 style="margin-top: 2rem;">Activity 2 — Trace a Web Request</h3>
+    <p>
+      The list below shows the steps that happen when you visit a website, but they are mixed
+      up. Click them in the correct order to build the trace. Each step can be used only once.
+    </p>
+
+    <div class="ordering-builder">
+      <h4><i class="fas fa-list-ol"></i> Click a step to add it in order</h4>
+
+      <div class="ordering-options" id="orderingOptions">
+        <button class="ordering-option" data-step="dns" data-order="2">DNS looks up the IP address for the website name</button>
+        <button class="ordering-option" data-step="reassemble" data-order="6">Your browser reassembles the packets and displays the page</button>
+        <button class="ordering-option" data-step="type" data-order="1">You type a website address and press Enter</button>
+        <button class="ordering-option" data-step="route" data-order="4">Routers direct the packets toward the server</button>
+        <button class="ordering-option" data-step="send" data-order="3">Your request is split into packets</button>
+        <button class="ordering-option" data-step="respond" data-order="5">The web server sends the page back to you</button>
+      </div>
+
+      <div class="ordering-slots" id="orderingSlots">
+        <div class="ordering-slot empty" data-slot="1"><span class="slot-number">1</span> <span class="slot-text">Step 1</span></div>
+        <div class="ordering-slot empty" data-slot="2"><span class="slot-number">2</span> <span class="slot-text">Step 2</span></div>
+        <div class="ordering-slot empty" data-slot="3"><span class="slot-number">3</span> <span class="slot-text">Step 3</span></div>
+        <div class="ordering-slot empty" data-slot="4"><span class="slot-number">4</span> <span class="slot-text">Step 4</span></div>
+        <div class="ordering-slot empty" data-slot="5"><span class="slot-number">5</span> <span class="slot-text">Step 5</span></div>
+        <div class="ordering-slot empty" data-slot="6"><span class="slot-number">6</span> <span class="slot-text">Step 6</span></div>
+      </div>
+
+      <div class="ordering-feedback" id="orderingFeedback"></div>
+    </div>
+
+    <h3 style="margin-top: 2rem;">Activity 3 — Match Components to Their Roles</h3>
+    <p>
+      Match each network component on the left to its correct role on the right. Click
+      <strong>Check Answers</strong> when you are done.
+    </p>
+
+    <table class="match-table" id="matchTable">
+      <thead>
+        <tr>
+          <th style="width: 32%;">Component</th>
+          <th style="width: 68%;">Its Role</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Router</strong></td>
+          <td>
+            <select class="match-select" data-answer="route">
+              <option value="">-- Select a role --</option>
+              <option value="route">Directs data between networks and chooses paths for packets</option>
+              <option value="translate">Converts signals between your home and your ISP</option>
+              <option value="local">Connects devices within one LAN and sends data to the right device</option>
+              <option value="wifi">Provides wireless access for devices to join the network</option>
+              <option value="address">A unique number identifying a device on the network</option>
+              <option value="phonebook">Translates website names into IP addresses</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td><strong>Modem</strong></td>
+          <td>
+            <select class="match-select" data-answer="translate">
+              <option value="">-- Select a role --</option>
+              <option value="route">Directs data between networks and chooses paths for packets</option>
+              <option value="translate">Converts signals between your home and your ISP</option>
+              <option value="local">Connects devices within one LAN and sends data to the right device</option>
+              <option value="wifi">Provides wireless access for devices to join the network</option>
+              <option value="address">A unique number identifying a device on the network</option>
+              <option value="phonebook">Translates website names into IP addresses</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td><strong>Switch</strong></td>
+          <td>
+            <select class="match-select" data-answer="local">
+              <option value="">-- Select a role --</option>
+              <option value="route">Directs data between networks and chooses paths for packets</option>
+              <option value="translate">Converts signals between your home and your ISP</option>
+              <option value="local">Connects devices within one LAN and sends data to the right device</option>
+              <option value="wifi">Provides wireless access for devices to join the network</option>
+              <option value="address">A unique number identifying a device on the network</option>
+              <option value="phonebook">Translates website names into IP addresses</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td><strong>Access Point</strong></td>
+          <td>
+            <select class="match-select" data-answer="wifi">
+              <option value="">-- Select a role --</option>
+              <option value="route">Directs data between networks and chooses paths for packets</option>
+              <option value="translate">Converts signals between your home and your ISP</option>
+              <option value="local">Connects devices within one LAN and sends data to the right device</option>
+              <option value="wifi">Provides wireless access for devices to join the network</option>
+              <option value="address">A unique number identifying a device on the network</option>
+              <option value="phonebook">Translates website names into IP addresses</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td><strong>IP Address</strong></td>
+          <td>
+            <select class="match-select" data-answer="address">
+              <option value="">-- Select a role --</option>
+              <option value="route">Directs data between networks and chooses paths for packets</option>
+              <option value="translate">Converts signals between your home and your ISP</option>
+              <option value="local">Connects devices within one LAN and sends data to the right device</option>
+              <option value="wifi">Provides wireless access for devices to join the network</option>
+              <option value="address">A unique number identifying a device on the network</option>
+              <option value="phonebook">Translates website names into IP addresses</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td><strong>DNS</strong></td>
+          <td>
+            <select class="match-select" data-answer="phonebook">
+              <option value="">-- Select a role --</option>
+              <option value="route">Directs data between networks and chooses paths for packets</option>
+              <option value="translate">Converts signals between your home and your ISP</option>
+              <option value="local">Connects devices within one LAN and sends data to the right device</option>
+              <option value="wifi">Provides wireless access for devices to join the network</option>
+              <option value="address">A unique number identifying a device on the network</option>
+              <option value="phonebook">Translates website names into IP addresses</option>
+            </select>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="match-buttons">
+      <button class="match-btn" id="checkMatch">
+        <i class="fas fa-check"></i> Check Answers
+      </button>
+      <button class="match-btn reset" id="resetMatch">
+        <i class="fas fa-rotate-left"></i> Reset
+      </button>
+    </div>
+
+    <div class="match-feedback" id="matchFeedback"></div>
+
+    <!-- Discussion -->
+    <div class="discussion-box">
+      <h3><i class="fas fa-comments"></i> Discussion</h3>
+      <p>
+        Talk about these questions with your class or in small groups:
+      </p>
+      <div class="discussion-question">
+        <i class="fas fa-question-circle" style="color:#0284c7;margin-right:8px;"></i>
+        Why is the internet called a "network of networks"?
+      </div>
+      <div class="discussion-question">
+        <i class="fas fa-question-circle" style="color:#0284c7;margin-right:8px;"></i>
+        What would happen if all routers suddenly stopped working?
+      </div>
+      <div class="discussion-question">
+        <i class="fas fa-question-circle" style="color:#0284c7;margin-right:8px;"></i>
+        Why is packet switching more reliable than sending data as one big file?
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 6 — QUICK CHECK QUIZ
+       ============================================================ -->
+  <section class="teach-section">
+    <h2><i class="fas fa-circle-question"></i> Quick Check</h2>
+    <p>Test your understanding with these questions. Click the best answer.</p>
+
+    <div class="quiz-question" data-quiz="1">
+      <p>1. What is the main difference between a LAN and a WAN?</p>
+      <div class="quiz-options">
+        <button class="quiz-option" data-correct="false">
+          <i class="fas fa-circle"></i> LAN is wireless, WAN uses cables only
+        </button>
+        <button class="quiz-option" data-correct="true">
+          <i class="fas fa-circle"></i> LAN covers a small area; WAN covers a large area
+        </button>
+        <button class="quiz-option" data-correct="false">
+          <i class="fas fa-circle"></i> LAN is only for schools; WAN is only for businesses
+        </button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-question" data-quiz="2">
+      <p>2. What does DNS do?</p>
+      <div class="quiz-options">
+        <button class="quiz-option" data-correct="false">
+          <i class="fas fa-circle"></i> Directs packets between routers
+        </button>
+        <button class="quiz-option" data-correct="true">
+          <i class="fas fa-circle"></i> Translates website names into IP addresses
+        </button>
+        <button class="quiz-option" data-correct="false">
+          <i class="fas fa-circle"></i> Stores all the files on the internet
+        </button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-question" data-quiz="3">
+      <p>3. What is a <strong>packet</strong>?</p>
+      <div class="quiz-options">
+        <button class="quiz-option" data-correct="false">
+          <i class="fas fa-circle"></i> A type of router used on WANs
+        </button>
+        <button class="quiz-option" data-correct="true">
+          <i class="fas fa-circle"></i> A small piece of data sent across a network
+        </button>
+        <button class="quiz-option" data-correct="false">
+          <i class="fas fa-circle"></i> A wireless signal used by mobile phones
+        </button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-question" data-quiz="4">
+      <p>4. What is the main job of a <strong>router</strong>?</p>
+      <div class="quiz-options">
+        <button class="quiz-option" data-correct="false">
+          <i class="fas fa-circle"></i> To store web pages for websites
+        </button>
+        <button class="quiz-option" data-correct="true">
+          <i class="fas fa-circle"></i> To direct data between networks and choose paths for packets
+        </button>
+        <button class="quiz-option" data-correct="false">
+          <i class="fas fa-circle"></i> To convert analog signals into digital signals
+        </button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-question" data-quiz="5">
+      <p>5. What does <strong>TCP/IP</strong> do?</p>
+      <div class="quiz-options">
+        <button class="quiz-option" data-correct="false">
+          <i class="fas fa-circle"></i> It creates Wi-Fi signals for mobile phones
+        </button>
+        <button class="quiz-option" data-correct="false">
+          <i class="fas fa-circle"></i> It stores the internet's phonebook of websites
+        </button>
+        <button class="quiz-option" data-correct="true">
+          <i class="fas fa-circle"></i> It provides the rules for addressing, sending, and reassembling data
+        </button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+  </section>
+
+  <!-- ===== STUDENT OUTCOME ===== -->
+  <div class="outcome-banner">
+    <div class="outcome-icon"><i class="fas fa-graduation-cap"></i></div>
+    <div class="outcome-text">
+      <h3>Student Outcome</h3>
+      <p>Students can explain how networks and the internet enable communication.</p>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       TEACHER INSTRUCTIONS & LINKS
+       ============================================================ -->
+  <section class="custom-instructions">
+    <h2><i class="fas fa-clipboard-list"></i> Teacher Instructions</h2>
+
+    <p>
+      <strong><a href="https://www.zipgrade.com/s/" class="inline-link" target="_blank" rel="noopener">ZipGrade Quiz</a></strong>
+      — Don't forget to take the ZipGrade quiz! Use the link provided to access and complete it. Make sure to submit before the deadline.
+    </p>
+
+    <div class="instruction-note">
+      <i class="fas fa-circle-info"></i>
+      <strong>Teaching tip:</strong> For the packet switching simulation, you can make small paper packets with numbers written on them so students can reassemble them. Encourage different routers to slow some packets down to simulate real network conditions — the receiver can still reassemble the message correctly because of the sequence numbers.
+    </div>
+
+    <div class="link-buttons">
+      <a href="https://www.bbc.co.uk/bitesize/guides/zpjjxsg/revision/1" class="custom-link-btn" target="_blank" rel="noopener">
+        <i class="fas fa-arrow-up-right-from-square"></i> BBC Bitesize — Networks
+      </a>
+      <a href="https://drive.google.com/file/d/1fLFAfFLuwjPeiKBkz7cyfyD-InPPLRcV/view?usp=sharing" class="custom-link-btn" target="_blank" rel="noopener">
+        <i class="fas fa-arrow-up-right-from-square"></i> Open PDF Resource
+      </a>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER NAVIGATION ===== -->
+  <div class="footer-nav">
+    <a href="topic-5-communication-tech.html">
+      <i class="fas fa-arrow-left"></i> Previous: Communication Technology
+    </a>
+    <a href="topic-7-applying-knowledge.html" class="next-link">
+      Next: Applying Knowledge to Solve Problems <i class="fas fa-arrow-right"></i>
+    </a>
+  </div>
+
+</div>
+
+<!-- ============================================================
+     PRESENTATION TOOLBAR
+     ============================================================ -->
+<div class="present-toolbar">
+  <span class="toolbar-label">PRESENT</span>
+  <button id="prevSlide" title="Previous slide (←)"><i class="fas fa-chevron-left"></i></button>
+  <span class="slide-counter" id="slideCounter">1 / 6</span>
+  <button id="nextSlide" title="Next slide (→)"><i class="fas fa-chevron-right"></i></button>
+  <button id="togglePresent" title="Start / stop presentation (P)"><i class="fas fa-play"></i></button>
+  <button id="toggleFullscreen" title="Fullscreen (F)"><i class="fas fa-expand"></i></button>
+</div>
+
+<script>
+  /* ============================================================
+     QUIZ INTERACTIVITY
+     ============================================================ */
+  (function() {
+    const quizQuestions = document.querySelectorAll('.quiz-question');
+
+    quizQuestions.forEach(function(question) {
+      const options = question.querySelectorAll('.quiz-option');
+      const feedback = question.querySelector('.quiz-feedback');
+
+      options.forEach(function(option) {
+        option.addEventListener('click', function() {
+          if (question.dataset.answered === 'true') return;
+
+          const isCorrect = option.dataset.correct === 'true';
+
+          options.forEach(function(opt) {
+            opt.disabled = true;
+            if (opt.dataset.correct === 'true') {
+              opt.classList.add('correct');
+              opt.querySelector('i').className = 'fas fa-check-circle';
+            } else if (opt === option && !isCorrect) {
+              opt.classList.add('incorrect');
+              opt.querySelector('i').className = 'fas fa-times-circle';
+            } else {
+              opt.querySelector('i').className = 'fas fa-circle';
+            }
+          });
+
+          if (isCorrect) {
+            feedback.textContent = '✓ Correct! Well done.';
+            feedback.className = 'quiz-feedback show correct';
+          } else {
+            feedback.textContent = '✗ Not quite. The correct answer is highlighted in green.';
+            feedback.className = 'quiz-feedback show incorrect';
+          }
+
+          question.dataset.answered = 'true';
+        });
+      });
+    });
+  })();
+
+  /* ============================================================
+     ORDERING ACTIVITY (Trace a Web Request)
+     ============================================================ */
+  (function() {
+    const options = document.querySelectorAll('.ordering-option');
+    const slots = document.querySelectorAll('.ordering-slot');
+    const feedback = document.getElementById('orderingFeedback');
+
+    let placed = 0;
+
+    options.forEach(function(option) {
+      option.addEventListener('click', function() {
+        if (placed >= slots.length) return;
+
+        const order = option.dataset.order;
+        const nextSlot = slots[placed];
+        const textSpan = nextSlot.querySelector('.slot-text');
+
+        textSpan.textContent = option.textContent;
+        nextSlot.classList.remove('empty');
+        nextSlot.dataset.placedOrder = order;
+
+        option.classList.add('used');
+        option.disabled = true;
+
+        placed++;
+
+        if (placed === slots.length) {
+          // Check answers
+          let correct = 0;
+          slots.forEach(function(slot, index) {
+            const expectedOrder = String(index + 1);
+            if (slot.dataset.placedOrder === expectedOrder) {
+              slot.classList.add('correct');
+              correct++;
+            } else {
+              slot.classList.add('incorrect');
+            }
+          });
+
+          if (correct === slots.length) {
+            feedback.textContent = '🎉 Perfect! The web request trace is correct: type URL → DNS → packets → routers → server → page displayed.';
+            feedback.className = 'ordering-feedback show success';
+          } else {
+            feedback.textContent = 'You placed ' + correct + ' of ' + slots.length + ' steps correctly. The correct order is: Type URL → DNS lookup → Split into packets → Routers direct → Server responds → Page displayed. Click Reset to try again.';
+            feedback.className = 'ordering-feedback show partial';
+          }
+
+          // Add reset button
+          if (!document.getElementById('orderingResetBtn')) {
+            const resetBtn = document.createElement('button');
+            resetBtn.id = 'orderingResetBtn';
+            resetBtn.className = 'match-btn reset';
+            resetBtn.style.marginTop = '1rem';
+            resetBtn.innerHTML = '<i class="fas fa-rotate-left"></i> Reset';
+            resetBtn.addEventListener('click', resetOrdering);
+            feedback.parentNode.appendChild(resetBtn);
+          }
+        }
+      });
+    });
+
+    function resetOrdering() {
+      placed = 0;
+      options.forEach(function(option) {
+        option.classList.remove('used');
+        option.disabled = false;
+      });
+      slots.forEach(function(slot, index) {
+        const textSpan = slot.querySelector('.slot-text');
+        textSpan.textContent = 'Step ' + (index + 1);
+        slot.classList.add('empty');
+        slot.classList.remove('correct', 'incorrect');
+        delete slot.dataset.placedOrder;
+      });
+      feedback.className = 'ordering-feedback';
+      feedback.textContent = '';
+      const resetBtn = document.getElementById('orderingResetBtn');
+      if (resetBtn) resetBtn.remove();
+    }
+  })();
+
+  /* ============================================================
+     MATCHING ACTIVITY
+     ============================================================ */
+  (function() {
+    const selects = document.querySelectorAll('.match-select');
+    const checkBtn = document.getElementById('checkMatch');
+    const resetBtn = document.getElementById('resetMatch');
+    const feedback = document.getElementById('matchFeedback');
+
+    checkBtn.addEventListener('click', function() {
+      let correct = 0;
+      let answered = 0;
+      let total = selects.length;
+
+      selects.forEach(function(select) {
+        select.classList.remove('correct', 'incorrect');
+        const chosen = select.value;
+        if (chosen === '') return;
+
+        answered++;
+        if (chosen === select.dataset.answer) {
+          select.classList.add('correct');
+          correct++;
+        } else {
+          select.classList.add('incorrect');
+        }
+      });
+
+      if (answered === 0) {
+        feedback.textContent = '⚠️ Please choose an answer for at least one component first.';
+        feedback.className = 'match-feedback show partial';
+        return;
+      }
+
+      if (correct === total) {
+        feedback.textContent = '🎉 Perfect! All ' + total + ' network components are correctly matched.';
+        feedback.className = 'match-feedback show success';
+      } else {
+        feedback.textContent = 'You got ' + correct + ' out of ' + total + ' correct. Green boxes are correct; red boxes need another try.';
+        feedback.className = 'match-feedback show partial';
+      }
+    });
+
+    resetBtn.addEventListener('click', function() {
+      selects.forEach(function(select) {
+        select.value = '';
+        select.classList.remove('correct', 'incorrect');
+      });
+      feedback.className = 'match-feedback';
+      feedback.textContent = '';
+    });
+  })();
+
+  /* ============================================================
+     PRESENTATION MODE
+     ============================================================ */
+  (function() {
+    const slides = document.querySelectorAll('.teach-section');
+    const totalSlides = slides.length;
+    const counter = document.getElementById('slideCounter');
+    const prevBtn = document.getElementById('prevSlide');
+    const nextBtn = document.getElementById('nextSlide');
+    const presentBtn = document.getElementById('togglePresent');
+    const fullscreenBtn = document.getElementById('toggleFullscreen');
+
+    let current = 0;
+    let presenting = false;
+
+    if (totalSlides > 0) {
+      slides[0].classList.add('active-slide');
+      updateCounter();
+    }
+
+    function updateCounter() {
+      counter.textContent = (current + 1) + ' / ' + totalSlides;
+    }
+
+    function showSlide(index) {
+      if (index < 0) index = 0;
+      if (index >= totalSlides) index = totalSlides - 1;
+
+      slides.forEach(function(slide) {
+        slide.classList.remove('active-slide');
+      });
+      slides[index].classList.add('active-slide');
+      current = index;
+      updateCounter();
+
+      if (presenting) {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    function nextSlide() {
+      if (current < totalSlides - 1) showSlide(current + 1);
+    }
+
+    function prevSlide() {
+      if (current > 0) showSlide(current - 1);
+    }
+
+    function enterPresentation() {
+      presenting = true;
+      document.body.classList.add('presenting');
+      presentBtn.innerHTML = '<i class="fas fa-stop"></i>';
+      presentBtn.title = 'Stop presentation (P)';
+      showSlide(0);
+    }
+
+    function exitPresentation() {
+      presenting = false;
+      document.body.classList.remove('presenting');
+      presentBtn.innerHTML = '<i class="fas fa-play"></i>';
+      presentBtn.title = 'Start presentation (P)';
+      slides.forEach(function(slide) {
+        slide.classList.remove('active-slide');
+      });
+      if (document.fullscreenElement) {
+        document.exitFullscreen().catch(function() {});
+      }
+    }
+
+    function togglePresentation() {
+      if (presenting) {
+        exitPresentation();
+      } else {
+        enterPresentation();
+      }
+    }
+
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(function() {});
+      } else {
+        document.exitFullscreen().catch(function() {});
+      }
+    }
+
+    prevBtn.addEventListener('click', prevSlide);
+    nextBtn.addEventListener('click', nextSlide);
+    presentBtn.addEventListener('click', togglePresentation);
+    fullscreenBtn.addEventListener('click', toggleFullscreen);
+
+    document.addEventListener('keydown', function(e) {
+      const tag = (e.target.tagName || '').toLowerCase();
+      const typing = tag === 'input' || tag === 'textarea' || tag === 'select' || e.target.isContentEditable;
+
+      if (e.key === 'ArrowRight' && presenting) {
+        e.preventDefault();
+        nextSlide();
+      } else if (e.key === 'ArrowLeft' && presenting) {
+        e.preventDefault();
+        prevSlide();
+      } else if ((e.key === 'p' || e.key === 'P') && !typing) {
+        e.preventDefault();
+        togglePresentation();
+      } else if ((e.key === 'f' || e.key === 'F') && !typing) {
+        e.preventDefault();
+        toggleFullscreen();
+      } else if (e.key === 'Escape' && presenting) {
+        exitPresentation();
+      }
+    });
+
+    document.addEventListener('fullscreenchange', function() {
+      if (document.fullscreenElement) {
+        fullscreenBtn.innerHTML = '<i class="fas fa-compress"></i>';
+      } else {
+        fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i>';
+      }
+    });
+  })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,2498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Topic 5 · Introduction to Communication Technology</title>
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: #f0f5fa;
+      color: #0a1e2f;
+      line-height: 1.7;
+      padding: 2rem 1.5rem 6rem;
+      scroll-behavior: smooth;
+    }
+
+    .wrapper {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    /* ===== BACK LINK ===== */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      color: #1e6b9b;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+      padding: 0.5rem 1rem;
+      border-radius: 40px;
+      background: #ffffff;
+      border: 1px solid #d9e7f5;
+      transition: background 0.2s, gap 0.2s;
+    }
+
+    .back-link:hover {
+      background: #e7f0f9;
+      gap: 0.9rem;
+    }
+
+    /* ===== HEADER ===== */
+    .topic-header {
+      background: linear-gradient(135deg, #0b2a4a 0%, #1a4a6e 100%);
+      border-radius: 2.5rem;
+      padding: 3rem 2.5rem;
+      color: white;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 20px 30px -10px rgba(11, 42, 74, 0.25);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .topic-header::after {
+      content: "5";
+      position: absolute;
+      right: 2rem;
+      bottom: -2.5rem;
+      font-size: 13rem;
+      font-weight: 800;
+      color: rgba(255, 255, 255, 0.06);
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .topic-badge {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(4px);
+      padding: 0.25rem 1rem;
+      border-radius: 40px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .topic-header h1 {
+      font-size: 2.6rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      max-width: 750px;
+      margin-bottom: 0.9rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .topic-header .subhead {
+      font-size: 1.1rem;
+      opacity: 0.9;
+      max-width: 680px;
+      font-weight: 400;
+      position: relative;
+      z-index: 2;
+      border-left: 4px solid #7bb8e0;
+      padding-left: 1.2rem;
+      margin-top: 0.5rem;
+      line-height: 1.6;
+    }
+
+    /* ===== TEACHING SECTIONS ===== */
+    .teach-section {
+      background: #ffffff;
+      border-radius: 2rem;
+      padding: 2.5rem 2.5rem;
+      margin-bottom: 2rem;
+      border: 1px solid #e2edf7;
+      box-shadow: 0 12px 24px -12px rgba(11, 42, 74, 0.08);
+    }
+
+    .teach-section h2 {
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: #0b2a4a;
+      margin-bottom: 1.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      letter-spacing: -0.01em;
+      line-height: 1.3;
+    }
+
+    .teach-section h2 i {
+      color: #1e6b9b;
+      font-size: 1.4rem;
+      background: #e7f0f9;
+      width: 3rem;
+      height: 3rem;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .teach-section h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #0b2a4a;
+      margin-bottom: 0.8rem;
+      margin-top: 2rem;
+      line-height: 1.35;
+    }
+
+    .teach-section h3:first-of-type {
+      margin-top: 0;
+    }
+
+    .teach-section h4 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #1a4a6e;
+      margin-bottom: 0.5rem;
+      margin-top: 1.4rem;
+    }
+
+    .teach-section p {
+      color: #1d3b5c;
+      font-size: 1.02rem;
+      margin-bottom: 1.2rem;
+      line-height: 1.8;
+    }
+
+    .teach-section ul,
+    .teach-section ol {
+      margin: 0 0 1.4rem 1.4rem;
+      color: #1d3b5c;
+      font-size: 1.02rem;
+      line-height: 1.8;
+    }
+
+    .teach-section li {
+      margin-bottom: 0.5rem;
+    }
+
+    .teach-section strong {
+      color: #0b2a4a;
+    }
+
+    .teach-section em {
+      color: #1e6b9b;
+      font-style: normal;
+      font-weight: 600;
+    }
+
+    .definition-box {
+      background: #eaf1f9;
+      border-left: 5px solid #1e6b9b;
+      border-radius: 0 1rem 1rem 0;
+      padding: 1.4rem 1.6rem;
+      margin: 1.2rem 0 1.6rem;
+    }
+
+    .definition-box p {
+      margin-bottom: 0;
+      font-size: 1.08rem;
+      line-height: 1.8;
+    }
+
+    .analogy-box {
+      background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+      border-left: 5px solid #d97706;
+      border-radius: 0 1rem 1rem 0;
+      padding: 1.4rem 1.6rem;
+      margin: 1.2rem 0 1.6rem;
+    }
+
+    .analogy-box p {
+      margin-bottom: 0;
+      color: #78350f;
+      font-size: 1.02rem;
+    }
+
+    .analogy-box strong {
+      color: #92400e;
+    }
+
+    /* ===== SENDER-MESSAGE-CHANNEL-RECEIVER DIAGRAM ===== */
+    .smcr-diagram {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      margin: 1.8rem 0;
+      padding: 1.6rem 1.2rem;
+      background: #f7fafd;
+      border-radius: 1.5rem;
+      border: 1px solid #d9e7f5;
+    }
+
+    .smcr-step {
+      background: white;
+      border: 3px solid;
+      border-radius: 1.2rem;
+      padding: 1rem 1.2rem;
+      text-align: center;
+      min-width: 130px;
+      flex: 1 1 130px;
+      max-width: 180px;
+      transition: transform 0.2s;
+    }
+
+    .smcr-step:hover {
+      transform: scale(1.04);
+    }
+
+    .smcr-step .smcr-icon {
+      font-size: 1.5rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .smcr-step .smcr-name {
+      font-size: 1rem;
+      font-weight: 800;
+      color: #0b2a4a;
+      margin-bottom: 0.3rem;
+    }
+
+    .smcr-step .smcr-desc {
+      font-size: 0.78rem;
+      color: #3a5775;
+      line-height: 1.4;
+    }
+
+    .smcr-step.sender { border-color: #2563eb; }
+    .smcr-step.sender .smcr-icon { color: #2563eb; }
+    .smcr-step.message { border-color: #7c3aed; }
+    .smcr-step.message .smcr-icon { color: #7c3aed; }
+    .smcr-step.channel { border-color: #db2777; }
+    .smcr-step.channel .smcr-icon { color: #db2777; }
+    .smcr-step.receiver { border-color: #059669; }
+    .smcr-step.receiver .smcr-icon { color: #059669; }
+
+    .smcr-arrow {
+      color: #1e6b9b;
+      font-size: 1.2rem;
+    }
+
+    /* ===== DEVICE GRID ===== */
+    .device-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.2rem;
+      margin-top: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .device-card {
+      background: #f7fafd;
+      border: 1px solid #d9e7f5;
+      border-radius: 1.5rem;
+      padding: 1.6rem 1.3rem;
+      text-align: center;
+      transition: all 0.25s ease;
+    }
+
+    .device-card:hover {
+      transform: translateY(-4px);
+      border-color: #a6c8e5;
+      box-shadow: 0 12px 24px -12px rgba(11, 42, 74, 0.12);
+    }
+
+    .device-icon {
+      width: 3.4rem;
+      height: 3.4rem;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin: 0 auto 1rem;
+      color: white;
+    }
+
+    .device-card:nth-child(1) .device-icon { background: #2563eb; }
+    .device-card:nth-child(2) .device-icon { background: #7c3aed; }
+    .device-card:nth-child(3) .device-icon { background: #db2777; }
+    .device-card:nth-child(4) .device-icon { background: #059669; }
+
+    .device-card h4 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #0b2a4a;
+      margin-bottom: 0.4rem;
+      margin-top: 0;
+    }
+
+    .device-card p {
+      font-size: 0.9rem;
+      color: #3a5775;
+      margin-bottom: 0;
+      line-height: 1.6;
+    }
+
+    /* ===== TRANSMISSION MEDIA COMPARISON ===== */
+    .media-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.2rem;
+      margin-top: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .media-card {
+      border-radius: 1.5rem;
+      padding: 1.6rem 1.4rem;
+      border: 2px solid;
+    }
+
+    .media-card.copper {
+      background: #fef3c7;
+      border-color: #fcd34d;
+    }
+
+    .media-card.fiber {
+      background: #dbeafe;
+      border-color: #93c5fd;
+    }
+
+    .media-card.wireless {
+      background: #f3e8ff;
+      border-color: #d8b4fe;
+    }
+
+    .media-card h4 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.7rem;
+      margin-top: 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .media-card.copper h4 { color: #92400e; }
+    .media-card.fiber h4 { color: #1e40af; }
+    .media-card.wireless h4 { color: #6b21a8; }
+
+    .media-card p {
+      font-size: 0.92rem;
+      color: #1d3b5c;
+      margin-bottom: 0.7rem;
+      line-height: 1.6;
+    }
+
+    .media-card ul {
+      margin: 0 0 0 1.1rem;
+      font-size: 0.88rem;
+      color: #3a5775;
+      line-height: 1.6;
+    }
+
+    .media-card ul li {
+      margin-bottom: 0.3rem;
+    }
+
+    /* ===== ANALOG VS DIGITAL ===== */
+    .signal-compare {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .signal-col {
+      border-radius: 1.5rem;
+      padding: 1.7rem 1.6rem;
+      border: 2px solid;
+    }
+
+    .signal-col.analog {
+      background: #fef9c3;
+      border-color: #fde047;
+    }
+
+    .signal-col.digital {
+      background: #dcfce7;
+      border-color: #86efac;
+    }
+
+    .signal-col h4 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 0.8rem;
+      margin-top: 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .signal-col.analog h4 { color: #854d0e; }
+    .signal-col.digital h4 { color: #166534; }
+
+    .signal-col ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .signal-col ul li {
+      font-size: 0.93rem;
+      color: #1d3b5c;
+      padding: 0.35rem 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      line-height: 1.6;
+    }
+
+    .signal-col ul li i {
+      margin-top: 0.4rem;
+      font-size: 0.65rem;
+      flex-shrink: 0;
+    }
+
+    .signal-col.analog ul li i { color: #ca8a04; }
+    .signal-col.digital ul li i { color: #16a34a; }
+
+    /* Signal wave visuals */
+    .signal-visual {
+      margin-top: 1rem;
+      padding: 1rem;
+      background: white;
+      border-radius: 1rem;
+      text-align: center;
+    }
+
+    .signal-visual .wave-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #6b7280;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    .signal-visual svg {
+      width: 100%;
+      height: auto;
+      max-width: 260px;
+    }
+
+    /* ===== HISTORY TIMELINE ===== */
+    .history-timeline {
+      position: relative;
+      padding-left: 2.4rem;
+      margin: 1.8rem 0;
+    }
+
+    .history-timeline::before {
+      content: '';
+      position: absolute;
+      left: 1rem;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: linear-gradient(to bottom, #2563eb, #7c3aed, #db2777, #059669);
+      border-radius: 3px;
+    }
+
+    .history-item {
+      position: relative;
+      padding: 1rem 0 1rem 1.4rem;
+    }
+
+    .history-item::before {
+      content: '';
+      position: absolute;
+      left: -1.7rem;
+      top: 1.4rem;
+      width: 1rem;
+      height: 1rem;
+      border-radius: 50%;
+      background: white;
+      border: 3px solid #1e6b9b;
+      box-shadow: 0 0 0 3px white;
+    }
+
+    .history-item .history-era {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      color: #1e6b9b;
+      margin-bottom: 0.2rem;
+    }
+
+    .history-item .history-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #0b2a4a;
+      margin-bottom: 0.3rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .history-item .history-title i {
+      color: #1e6b9b;
+      font-size: 0.95rem;
+    }
+
+    .history-item .history-desc {
+      font-size: 0.95rem;
+      color: #3a5775;
+      line-height: 1.7;
+    }
+
+    /* ===== WHY IT MATTERS GRID ===== */
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 1.2rem;
+      margin-top: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .why-card {
+      background: #f7fafd;
+      border: 1px solid #d9e7f5;
+      border-radius: 1.5rem;
+      padding: 1.6rem 1.4rem;
+      transition: all 0.25s ease;
+    }
+
+    .why-card:hover {
+      transform: translateY(-4px);
+      border-color: #a6c8e5;
+      box-shadow: 0 12px 24px -12px rgba(11, 42, 74, 0.12);
+    }
+
+    .why-icon {
+      width: 3rem;
+      height: 3rem;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      margin-bottom: 0.9rem;
+      color: white;
+    }
+
+    .why-card:nth-child(1) .why-icon { background: #2563eb; }
+    .why-card:nth-child(2) .why-icon { background: #7c3aed; }
+    .why-card:nth-child(3) .why-icon { background: #db2777; }
+    .why-card:nth-child(4) .why-icon { background: #059669; }
+
+    .why-card h4 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #0b2a4a;
+      margin-bottom: 0.4rem;
+      margin-top: 0;
+    }
+
+    .why-card p {
+      font-size: 0.9rem;
+      color: #3a5775;
+      margin-bottom: 0;
+      line-height: 1.6;
+    }
+
+    /* ===== IMAGE PLACEHOLDER ===== */
+    .img-placeholder {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: linear-gradient(135deg, #eaf1f9 0%, #d9e7f5 100%);
+      border: 3px dashed #a6c8e5;
+      border-radius: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+      padding: 2rem;
+      text-align: center;
+      margin: 1.8rem 0 0.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .img-placeholder .img-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #0b2a4a;
+    }
+
+    .img-placeholder .img-filename {
+      background: #ffffff;
+      border: 1px solid #c6d9ec;
+      border-radius: 40px;
+      padding: 0.5rem 1.1rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #1e6b9b;
+      font-family: 'Courier New', monospace;
+      margin-top: 0.5rem;
+      max-width: 100%;
+    }
+
+    .img-placeholder img {
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      border-radius: 1rem;
+    }
+
+    .img-caption {
+      font-size: 0.88rem;
+      color: #4a6a8a;
+      text-align: center;
+      font-style: italic;
+      margin-bottom: 1rem;
+    }
+
+    /* ===== ACTIVITY ===== */
+    .activity-box {
+      background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+      border: 2px solid #fcd34d;
+      border-radius: 1.5rem;
+      padding: 1.8rem 1.8rem;
+      margin-top: 1.2rem;
+    }
+
+    .activity-box h3 {
+      color: #92400e;
+      margin-top: 0;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .activity-box h3 i { color: #d97706; }
+
+    .activity-box p {
+      color: #78350f;
+      margin-bottom: 1rem;
+    }
+
+    .activity-steps {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      counter-reset: step-counter;
+    }
+
+    .activity-steps li {
+      counter-increment: step-counter;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.8rem;
+      padding: 0.6rem 0;
+      font-size: 0.98rem;
+      color: #78350f;
+      line-height: 1.7;
+    }
+
+    .activity-steps li::before {
+      content: counter(step-counter);
+      background: #d97706;
+      color: white;
+      font-weight: 700;
+      font-size: 0.8rem;
+      width: 1.7rem;
+      height: 1.7rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 0.2rem;
+    }
+
+    /* ===== SMCR MATCHING ACTIVITY ===== */
+    .smcr-match-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1.2rem;
+      font-size: 0.9rem;
+    }
+
+    .smcr-match-table th {
+      background: #0b2a4a;
+      color: white;
+      padding: 0.8rem 0.9rem;
+      text-align: left;
+      font-weight: 600;
+      font-size: 0.82rem;
+    }
+
+    .smcr-match-table th:first-child { border-radius: 0.8rem 0 0 0; }
+    .smcr-match-table th:last-child { border-radius: 0 0.8rem 0 0; }
+
+    .smcr-match-table td {
+      padding: 0.6rem 0.9rem;
+      border-bottom: 1px solid #e2edf7;
+      color: #1d3b5c;
+      vertical-align: middle;
+      line-height: 1.6;
+    }
+
+    .smcr-match-table tr:last-child td { border-bottom: none; }
+    .smcr-match-table tr:nth-child(even) { background: #f7fafd; }
+
+    .smcr-match-table select {
+      width: 100%;
+      padding: 0.5rem 0.6rem;
+      border: 1.5px solid #c6d9ec;
+      border-radius: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      color: #0b2a4a;
+      background: white;
+      cursor: pointer;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .smcr-match-table select:focus {
+      outline: none;
+      border-color: #1e6b9b;
+      box-shadow: 0 0 0 3px rgba(30, 107, 155, 0.12);
+    }
+
+    .smcr-match-table select.correct {
+      border-color: #22c55e;
+      background: #dcfce7;
+      color: #166534;
+      font-weight: 600;
+    }
+
+    .smcr-match-table select.incorrect {
+      border-color: #ef4444;
+      background: #fee2e2;
+      color: #991b1b;
+      font-weight: 600;
+    }
+
+    .match-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-top: 1.2rem;
+    }
+
+    .match-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: #1e6b9b;
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      padding: 0.7rem 1.5rem;
+      border-radius: 40px;
+      border: none;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      transition: background 0.2s, transform 0.15s;
+      box-shadow: 0 6px 12px -8px rgba(30, 107, 155, 0.5);
+    }
+
+    .match-btn:hover {
+      background: #0b2a4a;
+      transform: translateY(-2px);
+    }
+
+    .match-btn.reset {
+      background: #e2edf9;
+      color: #0b2a4a;
+      border: 1.5px solid #a6c8e5;
+      box-shadow: none;
+    }
+
+    .match-btn.reset:hover {
+      background: #d4e5f5;
+    }
+
+    .match-feedback {
+      font-size: 0.92rem;
+      font-weight: 600;
+      margin-top: 1rem;
+      padding: 0.8rem 1.2rem;
+      border-radius: 10px;
+      display: none;
+    }
+
+    .match-feedback.show { display: block; }
+    .match-feedback.success { background: #dcfce7; color: #166534; }
+    .match-feedback.partial { background: #fef3c7; color: #92400e; }
+
+    /* ===== EVOLUTION COMPARISON TABLE ===== */
+    .evolution-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1.4rem;
+      font-size: 0.88rem;
+    }
+
+    .evolution-table th {
+      background: #0b2a4a;
+      color: white;
+      padding: 0.8rem 0.7rem;
+      text-align: left;
+      font-weight: 600;
+      font-size: 0.78rem;
+    }
+
+    .evolution-table th:first-child { border-radius: 0.8rem 0 0 0; }
+    .evolution-table th:last-child { border-radius: 0 0.8rem 0 0; }
+
+    .evolution-table td {
+      padding: 0.7rem 0.7rem;
+      border-bottom: 1px solid #e2edf7;
+      color: #1d3b5c;
+      vertical-align: top;
+      line-height: 1.6;
+    }
+
+    .evolution-table tr:last-child td { border-bottom: none; }
+    .evolution-table tr:nth-child(even) { background: #f7fafd; }
+
+    .evolution-table td strong { color: #0b2a4a; }
+
+    /* ===== QUIZ ===== */
+    .quiz-question {
+      margin-bottom: 1.8rem;
+    }
+
+    .quiz-question p {
+      font-weight: 600;
+      color: #0b2a4a;
+      margin-bottom: 0.8rem;
+      font-size: 1.02rem;
+    }
+
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .quiz-option {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      padding: 0.8rem 1rem;
+      background: #f7fafd;
+      border: 1.5px solid #d9e7f5;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      color: #1d3b5c;
+      transition: all 0.2s;
+      font-family: 'Inter', sans-serif;
+      text-align: left;
+      width: 100%;
+      line-height: 1.5;
+    }
+
+    .quiz-option:hover {
+      border-color: #a6c8e5;
+      background: #eaf1f9;
+    }
+
+    .quiz-option.correct {
+      background: #dcfce7;
+      border-color: #86efac;
+      color: #166534;
+      font-weight: 600;
+    }
+
+    .quiz-option.incorrect {
+      background: #fee2e2;
+      border-color: #fca5a5;
+      color: #991b1b;
+    }
+
+    .quiz-option i {
+      font-size: 0.85rem;
+      color: #94a3b8;
+      flex-shrink: 0;
+    }
+
+    .quiz-option.correct i { color: #16a34a; }
+    .quiz-option.incorrect i { color: #dc2626; }
+
+    .quiz-feedback {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-top: 0.7rem;
+      padding: 0.7rem 1rem;
+      border-radius: 10px;
+      display: none;
+    }
+
+    .quiz-feedback.show { display: block; }
+    .quiz-feedback.correct { background: #dcfce7; color: #166534; }
+    .quiz-feedback.incorrect { background: #fee2e2; color: #991b1b; }
+
+    /* ===== KEY TERMS ===== */
+    .key-terms {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
+      margin-top: 1.2rem;
+    }
+
+    .term-card {
+      background: #f7fafd;
+      border: 1px solid #d9e7f5;
+      border-left: 4px solid #1e6b9b;
+      border-radius: 0 1rem 1rem 0;
+      padding: 1.1rem 1.2rem;
+    }
+
+    .term-card dt {
+      font-weight: 700;
+      color: #0b2a4a;
+      font-size: 1rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .term-card dd {
+      font-size: 0.92rem;
+      color: #3a5775;
+      line-height: 1.6;
+    }
+
+    /* ===== DISCUSSION BOX ===== */
+    .discussion-box {
+      background: #f0f9ff;
+      border: 2px solid #7dd3fc;
+      border-radius: 1.5rem;
+      padding: 1.8rem 1.8rem;
+      margin-top: 1.5rem;
+    }
+
+    .discussion-box h3 {
+      color: #0c4a6e;
+      margin-top: 0;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .discussion-box h3 i { color: #0284c7; }
+
+    .discussion-box p {
+      color: #0c4a6e;
+      margin-bottom: 1rem;
+    }
+
+    .discussion-question {
+      background: white;
+      border-left: 4px solid #0284c7;
+      border-radius: 0 0.8rem 0.8rem 0;
+      padding: 1rem 1.2rem;
+      margin-bottom: 1rem;
+      font-size: 0.98rem;
+      color: #0c4a6e;
+      font-weight: 600;
+    }
+
+    .discussion-question:last-child {
+      margin-bottom: 0;
+    }
+
+    /* ===== STUDENT OUTCOME ===== */
+    .outcome-banner {
+      background: linear-gradient(135deg, #0b2a4a 0%, #1a4a6e 100%);
+      border-radius: 2rem;
+      padding: 2rem 2.2rem;
+      color: white;
+      margin-top: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .outcome-banner .outcome-icon {
+      background: rgba(255, 255, 255, 0.15);
+      width: 4rem;
+      height: 4rem;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      flex-shrink: 0;
+    }
+
+    .outcome-banner .outcome-text {
+      flex: 1;
+      min-width: 220px;
+    }
+
+    .outcome-banner h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+
+    .outcome-banner p {
+      font-size: 0.98rem;
+      opacity: 0.92;
+      margin-bottom: 0;
+    }
+
+    /* ===== TEACHER INSTRUCTIONS ===== */
+    .custom-instructions {
+      background: #ffffff;
+      border-radius: 2rem;
+      padding: 2.2rem 2.2rem;
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+      border: 2px solid #1e6b9b;
+      box-shadow: 0 12px 24px -12px rgba(30, 107, 155, 0.15);
+      position: relative;
+    }
+
+    .custom-instructions::before {
+      content: "📌";
+      position: absolute;
+      top: -1.2rem;
+      left: 2rem;
+      background: #1e6b9b;
+      color: white;
+      width: 2.4rem;
+      height: 2.4rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      box-shadow: 0 6px 12px -4px rgba(30, 107, 155, 0.4);
+    }
+
+    .custom-instructions h2 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #0b2a4a;
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      letter-spacing: -0.01em;
+      margin-top: 0.5rem;
+    }
+
+    .custom-instructions h2 i {
+      color: #1e6b9b;
+      font-size: 1.4rem;
+      background: #e7f0f9;
+      width: 2.8rem;
+      height: 2.8rem;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .custom-instructions p {
+      color: #1d3b5c;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      line-height: 1.7;
+    }
+
+    .custom-instructions a.inline-link {
+      color: #1e6b9b;
+      font-weight: 600;
+      text-decoration: none;
+      border-bottom: 2px solid #a6c8e5;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .custom-instructions a.inline-link:hover {
+      color: #0b2a4a;
+      border-bottom-color: #1e6b9b;
+    }
+
+    .instruction-note {
+      background: #eaf1f9;
+      border-left: 4px solid #1e6b9b;
+      border-radius: 0 0.8rem 0.8rem 0;
+      padding: 1rem 1.2rem;
+      margin-top: 1rem;
+      font-size: 0.95rem;
+      color: #2f506d;
+    }
+
+    .instruction-note i {
+      color: #1e6b9b;
+      margin-right: 0.4rem;
+    }
+
+    /* ===== LINK BUTTONS ===== */
+    .link-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      margin-top: 1.2rem;
+    }
+
+    .custom-link-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: #dbeafe;
+      color: #0b2a4a;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      padding: 0.8rem 1.6rem;
+      border-radius: 40px;
+      transition: background 0.2s, color 0.2s, gap 0.2s, transform 0.15s, box-shadow 0.2s;
+      border: 1.5px solid #93c5fd;
+      box-shadow: 0 6px 12px -8px rgba(30, 107, 155, 0.35);
+    }
+
+    .custom-link-btn i {
+      font-size: 0.8rem;
+      color: #1e6b9b;
+      transition: color 0.2s;
+    }
+
+    .custom-link-btn:hover {
+      background: #1e6b9b;
+      color: #ffffff;
+      gap: 0.9rem;
+      transform: translateY(-2px);
+      border-color: #1e6b9b;
+      box-shadow: 0 10px 18px -8px rgba(30, 107, 155, 0.5);
+    }
+
+    .custom-link-btn:hover i {
+      color: #ffffff;
+    }
+
+    /* ===== FOOTER NAV ===== */
+    .footer-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      padding: 1.5rem 2rem;
+      background: #ffffffec;
+      border-radius: 2rem;
+      border: 1px solid #cbdbe9;
+      margin-top: 1rem;
+    }
+
+    .footer-nav a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      color: #1e6b9b;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      padding: 0.6rem 1.2rem;
+      border-radius: 40px;
+      transition: background 0.2s, gap 0.2s;
+    }
+
+    .footer-nav a:hover {
+      background: #e7f0f9;
+      gap: 0.9rem;
+    }
+
+    .footer-nav .next-link {
+      background: #0b2a4a;
+      color: white;
+      border: 1px solid #1e4a6e;
+    }
+
+    .footer-nav .next-link:hover {
+      background: #1e4a6e;
+    }
+
+    /* ============================================================
+       PRESENTATION CONTROLS
+       ============================================================ */
+    .present-toolbar {
+      position: fixed;
+      bottom: 1.2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #0b2a4a;
+      color: white;
+      border-radius: 50px;
+      padding: 0.6rem 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      box-shadow: 0 12px 30px -8px rgba(11, 42, 74, 0.5);
+      z-index: 1000;
+      border: 1px solid #1e4a6e;
+    }
+
+    .present-toolbar button {
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: white;
+      width: 2.4rem;
+      height: 2.4rem;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      transition: background 0.2s, transform 0.1s;
+    }
+
+    .present-toolbar button:hover {
+      background: rgba(255, 255, 255, 0.25);
+    }
+
+    .present-toolbar button:active {
+      transform: scale(0.94);
+    }
+
+    .present-toolbar .slide-counter {
+      font-size: 0.85rem;
+      font-weight: 600;
+      min-width: 62px;
+      text-align: center;
+      letter-spacing: 0.5px;
+    }
+
+    .present-toolbar .toolbar-label {
+      font-size: 0.75rem;
+      opacity: 0.7;
+      padding-right: 0.3rem;
+      border-right: 1px solid rgba(255, 255, 255, 0.2);
+      margin-right: 0.3rem;
+      display: none;
+    }
+
+    @media (min-width: 600px) {
+      .present-toolbar .toolbar-label { display: inline; }
+    }
+
+    body.presenting .teach-section {
+      display: none;
+    }
+
+    body.presenting .teach-section.active-slide {
+      display: block;
+      animation: fadeIn 0.35s ease;
+      min-height: 60vh;
+    }
+
+    body.presenting .topic-header,
+    body.presenting .back-link,
+    body.presenting .footer-nav,
+    body.presenting .custom-instructions,
+    body.presenting .outcome-banner {
+      display: none;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    body.presenting .teach-section h2 {
+      font-size: 2.1rem;
+    }
+
+    body.presenting .teach-section p,
+    body.presenting .teach-section li {
+      font-size: 1.15rem;
+      line-height: 1.9;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 700px) {
+      .topic-header { padding: 2rem 1.5rem; }
+      .topic-header h1 { font-size: 1.8rem; }
+      .teach-section { padding: 1.7rem 1.4rem; }
+      .outcome-banner { padding: 1.5rem 1.5rem; }
+      .footer-nav { flex-direction: column; align-items: stretch; text-align: center; }
+      .footer-nav a { justify-content: center; }
+      .custom-instructions { padding: 1.6rem 1.4rem; }
+      .smcr-diagram { flex-direction: column; }
+      .smcr-arrow { transform: rotate(90deg); }
+      .signal-compare { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 480px) {
+      body { padding: 1rem 0.8rem 6rem; }
+      .topic-header h1 { font-size: 1.5rem; }
+      .teach-section h2 { font-size: 1.3rem; }
+      .device-grid { grid-template-columns: 1fr; }
+      .media-grid { grid-template-columns: 1fr; }
+      .why-grid { grid-template-columns: 1fr; }
+      .smcr-match-table { font-size: 0.78rem; }
+      .smcr-match-table th, .smcr-match-table td { padding: 0.4rem 0.4rem; }
+      .evolution-table { font-size: 0.75rem; }
+      .evolution-table th, .evolution-table td { padding: 0.4rem 0.3rem; }
+      .custom-link-btn { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- ===== BACK LINK ===== -->
+  <a href="index.html" class="back-link">
+    <i class="fas fa-arrow-left"></i> Back to Topic Index
+  </a>
+
+  <!-- ===== TOPIC HEADER ===== -->
+  <header class="topic-header">
+    <div class="topic-badge">
+      <i class="fas fa-tower-broadcast" style="margin-right: 6px;"></i> Topic 5
+    </div>
+    <h1>Introduction to Communication Technology</h1>
+    <div class="subhead">
+      Sender, message, channel, receiver — and how communication has evolved from letters to video calls.
+    </div>
+  </header>
+
+  <!-- ============================================================
+       SLIDE 1 — WHAT IS COMMUNICATION TECHNOLOGY?
+       ============================================================ -->
+  <section class="teach-section">
+    <h2><i class="fas fa-tower-broadcast"></i> What Is Communication Technology?</h2>
+
+    <p>
+      Communication is the act of sharing information between two or more people. It has always
+      been a basic human need — from the earliest spoken words to handwritten letters, from the
+      invention of the telephone to today's instant video calls. <strong>Communication
+      technology</strong> is the set of tools, devices, and systems that people use to send and
+      receive information over distance.
+    </p>
+
+    <div class="definition-box">
+      <p>
+        <strong>Communication technology</strong> is any technology that helps people send
+        messages, share information, or exchange ideas across a distance. It includes the
+        devices we use (phones, computers, routers), the networks that carry the signals
+        (cables, radio waves, fibre optics), and the rules that make communication work
+        (protocols).
+      </p>
+    </div>
+
+    <h3>Communication Then and Now</h3>
+    <p>
+      Communication has changed dramatically in the last 200 years. To understand how powerful
+      modern technology is, it helps to compare it with the past:
+    </p>
+    <ul>
+      <li>
+        <strong>200 years ago:</strong> The fastest way to send a message over long distances
+        was by letter, carried on horseback, by ship, or by walking messenger. A message could
+        take weeks or months to arrive.
+      </li>
+      <li>
+        <strong>150 years ago:</strong> The telegraph made it possible to send coded electrical
+        signals over wires. A message could travel hundreds of kilometres in minutes.
+      </li>
+      <li>
+        <strong>100 years ago:</strong> The telephone allowed voice communication over long
+        distances — people could actually hear each other's voices in real time.
+      </li>
+      <li>
+        <strong>50 years ago:</strong> Mobile phones and the early internet made it possible to
+        send text messages and connect computers across the world.
+      </li>
+      <li>
+        <strong>Today:</strong> A single smartphone can send a photo, a video, or a live
+        conversation anywhere on Earth in seconds — often for free.
+      </li>
+    </ul>
+
+    <div class="analogy-box">
+      <p>
+        <strong>Think about it:</strong> A letter that took six weeks to cross the ocean in
+        1800 can now be replaced by an instant message that arrives in less than a second — and
+        you can see the other person's face while you send it. That is the power of
+        communication technology.
+      </p>
+    </div>
+
+    <h3>Why Communication Technology Matters</h3>
+    <p>
+      Communication technology has changed the world in four important ways:
+    </p>
+
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon"><i class="fas fa-bolt"></i></div>
+        <h4>Speed</h4>
+        <p>Messages that once took weeks now arrive in seconds — sometimes instantly.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon"><i class="fas fa-globe"></i></div>
+        <h4>Distance</h4>
+        <p>We can communicate with anyone anywhere on Earth, no matter how far away.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon"><i class="fas fa-coins"></i></div>
+        <h4>Cost</h4>
+        <p>Sending a message is far cheaper than in the past — often free with internet access.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon"><i class="fas fa-users"></i></div>
+        <h4>Access</h4>
+        <p>Billions of people can now communicate, learn, and work together using the same tools.</p>
+      </div>
+    </div>
+
+    <!-- IMAGE 1: Communication evolution -->
+    <div class="img-placeholder" id="img-placeholder-1">
+      <span class="img-title">Communication Technology: Then and Now</span>
+      <span class="img-filename"><img src="images/communication-evolution.png" alt="Evolution of communication from letters to smartphones"></span>
+    </div>
+    <p class="img-caption">Figure 5.1 — How communication technology has evolved over time.</p>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 2 — KEY COMPONENTS: SENDER, MESSAGE, CHANNEL, RECEIVER
+       ============================================================ -->
+  <section class="teach-section">
+    <h2><i class="fas fa-diagram-project"></i> Key Components of Communication</h2>
+
+    <p>
+      Every act of communication — whether it is a face-to-face conversation, a phone call, or
+      a text message — follows the same basic pattern. This pattern is called the
+      <strong>SMCR model</strong>: <strong>Sender → Message → Channel → Receiver</strong>.
+      Understanding this model helps you see how all communication technology works.
+    </p>
+
+    <div class="smcr-diagram">
+      <div class="smcr-step sender">
+        <div class="smcr-icon"><i class="fas fa-user"></i></div>
+        <div class="smcr-name">Sender</div>
+        <div class="smcr-desc">The person or device that creates the message.</div>
+      </div>
+      <span class="smcr-arrow"><i class="fas fa-arrow-right"></i></span>
+      <div class="smcr-step message">
+        <div class="smcr-icon"><i class="fas fa-envelope"></i></div>
+        <div class="smcr-name">Message</div>
+        <div class="smcr-desc">The information being sent — words, images, sound, or video.</div>
+      </div>
+      <span class="smcr-arrow"><i class="fas fa-arrow-right"></i></span>
+      <div class="smcr-step channel">
+        <div class="smcr-icon"><i class="fas fa-tower-cell"></i></div>
+        <div class="smcr-name">Channel</div>
+        <div class="smcr-desc">The medium that carries the message — cable, Wi-Fi, or radio wave.</div>
+      </div>
+      <span class="smcr-arrow"><i class="fas fa-arrow-right"></i></span>
+      <div class="smcr-step receiver">
+        <div class="smcr-icon"><i class="fas fa-user-check"></i></div>
+        <div class="smcr-name">Receiver</div>
+        <div class="smcr-desc">The person or device that gets the message at the end.</div>
+      </div>
+    </div>
+
+    <h3>1. Sender</h3>
+    <p>
+      The <strong>sender</strong> is the person, device, or program that creates and sends the
+      message. When you type a text message on your phone, you are the sender. When a computer
+      sends an automatic email, it is the sender.
+    </p>
+
+    <h3>2. Message</h3>
+    <p>
+      The <strong>message</strong> is the information being communicated. It can take many
+      forms — written words, spoken voice, a photograph, a video, or even a set of instructions
+      that one computer sends to another.
+    </p>
+
+    <h3>3. Channel</h3>
+    <p>
+      The <strong>channel</strong> is the path or medium through which the message travels. The
+      channel is what makes modern communication so powerful — it lets a message travel across
+      a room or across the planet.
+    </p>
+    <p>
+      Common channels include:
+    </p>
+    <ul>
+      <li><strong>Copper cables:</strong> Traditional telephone and internet wires.</li>
+      <li><strong>Fibre optic cables:</strong> Thin glass strands that carry data using pulses of light — extremely fast.</li>
+      <li><strong>Radio waves:</strong> Used for Wi-Fi, mobile networks, Bluetooth, and TV broadcasts.</li>
+      <li><strong>Satellites:</strong> Relay signals across continents and oceans.</li>
+    </ul>
+
+    <h3>4. Receiver</h3>
+    <p>
+      The <strong>receiver</strong> is the person or device that receives the message at the
+      other end. When your friend reads your text message, they are the receiver. When your
+      computer downloads a file from a server, the computer is the receiver.
+    </p>
+
+    <h3>Putting It Together: A Text Message</h3>
+    <p>
+      Let us trace a simple text message using the SMCR model:
+    </p>
+    <ul>
+      <li><strong>Sender:</strong> You, typing "See you at 5 PM" on your phone.</li>
+      <li><strong>Message:</strong> The text "See you at 5 PM".</li>
+      <li><strong>Channel:</strong> Your phone's mobile data or Wi-Fi sends the message to a cell tower, then to the internet, then to your friend's phone.</li>
+      <li><strong>Receiver:</strong> Your friend, who sees the message appear on their screen.</li>
+    </ul>
+
+    <div class="analogy-box">
+      <p>
+        <strong>Analogy:</strong> Think of sending a letter by post.
+        The <strong>sender</strong> is the person writing the letter.
+        The <strong>message</strong> is what is written inside.
+        The <strong>channel</strong> is the postal service — the vans, planes, and mail carriers
+        that move the letter.
+        The <strong>receiver</strong> is the person whose name is on the envelope.
+        Communication technology simply makes this process happen much faster.
+      </p>
+    </div>
+
+    <!-- IMAGE 2: SMCR diagram -->
+    <div class="img-placeholder" id="img-placeholder-2">
+      <span class="img-title">The Sender → Message → Channel → Receiver Model</span>
+      <span class="img-filename"><img src="images/smcr-model.png" alt="Diagram of sender, message, channel, and receiver"></span>
+    </div>
+    <p class="img-caption">Figure 5.2 — The basic model of communication.</p>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 3 — DEVICES AND TRANSMISSION MEDIA
+       ============================================================ -->
+  <section class="teach-section">
+    <h2><i class="fas fa-router"></i> Devices and Transmission Media</h2>
+
+    <p>
+      Communication technology relies on two things: the <strong>devices</strong> that send and
+      receive messages, and the <strong>transmission media</strong> that carry the signals
+      between them. Together they make modern communication possible.
+    </p>
+
+    <h3>Communication Devices</h3>
+    <p>
+      Communication devices are the hardware that send, receive, or route messages. Some
+      devices are used directly by people (like phones and computers), while others work
+      quietly in the background (like routers and modems).
+    </p>
+
+    <div class="device-grid">
+      <div class="device-card">
+        <div class="device-icon"><i class="fas fa-mobile-screen"></i></div>
+        <h4>Phones</h4>
+        <p>Smartphones and mobile phones send voice, text, and video over wireless networks.</p>
+      </div>
+      <div class="device-card">
+        <div class="device-icon"><i class="fas fa-laptop"></i></div>
+        <h4>Computers</h4>
+        <p>Desktops and laptops connect to the internet to send and receive data of all kinds.</p>
+      </div>
+      <div class="device-card">
+        <div class="device-icon"><i class="fas fa-wifi"></i></div>
+        <h4>Routers</h4>
+        <p>Routers direct data between devices and connect your home or school to the internet.</p>
+      </div>
+      <div class="device-card">
+        <div class="device-icon"><i class="fas fa-satellite-dish"></i></div>
+        <h4>Modems &amp; Antennas</h4>
+        <p>Convert signals so they can travel over cables, wireless networks, or satellites.</p>
+      </div>
+    </div>
+
+    <h3>Transmission Media</h3>
+    <p>
+      Transmission media are the pathways that carry communication signals. They are usually
+      grouped into three main types:
+    </p>
+
+    <div class="media-grid">
+      <div class="media-card copper">
+        <h4><i class="fas fa-cable-car"></i> Copper Cables</h4>
+        <p>Older style wires that carry electrical signals. Used in traditional phone lines and older internet connections.</p>
+        <ul>
+          <li>Reliable and inexpensive</li>
+          <li>Slower than fibre</li>
+          <li>Can lose signal over long distances</li>
+        </ul>
+      </div>
+      <div class="media-card fiber">
+        <h4><i class="fas fa-lightbulb"></i> Fibre Optics</h4>
+        <p>Thin strands of glass that carry data as pulses of light. The fastest medium available today.</p>
+        <ul>
+          <li>Extremely fast</li>
+          <li>Carries huge amounts of data</li>
+          <li>Not affected by electrical interference</li>
+        </ul>
+      </div>
+      <div class="media-card wireless">
+        <h4><i class="fas fa-wifi"></i> Wireless (Radio Waves)</h4>
+        <p>Signals travel through the air using radio waves — no cables needed. Used in Wi-Fi, mobile networks, and Bluetooth.</p>
+        <ul>
+          <li>No wires needed</li>
+          <li>Works over long distances</li>
+          <li>Can be affected by walls and weather</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>Analog vs. Digital Signals</h3>
+    <p>
+      The messages that travel through transmission media are carried as <strong>signals</strong>.
+      There are two main types of signals: <strong>analog</strong> and <strong>digital</strong>.
+      Understanding the difference helps you see why modern technology is so powerful.
+    </p>
+
+    <div class="signal-compare">
+      <div class="signal-col analog">
+        <h4><i class="fas fa-wave-square"></i> Analog Signals</h4>
+        <ul>
+          <li><i class="fas fa-circle"></i> Continuous waves that change smoothly</li>
+          <li><i class="fas fa-circle"></i> Represented by a smooth curve</li>
+          <li><i class="fas fa-circle"></i> Used by older telephones and radios</li>
+          <li><i class="fas fa-circle"></i> Can pick up noise and distortion over distance</li>
+        </ul>
+        <div class="signal-visual">
+          <div class="wave-label">Smooth wave</div>
+          <svg viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+            <path d="M 5 30 Q 25 5, 45 30 T 85 30 T 125 30 T 165 30 T 195 30"
+                  fill="none" stroke="#ca8a04" stroke-width="3" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+      <div class="signal-col digital">
+        <h4><i class="fas fa-bars-staggered"></i> Digital Signals</h4>
+        <ul>
+          <li><i class="fas fa-circle"></i> Only two states: 0 (off) or 1 (on)</li>
+          <li><i class="fas fa-circle"></i> Represented by sharp steps or squares</li>
+          <li><i class="fas fa-circle"></i> Used by modern phones, computers, and the internet</li>
+          <li><i class="fas fa-circle"></i> Resistant to noise — signals can be perfectly restored</li>
+        </ul>
+        <div class="signal-visual">
+          <div class="wave-label">0 1 1 0 1 0 0 1</div>
+          <svg viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+            <polyline points="5,50 25,50 25,10 45,10 45,10 65,10 65,50 85,50 85,10 105,10 105,50 125,50 125,50 145,50 145,10 165,10 165,50 185,50 185,10 195,10"
+                      fill="none" stroke="#16a34a" stroke-width="3" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <p>
+      Modern communication systems convert analog signals into digital form so that information
+      can be stored, copied, and transmitted without losing quality. This is why a song can be
+      copied a thousand times and still sound identical — digital data stays perfect.
+    </p>
+
+    <!-- IMAGE 3: Transmission media -->
+    <div class="img-placeholder" id="img-placeholder-3">
+      <span class="img-title">Transmission Media: Copper, Fibre Optics, and Wireless</span>
+      <span class="img-filename"><img src="images/transmission-media.png" alt="Comparison of copper cables, fibre optic cables, and wireless signals"></span>
+    </div>
+    <p class="img-caption">Figure 5.3 — Types of transmission media used in communication.</p>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 4 — EVOLUTION OF COMMUNICATION
+       ============================================================ -->
+  <section class="teach-section">
+    <h2><i class="fas fa-clock-rotate-left"></i> How Communication Has Evolved</h2>
+
+    <p>
+      The way people communicate has changed more in the last 150 years than in all of human
+      history before that. Let us look at four important stages in that evolution — each one
+      faster, cheaper, and more powerful than the last.
+    </p>
+
+    <div class="history-timeline">
+      <div class="history-item">
+        <div class="history-era">Stage 1 · 1800s and earlier</div>
+        <div class="history-title"><i class="fas fa-envelope"></i> Letters by Post</div>
+        <div class="history-desc">
+          Messages were written on paper and physically carried by people on foot, on horseback,
+          on ships, or by train. A letter could take days, weeks, or even months to arrive.
+          Communication was slow and depended on how far the message had to travel.
+        </div>
+      </div>
+
+      <div class="history-item">
+        <div class="history-era">Stage 2 · Late 1800s to 1900s</div>
+        <div class="history-title"><i class="fas fa-phone"></i> Telephone Calls</div>
+        <div class="history-desc">
+          The telephone allowed people to hear each other's voices in real time over long
+          distances. Calls travelled through copper wires. For the first time, communication
+          was instant — but it required both people to be available at the same moment.
+        </div>
+      </div>
+
+      <div class="history-item">
+        <div class="history-era">Stage 3 · 1990s to 2000s</div>
+        <div class="history-title"><i class="fas fa-at"></i> Email and Instant Messaging</div>
+        <div class="history-desc">
+          The internet made it possible to send written messages instantly to anyone with an
+          email address or messenger account. Messages could be sent at any time, and the
+          receiver could read them whenever they were ready. This changed both personal and
+          business communication forever.
+        </div>
+      </div>
+
+      <div class="history-item">
+        <div class="history-era">Stage 4 · Today</div>
+        <div class="history-title"><i class="fas fa-video"></i> Video Calls and Real-Time Sharing</div>
+        <div class="history-desc">
+          Modern smartphones and computers allow people to see and hear each other in real time
+          from anywhere in the world. We can share photos, videos, and live video streams in
+          seconds. Communication today is instant, visual, and available almost everywhere.
+        </div>
+      </div>
+    </div>
+
+    <h3>Comparing the Four Stages</h3>
+    <p>
+      Each of these four communication methods can be analysed using the same
+      <strong>SMCR model</strong>. The table below shows the sender, message, channel, and
+      receiver for each one:
+    </p>
+
+    <table class="evolution-table">
+      <thead>
+        <tr>
+          <th style="width: 20%;">Method</th>
+          <th style="width: 20%;">Sender</th>
+          <th style="width: 22%;">Message</th>
+          <th style="width: 20%;">Channel</th>
+          <th style="width: 18%;">Receiver</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Letter</strong><br><small style="color:#7a94ad;">1800s</small></td>
+          <td>The writer</td>
+          <td>Handwritten text on paper</td>
+          <td>Postal service (people, horses, ships)</td>
+          <td>The recipient</td>
+        </tr>
+        <tr>
+          <td><strong>Telephone</strong><br><small style="color:#7a94ad;">1900s</small></td>
+          <td>The caller</td>
+          <td>Spoken voice (analog signal)</td>
+          <td>Copper telephone wires</td>
+          <td>The person who answers</td>
+        </tr>
+        <tr>
+          <td><strong>Email</strong><br><small style="color:#7a94ad;">1990s</small></td>
+          <td>The email writer</td>
+          <td>Digital text and attachments</td>
+          <td>Internet (copper or fibre cables)</td>
+          <td>The email recipient</td>
+        </tr>
+        <tr>
+          <td><strong>Video Call</strong><br><small style="color:#7a94ad;">Today</small></td>
+          <td>The caller</td>
+          <td>Live digital audio and video</td>
+          <td>Internet (fibre and wireless)</td>
+          <td>The person on the other screen</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="analogy-box">
+      <p>
+        <strong>Notice the pattern:</strong> In every stage, the SMCR structure is the same —
+        there is always a sender, a message, a channel, and a receiver. What changes is the
+        <em>speed</em>, <em>quality</em>, and <em>cost</em> of the communication. As technology
+        improved, messages travelled further, faster, and more cheaply.
+      </p>
+    </div>
+
+    <!-- IMAGE 4: Evolution timeline -->
+    <div class="img-placeholder" id="img-placeholder-4">
+      <span class="img-title">Evolution of Communication: Letter → Telephone → Email → Video Call</span>
+      <span class="img-filename"><img src="images/communication-timeline.png" alt="Timeline showing four stages of communication evolution"></span>
+    </div>
+    <p class="img-caption">Figure 5.4 — Four stages in the evolution of communication.</p>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 5 — ACTIVITY
+       ============================================================ -->
+  <section class="teach-section">
+    <h2><i class="fas fa-pen-to-square"></i> Activity: Compare Communication Methods</h2>
+
+    <div class="activity-box">
+      <h3><i class="fas fa-bullseye"></i> Activity 1 — Across Time Comparison</h3>
+      <p>
+        Choose one of the four communication methods below (letter, telephone, email, or video
+        call). Write a short description of how that method works and how it has changed the
+        way people communicate.
+      </p>
+      <ol class="activity-steps">
+        <li>Choose your communication method.</li>
+        <li>Identify the <strong>sender</strong> — who sends the message?</li>
+        <li>Describe the <strong>message</strong> — what kind of information is sent?</li>
+        <li>Explain the <strong>channel</strong> — how does the message travel?</li>
+        <li>Identify the <strong>receiver</strong> — who gets the message?</li>
+        <li>Explain why this method was important when it was introduced.</li>
+      </ol>
+    </div>
+
+    <h3 style="margin-top: 2rem;">Activity 2 — Identify Sender, Message, Channel, Receiver</h3>
+    <p>
+      Below are five real communication scenarios. For each one, use the drop-down menus to
+      identify the correct <strong>sender</strong>, <strong>message</strong>,
+      <strong>channel</strong>, and <strong>receiver</strong>. Click <strong>Check Answers</strong>
+      when you are done.
+    </p>
+
+    <table class="smcr-match-table" id="smcrTable">
+      <thead>
+        <tr>
+          <th style="width: 22%;">Scenario</th>
+          <th style="width: 19%;">Sender</th>
+          <th style="width: 19%;">Message</th>
+          <th style="width: 21%;">Channel</th>
+          <th style="width: 19%;">Receiver</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Scenario 1: Phone call -->
+        <tr>
+          <td><strong>Phone call</strong><br><small style="color:#7a94ad;">Mia calls her friend Leo</small></td>
+          <td>
+            <select class="smcr-select" data-answer="mia">
+              <option value="">-- Choose --</option>
+              <option value="mia">Mia</option>
+              <option value="leo">Leo</option>
+              <option value="voice">Mia's voice</option>
+              <option value="network">Mobile network</option>
+            </select>
+          </td>
+          <td>
+            <select class="smcr-select" data-answer="voice">
+              <option value="">-- Choose --</option>
+              <option value="mia">Mia</option>
+              <option value="leo">Leo</option>
+              <option value="voice">Mia's spoken voice</option>
+              <option value="network">Mobile network</option>
+            </select>
+          </td>
+          <td>
+            <select class="smcr-select" data-answer="network">
+              <option value="">-- Choose --</option>
+              <option value="mia">Mia</option>
+              <option value="leo">Leo</option>
+              <option value="voice">Mia's voice</option>
+              <option value="network">Mobile network</option>
+            </select>
+          </td>
+          <td>
+            <select class="smcr-select" data-answer="leo">
+              <option value="">-- Choose --</option>
+              <option value="mia">Mia</option>
+              <option value="leo">Leo</option>
+              <option value="voice">Mia's voice</option>
+              <option value="network">Mobile network</option>
+            </select>
+          </td>
+        </tr>
+
+        <!-- Scenario 2: Email -->
+        <tr>
+          <td><strong>Email</strong><br><small style="color:#7a94ad;">Mr. Tan sends homework</small></td>
+          <td>
+            <select class="smcr-select" data-answer="teacher">
+              <option value="">-- Choose --</option>
+              <option value="teacher">Mr. Tan</option>
+              <option value="student">The student</option>
+              <option value="homework">Homework instructions</option>
+              <option value="internet">Internet / email server</option>
+            </select>
+          </td>
+          <td>
+            <select class="smcr-select" data-answer="homework">
+              <option value="">-- Choose --</option>
+              <option value="teacher">Mr. Tan</option>
+              <option value="student">The student</option>
+              <option value="homework">Homework instructions</option>
+              <option value="internet">Internet / email server</option>
+            </select>
+          </td>
+          <td>
+            <select class="smcr-select" data-answer="internet">
+              <option value="">-- Choose --</option>
+              <option value="teacher">Mr. Tan</option>
+              <option value="student">The student</option>
+              <option value="homework">Homework instructions</option>
+              <option value="internet">Internet / email server</option>
+            </select>
+          </td>
+          <td>
+            <select class="smcr-select" data-answer="student">
+              <option value="">-- Choose --</option>
+              <option value="teacher">Mr. Tan</option>
+              <option value="student">The student</option>
+              <option value="homework">Homework instructions</option>
+              <option value="internet">Internet / email server</option>
+            </select>
+          </td>
+        </tr>
+
+        <!-- Scenario 3: Letter -->
+        <tr>
+          <td><strong>Letter</strong><br><small style="color:#7a94ad;">Grandma writes to Sara</small></td>
+          <td>
+            <select class="smcr-select" data-answer="grandma">
+              <option value="">-- Choose --</option>
+              <option value="grandma">Grandma</option>
+              <option value="sara">Sara</option>
+              <option value="letter">The letter's contents</option>
+              <option value="post">Postal service</option>
+            </select>
+          </td>
+          <td>
+            <select class="smcr-select" data-answer="letter">
+              <option value="">-- Choose --</option>
+              <option value="grandma">Grandma</option>
+              <option value="sara">Sara</option>
+              <option value="letter">The letter's contents</option>
+              <option value="post">Postal service</option>
+            </select>
+          </td>
+          <td>
+            <select class="smcr-select" data-answer="post">
+              <option value="">-- Choose --</option>
+              <option value="grandma">Grandma</option>
+              <option value="sara">Sara</option>
+              <option value="letter">The letter's contents</option>
+              <option value="post">Postal service</option>
+            </select>
+          </td>
+          <td>
+            <select class="smcr-select" data-answer="sara">
+              <option value="">-- Choose --</option>
+              <option value="grandma">Grandma</option>
+              <option value="sara">Sara</option>
+              <option value="letter">The letter's contents</option>
+              <option value="post">Postal service</option>
+            </select>
+          </td>
+        </tr>
+
+        <!-- Scenario 4: Video call -->
+        <tr>
+          <td><strong>Video call</strong><br><small style="color:#7a94ad;">Team meeting on Zoom</small></td>
+          <td>
+            <select class="smcr-select" data-answer="speaker">
+              <option value="">-- Choose --</option>
+              <option value="speaker">The person speaking</option>
+              <option value="team">The team members listening</option>
+              <option value="speech">Live audio and video</option>
+              <option value="zoom">Zoom over the internet</option>
+            </select>
+          </td>
+          <td>
+            <select class="smcr-select" data-answer="speech">
+              <option value="">-- Choose --</option>
+              <option value="speaker">The person speaking</option>
+              <option value="team">The team members listening</option>
+              <option value="speech">Live audio and video</option>
+              <option value="zoom">Zoom over the internet</option>
+            </select>
+          </td>
+          <td>
+            <select class="smcr-select" data-answer="zoom">
+              <option value="">-- Choose --</option>
+              <option value="speaker">The person speaking</option>
+              <option value="team">The team members listening</option>
+              <option value="speech">Live audio and video</option>
+              <option value="zoom">Zoom over the internet</option>
+            </select>
+          </td>
+          <td>
+            <select class="smcr-select" data-answer="team">
+              <option value="">-- Choose --</option>
+              <option value="speaker">The person speaking</option>
+              <option value="team">The team members listening</option>
+              <option value="speech">Live audio and video</option>
+              <option value="zoom">Zoom over the internet</option>
+            </select>
+          </td>
+        </tr>
+
+        <!-- Scenario 5: Wi-Fi file share -->
+        <tr>
+          <td><strong>File share</strong><br><small style="color:#7a94ad;">Ana sends a photo by Wi-Fi</small></td>
+          <td>
+            <select class="smcr-select" data-answer="ana">
+              <option value="">-- Choose --</option>
+              <option value="ana">Ana</option>
+              <option value="ben">Ben</option>
+              <option value="photo">The photo</option>
+              <option value="wifi">Wi-Fi network</option>
+            </select>
+          </td>
+          <td>
+            <select class="smcr-select" data-answer="photo">
+              <option value="">-- Choose --</option>
+              <option value="ana">Ana</option>
+              <option value="ben">Ben</option>
+              <option value="photo">The photo</option>
+              <option value="wifi">Wi-Fi network</option>
+            </select>
+          </td>
+          <td>
+            <select class="smcr-select" data-answer="wifi">
+              <option value="">-- Choose --</option>
+              <option value="ana">Ana</option>
+              <option value="ben">Ben</option>
+              <option value="photo">The photo</option>
+              <option value="wifi">Wi-Fi network</option>
+            </select>
+          </td>
+          <td>
+            <select class="smcr-select" data-answer="ben">
+              <option value="">-- Choose --</option>
+              <option value="ana">Ana</option>
+              <option value="ben">Ben</option>
+              <option value="photo">The photo</option>
+              <option value="wifi">Wi-Fi network</option>
+            </select>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="match-buttons">
+      <button class="match-btn" id="checkSmcr">
+        <i class="fas fa-check"></i> Check Answers
+      </button>
+      <button class="match-btn reset" id="resetSmcr">
+        <i class="fas fa-rotate-left"></i> Reset
+      </button>
+    </div>
+
+    <div class="match-feedback" id="smcrFeedback"></div>
+
+    <!-- Discussion -->
+    <div class="discussion-box">
+      <h3><i class="fas fa-comments"></i> Discussion</h3>
+      <p>
+        Talk about these questions with your class or in small groups:
+      </p>
+      <div class="discussion-question">
+        <i class="fas fa-question-circle" style="color:#0284c7;margin-right:8px;"></i>
+        How would your day be different if you could only send letters, not messages or calls?
+      </div>
+      <div class="discussion-question">
+        <i class="fas fa-question-circle" style="color:#0284c7;margin-right:8px;"></i>
+        Why do you think digital signals are better than analog signals for modern communication?
+      </div>
+      <div class="discussion-question">
+        <i class="fas fa-question-circle" style="color:#0284c7;margin-right:8px;"></i>
+        What might the next stage in communication technology look like?
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 6 — QUICK CHECK QUIZ
+       ============================================================ -->
+  <section class="teach-section">
+    <h2><i class="fas fa-circle-question"></i> Quick Check</h2>
+    <p>Test your understanding with these questions. Click the best answer.</p>
+
+    <div class="quiz-question" data-quiz="1">
+      <p>1. In the SMCR model, what is the <strong>channel</strong>?</p>
+      <div class="quiz-options">
+        <button class="quiz-option" data-correct="false">
+          <i class="fas fa-circle"></i> The person who writes the message
+        </button>
+        <button class="quiz-option" data-correct="true">
+          <i class="fas fa-circle"></i> The medium that carries the message
+        </button>
+        <button class="quiz-option" data-correct="false">
+          <i class="fas fa-circle"></i> The information being sent
+        </button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-question" data-quiz="2">
+      <p>2. Which of these is the <strong>fastest</strong> transmission medium?</p>
+      <div class="quiz-options">
+        <button class="quiz-option" data-correct="false">
+          <i class="fas fa-circle"></i> Copper cables
+        </button>
+        <button class="quiz-option" data-correct="true">
+          <i class="fas fa-circle"></i> Fibre optics
+        </button>
+        <button class="quiz-option" data-correct="false">
+          <i class="fas fa-circle"></i> Postal service
+        </button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-question" data-quiz="3">
+      <p>3. What is the main difference between analog and digital signals?</p>
+      <div class="quiz-options">
+        <button class="quiz-option" data-correct="false">
+          <i class="fas fa-circle"></i> Analog is faster than digital
+        </button>
+        <button class="quiz-option" data-correct="false">
+          <i class="fas fa-circle"></i> Digital uses copper, analog uses fibre
+        </button>
+        <button class="quiz-option" data-correct="true">
+          <i class="fas fa-circle"></i> Analog is a smooth wave; digital uses only 0s and 1s
+        </button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-question" data-quiz="4">
+      <p>4. Which of the following is an example of a <strong>communication device</strong>?</p>
+      <div class="quiz-options">
+        <button class="quiz-option" data-correct="true">
+          <i class="fas fa-circle"></i> Router
+        </button>
+        <button class="quiz-option" data-correct="false">
+          <i class="fas fa-circle"></i> Printer
+        </button>
+        <button class="quiz-option" data-correct="false">
+          <i class="fas fa-circle"></i> Keyboard
+        </button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-question" data-quiz="5">
+      <p>5. Which statement is TRUE about communication technology?</p>
+      <div class="quiz-options">
+        <button class="quiz-option" data-correct="false">
+          <i class="fas fa-circle"></i> It has made communication slower but cheaper
+        </button>
+        <button class="quiz-option" data-correct="true">
+          <i class="fas fa-circle"></i> It has made communication faster, cheaper, and available to more people
+        </button>
+        <button class="quiz-option" data-correct="false">
+          <i class="fas fa-circle"></i> It only works over short distances
+        </button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+  </section>
+
+  <!-- ===== STUDENT OUTCOME ===== -->
+  <div class="outcome-banner">
+    <div class="outcome-icon"><i class="fas fa-graduation-cap"></i></div>
+    <div class="outcome-text">
+      <h3>Student Outcome</h3>
+      <p>Students can describe how communication technology works and how it has evolved.</p>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       TEACHER INSTRUCTIONS & LINKS
+       ============================================================ -->
+  <section class="custom-instructions">
+    <h2><i class="fas fa-clipboard-list"></i> Teacher Instructions</h2>
+
+    <p>
+      <strong><a href="https://www.zipgrade.com/s/" class="inline-link" target="_blank" rel="noopener">ZipGrade Quiz</a></strong>
+      — Don't forget to take the ZipGrade quiz! Use the link provided to access and complete it. Make sure to submit before the deadline.
+    </p>
+
+    <div class="instruction-note">
+      <i class="fas fa-circle-info"></i>
+      <strong>Teaching tip:</strong> For Activity 1, encourage students to work in pairs and share their answers with the class. For the discussion, ask students to think about how their own families communicate across distances — this makes the topic personal and memorable.
+    </div>
+
+    <div class="link-buttons">
+      <a href="https://www.bbc.co.uk/bitesize/guides/zpjjxsg/revision/1" class="custom-link-btn" target="_blank" rel="noopener">
+        <i class="fas fa-arrow-up-right-from-square"></i> BBC Bitesize — Communication
+      </a>
+      <a href="https://drive.google.com/file/d/1fLFAfFLuwjPeiKBkz7cyfyD-InPPLRcV/view?usp=sharing" class="custom-link-btn" target="_blank" rel="noopener">
+        <i class="fas fa-arrow-up-right-from-square"></i> Open PDF Resource
+      </a>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER NAVIGATION ===== -->
+  <div class="footer-nav">
+    <a href="topic-4-how-computer-works.html">
+      <i class="fas fa-arrow-left"></i> Previous: How a Computer Works
+    </a>
+    <a href="topic-6-networks-internet.html" class="next-link">
+      Next: Networks and the Internet <i class="fas fa-arrow-right"></i>
+    </a>
+  </div>
+
+</div>
+
+<!-- ============================================================
+     PRESENTATION TOOLBAR
+     ============================================================ -->
+<div class="present-toolbar">
+  <span class="toolbar-label">PRESENT</span>
+  <button id="prevSlide" title="Previous slide (←)"><i class="fas fa-chevron-left"></i></button>
+  <span class="slide-counter" id="slideCounter">1 / 6</span>
+  <button id="nextSlide" title="Next slide (→)"><i class="fas fa-chevron-right"></i></button>
+  <button id="togglePresent" title="Start / stop presentation (P)"><i class="fas fa-play"></i></button>
+  <button id="toggleFullscreen" title="Fullscreen (F)"><i class="fas fa-expand"></i></button>
+</div>
+
+<script>
+  /* ============================================================
+     QUIZ INTERACTIVITY
+     ============================================================ */
+  (function() {
+    const quizQuestions = document.querySelectorAll('.quiz-question');
+
+    quizQuestions.forEach(function(question) {
+      const options = question.querySelectorAll('.quiz-option');
+      const feedback = question.querySelector('.quiz-feedback');
+
+      options.forEach(function(option) {
+        option.addEventListener('click', function() {
+          if (question.dataset.answered === 'true') return;
+
+          const isCorrect = option.dataset.correct === 'true';
+
+          options.forEach(function(opt) {
+            opt.disabled = true;
+            if (opt.dataset.correct === 'true') {
+              opt.classList.add('correct');
+              opt.querySelector('i').className = 'fas fa-check-circle';
+            } else if (opt === option && !isCorrect) {
+              opt.classList.add('incorrect');
+              opt.querySelector('i').className = 'fas fa-times-circle';
+            } else {
+              opt.querySelector('i').className = 'fas fa-circle';
+            }
+          });
+
+          if (isCorrect) {
+            feedback.textContent = '✓ Correct! Well done.';
+            feedback.className = 'quiz-feedback show correct';
+          } else {
+            feedback.textContent = '✗ Not quite. The correct answer is highlighted in green.';
+            feedback.className = 'quiz-feedback show incorrect';
+          }
+
+          question.dataset.answered = 'true';
+        });
+      });
+    });
+  })();
+
+  /* ============================================================
+     SMCR MATCHING ACTIVITY
+     ============================================================ */
+  (function() {
+    const selects = document.querySelectorAll('.smcr-select');
+    const checkBtn = document.getElementById('checkSmcr');
+    const resetBtn = document.getElementById('resetSmcr');
+    const feedback = document.getElementById('smcrFeedback');
+
+    checkBtn.addEventListener('click', function() {
+      let correct = 0;
+      let answered = 0;
+      let total = selects.length;
+
+      selects.forEach(function(select) {
+        select.classList.remove('correct', 'incorrect');
+        const chosen = select.value;
+        if (chosen === '') return;
+
+        answered++;
+        if (chosen === select.dataset.answer) {
+          select.classList.add('correct');
+          correct++;
+        } else {
+          select.classList.add('incorrect');
+        }
+      });
+
+      if (answered === 0) {
+        feedback.textContent = '⚠️ Please choose an answer for at least one item first.';
+        feedback.className = 'match-feedback show partial';
+        return;
+      }
+
+      if (correct === total) {
+        feedback.textContent = '🎉 Perfect! All ' + total + ' identifications are correct.';
+        feedback.className = 'match-feedback show success';
+      } else {
+        feedback.textContent = 'You got ' + correct + ' out of ' + total + ' correct. Green boxes are correct; red boxes need another try.';
+        feedback.className = 'match-feedback show partial';
+      }
+    });
+
+    resetBtn.addEventListener('click', function() {
+      selects.forEach(function(select) {
+        select.value = '';
+        select.classList.remove('correct', 'incorrect');
+      });
+      feedback.className = 'match-feedback';
+      feedback.textContent = '';
+    });
+  })();
+
+  /* ============================================================
+     PRESENTATION MODE
+     ============================================================ */
+  (function() {
+    const slides = document.querySelectorAll('.teach-section');
+    const totalSlides = slides.length;
+    const counter = document.getElementById('slideCounter');
+    const prevBtn = document.getElementById('prevSlide');
+    const nextBtn = document.getElementById('nextSlide');
+    const presentBtn = document.getElementById('togglePresent');
+    const fullscreenBtn = document.getElementById('toggleFullscreen');
+
+    let current = 0;
+    let presenting = false;
+
+    if (totalSlides > 0) {
+      slides[0].classList.add('active-slide');
+      updateCounter();
+    }
+
+    function updateCounter() {
+      counter.textContent = (current + 1) + ' / ' + totalSlides;
+    }
+
+    function showSlide(index) {
+      if (index < 0) index = 0;
+      if (index >= totalSlides) index = totalSlides - 1;
+
+      slides.forEach(function(slide) {
+        slide.classList.remove('active-slide');
+      });
+      slides[index].classList.add('active-slide');
+      current = index;
+      updateCounter();
+
+      if (presenting) {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    function nextSlide() {
+      if (current < totalSlides - 1) showSlide(current + 1);
+    }
+
+    function prevSlide() {
+      if (current > 0) showSlide(current - 1);
+    }
+
+    function enterPresentation() {
+      presenting = true;
+      document.body.classList.add('presenting');
+      presentBtn.innerHTML = '<i class="fas fa-stop"></i>';
+      presentBtn.title = 'Stop presentation (P)';
+      showSlide(0);
+    }
+
+    function exitPresentation() {
+      presenting = false;
+      document.body.classList.remove('presenting');
+      presentBtn.innerHTML = '<i class="fas fa-play"></i>';
+      presentBtn.title = 'Start presentation (P)';
+      slides.forEach(function(slide) {
+        slide.classList.remove('active-slide');
+      });
+      if (document.fullscreenElement) {
+        document.exitFullscreen().catch(function() {});
+      }
+    }
+
+    function togglePresentation() {
+      if (presenting) {
+        exitPresentation();
+      } else {
+        enterPresentation();
+      }
+    }
+
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(function() {});
+      } else {
+        document.exitFullscreen().catch(function() {});
+      }
+    }
+
+    prevBtn.addEventListener('click', prevSlide);
+    nextBtn.addEventListener('click', nextSlide);
+    presentBtn.addEventListener('click', togglePresentation);
+    fullscreenBtn.addEventListener('click', toggleFullscreen);
+
+    document.addEventListener('keydown', function(e) {
+      const tag = (e.target.tagName || '').toLowerCase();
+      const typing = tag === 'input' || tag === 'textarea' || tag === 'select' || e.target.isContentEditable;
+
+      if (e.key === 'ArrowRight' && presenting) {
+        e.preventDefault();
+        nextSlide();
+      } else if (e.key === 'ArrowLeft' && presenting) {
+        e.preventDefault();
+        prevSlide();
+      } else if ((e.key === 'p' || e.key === 'P') && !typing) {
+        e.preventDefault();
+        togglePresentation();
+      } else if ((e.key === 'f' || e.key === 'F') && !typing) {
+        e.preventDefault();
+        toggleFullscreen();
+      } else if (e.key === 'Escape' && presenting) {
+        exitPresentation();
+      }
+    });
+
+    document.addEventListener('fullscreenchange', function() {
+      if (document.fullscreenElement) {
+        fullscreenBtn.innerHTML = '<i class="fas fa-compress"></i>';
+      } else {
+        fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i>';
+      }
+    });
+  })();
+</script>
+
+</body>
+</html>

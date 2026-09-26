@@ -1,0 +1,2010 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Topic 2 · Hardware Components</title>
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: #f0f5fa;
+      color: #0a1e2f;
+      line-height: 1.7;
+      padding: 2rem 1.5rem 6rem;
+      scroll-behavior: smooth;
+    }
+
+    .wrapper {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    /* ===== BACK LINK ===== */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      color: #1e6b9b;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+      padding: 0.5rem 1rem;
+      border-radius: 40px;
+      background: #ffffff;
+      border: 1px solid #d9e7f5;
+      transition: background 0.2s, gap 0.2s;
+    }
+
+    .back-link:hover {
+      background: #e7f0f9;
+      gap: 0.9rem;
+    }
+
+    /* ===== HEADER ===== */
+    .topic-header {
+      background: linear-gradient(135deg, #0b2a4a 0%, #1a4a6e 100%);
+      border-radius: 2.5rem;
+      padding: 3rem 2.5rem;
+      color: white;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 20px 30px -10px rgba(11, 42, 74, 0.25);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .topic-header::after {
+      content: "2";
+      position: absolute;
+      right: 2rem;
+      bottom: -2.5rem;
+      font-size: 13rem;
+      font-weight: 800;
+      color: rgba(255, 255, 255, 0.06);
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .topic-badge {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(4px);
+      padding: 0.25rem 1rem;
+      border-radius: 40px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .topic-header h1 {
+      font-size: 2.6rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      max-width: 750px;
+      margin-bottom: 0.9rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .topic-header .subhead {
+      font-size: 1.1rem;
+      opacity: 0.9;
+      max-width: 680px;
+      font-weight: 400;
+      position: relative;
+      z-index: 2;
+      border-left: 4px solid #7bb8e0;
+      padding-left: 1.2rem;
+      margin-top: 0.5rem;
+      line-height: 1.6;
+    }
+
+    /* ===== TEACHING SECTIONS ===== */
+    .teach-section {
+      background: #ffffff;
+      border-radius: 2rem;
+      padding: 2.5rem 2.5rem;
+      margin-bottom: 2rem;
+      border: 1px solid #e2edf7;
+      box-shadow: 0 12px 24px -12px rgba(11, 42, 74, 0.08);
+    }
+
+    .teach-section h2 {
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: #0b2a4a;
+      margin-bottom: 1.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      letter-spacing: -0.01em;
+      line-height: 1.3;
+    }
+
+    .teach-section h2 i {
+      color: #1e6b9b;
+      font-size: 1.4rem;
+      background: #e7f0f9;
+      width: 3rem;
+      height: 3rem;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .teach-section h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #0b2a4a;
+      margin-bottom: 0.8rem;
+      margin-top: 2rem;
+      line-height: 1.35;
+    }
+
+    .teach-section h3:first-of-type {
+      margin-top: 0;
+    }
+
+    .teach-section h4 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #1a4a6e;
+      margin-bottom: 0.5rem;
+      margin-top: 1.4rem;
+    }
+
+    .teach-section p {
+      color: #1d3b5c;
+      font-size: 1.02rem;
+      margin-bottom: 1.2rem;
+      line-height: 1.8;
+    }
+
+    .teach-section ul,
+    .teach-section ol {
+      margin: 0 0 1.4rem 1.4rem;
+      color: #1d3b5c;
+      font-size: 1.02rem;
+      line-height: 1.8;
+    }
+
+    .teach-section li {
+      margin-bottom: 0.5rem;
+    }
+
+    .teach-section strong {
+      color: #0b2a4a;
+    }
+
+    .teach-section em {
+      color: #1e6b9b;
+      font-style: normal;
+      font-weight: 600;
+    }
+
+    .definition-box {
+      background: #eaf1f9;
+      border-left: 5px solid #1e6b9b;
+      border-radius: 0 1rem 1rem 0;
+      padding: 1.4rem 1.6rem;
+      margin: 1.2rem 0 1.6rem;
+    }
+
+    .definition-box p {
+      margin-bottom: 0;
+      font-size: 1.08rem;
+      line-height: 1.8;
+    }
+
+    .analogy-box {
+      background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+      border-left: 5px solid #d97706;
+      border-radius: 0 1rem 1rem 0;
+      padding: 1.4rem 1.6rem;
+      margin: 1.2rem 0 1.6rem;
+    }
+
+    .analogy-box p {
+      margin-bottom: 0;
+      color: #78350f;
+      font-size: 1.02rem;
+    }
+
+    .analogy-box strong {
+      color: #92400e;
+    }
+
+    /* ===== COMPONENT GRID ===== */
+    .component-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1.2rem;
+      margin-top: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .component-card {
+      background: #f7fafd;
+      border: 1px solid #d9e7f5;
+      border-radius: 1.5rem;
+      padding: 1.6rem 1.4rem;
+      transition: all 0.25s ease;
+    }
+
+    .component-card:hover {
+      transform: translateY(-4px);
+      border-color: #a6c8e5;
+      box-shadow: 0 12px 24px -12px rgba(11, 42, 74, 0.12);
+    }
+
+    .component-icon {
+      width: 3.2rem;
+      height: 3.2rem;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+      color: white;
+    }
+
+    .component-card:nth-child(1) .component-icon { background: #2563eb; }
+    .component-card:nth-child(2) .component-icon { background: #7c3aed; }
+    .component-card:nth-child(3) .component-icon { background: #db2777; }
+    .component-card:nth-child(4) .component-icon { background: #059669; }
+    .component-card:nth-child(5) .component-icon { background: #d97706; }
+    .component-card:nth-child(6) .component-icon { background: #0891b2; }
+
+    .component-card h4 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #0b2a4a;
+      margin-bottom: 0.4rem;
+      margin-top: 0;
+    }
+
+    .component-card p {
+      font-size: 0.9rem;
+      color: #3a5775;
+      margin-bottom: 0;
+      line-height: 1.6;
+    }
+
+    /* ===== PERIPHERAL COLUMNS ===== */
+    .peripheral-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.3rem;
+      margin-top: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .peripheral-col {
+      border-radius: 1.5rem;
+      padding: 1.6rem 1.5rem;
+      border: 2px solid;
+    }
+
+    .peripheral-col.input {
+      background: #eff6ff;
+      border-color: #bfdbfe;
+    }
+
+    .peripheral-col.output {
+      background: #ecfdf5;
+      border-color: #a7f3d0;
+    }
+
+    .peripheral-col.both {
+      background: #fdf4ff;
+      border-color: #f5d0fe;
+    }
+
+    .peripheral-col h4 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.9rem;
+      margin-top: 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .peripheral-col.input h4 { color: #1e40af; }
+    .peripheral-col.output h4 { color: #047857; }
+    .peripheral-col.both h4 { color: #a21caf; }
+
+    .peripheral-col ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .peripheral-col ul li {
+      font-size: 0.93rem;
+      color: #1d3b5c;
+      padding: 0.35rem 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      line-height: 1.6;
+    }
+
+    .peripheral-col ul li i {
+      margin-top: 0.4rem;
+      font-size: 0.65rem;
+      flex-shrink: 0;
+    }
+
+    .peripheral-col.input ul li i { color: #2563eb; }
+    .peripheral-col.output ul li i { color: #059669; }
+    .peripheral-col.both ul li i { color: #c026d3; }
+
+    /* ===== IMAGE PLACEHOLDER ===== */
+    .img-placeholder {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: linear-gradient(135deg, #eaf1f9 0%, #d9e7f5 100%);
+      border: 3px dashed #a6c8e5;
+      border-radius: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+      padding: 2rem;
+      text-align: center;
+      margin: 1.8rem 0 0.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .img-placeholder .img-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #0b2a4a;
+    }
+
+    .img-placeholder .img-filename {
+      background: #ffffff;
+      border: 1px solid #c6d9ec;
+      border-radius: 40px;
+      padding: 0.5rem 1.1rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #1e6b9b;
+      font-family: 'Courier New', monospace;
+      margin-top: 0.5rem;
+      max-width: 100%;
+    }
+
+    .img-placeholder img {
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      border-radius: 1rem;
+    }
+
+    .img-caption {
+      font-size: 0.88rem;
+      color: #4a6a8a;
+      text-align: center;
+      font-style: italic;
+      margin-bottom: 1rem;
+    }
+
+    /* ===== FLOW DIAGRAM ===== */
+    .flow-diagram {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin: 1.6rem 0;
+      padding: 1.4rem;
+      background: #f7fafd;
+      border-radius: 1.5rem;
+      border: 1px solid #d9e7f5;
+    }
+
+    .flow-step {
+      background: white;
+      border: 2px solid #1e6b9b;
+      border-radius: 1rem;
+      padding: 0.7rem 1.2rem;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: #0b2a4a;
+      text-align: center;
+    }
+
+    .flow-arrow {
+      color: #1e6b9b;
+      font-size: 1.1rem;
+    }
+
+    /* ===== ANALOGY TABLE ===== */
+    .analogy-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1.2rem;
+      font-size: 0.95rem;
+    }
+
+    .analogy-table th {
+      background: #0b2a4a;
+      color: white;
+      padding: 0.8rem 1rem;
+      text-align: left;
+      font-weight: 600;
+      font-size: 0.85rem;
+    }
+
+    .analogy-table th:first-child { border-radius: 0.8rem 0 0 0; }
+    .analogy-table th:last-child { border-radius: 0 0.8rem 0 0; }
+
+    .analogy-table td {
+      padding: 0.8rem 1rem;
+      border-bottom: 1px solid #e2edf7;
+      color: #1d3b5c;
+      vertical-align: top;
+      line-height: 1.6;
+    }
+
+    .analogy-table tr:last-child td { border-bottom: none; }
+    .analogy-table tr:nth-child(even) { background: #f7fafd; }
+    .analogy-table td strong { color: #0b2a4a; }
+
+    /* ===== ACTIVITY ===== */
+    .activity-box {
+      background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+      border: 2px solid #fcd34d;
+      border-radius: 1.5rem;
+      padding: 1.8rem 1.8rem;
+      margin-top: 1.2rem;
+    }
+
+    .activity-box h3 {
+      color: #92400e;
+      margin-top: 0;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .activity-box h3 i { color: #d97706; }
+
+    .activity-box p {
+      color: #78350f;
+      margin-bottom: 1rem;
+    }
+
+    .activity-steps {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      counter-reset: step-counter;
+    }
+
+    .activity-steps li {
+      counter-increment: step-counter;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.8rem;
+      padding: 0.6rem 0;
+      font-size: 0.98rem;
+      color: #78350f;
+      line-height: 1.7;
+    }
+
+    .activity-steps li::before {
+      content: counter(step-counter);
+      background: #d97706;
+      color: white;
+      font-weight: 700;
+      font-size: 0.8rem;
+      width: 1.7rem;
+      height: 1.7rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 0.2rem;
+    }
+
+    /* ===== MATCHING ACTIVITY ===== */
+    .matching-activity {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1.2rem;
+      font-size: 0.92rem;
+    }
+
+    .matching-activity th {
+      background: #0b2a4a;
+      color: white;
+      padding: 0.7rem 0.9rem;
+      text-align: left;
+      font-weight: 600;
+      font-size: 0.82rem;
+    }
+
+    .matching-activity th:first-child { border-radius: 0.8rem 0 0 0; }
+    .matching-activity th:last-child { border-radius: 0 0.8rem 0 0; }
+
+    .matching-activity td {
+      padding: 0.6rem 0.9rem;
+      border-bottom: 1px solid #e2edf7;
+      vertical-align: top;
+      color: #1d3b5c;
+      line-height: 1.6;
+    }
+
+    .matching-activity tr:last-child td { border-bottom: none; }
+    .matching-activity tr:nth-child(even) { background: #f7fafd; }
+
+    .matching-activity select {
+      width: 100%;
+      padding: 0.45rem 0.6rem;
+      border: 1.5px solid #c6d9ec;
+      border-radius: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      color: #0b2a4a;
+      background: white;
+      cursor: pointer;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .matching-activity select:focus {
+      outline: none;
+      border-color: #1e6b9b;
+      box-shadow: 0 0 0 3px rgba(30, 107, 155, 0.12);
+    }
+
+    .matching-activity select.correct {
+      border-color: #22c55e;
+      background: #dcfce7;
+      color: #166534;
+      font-weight: 600;
+    }
+
+    .matching-activity select.incorrect {
+      border-color: #ef4444;
+      background: #fee2e2;
+      color: #991b1b;
+      font-weight: 600;
+    }
+
+    .match-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-top: 1.2rem;
+    }
+
+    .match-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: #1e6b9b;
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      padding: 0.7rem 1.5rem;
+      border-radius: 40px;
+      border: none;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      transition: background 0.2s, transform 0.15s;
+      box-shadow: 0 6px 12px -8px rgba(30, 107, 155, 0.5);
+    }
+
+    .match-btn:hover {
+      background: #0b2a4a;
+      transform: translateY(-2px);
+    }
+
+    .match-btn.reset {
+      background: #e2edf9;
+      color: #0b2a4a;
+      border: 1.5px solid #a6c8e5;
+      box-shadow: none;
+    }
+
+    .match-btn.reset:hover {
+      background: #d4e5f5;
+    }
+
+    .match-feedback {
+      font-size: 0.92rem;
+      font-weight: 600;
+      margin-top: 1rem;
+      padding: 0.8rem 1.2rem;
+      border-radius: 10px;
+      display: none;
+    }
+
+    .match-feedback.show { display: block; }
+    .match-feedback.success { background: #dcfce7; color: #166534; }
+    .match-feedback.partial { background: #fef3c7; color: #92400e; }
+
+    /* ===== QUIZ ===== */
+    .quiz-question {
+      margin-bottom: 1.8rem;
+    }
+
+    .quiz-question p {
+      font-weight: 600;
+      color: #0b2a4a;
+      margin-bottom: 0.8rem;
+      font-size: 1.02rem;
+    }
+
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .quiz-option {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      padding: 0.8rem 1rem;
+      background: #f7fafd;
+      border: 1.5px solid #d9e7f5;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      color: #1d3b5c;
+      transition: all 0.2s;
+      font-family: 'Inter', sans-serif;
+      text-align: left;
+      width: 100%;
+      line-height: 1.5;
+    }
+
+    .quiz-option:hover {
+      border-color: #a6c8e5;
+      background: #eaf1f9;
+    }
+
+    .quiz-option.correct {
+      background: #dcfce7;
+      border-color: #86efac;
+      color: #166534;
+      font-weight: 600;
+    }
+
+    .quiz-option.incorrect {
+      background: #fee2e2;
+      border-color: #fca5a5;
+      color: #991b1b;
+    }
+
+    .quiz-option i {
+      font-size: 0.85rem;
+      color: #94a3b8;
+      flex-shrink: 0;
+    }
+
+    .quiz-option.correct i { color: #16a34a; }
+    .quiz-option.incorrect i { color: #dc2626; }
+
+    .quiz-feedback {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-top: 0.7rem;
+      padding: 0.7rem 1rem;
+      border-radius: 10px;
+      display: none;
+    }
+
+    .quiz-feedback.show { display: block; }
+    .quiz-feedback.correct { background: #dcfce7; color: #166534; }
+    .quiz-feedback.incorrect { background: #fee2e2; color: #991b1b; }
+
+    /* ===== KEY TERMS ===== */
+    .key-terms {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
+      margin-top: 1.2rem;
+    }
+
+    .term-card {
+      background: #f7fafd;
+      border: 1px solid #d9e7f5;
+      border-left: 4px solid #1e6b9b;
+      border-radius: 0 1rem 1rem 0;
+      padding: 1.1rem 1.2rem;
+    }
+
+    .term-card dt {
+      font-weight: 700;
+      color: #0b2a4a;
+      font-size: 1rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .term-card dd {
+      font-size: 0.92rem;
+      color: #3a5775;
+      line-height: 1.6;
+    }
+
+    /* ===== STUDENT OUTCOME ===== */
+    .outcome-banner {
+      background: linear-gradient(135deg, #0b2a4a 0%, #1a4a6e 100%);
+      border-radius: 2rem;
+      padding: 2rem 2.2rem;
+      color: white;
+      margin-top: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .outcome-banner .outcome-icon {
+      background: rgba(255, 255, 255, 0.15);
+      width: 4rem;
+      height: 4rem;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      flex-shrink: 0;
+    }
+
+    .outcome-banner .outcome-text {
+      flex: 1;
+      min-width: 220px;
+    }
+
+    .outcome-banner h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+
+    .outcome-banner p {
+      font-size: 0.98rem;
+      opacity: 0.92;
+      margin-bottom: 0;
+    }
+
+    /* ===== TEACHER INSTRUCTIONS ===== */
+    .custom-instructions {
+      background: #ffffff;
+      border-radius: 2rem;
+      padding: 2.2rem 2.2rem;
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+      border: 2px solid #1e6b9b;
+      box-shadow: 0 12px 24px -12px rgba(30, 107, 155, 0.15);
+      position: relative;
+    }
+
+    .custom-instructions::before {
+      content: "📌";
+      position: absolute;
+      top: -1.2rem;
+      left: 2rem;
+      background: #1e6b9b;
+      color: white;
+      width: 2.4rem;
+      height: 2.4rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      box-shadow: 0 6px 12px -4px rgba(30, 107, 155, 0.4);
+    }
+
+    .custom-instructions h2 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #0b2a4a;
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      letter-spacing: -0.01em;
+      margin-top: 0.5rem;
+    }
+
+    .custom-instructions h2 i {
+      color: #1e6b9b;
+      font-size: 1.4rem;
+      background: #e7f0f9;
+      width: 2.8rem;
+      height: 2.8rem;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .custom-instructions p {
+      color: #1d3b5c;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      line-height: 1.7;
+    }
+
+    .custom-instructions a.inline-link {
+      color: #1e6b9b;
+      font-weight: 600;
+      text-decoration: none;
+      border-bottom: 2px solid #a6c8e5;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .custom-instructions a.inline-link:hover {
+      color: #0b2a4a;
+      border-bottom-color: #1e6b9b;
+    }
+
+    .instruction-note {
+      background: #eaf1f9;
+      border-left: 4px solid #1e6b9b;
+      border-radius: 0 0.8rem 0.8rem 0;
+      padding: 1rem 1.2rem;
+      margin-top: 1rem;
+      font-size: 0.95rem;
+      color: #2f506d;
+    }
+
+    .instruction-note i {
+      color: #1e6b9b;
+      margin-right: 0.4rem;
+    }
+
+    /* ===== LINK BUTTONS ===== */
+    .link-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      margin-top: 1.2rem;
+    }
+
+    .custom-link-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: #dbeafe;
+      color: #0b2a4a;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      padding: 0.8rem 1.6rem;
+      border-radius: 40px;
+      transition: background 0.2s, color 0.2s, gap 0.2s, transform 0.15s, box-shadow 0.2s;
+      border: 1.5px solid #93c5fd;
+      box-shadow: 0 6px 12px -8px rgba(30, 107, 155, 0.35);
+    }
+
+    .custom-link-btn i {
+      font-size: 0.8rem;
+      color: #1e6b9b;
+      transition: color 0.2s;
+    }
+
+    .custom-link-btn:hover {
+      background: #1e6b9b;
+      color: #ffffff;
+      gap: 0.9rem;
+      transform: translateY(-2px);
+      border-color: #1e6b9b;
+      box-shadow: 0 10px 18px -8px rgba(30, 107, 155, 0.5);
+    }
+
+    .custom-link-btn:hover i {
+      color: #ffffff;
+    }
+
+    /* ===== FOOTER NAV ===== */
+    .footer-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      padding: 1.5rem 2rem;
+      background: #ffffffec;
+      border-radius: 2rem;
+      border: 1px solid #cbdbe9;
+      margin-top: 1rem;
+    }
+
+    .footer-nav a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      color: #1e6b9b;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      padding: 0.6rem 1.2rem;
+      border-radius: 40px;
+      transition: background 0.2s, gap 0.2s;
+    }
+
+    .footer-nav a:hover {
+      background: #e7f0f9;
+      gap: 0.9rem;
+    }
+
+    .footer-nav .next-link {
+      background: #0b2a4a;
+      color: white;
+      border: 1px solid #1e4a6e;
+    }
+
+    .footer-nav .next-link:hover {
+      background: #1e4a6e;
+    }
+
+    /* ============================================================
+       PRESENTATION CONTROLS
+       ============================================================ */
+    .present-toolbar {
+      position: fixed;
+      bottom: 1.2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #0b2a4a;
+      color: white;
+      border-radius: 50px;
+      padding: 0.6rem 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      box-shadow: 0 12px 30px -8px rgba(11, 42, 74, 0.5);
+      z-index: 1000;
+      border: 1px solid #1e4a6e;
+    }
+
+    .present-toolbar button {
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: white;
+      width: 2.4rem;
+      height: 2.4rem;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      transition: background 0.2s, transform 0.1s;
+    }
+
+    .present-toolbar button:hover {
+      background: rgba(255, 255, 255, 0.25);
+    }
+
+    .present-toolbar button:active {
+      transform: scale(0.94);
+    }
+
+    .present-toolbar .slide-counter {
+      font-size: 0.85rem;
+      font-weight: 600;
+      min-width: 62px;
+      text-align: center;
+      letter-spacing: 0.5px;
+    }
+
+    .present-toolbar .toolbar-label {
+      font-size: 0.75rem;
+      opacity: 0.7;
+      padding-right: 0.3rem;
+      border-right: 1px solid rgba(255, 255, 255, 0.2);
+      margin-right: 0.3rem;
+      display: none;
+    }
+
+    @media (min-width: 600px) {
+      .present-toolbar .toolbar-label { display: inline; }
+    }
+
+    body.presenting .teach-section {
+      display: none;
+    }
+
+    body.presenting .teach-section.active-slide {
+      display: block;
+      animation: fadeIn 0.35s ease;
+      min-height: 60vh;
+    }
+
+    body.presenting .topic-header,
+    body.presenting .back-link,
+    body.presenting .footer-nav,
+    body.presenting .custom-instructions,
+    body.presenting .outcome-banner {
+      display: none;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    body.presenting .teach-section h2 {
+      font-size: 2.1rem;
+    }
+
+    body.presenting .teach-section p,
+    body.presenting .teach-section li {
+      font-size: 1.15rem;
+      line-height: 1.9;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 700px) {
+      .topic-header { padding: 2rem 1.5rem; }
+      .topic-header h1 { font-size: 1.8rem; }
+      .teach-section { padding: 1.7rem 1.4rem; }
+      .outcome-banner { padding: 1.5rem 1.5rem; }
+      .footer-nav { flex-direction: column; align-items: stretch; text-align: center; }
+      .footer-nav a { justify-content: center; }
+      .custom-instructions { padding: 1.6rem 1.4rem; }
+      .flow-diagram { flex-direction: column; }
+      .flow-arrow { transform: rotate(90deg); }
+      .analogy-table { font-size: 0.85rem; }
+      .analogy-table th, .analogy-table td { padding: 0.6rem 0.5rem; }
+    }
+
+    @media (max-width: 480px) {
+      body { padding: 1rem 0.8rem 6rem; }
+      .topic-header h1 { font-size: 1.5rem; }
+      .teach-section h2 { font-size: 1.3rem; }
+      .component-grid { grid-template-columns: 1fr; }
+      .peripheral-grid { grid-template-columns: 1fr; }
+      .matching-activity { font-size: 0.8rem; }
+      .matching-activity th, .matching-activity td { padding: 0.4rem 0.4rem; }
+      .custom-link-btn { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- ===== BACK LINK ===== -->
+  <a href="index.html" class="back-link">
+    <i class="fas fa-arrow-left"></i> Back to Topic Index
+  </a>
+
+  <!-- ===== TOPIC HEADER ===== -->
+  <header class="topic-header">
+    <div class="topic-badge">
+      <i class="fas fa-microchip" style="margin-right: 6px;"></i> Topic 2
+    </div>
+    <h1>Hardware Components</h1>
+    <div class="subhead">
+      The internal parts that power the computer and the peripheral devices that connect to it.
+    </div>
+  </header>
+
+  <!-- ============================================================
+       SLIDE 1 — INTRODUCTION
+       ============================================================ -->
+  <section class="teach-section">
+    <h2><i class="fas fa-screwdriver-wrench"></i> What Is Hardware?</h2>
+
+    <p>
+      In Topic 1, you learned that a computer system is made of two essential parts: hardware
+      and software. In this topic, we are going to focus on the <strong>hardware</strong> — the
+      physical parts that you can see, touch, and hold.
+    </p>
+
+    <div class="definition-box">
+      <p>
+        <strong>Hardware</strong> refers to the physical components of a computer system — the
+        parts you can see and touch. Hardware is divided into two groups:
+        <strong>internal components</strong> (the parts inside the case) and
+        <strong>peripheral components</strong> (the parts you connect to the outside).
+      </p>
+    </div>
+
+    <p>
+      Every piece of hardware has a specific job to do. Some parts work on data, some parts hold
+      data, some parts bring data in, and some parts send data out. In this topic, you will learn
+      what each component is called, what it does, and how they all work together to make the
+      computer system function.
+    </p>
+
+    <p>
+      By the end of this topic, you should be able to look at any computer and identify its main
+      parts. You should also be able to explain what each part does and why it matters.
+    </p>
+
+    <div class="key-terms">
+      <dl class="term-card">
+        <dt>Hardware</dt>
+        <dd>The physical parts of a computer system — everything you can see and touch.</dd>
+      </dl>
+      <dl class="term-card">
+        <dt>Internal Component</dt>
+        <dd>A part located inside the computer case, such as the CPU, RAM, or motherboard.</dd>
+      </dl>
+      <dl class="term-card">
+        <dt>Peripheral Component</dt>
+        <dd>A part connected to the outside of the computer, such as a keyboard or printer.</dd>
+      </dl>
+      <dl class="term-card">
+        <dt>Data Flow</dt>
+        <dd>The path that data follows as it moves through the computer system.</dd>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 2 — INTERNAL COMPONENTS
+       ============================================================ -->
+  <section class="teach-section">
+    <h2><i class="fas fa-microchip"></i> Internal Components</h2>
+
+    <p>
+      Internal components are the parts found <strong>inside</strong> the computer case. They do
+      the main work of the computer. You usually cannot see them unless you open the case, but
+      without them, nothing would work. Let us look at the six most important internal components.
+    </p>
+
+    <div class="component-grid">
+      <div class="component-card">
+        <div class="component-icon"><i class="fas fa-microchip"></i></div>
+        <h4>CPU</h4>
+        <p>The "brain" of the computer — processes all instructions and data.</p>
+      </div>
+      <div class="component-card">
+        <div class="component-icon"><i class="fas fa-memory"></i></div>
+        <h4>RAM</h4>
+        <p>Short-term memory that holds data while the computer is working.</p>
+      </div>
+      <div class="component-card">
+        <div class="component-icon"><i class="fas fa-hard-drive"></i></div>
+        <h4>Storage</h4>
+        <p>Long-term memory (HDD or SSD) that keeps data permanently.</p>
+      </div>
+      <div class="component-card">
+        <div class="component-icon"><i class="fas fa-diagram-project"></i></div>
+        <h4>Motherboard</h4>
+        <p>The main circuit board that connects all components together.</p>
+      </div>
+      <div class="component-card">
+        <div class="component-icon"><i class="fas fa-plug"></i></div>
+        <h4>Power Supply</h4>
+        <p>Converts electricity from the wall into power the computer can use.</p>
+      </div>
+      <div class="component-card">
+        <div class="component-icon"><i class="fas fa-film"></i></div>
+        <h4>Graphics Card</h4>
+        <p>GPU that handles images, video, and 3D graphics.</p>
+      </div>
+    </div>
+
+    <h3>1. CPU — Central Processing Unit</h3>
+    <p>
+      The <strong>CPU</strong> is often called the <em>"brain"</em> of the computer. It is a small
+      chip that carries out the instructions given by programs. Every time you click a button,
+      type a letter, or open an app, the CPU is working behind the scenes to make it happen.
+    </p>
+    <p>
+      The CPU performs three steps over and over again: it <strong>fetches</strong> an instruction,
+      <strong>decodes</strong> what the instruction means, and <strong>executes</strong> it. This
+      happens billions of times per second. A faster CPU means the computer can do more things at
+      the same time without slowing down.
+    </p>
+
+    <h3>2. RAM — Random Access Memory</h3>
+    <p>
+      <strong>RAM</strong> is the computer's <em>short-term memory</em>. It holds the data and
+      programs that are currently in use. When you open an app, it loads into RAM so the CPU can
+      work on it quickly.
+    </p>
+    <p>
+      RAM is <strong>temporary</strong>. When you turn off the computer, everything in RAM
+      disappears. This is why you must save your work — if the power goes out before you save,
+      whatever was only in RAM is lost. Having more RAM means you can have more apps open at
+      the same time without the computer slowing down.
+    </p>
+
+    <h3>3. Storage — HDD and SSD</h3>
+    <p>
+      <strong>Storage</strong> is the computer's <em>long-term memory</em>. Unlike RAM, storage
+      keeps data even when the computer is turned off. This is where your files, photos, music,
+      and programs live permanently.
+    </p>
+    <p>
+      There are two main types of storage:
+    </p>
+    <ul>
+      <li>
+        <strong>HDD (Hard Disk Drive):</strong> Uses spinning magnetic disks to store data.
+        It is cheaper and can hold a lot of data, but it is slower and has moving parts.
+      </li>
+      <li>
+        <strong>SSD (Solid State Drive):</strong> Uses flash memory chips with no moving parts.
+        It is much faster than an HDD but usually more expensive for the same amount of space.
+      </li>
+    </ul>
+
+    <h3>4. Motherboard — The Main Circuit Board</h3>
+    <p>
+      The <strong>motherboard</strong> is a large circuit board that connects all the other
+      components together. The CPU, RAM, storage drives, and graphics card all plug into the
+      motherboard. It allows them to communicate with each other and share power and data.
+    </p>
+    <p>
+      Think of the motherboard as the "nervous system" of the computer — it carries signals back
+      and forth between all the parts so that everything works together.
+    </p>
+
+    <h3>5. Power Supply — The Energy Source</h3>
+    <p>
+      The <strong>power supply</strong> takes electricity from the wall socket and converts it
+      into the kind of power the computer's internal components need. Without the power supply,
+      no other part would receive electricity, and the computer would not turn on at all.
+    </p>
+    <p>
+      The power supply also protects the computer from sudden changes in electrical current,
+      such as a spike during a thunderstorm.
+    </p>
+
+    <h3>6. Graphics Card (GPU) — The Visual Expert</h3>
+    <p>
+      A <strong>graphics card</strong>, also called a <strong>GPU</strong>
+      (Graphics Processing Unit), is a special chip that handles everything you see on the
+      screen. It processes images, videos, and 3D graphics much faster than a regular CPU can.
+    </p>
+    <p>
+      Gamers, video editors, and designers often use powerful graphics cards because they need to
+      render complex visuals quickly. Some computers have the GPU built into the CPU, while
+      others have a separate card that you can upgrade.
+    </p>
+
+    <!-- IMAGE 1: Internal components diagram -->
+    <div class="img-placeholder" id="img-placeholder-1">
+      <span class="img-title">Internal Components of a Computer System</span>
+      <span class="img-filename"><img src="images/internal-components.png" alt="Diagram of internal components: CPU, RAM, Storage, Motherboard, Power Supply, Graphics Card"></span>
+    </div>
+    <p class="img-caption">Figure 2.1 — Internal components inside a computer case.</p>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 3 — PERIPHERAL COMPONENTS
+       ============================================================ -->
+  <section class="teach-section">
+    <h2><i class="fas fa-keyboard"></i> Peripheral Components</h2>
+
+    <p>
+      Peripheral components are the parts you connect to the computer from the <strong>outside</strong>.
+      They allow you to give data to the computer (input), receive results from it (output), or
+      do both. Peripherals are grouped into three types: input devices, output devices, and
+      devices that are both.
+    </p>
+
+    <div class="peripheral-grid">
+      <!-- Input Devices -->
+      <div class="peripheral-col input">
+        <h4><i class="fas fa-arrow-right-to-bracket"></i> Input Devices</h4>
+        <ul>
+          <li><i class="fas fa-circle"></i> Keyboard</li>
+          <li><i class="fas fa-circle"></i> Mouse</li>
+          <li><i class="fas fa-circle"></i> Microphone</li>
+          <li><i class="fas fa-circle"></i> Scanner</li>
+          <li><i class="fas fa-circle"></i> Camera (webcam)</li>
+        </ul>
+      </div>
+
+      <!-- Output Devices -->
+      <div class="peripheral-col output">
+        <h4><i class="fas fa-arrow-right-from-bracket"></i> Output Devices</h4>
+        <ul>
+          <li><i class="fas fa-circle"></i> Monitor</li>
+          <li><i class="fas fa-circle"></i> Printer</li>
+          <li><i class="fas fa-circle"></i> Speakers</li>
+          <li><i class="fas fa-circle"></i> Projector</li>
+        </ul>
+      </div>
+
+      <!-- Both Input and Output -->
+      <div class="peripheral-col both">
+        <h4><i class="fas fa-right-left"></i> Both Input &amp; Output</h4>
+        <ul>
+          <li><i class="fas fa-circle"></i> Touchscreen</li>
+          <li><i class="fas fa-circle"></i> Headset (with microphone)</li>
+          <li><i class="fas fa-circle"></i> Touchpad</li>
+          <li><i class="fas fa-circle"></i> Modem / Network card</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>Input Devices</h3>
+    <p>
+      <strong>Input devices</strong> send data into the computer. They are how you tell the
+      computer what you want it to do. Without input devices, the computer would have no
+      instructions and no data to work on.
+    </p>
+    <ul>
+      <li><strong>Keyboard:</strong> The most common input device. It sends typed letters, numbers, and commands into the computer.</li>
+      <li><strong>Mouse:</strong> A pointing device. It sends movement and clicks into the computer, letting you select, drag, and interact with things on the screen.</li>
+      <li><strong>Microphone:</strong> Captures sound and sends audio into the computer for recording, calling, or voice commands.</li>
+      <li><strong>Scanner:</strong> Reads physical documents and images and turns them into digital files.</li>
+      <li><strong>Camera (Webcam):</strong> Captures images and video and sends them to the computer for video calls or recording.</li>
+    </ul>
+
+    <h3>Output Devices</h3>
+    <p>
+      <strong>Output devices</strong> send data out of the computer to the user. They show you
+      the results of what the computer has processed.
+    </p>
+    <ul>
+      <li><strong>Monitor:</strong> Displays visual information like text, images, and video.</li>
+      <li><strong>Printer:</strong> Produces physical copies of documents and images on paper.</li>
+      <li><strong>Speakers:</strong> Output sound — music, voice, notifications, and alerts.</li>
+      <li><strong>Projector:</strong> Projects the screen onto a large surface so many people can see it at once.</li>
+    </ul>
+
+    <h3>Devices That Are Both Input and Output</h3>
+    <p>
+      Some peripherals work in both directions. They can send data in <em>and</em> show results out.
+    </p>
+    <ul>
+      <li><strong>Touchscreen:</strong> Shows images (output) and responds to your touch (input) at the same time.</li>
+      <li><strong>Headset:</strong> Has earphones that produce sound (output) and a microphone that captures your voice (input).</li>
+      <li><strong>Touchpad:</strong> On laptops, it shows pointer movement (output) while also receiving your finger movements (input).</li>
+    </ul>
+
+    <!-- IMAGE 2: Peripheral devices -->
+    <div class="img-placeholder" id="img-placeholder-2">
+      <span class="img-title">Peripheral Components: Input, Output, and Both</span>
+      <span class="img-filename"><img src="images/peripheral-components.png" alt="Peripheral components including keyboard, mouse, monitor, printer, touchscreen, headset"></span>
+    </div>
+    <p class="img-caption">Figure 2.2 — Examples of peripheral components.</p>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 4 — HOW THEY WORK TOGETHER
+       ============================================================ -->
+  <section class="teach-section">
+    <h2><i class="fas fa-diagram-project"></i> How They Work Together</h2>
+
+    <p>
+      On their own, none of these components can do anything useful. They only work when they
+      cooperate. Let us trace what happens when you type a letter on a keyboard and see it appear
+      on a screen.
+    </p>
+
+    <h3>The Path of Data — Step by Step</h3>
+    <ol>
+      <li>
+        <strong>Input:</strong> You press the "A" key on the keyboard. The keyboard sends
+        a signal to the computer.
+      </li>
+      <li>
+        <strong>Motherboard:</strong> The signal travels along the motherboard to reach the CPU.
+      </li>
+      <li>
+        <strong>Process:</strong> The CPU receives the signal, decodes it, and decides what
+        character it represents. It then tells the system to display that character.
+      </li>
+      <li>
+        <strong>Storage:</strong> If you are typing in a document, the data is temporarily held
+        in RAM while you work, and saved permanently to storage when you save the file.
+      </li>
+      <li>
+        <strong>Output:</strong> The GPU sends the image of the letter "A" to the monitor, and
+        you see it appear on the screen.
+      </li>
+    </ol>
+
+    <div class="flow-diagram">
+      <div class="flow-step">Keyboard<br><small style="font-weight:400;font-size:0.75rem;">Input</small></div>
+      <span class="flow-arrow"><i class="fas fa-arrow-right"></i></span>
+      <div class="flow-step">Motherboard<br><small style="font-weight:400;font-size:0.75rem;">Connects</small></div>
+      <span class="flow-arrow"><i class="fas fa-arrow-right"></i></span>
+      <div class="flow-step">CPU<br><small style="font-weight:400;font-size:0.75rem;">Process</small></div>
+      <span class="flow-arrow"><i class="fas fa-arrow-right"></i></span>
+      <div class="flow-step">RAM / Storage<br><small style="font-weight:400;font-size:0.75rem;">Store</small></div>
+      <span class="flow-arrow"><i class="fas fa-arrow-right"></i></span>
+      <div class="flow-step">Monitor<br><small style="font-weight:400;font-size:0.75rem;">Output</small></div>
+    </div>
+
+    <p>
+      This same path happens for every action you take on a computer, whether you are clicking
+      a mouse, taking a photo, or listening to music. The components always work as a team.
+    </p>
+
+    <h3>The Kitchen Analogy</h3>
+    <p>
+      To help you remember how these components work together, imagine a busy kitchen in a
+      restaurant.
+    </p>
+
+    <table class="analogy-table">
+      <thead>
+        <tr>
+          <th style="width: 30%;">Computer Component</th>
+          <th style="width: 25%;">Kitchen Analogy</th>
+          <th>Why It Matches</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>CPU</strong></td>
+          <td>The Chef</td>
+          <td>The chef does all the work — chopping, cooking, and preparing dishes. The CPU does all the calculating and processing.</td>
+        </tr>
+        <tr>
+          <td><strong>RAM</strong></td>
+          <td>The Countertop</td>
+          <td>The countertop is where the chef puts ingredients while cooking. RAM is where the computer holds data while working. Both are temporary working space.</td>
+        </tr>
+        <tr>
+          <td><strong>Storage (HDD/SSD)</strong></td>
+          <td>The Refrigerator</td>
+          <td>The fridge keeps ingredients fresh for a long time. Storage keeps files and programs safe even when the computer is off.</td>
+        </tr>
+        <tr>
+          <td><strong>Motherboard</strong></td>
+          <td>Kitchen Counters</td>
+          <td>The counters connect all the areas of the kitchen. The motherboard connects all components so they can share data and power.</td>
+        </tr>
+        <tr>
+          <td><strong>Power Supply</strong></td>
+          <td>The Stove / Gas Line</td>
+          <td>The stove provides the energy needed to cook. The power supply provides electricity to run the whole computer.</td>
+        </tr>
+        <tr>
+          <td><strong>GPU</strong></td>
+          <td>The Food Plater</td>
+          <td>The plater makes food look beautiful on the plate. The GPU makes images and video look clear and smooth on the screen.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="analogy-box">
+      <p>
+        <strong>Remember:</strong> Just like a kitchen cannot function without a chef,
+        countertop, fridge, and stove all working together, a computer cannot function without
+        all its internal components cooperating. Each one has a special job, and together they
+        make the whole system work.
+      </p>
+    </div>
+
+    <!-- IMAGE 3: Data flow diagram -->
+    <div class="img-placeholder" id="img-placeholder-3">
+      <span class="img-title">Data Flow Through a Computer System</span>
+      <span class="img-filename"><img src="images/data-flow-diagram.png" alt="Data flow diagram showing input, motherboard, CPU, storage, and output"></span>
+    </div>
+    <p class="img-caption">Figure 2.3 — How data flows through a computer system.</p>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 5 — ACTIVITY
+       ============================================================ -->
+  <section class="teach-section">
+    <h2><i class="fas fa-pen-to-square"></i> Activity: Label and Match</h2>
+
+    <div class="activity-box">
+      <h3><i class="fas fa-bullseye"></i> Activity 1 — Label a Diagram</h3>
+      <p>
+        Your teacher will give you (or display) a diagram of a computer system.
+        Write the correct name for each component and describe what it does in one sentence.
+      </p>
+      <ol class="activity-steps">
+        <li>Look at the diagram carefully and identify each numbered part.</li>
+        <li>Write the name of the component next to the correct number.</li>
+        <li>Write one sentence explaining what that component does.</li>
+        <li>Check your answers with a partner before submitting.</li>
+      </ol>
+    </div>
+
+    <h3 style="margin-top: 2rem;">Activity 2 — Match Components to Their Functions</h3>
+    <p>
+      For each component in the left column, choose the correct function from the drop-down menu
+      on the right. After you finish, click <strong>Check Answers</strong> to see your score.
+    </p>
+
+    <table class="matching-activity" id="matchingTable">
+      <thead>
+        <tr>
+          <th style="width: 30%;">Component</th>
+          <th style="width: 70%;">Its Function</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>CPU</strong></td>
+          <td>
+            <select class="match-select" data-answer="process">
+              <option value="">-- Select a function --</option>
+              <option value="store">Stores data permanently</option>
+              <option value="process">Processes instructions and data</option>
+              <option value="connect">Connects all components together</option>
+              <option value="power">Provides electricity to the computer</option>
+              <option value="temporary">Holds data temporarily while working</option>
+              <option value="graphics">Handles images, video, and 3D graphics</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td><strong>RAM</strong></td>
+          <td>
+            <select class="match-select" data-answer="temporary">
+              <option value="">-- Select a function --</option>
+              <option value="store">Stores data permanently</option>
+              <option value="process">Processes instructions and data</option>
+              <option value="connect">Connects all components together</option>
+              <option value="power">Provides electricity to the computer</option>
+              <option value="temporary">Holds data temporarily while working</option>
+              <option value="graphics">Handles images, video, and 3D graphics</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td><strong>Storage (HDD/SSD)</strong></td>
+          <td>
+            <select class="match-select" data-answer="store">
+              <option value="">-- Select a function --</option>
+              <option value="store">Stores data permanently</option>
+              <option value="process">Processes instructions and data</option>
+              <option value="connect">Connects all components together</option>
+              <option value="power">Provides electricity to the computer</option>
+              <option value="temporary">Holds data temporarily while working</option>
+              <option value="graphics">Handles images, video, and 3D graphics</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td><strong>Motherboard</strong></td>
+          <td>
+            <select class="match-select" data-answer="connect">
+              <option value="">-- Select a function --</option>
+              <option value="store">Stores data permanently</option>
+              <option value="process">Processes instructions and data</option>
+              <option value="connect">Connects all components together</option>
+              <option value="power">Provides electricity to the computer</option>
+              <option value="temporary">Holds data temporarily while working</option>
+              <option value="graphics">Handles images, video, and 3D graphics</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td><strong>Power Supply</strong></td>
+          <td>
+            <select class="match-select" data-answer="power">
+              <option value="">-- Select a function --</option>
+              <option value="store">Stores data permanently</option>
+              <option value="process">Processes instructions and data</option>
+              <option value="connect">Connects all components together</option>
+              <option value="power">Provides electricity to the computer</option>
+              <option value="temporary">Holds data temporarily while working</option>
+              <option value="graphics">Handles images, video, and 3D graphics</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td><strong>Graphics Card (GPU)</strong></td>
+          <td>
+            <select class="match-select" data-answer="graphics">
+              <option value="">-- Select a function --</option>
+              <option value="store">Stores data permanently</option>
+              <option value="process">Processes instructions and data</option>
+              <option value="connect">Connects all components together</option>
+              <option value="power">Provides electricity to the computer</option>
+              <option value="temporary">Holds data temporarily while working</option>
+              <option value="graphics">Handles images, video, and 3D graphics</option>
+            </select>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="match-buttons">
+      <button class="match-btn" id="checkMatches">
+        <i class="fas fa-check"></i> Check Answers
+      </button>
+      <button class="match-btn reset" id="resetMatches">
+        <i class="fas fa-rotate-left"></i> Reset
+      </button>
+    </div>
+
+    <div class="match-feedback" id="matchFeedback"></div>
+
+    <div class="activity-box" style="margin-top: 2rem;">
+      <h3><i class="fas fa-lightbulb"></i> Optional Extension</h3>
+      <p>
+        With your teacher's supervision, look at the inside of an old computer. Identify the
+        CPU, RAM sticks, storage drive, motherboard, power supply, and any expansion cards.
+        Or take a virtual tour of a computer online to see the same parts.
+      </p>
+      <p style="margin-bottom:0;">
+        <strong>Safety first:</strong> Never open a computer that is plugged in.
+        Always wait for your teacher's instructions.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 6 — QUICK CHECK QUIZ
+       ============================================================ -->
+  <section class="teach-section">
+    <h2><i class="fas fa-circle-question"></i> Quick Check</h2>
+    <p>Test your understanding with these questions. Click the best answer.</p>
+
+    <div class="quiz-question" data-quiz="1">
+      <p>1. Which component is often called the "brain" of the computer?</p>
+      <div class="quiz-options">
+        <button class="quiz-option" data-correct="false">
+          <i class="fas fa-circle"></i> RAM
+        </button>
+        <button class="quiz-option" data-correct="true">
+          <i class="fas fa-circle"></i> CPU
+        </button>
+        <button class="quiz-option" data-correct="false">
+          <i class="fas fa-circle"></i> Power Supply
+        </button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-question" data-quiz="2">
+      <p>2. What is the main difference between RAM and storage?</p>
+      <div class="quiz-options">
+        <button class="quiz-option" data-correct="false">
+          <i class="fas fa-circle"></i> RAM is inside the computer, storage is outside
+        </button>
+        <button class="quiz-option" data-correct="false">
+          <i class="fas fa-circle"></i> RAM is only for games, storage is only for documents
+        </button>
+        <button class="quiz-option" data-correct="true">
+          <i class="fas fa-circle"></i> RAM is temporary, storage is permanent
+        </button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-question" data-quiz="3">
+      <p>3. Which of the following is an <strong>output</strong> device?</p>
+      <div class="quiz-options">
+        <button class="quiz-option" data-correct="false">
+          <i class="fas fa-circle"></i> Microphone
+        </button>
+        <button class="quiz-option" data-correct="false">
+          <i class="fas fa-circle"></i> Scanner
+        </button>
+        <button class="quiz-option" data-correct="true">
+          <i class="fas fa-circle"></i> Printer
+        </button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-question" data-quiz="4">
+      <p>4. What is the main job of the motherboard?</p>
+      <div class="quiz-options">
+        <button class="quiz-option" data-correct="false">
+          <i class="fas fa-circle"></i> It stores all your files permanently
+        </button>
+        <button class="quiz-option" data-correct="true">
+          <i class="fas fa-circle"></i> It connects all the components so they can communicate
+        </button>
+        <button class="quiz-option" data-correct="false">
+          <i class="fas fa-circle"></i> It produces the images you see on the monitor
+        </button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+  </section>
+
+  <!-- ===== STUDENT OUTCOME ===== -->
+  <div class="outcome-banner">
+    <div class="outcome-icon"><i class="fas fa-graduation-cap"></i></div>
+    <div class="outcome-text">
+      <h3>Student Outcome</h3>
+      <p>Students can identify hardware components and explain what each does.</p>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       TEACHER INSTRUCTIONS & LINKS
+       ============================================================ -->
+  <section class="custom-instructions">
+    <h2><i class="fas fa-clipboard-list"></i> Teacher Instructions</h2>
+
+    <p>
+      <strong><a href="https://www.zipgrade.com/s/" class="inline-link" target="_blank" rel="noopener">ZipGrade Quiz</a></strong>
+      — Don't forget to take the ZipGrade quiz! Use the link provided to access and complete it. Make sure to submit before the deadline.
+    </p>
+
+    <div class="instruction-note">
+      <i class="fas fa-circle-info"></i>
+      <strong>Note:</strong> If you plan to open an old computer for the hands-on activity, make sure to unplug it first, use anti-static precautions, and supervise students carefully.
+    </div>
+
+    <div class="link-buttons">
+      <a href="https://www.bbc.co.uk/bitesize/guides/zphqgdm/revision/1" class="custom-link-btn" target="_blank" rel="noopener">
+        <i class="fas fa-arrow-up-right-from-square"></i> BBC Bitesize — Hardware
+      </a>
+      <a href="https://drive.google.com/file/d/1fLFAfFLuwjPeiKBkz7cyfyD-InPPLRcV/view?usp=sharing" class="custom-link-btn" target="_blank" rel="noopener">
+        <i class="fas fa-arrow-up-right-from-square"></i> Open PDF Resource
+      </a>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER NAVIGATION ===== -->
+  <div class="footer-nav">
+    <a href="topic-1-computer-system.html">
+      <i class="fas fa-arrow-left"></i> Previous: What Is a Computer System?
+    </a>
+    <a href="topic-3-software.html" class="next-link">
+      Next: Software Components <i class="fas fa-arrow-right"></i>
+    </a>
+  </div>
+
+</div>
+
+<!-- ============================================================
+     PRESENTATION TOOLBAR
+     ============================================================ -->
+<div class="present-toolbar">
+  <span class="toolbar-label">PRESENT</span>
+  <button id="prevSlide" title="Previous slide (←)"><i class="fas fa-chevron-left"></i></button>
+  <span class="slide-counter" id="slideCounter">1 / 6</span>
+  <button id="nextSlide" title="Next slide (→)"><i class="fas fa-chevron-right"></i></button>
+  <button id="togglePresent" title="Start / stop presentation (P)"><i class="fas fa-play"></i></button>
+  <button id="toggleFullscreen" title="Fullscreen (F)"><i class="fas fa-expand"></i></button>
+</div>
+
+<script>
+  /* ============================================================
+     QUIZ INTERACTIVITY
+     ============================================================ */
+  (function() {
+    const quizQuestions = document.querySelectorAll('.quiz-question');
+
+    quizQuestions.forEach(function(question) {
+      const options = question.querySelectorAll('.quiz-option');
+      const feedback = question.querySelector('.quiz-feedback');
+
+      options.forEach(function(option) {
+        option.addEventListener('click', function() {
+          if (question.dataset.answered === 'true') return;
+
+          const isCorrect = option.dataset.correct === 'true';
+
+          options.forEach(function(opt) {
+            opt.disabled = true;
+            if (opt.dataset.correct === 'true') {
+              opt.classList.add('correct');
+              opt.querySelector('i').className = 'fas fa-check-circle';
+            } else if (opt === option && !isCorrect) {
+              opt.classList.add('incorrect');
+              opt.querySelector('i').className = 'fas fa-times-circle';
+            } else {
+              opt.querySelector('i').className = 'fas fa-circle';
+            }
+          });
+
+          if (isCorrect) {
+            feedback.textContent = '✓ Correct! Well done.';
+            feedback.className = 'quiz-feedback show correct';
+          } else {
+            feedback.textContent = '✗ Not quite. The correct answer is highlighted in green.';
+            feedback.className = 'quiz-feedback show incorrect';
+          }
+
+          question.dataset.answered = 'true';
+        });
+      });
+    });
+  })();
+
+  /* ============================================================
+     MATCHING ACTIVITY
+     ============================================================ */
+  (function() {
+    const selects = document.querySelectorAll('.match-select');
+    const checkBtn = document.getElementById('checkMatches');
+    const resetBtn = document.getElementById('resetMatches');
+    const feedback = document.getElementById('matchFeedback');
+
+    checkBtn.addEventListener('click', function() {
+      let correct = 0;
+      let answered = 0;
+      let total = selects.length;
+
+      selects.forEach(function(select) {
+        select.classList.remove('correct', 'incorrect');
+        const chosen = select.value;
+        if (chosen === '') return;
+
+        answered++;
+        if (chosen === select.dataset.answer) {
+          select.classList.add('correct');
+          correct++;
+        } else {
+          select.classList.add('incorrect');
+        }
+      });
+
+      if (answered === 0) {
+        feedback.textContent = '⚠️ Please choose an answer for at least one component first.';
+        feedback.className = 'match-feedback show partial';
+        return;
+      }
+
+      if (correct === total) {
+        feedback.textContent = '🎉 Perfect! All ' + total + ' matches are correct.';
+        feedback.className = 'match-feedback show success';
+      } else {
+        feedback.textContent = 'You got ' + correct + ' out of ' + total + ' correct. Green boxes are correct; red boxes need another try.';
+        feedback.className = 'match-feedback show partial';
+      }
+    });
+
+    resetBtn.addEventListener('click', function() {
+      selects.forEach(function(select) {
+        select.value = '';
+        select.classList.remove('correct', 'incorrect');
+      });
+      feedback.className = 'match-feedback';
+      feedback.textContent = '';
+    });
+  })();
+
+  /* ============================================================
+     PRESENTATION MODE
+     ============================================================ */
+  (function() {
+    const slides = document.querySelectorAll('.teach-section');
+    const totalSlides = slides.length;
+    const counter = document.getElementById('slideCounter');
+    const prevBtn = document.getElementById('prevSlide');
+    const nextBtn = document.getElementById('nextSlide');
+    const presentBtn = document.getElementById('togglePresent');
+    const fullscreenBtn = document.getElementById('toggleFullscreen');
+
+    let current = 0;
+    let presenting = false;
+
+    if (totalSlides > 0) {
+      slides[0].classList.add('active-slide');
+      updateCounter();
+    }
+
+    function updateCounter() {
+      counter.textContent = (current + 1) + ' / ' + totalSlides;
+    }
+
+    function showSlide(index) {
+      if (index < 0) index = 0;
+      if (index >= totalSlides) index = totalSlides - 1;
+
+      slides.forEach(function(slide) {
+        slide.classList.remove('active-slide');
+      });
+      slides[index].classList.add('active-slide');
+      current = index;
+      updateCounter();
+
+      if (presenting) {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    function nextSlide() {
+      if (current < totalSlides - 1) showSlide(current + 1);
+    }
+
+    function prevSlide() {
+      if (current > 0) showSlide(current - 1);
+    }
+
+    function enterPresentation() {
+      presenting = true;
+      document.body.classList.add('presenting');
+      presentBtn.innerHTML = '<i class="fas fa-stop"></i>';
+      presentBtn.title = 'Stop presentation (P)';
+      showSlide(0);
+    }
+
+    function exitPresentation() {
+      presenting = false;
+      document.body.classList.remove('presenting');
+      presentBtn.innerHTML = '<i class="fas fa-play"></i>';
+      presentBtn.title = 'Start presentation (P)';
+      slides.forEach(function(slide) {
+        slide.classList.remove('active-slide');
+      });
+      if (document.fullscreenElement) {
+        document.exitFullscreen().catch(function() {});
+      }
+    }
+
+    function togglePresentation() {
+      if (presenting) {
+        exitPresentation();
+      } else {
+        enterPresentation();
+      }
+    }
+
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(function() {});
+      } else {
+        document.exitFullscreen().catch(function() {});
+      }
+    }
+
+    prevBtn.addEventListener('click', prevSlide);
+    nextBtn.addEventListener('click', nextSlide);
+    presentBtn.addEventListener('click', togglePresentation);
+    fullscreenBtn.addEventListener('click', toggleFullscreen);
+
+    document.addEventListener('keydown', function(e) {
+      const tag = (e.target.tagName || '').toLowerCase();
+      const typing = tag === 'input' || tag === 'textarea' || tag === 'select' || e.target.isContentEditable;
+
+      if (e.key === 'ArrowRight' && presenting) {
+        e.preventDefault();
+        nextSlide();
+      } else if (e.key === 'ArrowLeft' && presenting) {
+        e.preventDefault();
+        prevSlide();
+      } else if ((e.key === 'p' || e.key === 'P') && !typing) {
+        e.preventDefault();
+        togglePresentation();
+      } else if ((e.key === 'f' || e.key === 'F') && !typing) {
+        e.preventDefault();
+        toggleFullscreen();
+      } else if (e.key === 'Escape' && presenting) {
+        exitPresentation();
+      }
+    });
+
+    document.addEventListener('fullscreenchange', function() {
+      if (document.fullscreenElement) {
+        fullscreenBtn.innerHTML = '<i class="fas fa-compress"></i>';
+      } else {
+        fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i>';
+      }
+    });
+  })();
+</script>
+
+</body>
+</html>
